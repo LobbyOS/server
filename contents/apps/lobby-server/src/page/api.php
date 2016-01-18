@@ -51,12 +51,14 @@ if($node == "dot.gif"){
       $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `downloads` = `downloads` + 1 WHERE `id` = ?");
       $sql->execute(array($path[4]));
       
-      LobbyGit::download($git_url);
+      $lg = new LobbyGit($path[4], $git_url);
+      $lg->download();
     }
   }
-}else if($node == "ping"){
+}else if($node === "ping"){
   echo "pong";
-}else if("app-image"){
+}else if($node === "app-image"){
+
   require_once __DIR__ . "/../inc/LobbyGit.php";
   $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");
   $sql->execute(array($path[3]));
@@ -65,8 +67,9 @@ if($node == "dot.gif"){
     echo "error : app doesn't exist";
   }else{
     $lg = new LobbyGit($path[3], $sql->fetchColumn());
-    $lg->image($sql->fetchColumn());
+    $lg->image();
   }
+  
 }else if($node == "updates"){
   $response = array(
     "version" => $this->lobby_version,

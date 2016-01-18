@@ -1,0 +1,5 @@
+{
+    "require": {
+        "gitonomy/gitlib": "dev-master"
+    }
+}
