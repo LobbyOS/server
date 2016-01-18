@@ -1,0 +1,126 @@
+/**
+ * \Fr\Star
+ */
+.Fr-star {
+  width: 225px;
+  height: 42px;
+  position: relative;
+  background-color: #ccc;
+  border: #ccc 1px solid;
+}
+.Fr-star[data-title]:hover:after {
+  content: attr(data-title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 140%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+.Fr-star .Fr-star-bg{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: url('<?APP_URL?>/src/image/Fr-star.png') repeat;
+  background-size: contain;
+}
+.Fr-star .Fr-star-value{
+  height: 100%;
+  position: absolute;
+  background-color: #ffbe10;
+}
+/**
+ * End \Fr\Star
+ */
+
+.workspace{
+  margin: 0px auto;
+  width: 1300px;
+  border: 1px solid #ccc;
+}
+.sidebar, .contents{
+  position: relative;
+  float: left;
+}
+.sidebar{
+  min-height: 100%;
+  width: 22.5%;
+  padding: 0px 20px;
+  background: #2EA2CC;
+  color: white;
+}
+.workspace .contents{
+  padding: 1px;
+  height: 100%;
+  width: 77.5%;
+  padding-bottom: 40px;
+  background: white;
+  overflow: auto;
+}
+.sidebar a[href]{
+  color: white;
+  font-size: 14px;
+}
+.sidebar #search input{
+  width: 100%;
+  padding: 5px;
+}
+.apps .app{
+  position: relative;
+  height: 200px;
+  width: 200px;
+  background: white;
+  margin: 4px 10px;
+  border: 1px solid #c6c6c6;
+}
+.apps .app img{
+  height: 198px;
+  width: 198px;
+}
+.apps .app .info{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 4px;
+  background: #fff;
+}
+.apps .app:hover .info{
+  opacity: 1;
+}
+.apps .app .info .Fr-star{
+  width: 77px;
+  height: 15px;
+  margin-top: 2px;
+}
+.apps .app .cover{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 20%;
+  text-align: center;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: 1s all;
+  color: white;
+}
+.apps .app:hover .cover{
+  display: block;
+  opacity: 1;
+  background: rgba(0, 0, 0, 1);
+}

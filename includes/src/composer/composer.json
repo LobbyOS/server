@@ -1,0 +1,6 @@
+{
+    "require": {
+        "klein/klein": "dev-master",
+        "rmccue/requests": "dev-master"
+    }
+}

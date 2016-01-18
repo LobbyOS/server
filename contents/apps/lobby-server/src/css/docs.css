@@ -1,0 +1,65 @@
+.panel.top{
+  left: 15%;
+}
+.contents h2{
+  font-size: 2.5rem;
+}
+.contents strong{
+  font-weight: bold;
+}
+.sidebar, .contents{
+  display: inline-block;
+}
+.sidebar{
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 15%;
+  padding-top: 50px;
+  background: #2EA2CC;
+}
+.sidebar a[href]{
+  color: white;
+  font-size: 14px;
+}
+.sidebar ul{
+  display: block;
+  padding: 0px 10px;
+	list-style: none;
+}
+.sidebar ul a.head{
+	display: block;
+  margin: 10px 0px 5px;
+  font-size: 17px;
+}
+.sidebar ul li.head ul li{
+	margin-left:5px;
+}
+.sidebar ul li:nth-child(1){
+	margin-top: 5px;
+}
+.sidebar ul li ul{
+  padding: 0px 30px;
+}
+.sidebar ul li ul li:before{
+	content: "> ";
+	color: #cccccc;
+	width:32px;
+	height:32px;
+	margin-top:5px;
+	margin-left: -16px;
+}
+.contents{
+  margin: 0px 0px 0px 200px !important;
+  padding: 0px 20px 40px;
+  width: 85% !important;
+  line-height: 24px;
+  font-size: 15px;
+}
+.contents p{
+  margin-top: 10px;
+}
+.contents strong{
+  letter-spacing: 1px;
+}
