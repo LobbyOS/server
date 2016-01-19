@@ -7,15 +7,14 @@ $lobby_downloads = array(
   "0.2.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.1.zip"
 );
 
-if($node == "dot.gif"){
+if($node === "dot.gif"){
   header("Content-type: image/gif");
   include APP_DIR . "/src/image/blank_dot.gif";
-}elseif($node == "download" && isset($path[3]) && isset($path[4])){
-  $type = $path[3];
-  $version = pathinfo($path[4]);
-  $version = $version['basename'];
+}else if($node === "lobby" && isset($path[3])){
+  $what = $path[3];
+  $version = isset($path[4]) ? $path[4] : "";
 
-  if($type == "lobby"){
+  if($what === "download"){
     $version = $version == "latest" ? $this->lobby_version : $version;
     
     if(isset($lobby_downloads[$version])){
@@ -40,99 +39,101 @@ if($node == "dot.gif"){
        */
       header("Location: {$lobby_downloads[$version]}");
     }
+  }else if($what === "updates"){
+    $response = array(
+      "version" => $this->lobby_version,
+      "released" => $this->lobby_released,
+      "release_notes" => $this->lobby_release_notes
+    );
+    
+    if(isset($_POST['apps'])){
+      $apps = $_POST['apps'];
+      if(preg_match("/\,/", $apps)){
+        $apps = explode(",", $apps);
+      }else{
+        /**
+         * Only a single app is present
+         */
+        $apps = array($apps);
+      }
+      
+      foreach($apps as $app){
+        $sql = \Lobby\DB::$dbh->prepare("SELECT `version` FROM `apps` WHERE `id` = ?");
+        $sql->execute(array($app));
+        $lat_version = $sql->fetchColumn();
+        
+        if($lat_version != false){
+          $response["apps"][$app] = $lat_version;
+        }
+      }
+    }
+    echo json_encode($response);
+  }else if($what === "installation-id"){
+    function randStr($length){
+      $str = "";
+      $chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      $size=strlen($chars);
+      for($i = 0; $i < $length; $i++){
+        $str.=$chars[rand(0, $size-1)];
+      }
+      return $str;
+    }
+    $lobbyID  = randStr(10) . randStr(15) . randStr(20); // Lobby Global ID
+    $lobbySID = hash("sha512", randStr(15) . randStr(30)); // Lobby Secure ID
+    ?>
+    <html>
+      <head></head>
+      <body>
+        <pre><code><?php
+          echo "lobbyID - $lobbyID<br/>";
+          echo "lobbySID - $lobbySID";
+          ?></code></pre>
+      </body>
+    </html>
+<?php
   }
 }else if($node === "app" && isset($path[3]) && isset($path[4])){
   
-  if($path[4] === "logo"){
+  $appID = $path[3];
+  $what = $path[4];
+  if($what === "logo"){
     require_once __DIR__ . "/../inc/LobbyGit.php";
   
     $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");
-    $sql->execute(array($path[3]));
+    $sql->execute(array($appID));
     
     if($sql->rowCount() === 0){
       echo "error : app doesn't exist";
     }else{
-      $lg = new LobbyGit($path[3], $sql->fetchColumn());
+      $lg = new LobbyGit($appID, $sql->fetchColumn());
       $lg->image();
     }
-  }else if($path[4] === "download"){
+  }else if($what === "download"){
     $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");
-    $sql->execute(array($version)); // Here $version is actually App ID
+    $sql->execute(array($appID)); // Here $version is actually App ID
     
     if($sql->rowCount() === 0){
       echo "error : app doesn't exist";
     }else{
       $git_url = $sql->fetchColumn();
       $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `downloads` = `downloads` + 1 WHERE `id` = ?");
-      $sql->execute(array($version));
+      $sql->execute(array($appID));
       
       require_once __DIR__ . "/../inc/LobbyGit.php";
-      $lg = new LobbyGit($path[4], $git_url);
-      $this->download("lobby-app-$version.zip", $lg->download());
+      $lg = new LobbyGit($appID, $git_url);
+      $this->download("lobby-app-$appID.zip", $lg->download());
     }
   }
   
 }else if($node === "ping"){
   echo "pong";
-}else if($node == "updates"){
-  $response = array(
-    "version" => $this->lobby_version,
-    "released" => $this->lobby_released,
-    "release_notes" => $this->lobby_release_notes
-  );
-  
-  if(isset($_POST['apps'])){
-    $apps = $_POST['apps'];
-    if(preg_match("/\,/", $apps)){
-      $apps = explode(",", $apps);
- 	  }else{
-      /**
-       * Only a single app is present
-       */
-      $apps = array($apps);
- 	  }
-    
-    foreach($apps as $app){
-      $sql = \Lobby\DB::$dbh->prepare("SELECT `version` FROM `apps` WHERE `id` = ?");
-      $sql->execute(array($app));
-      $lat_version = $sql->fetchColumn();
-      
-      if($lat_version != false){
-        $response["apps"][$app] = $lat_version;
-      }
-    }
-  }
-  echo json_encode($response);
-}else if($node == "lobby-installation-id"){
-  function randStr($length){
-    $str = "";
-    $chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    $size=strlen($chars);
-    for($i = 0; $i < $length; $i++){
-      $str.=$chars[rand(0, $size-1)];
-    }
-    return $str;
-  }
-  $lobbyID  = randStr(10) . randStr(15) . randStr(20); // Lobby Global ID
-  $lobbySID = hash("sha512", randStr(15) . randStr(30)); // Lobby Secure ID
-  ?>
-  <html>
-    <head></head>
-    <body>
-      <pre><code><?php
-        echo "lobbyID - $lobbyID<br/>";
-        echo "lobbySID - $lobbySID";
-        ?></code></pre>
-    </body>
-  </html>
-<?php
-}else if($node == "apps"){
+}else if($node === "apps"){
   $get = H::input("get");
   $p = H::input("p");
   $q = H::input("q");
   $lobby_web = H::input("lobby_web") != null;
   
-  if($p == null){
+  if($p === null){
     $start = 0;
     $stop = 10;
   }else{
@@ -225,7 +226,7 @@ if($node == "dot.gif"){
       $response['apps'][$i]['author'] = getAuthorName($r['author']);
       $response['apps'][$i]['author_page'] = \Lobby::u("/u/{$r['author']}");
       $response['apps'][$i]['rating'] = getRating($r['id']) . "/5";
-      $response['apps'][$i]['image'] = L_URL . '/api/app/anagram/logo';
+      $response['apps'][$i]['image'] = L_URL . "/api/app/{$r['id']}/logo";
       $i++;
     }
     
