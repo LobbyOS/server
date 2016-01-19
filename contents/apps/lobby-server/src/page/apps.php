@@ -61,7 +61,7 @@ if($node == "index"){
               <?php echo $app['short_description'];?>
             </div>
             <div class="main">
-              <img src="<?php echo L_URL;?>/api/app-image/<?php echo $app['id'];?>" />
+              <img src="<?php echo L_URL;?>/api/app/<?php echo $app['id'];?>/logo" />
               <div class="info">
                 <div style="float: left;">
                   <span><?php echo $app['name'];?></span>

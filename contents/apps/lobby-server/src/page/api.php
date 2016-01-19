@@ -40,7 +40,22 @@ if($node == "dot.gif"){
        */
       header("Location: {$lobby_downloads[$version]}");
     }
-  }else if($type === "app"){
+  }
+}else if($node === "app" && isset($path[3]) && isset($path[4])){
+  
+  if($path[4] === "logo"){
+    require_once __DIR__ . "/../inc/LobbyGit.php";
+  
+    $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");
+    $sql->execute(array($path[3]));
+    
+    if($sql->rowCount() === 0){
+      echo "error : app doesn't exist";
+    }else{
+      $lg = new LobbyGit($path[3], $sql->fetchColumn());
+      $lg->image();
+    }
+  }else if($path[4] === "download"){
     $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");
     $sql->execute(array($version)); // Here $version is actually App ID
     
@@ -49,27 +64,16 @@ if($node == "dot.gif"){
     }else{
       $git_url = $sql->fetchColumn();
       $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `downloads` = `downloads` + 1 WHERE `id` = ?");
-      $sql->execute(array($path[4]));
+      $sql->execute(array($version));
       
+      require_once __DIR__ . "/../inc/LobbyGit.php";
       $lg = new LobbyGit($path[4], $git_url);
-      $lg->download();
+      $this->download("lobby-app-$version.zip", $lg->download());
     }
   }
+  
 }else if($node === "ping"){
   echo "pong";
-}else if($node === "app-image"){
-
-  require_once __DIR__ . "/../inc/LobbyGit.php";
-  $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");
-  $sql->execute(array($path[3]));
-  
-  if($sql->rowCount() === 0){
-    echo "error : app doesn't exist";
-  }else{
-    $lg = new LobbyGit($path[3], $sql->fetchColumn());
-    $lg->image();
-  }
-  
 }else if($node == "updates"){
   $response = array(
     "version" => $this->lobby_version,
@@ -221,6 +225,7 @@ if($node == "dot.gif"){
       $response['apps'][$i]['author'] = getAuthorName($r['author']);
       $response['apps'][$i]['author_page'] = \Lobby::u("/u/{$r['author']}");
       $response['apps'][$i]['rating'] = getRating($r['id']) . "/5";
+      $response['apps'][$i]['image'] = L_URL . '/api/app/anagram/logo';
       $i++;
     }
     

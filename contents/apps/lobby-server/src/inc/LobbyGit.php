@@ -39,7 +39,7 @@ class LobbyGit {
   }
   
   public function download(){
-    
+    return $this->git_dir . "/app.zip";
   }
   
   public function image(){
