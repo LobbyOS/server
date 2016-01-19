@@ -4,7 +4,8 @@ $lobby_downloads = array(
   "0.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.1.zip",
   "0.1.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.1.1.zip",
   "0.2" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.zip",
-  "0.2.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.1.zip"
+  "0.2.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.1.zip",
+  "0.3" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.3.zip"
 );
 
 if($node === "dot.gif"){
@@ -99,14 +100,19 @@ if($node === "dot.gif"){
   if($what === "logo"){
     require_once __DIR__ . "/../inc/LobbyGit.php";
   
-    $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");
+    $sql = \Lobby\DB::$dbh->prepare("SELECT `image`, `git_url` FROM `apps` WHERE `id` = ?");
     $sql->execute(array($appID));
     
     if($sql->rowCount() === 0){
       echo "error : app doesn't exist";
     }else{
-      $lg = new LobbyGit($appID, $sql->fetchColumn());
-      $lg->image();
+      $r = $sql->fetch(\PDO::FETCH_ASSOC);
+      if($r['image'] == 0){
+        header("Location: " . L_URL . "/contents/apps/lobby-server/src/image/blank.png");
+      }else{
+        $lg = new LobbyGit($appID, $r['git_url']);
+        $lg->image();
+      }
     }
   }else if($what === "download"){
     $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");

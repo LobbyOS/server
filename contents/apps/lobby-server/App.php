@@ -4,7 +4,7 @@ namespace Lobby\App;
 class lobby_server extends \Lobby\App {
   
   public $lobby_version = "0.3";
-  public $lobby_released = "2015-01-11";
+  public $lobby_released = "2015-01-20";
   public $lobby_release_notes = '<span style="color:red;font-size:40px;">DON\'T UPDATE !</span><p>All users should reinstall Lobby as there have been a LOT of changes. Sorry... <a href="//subinsb.com/lobby/">More Info here</a></p>';
   
   public $app_categories = array(
@@ -97,12 +97,12 @@ class lobby_server extends \Lobby\App {
     ));
     \Lobby\UI\Panel::addTopItem("lobbyWeb", array(
       "position" => "left",
-      "text" => "<span class='button red' style='margin:0;padding: 0 10;'>Lobby Web</span>",
+      "text" => "Lobby Web",
       "href" => "/web-readme"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyApps", array(
       "position" => "left",
-      "text" => "Apps",
+      "text" => "<span class='button green' style='margin:0;padding: 0 10;'>Apps</span>",
       "href" => "/apps"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyModules", array(
@@ -114,6 +114,11 @@ class lobby_server extends \Lobby\App {
       "position" => "left",
       "text" => "Docs",
       "href" => "/docs"
+    ));
+    \Lobby\UI\Panel::addTopItem("lobbyBlog", array(
+      "position" => "left",
+      "text" => "Blog",
+      "href" => "/blog"
     ));
     
     require_once APP_DIR . "/src/inc/logsys.php";

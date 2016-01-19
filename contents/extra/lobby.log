@@ -1734,3 +1734,897 @@ Stack trace:
 [2016-01-19 02:57:09] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
 [2016-01-19 02:57:09] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
 [2016-01-19 02:57:09] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 02:57:37] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 02:57:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 02:57:41] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 02:57:41] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 02:59:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 02:59:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 03:00:01] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 03:00:01] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 03:00:01] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 03:00:01] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 03:00:01] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 03:00:01] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 03:00:01] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 03:00:02] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 03:00:03] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 03:00:03] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 03:00:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 03:00:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:08:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:09:55] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:10:01] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:10:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:13:01] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:13:02] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:13:02] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:13:03] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:13:03] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:13:03] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/blog/dropplets/tools.php on line 11 : Undefined index: dp-panel
+[2016-01-19 12:13:04] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:13:04] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:13:27] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/blog/dropplets/tools.php on line 11 : Undefined index: dp-panel
+[2016-01-19 12:13:28] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:13:28] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:13:35] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/blog/dropplets/tools.php on line 11 : Undefined index: dp-panel
+[2016-01-19 12:13:35] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:13:35] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:13:48] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:14:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:14:06] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:14:06] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:14:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:14:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:14:18] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:14:18] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:14:22] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:14:22] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:14:22] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:14:35] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:14:35] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:14:35] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:14:36] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:14:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:14:58] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:14:58] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:15:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:15:10] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:15:11] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:15:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:15:38] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:15:38] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:15:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:15:58] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:15:58] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:16:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:16:05] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:16:06] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:16:16] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:16:16] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:16:17] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:16:30] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:16:30] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:16:31] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:16:36] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:16:37] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:16:37] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:16:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:16:38] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:16:39] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:17:20] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:17:20] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:17:21] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:17:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:17:44] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:17:45] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:18:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:18:07] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:18:07] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:18:15] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:18:15] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:18:16] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:18:22] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:18:22] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:18:22] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:18:43] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:18:43] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:18:44] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:18:57] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:18:57] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:18:57] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:19:50] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:19:50] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:19:51] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:20:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:20:05] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:20:05] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:20:08] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:20:08] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:20:09] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:20:25] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:20:25] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:20:25] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:20:37] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:20:37] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:20:38] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:21:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:21:02] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:21:02] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:21:25] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:21:25] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:21:25] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:22:15] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:22:16] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:22:16] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:22:19] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:22:19] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:22:20] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:22:27] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:22:28] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:22:28] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:22:30] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:22:31] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:22:31] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:22:51] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:22:51] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:22:51] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:22:54] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:22:54] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:22:54] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:24:47] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:24:47] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:24:47] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:24:52] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:24:52] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:24:53] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:24:55] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:25:20] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:25:21] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:25:21] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:25:27] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:25:28] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:25:28] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:25:47] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:26:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:26:05] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:26:06] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:26:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:26:26] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:26:26] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:26:51] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:26:51] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:26:51] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:27:01] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:27:01] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:27:01] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:27:04] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:27:04] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:27:04] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:27:08] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:27:08] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:27:08] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:27:13] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:27:13] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:27:13] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:27:16] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:27:16] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:27:16] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:27:27] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:27:27] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:27:27] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/blog/templates/lobby/index.php on line 9 : Undefined variable: page_meta
+[2016-01-19 12:27:27] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:27:30] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/blog/templates/lobby/index.php on line 9 : Undefined variable: page_meta
+[2016-01-19 12:27:30] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:27:30] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:27:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:27:58] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:27:58] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:28:18] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:28:18] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:28:19] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:28:20] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:28:21] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:28:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:28:21] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:28:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:28:22] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:28:22] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:28:22] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:28:22] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:28:22] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:31:36] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:31:36] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:31:36] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:31:47] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:31:48] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:31:48] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:31:48] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:31:48] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:31:50] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:32:06] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:32:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:32:59] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:00] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:00] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:01] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:23] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:39] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:33:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:39] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:33:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:52] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:52] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:33:52] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:52] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:33:52] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:53] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:33:56] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:34:06] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:34:20] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:34:41] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:35:04] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:35:04] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:35:04] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:35:04] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:35:04] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:35:30] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:35:31] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:35:37] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:35:45] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:36:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:36:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:39:11] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:39:51] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:40:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:40:03] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:40:03] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:40:03] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:40:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:41:45] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:11] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:12] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:42:12] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:42:13] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:13] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:42:13] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:42:18] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:18] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:42:18] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:42:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:26] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:42:26] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:42:29] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:49] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:49] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:42:49] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:42:53] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:53] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:42:53] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:42:57] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:42:57] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:42:58] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:00] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:00] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:43:00] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:00] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:43:00] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:04] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:04] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:43:04] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:04] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:43:04] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:08] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:08] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:43:08] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:08] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:43:08] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:22] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:43:22] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:22] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:43:22] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:28] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:28] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:43:28] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:28] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:43:28] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:29] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:48] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:48] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:49] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:51] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:52] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:52] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:56] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:56] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:57] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:58] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:58] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:43:59] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:43:59] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:43:59] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:44:00] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:44:00] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:44:01] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:44:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:44:02] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:44:02] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:44:03] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:44:03] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:44:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:44:26] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:44:26] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:44:27] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:44:27] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:45:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:45:32] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 12:45:32] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 12:45:33] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 12:45:33] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 12:59:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:59:41] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:59:41] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:59:41] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:41] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:41] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:41] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:42] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:42] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:59:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 12:59:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 12:59:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:00:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:00:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:00:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:00:06] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:01:12] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:01:13] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:01:13] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:01:13] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:01:13] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:01:13] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:01:13] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:01:13] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:01:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:01:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:01:16] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:01:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:03:49] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:03:49] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:03:49] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:03:49] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:03:49] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:03:49] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:03:49] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:03:50] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:03:50] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:03:50] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'http://googledrive.com/host/0B2VjYaTkCpiQcXh2SUNJSk90Yzg/fr-logs' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(109): LobbyGit->__construct('fr-logsys', 'http://googledr...')
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\A
+[2016-01-19 13:03:51] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:03:51] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:04:06] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:04:06] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:04:12] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:04:12] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:05:42] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:23:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:23:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:23:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:23:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:23:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:23:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:23:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:23:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:23:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:23:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:23:41] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:23:41] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:23:42] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:23:43] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:24:54] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:24:54] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:24:55] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:24:55] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:24:55] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:24:55] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:24:55] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:24:55] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:24:55] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:24:55] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'http://googledrive.com/host/0B2VjYaTkCpiQdTl4TldwMmVqdU0/diary.z' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(109): LobbyGit->__construct('diary', 'http://googledr...')
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\l
+[2016-01-19 13:47:57] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:47:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:47:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:47:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:47:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:47:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:47:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:47:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:47:59] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:47:59] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:48:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:48:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:48:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:48:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:48:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:48:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:48:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:48:08] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:48:09] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:48:09] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:48:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:48:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:02] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 13:51:02] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:51:02] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 13:51:02] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:51:12] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:12] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:51:13] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:51:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:14] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:51:14] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:51:15] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:25] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:26] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:51:27] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:51:28] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:29] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:51:29] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:51:57] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:57] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:51:57] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:51:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/diary/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:51:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:51:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:51:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:51:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:51:58] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 13:51:58] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:51:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:52:00] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:52:00] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 13:52:00] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:52:00] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 13:52:00] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:54:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:54:58] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:54:59] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:55:01] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:55:19] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:56:16] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:56:18] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:56:18] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 13:56:18] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:56:19] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 13:56:19] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:56:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:56:21] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:56:22] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:56:23] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:56:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:56:28] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:56:52] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:57:12] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:57:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:57:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:57:14] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 13:57:15] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 13:57:16] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:57:24] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:58:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 13:59:59] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:02] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:04:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:07] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:07] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:04:09] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:09] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:04:09] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:04:19] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:20] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:04:20] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:20] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:20] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:20] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:20] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:20] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:20] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:04:20] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:04:20] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:23] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:23] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:04:24] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:04:48] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:04:48] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:04:49] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:05:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:05:15] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:05:15] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:05:24] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:05:24] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:05:24] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:05:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:05:33] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:05:33] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:05:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:05:39] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:05:39] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:00] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:01] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:01] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:08] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:09] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:09] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:14] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:14] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:21] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:21] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:25] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:25] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:25] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:30] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:30] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:31] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:37] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:37] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:38] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:44] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:45] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:54] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:54] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:54] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:07:59] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:07:59] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:07:59] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:08:03] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:08:03] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:08:03] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:08:09] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:08:09] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:08:09] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:08:13] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:17] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/apps.php on line 129 : Undefined variable: appID
+[2016-01-19 14:09:17] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:09:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:18] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:09:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:33] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:09:33] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:33] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:33] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:09:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:40] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:09:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:41] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:09:54] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:54] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:09:54] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:09:54] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:10:09] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:10] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:10:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:10] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:10:13] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:18] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:18] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:10:18] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:19] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:10:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:21] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:10:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:21] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:21] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:21] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:21] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:21] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:21] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:21] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:10:47] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:47] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:47] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/fr-logsys/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:47] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:10:47] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:47] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:47] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:10:47] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/ledit/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:22:50] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:22:50] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:22:50] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:22:57] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:23:00] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:23:06] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:23:13] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:23:13] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:23:17] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:23:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:23:17] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:26:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:40] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:26:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:26:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/sige/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:26:40] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/site-compressor/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:26:40] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:26:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:46] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:46] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:26:46] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:46] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:46] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:46] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:46] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:26:46] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:46] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:46] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:26:46] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:26:59] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:27:11] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:13] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:25] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:26] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:27:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:26] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:27:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:27] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:27] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:27] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:27:37] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:38] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:27:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:38] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:27:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:38] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:27:38] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:43] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:44] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:27:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:44] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/millionaire/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:27:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:27:44] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:27:44] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:23] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:23] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:29:23] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'Gitonomy\Git\Exception\RuntimeException' with message 'Error while initializing repository: fatal: The empty string is not a valid path
+' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/vendor/gitonomy/gitlib/src/Gitonomy/Git/Admin.php:138
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/vendor/gitonomy/gitlib/src/Gitonomy/Git/Admin.php(83): Gitonomy\Git\Admin::cloneRepository('/home/simsu/Oth...', false, Array, Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(27): Gitonomy\Git\Admin::cloneTo('/home/simsu/Oth...', false, false)
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(22): LobbyGit->getRepo()
+#3 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__const
+[2016-01-19 14:29:23] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__construct('diary', false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\lobby_server->page('/api/app/diary/...')
+#6 /home/simsu/Other/projects/Web/Lobby
+[2016-01-19 14:29:23] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__construct('fr-logsys', false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\lobby_server->page('/api/app/fr-log...')
+#6 /home/simsu/Other/projects/Web/L
+[2016-01-19 14:29:23] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__construct('ledit', false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\lobby_server->page('/api/app/ledit/...')
+#6 /home/simsu/Other/projects/Web/Lobby
+[2016-01-19 14:29:23] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__construct('millionaire', false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\lobby_server->page('/api/app/millio...')
+#6 /home/simsu/Other/projects/Web
+[2016-01-19 14:29:23] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:23] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:24] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:29:24] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:26] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:27] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:29:27] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 47 : file_get_contents(/home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/data/git-cache/anagram/logo.png): failed to open stream: No such file or directory
+[2016-01-19 14:29:27] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__construct('fr-logsys', false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\lobby_server->page('/api/app/fr-log...')
+#6 /home/simsu/Other/projects/Web/L
+[2016-01-19 14:29:27] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__construct('ledit', false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\lobby_server->page('/api/app/ledit/...')
+#6 /home/simsu/Other/projects/Web/Lobby
+[2016-01-19 14:29:27] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__construct('millionaire', false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\lobby_server->page('/api/app/millio...')
+#6 /home/simsu/Other/projects/Web
+[2016-01-19 14:29:27] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:27] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/composer/vendor/klein/klein/src/Klein/Klein.php on line 931 : Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'' in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:21
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(21): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(12): LobbyGit->register()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php(113): LobbyGit->__construct('diary', false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php(66): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php(62): Lobby\App->inc('/src/page/api.p...', Array)
+#5 /home/simsu/Other/projects/Web/Lobby/Web/contents/modules/indi/Module.php(45): Lobby\App\lobby_server->page('/api/app/diary/...')
+#6 /home/simsu/Other/projects/Web/Lobby
+[2016-01-19 14:29:27] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:27] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:27] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:29:53] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:29:54] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:29:59] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:30:04] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:30:09] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:30:14] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:32] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:31:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:32] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:31:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:32] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:31:32] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:33] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:31:33] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:39] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:39] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:31:39] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:43] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:43] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:31:43] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:31:43] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:31:47] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:32:53] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:32:53] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:32:53] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:32:53] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:32:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:33:33] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:33:34] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:33:34] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:34:58] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:02] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:05] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:35:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:05] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:35:05] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:10] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:35:10] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:35:15] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:15] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 14:35:15] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:35:15] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 14:35:15] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:35:19] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:19] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:35:19] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:35:25] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:25] CSS file was not found in location given : /contents/themes/hine/src/dashboard/css/metrojs.css
+[2016-01-19 14:35:25] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:35:26] JavaScript file was not found in location given : /contents/themes/hine/src/dashboard/js/metrojs.js
+[2016-01-19 14:35:26] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:35:42] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:43] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:35:43] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:35:45] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:45] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:35:45] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:35:47] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:35:47] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:35:48] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:37:13] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:37:13] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:37:15] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:37:18] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:37:18] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:37:19] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:37:23] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:37:23] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:37:24] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:37:40] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:37:40] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:37:40] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:38:00] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:38:01] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:38:01] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:38:01] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:39:41] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:39:41] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:39:43] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js
+[2016-01-19 14:40:10] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-19 14:40:10] CSS file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/css/filechooser.css
+[2016-01-19 14:40:11] JavaScript file was not found in location given : /home/simsu/Other/projects/Web/Lobby/Web/includes/lib/modules/FileSystem/js/filechooser.js

@@ -1,7 +1,7 @@
 <?php
 $this->addStyle("apps.css");
 
-if($node == "index"){
+if($node === "index"){
   $this->addScript("jquery.isotope.js");
   $this->addScript("apps.js");
   
@@ -126,7 +126,7 @@ if($node == "index"){
           <p><?php echo $Parsedown->text($app_info['description']);?></p>
         </div>
         <div id="screenshots">
-          <img src='<?php echo $app_info['image'];?>' alt='Logo' />
+          <center style="margin: 20px;"><img src="<?php echo L_URL;?>/api/app/<?php echo $node;?>/logo" alt='Logo' title="App Logo" /></center>
           <?php
           $screenshots = explode("\n", $app_info['screenshots']);
           if(count($screenshots) > 1){
@@ -205,7 +205,7 @@ if($node == "index"){
               </tr>
               <tr>
                 <td></td>
-                <td><a class='button green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href='<?php echo L_URL;?>/api/download/app/<?php echo $app_info['id'];?>' style='padding: 10px 40px;font-size: 12pt;'>Download (Zip) <div clear style='font-size: 13px;'><?php echo $app_info['downloads'];?> Downloads</div></a></td>
+                <td><a style='display: block;font-size: 16px;height: 60px;color: white;' class='button green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip File<font size='1' style='display:block;margin-top: -10px;'><?php echo $app_info['downloads'];?> Downloads</font></a></td>
               </tr>
             </tbody>
           </table>

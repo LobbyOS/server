@@ -5,18 +5,16 @@
         <meta charset="utf-8">
         
         <title><?php echo($page_title); ?></title>
-        
-        <?php echo($page_meta); ?>
+        <?php echo isset($page_meta) ? $page_meta : ""; ?>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="stylesheet" href="<?php echo($template_dir_url); ?>style.css">
-        <link rel="stylesheet" href="<?php echo($template_dir_url); ?>subdiv.css">
         <?php
         get_header();
         \Lobby::doHook("head.begin");
         \Lobby::head();
         \Lobby::doHook("head.end");
         ?>
+        <link rel="stylesheet" href="<?php echo($template_dir_url); ?>style.css">
+        <link rel="stylesheet" href="<?php echo($template_dir_url); ?>subdiv.css">
     </head>
 
     <body>
@@ -32,7 +30,6 @@
                     <ul>
                         <li><?php echo($blog_title); ?></li>
                         <li><a href="mailto:<?php echo($blog_email); ?>?subject=Hello"><?php echo($blog_email); ?></a></li>
-                        <li><a href="http://twitter.com/<?php echo($blog_twitter); ?>">&#64;<?php echo($blog_twitter); ?></a></li>
                         <li></li>
                     </ul>
                 </div>
@@ -50,6 +47,6 @@
         
         <?php echo($content); ?>
         
-        <?php get_footer(); ?>
+        <?php //get_footer(); ?>
     </body>
 </html>

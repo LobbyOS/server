@@ -14,7 +14,7 @@
         </div>
 
         <div class="three-quarters post">
-            <h2><?php echo($post_title); ?></h2>
+            <h1><?php echo($post_title); ?></h1>
             <?php echo($post_content); ?>
 
             <ul class="actions">

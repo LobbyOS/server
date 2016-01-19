@@ -9,3 +9,5 @@
   </ul>
   <a class="button red" href="/web">PROCEED</a>
 </div>
+<?php
+require_once APP_DIR . "/src/inc/views/track.php";

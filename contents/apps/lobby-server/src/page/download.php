@@ -38,7 +38,7 @@
     It works on all Linux systems that has the <a href='https://en.wikipedia.org/wiki/Advanced_Packaging_Tool' target='_blank'>Advanced Packaging Tools (APT)</a>
   </p>
 	<ul>
-		<li><?php echo \Lobby::l("/api/download/lobby/script", "Download Script", "class='button green'");?></li>
+		<li><?php echo \Lobby::l("/api/lobby/download/script", "Download Script", "class='button green'");?></li>
 		<li>Copy the script to the folder where you want to install Lobby. Recommended : <b>/var/www/html</b></li>
 		<li>Open a terminal on the folder and run the script with root.
 			<pre><code>sudo bash ./lobby-install.sh</code></pre>
@@ -53,7 +53,7 @@
   <h2>Direct Download</h2>
   <p>
     If you already have localhost set up and just want to download Lobby, click the button below :
-    <a style='display: table;margin: 20px auto;font-size: 16px;padding: 5px 20px;' class='button green' href="/api/download/lobby/latest">Download Lobby<font size='1' style='display:block;margin-top: -10px;'>Zip, 1.8 MB</font></a>
+    <a style='display: table;margin: 20px auto;font-size: 16px;padding: 5px 20px;' class='button green' href="/api/lobby/download/latest">Download Lobby<font size='1' style='display:block;margin-top: -10px;'>Zip, 2.4 MB</font></a>
   </p>
 </div>
 <?php

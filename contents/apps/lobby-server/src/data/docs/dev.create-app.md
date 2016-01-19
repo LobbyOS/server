@@ -2,11 +2,13 @@
 
 Creating apps for Lobby is simple as a piece of cake if you're a PHP Programmer having knowledge of OOP.
 
-## Name
+## App ID
 
-The first task in making an app is to find out a name. If you want to upload your app to the Lobby Server, it's required that your app name should be a unique one.
+The first task in making an app is to find out a name & ID. If you want to upload your app to the Lobby Server, it's required that your app ID should be a unique one.
 
-By "App Name", we mean a unique **ID**. The title of the app can be anything you wish. But the App Namespace or ID should be a unique one.
+An app is recoginized by this unique **ID**. Once it is set, it can't be changed. So, choose wisely.
+
+The title of the app can be anything you wish. But the App ID should be a unique one.
 
 Here are the conditions of the app ID :
 

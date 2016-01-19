@@ -303,7 +303,8 @@ define('IS_HOME', $is_home);
 /*-----------------------------------------------------------------------------------*/
 
 function get_twitter_profile_img($username) {
-	
+	global $blog_url;
+  
 	// Get the cached profile image.
 	$profile_image = './cache/'.$username.'.jpg';
 	
@@ -313,7 +314,7 @@ function get_twitter_profile_img($username) {
 	    $image = file_get_contents($image_url);
 	    file_put_contents('./cache/'.$username.'.jpg', $image);
 	}
-	
+	$profile_image = $blog_url . 'cache/' . $username . '.jpg';
 	// Return the image URL.
 	return $profile_image;
 }
