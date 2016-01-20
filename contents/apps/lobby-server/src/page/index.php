@@ -49,7 +49,7 @@ $this->addStyle("main.css");
 </div>
 <div class="section">
   <div class="contents" style="padding: 20px 0;">
-    <h1 style='font-size: 4em;margin-top:0;'>Download</h1>
+    <h1 style='font-size: 4em;margin-top:0;'><a href="/download">Download</a></h1>
     <div clear>
       <a class='button pink' href='/api/download/lobby/script' clear>Download Bash Script</a>
       <a class='button green' href='/api/download/lobby/latest' clear>Direct Download (.zip)</a>

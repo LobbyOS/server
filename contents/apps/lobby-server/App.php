@@ -5,7 +5,7 @@ class lobby_server extends \Lobby\App {
   
   public $lobby_version = "0.3";
   public $lobby_released = "2015-01-20";
-  public $lobby_release_notes = '<span style="color:red;font-size:40px;">DON\'T UPDATE !</span><p>All users should reinstall Lobby as there have been a LOT of changes. Sorry... <a href="//subinsb.com/lobby/">More Info here</a></p>';
+  public $lobby_release_notes = '<span style="color:red;font-size:40px;">DON\'T UPDATE !</span><p>All users should reinstall Lobby as there have been a LOT of changes. Sorry... <a href="http://lobby.subinsb.com/blog/version-0.3">More Info here</a></p>';
   
   public $app_categories = array(
     "accessories" => "Accessories",
