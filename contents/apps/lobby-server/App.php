@@ -36,6 +36,18 @@ class lobby_server extends \Lobby\App {
   );
   
   public function page($p){
+    unset(\Lobby::$css["theme.hine-/src/dashboard/css/scrollbar.css"]);
+    unset(\Lobby::$css["theme.hine-/src/dashboard/css/jquery.contextmenu.css"]);
+    unset(\Lobby::$css["theme.hine-/src/dashboard/css/dashboard.css"]);
+    unset(\Lobby::$css["jqueryui"]);
+    
+    unset(\Lobby::$js["jquery-ui"]);
+    unset(\Lobby::$js["theme.hine-/src/dashboard/js/scrollbar.js"]);
+    unset(\Lobby::$js["theme.hine-/src/dashboard/js/jquery.contextmenu.js"]);
+    unset(\Lobby::$js["theme.hine-/src/dashboard/js/Packery.js"]);
+    unset(\Lobby::$js["theme.hine-/src/dashboard/js/dashboard.js"]);
+    unset(\Lobby::$js["app"]);
+    
     $path = explode("/", $p);
     if($path[1] == "docs"){
       $doc = isset($path[2]) ? str_replace("/", ".", substr_replace($p, "", 0, 6)) : "index";
@@ -92,33 +104,34 @@ class lobby_server extends \Lobby\App {
     $this->addStyle("style.css");
     \Lobby\UI\Panel::addTopItem("lobbyDownload", array(
       "position" => "left",
-      "text" => "Download",
+      "text" => "<span class='button orange' style='margin:0;padding: 0 10;'>Download</span>",
       "href" => "/download"
     ));
-    \Lobby\UI\Panel::addTopItem("lobbyWeb", array(
+    /*\Lobby\UI\Panel::addTopItem("lobbyWeb", array(
       "position" => "left",
       "text" => "Lobby Web",
       "href" => "/web-readme"
-    ));
+    ));*/
     \Lobby\UI\Panel::addTopItem("lobbyApps", array(
       "position" => "left",
       "text" => "<span class='button green' style='margin:0;padding: 0 10;'>Apps</span>",
       "href" => "/apps"
     ));
-    \Lobby\UI\Panel::addTopItem("lobbyModules", array(
+    \Lobby\UI\Panel::addTopItem("lobbyBlog", array(
       "position" => "left",
-      "text" => "Modules",
-      "href" => "/mods"
+      "text" => "<span class='button red' style='margin:0;padding: 0 10;'>Blog</span>",
+      "href" => "/blog"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyDocs", array(
       "position" => "left",
-      "text" => "Docs",
-      "href" => "/docs"
-    ));
-    \Lobby\UI\Panel::addTopItem("lobbyBlog", array(
-      "position" => "left",
-      "text" => "Blog",
-      "href" => "/blog"
+      "text" => "<span class='button' style='margin:0;padding: 0 10;'>Docs</span>",
+      "href" => "/docs",
+      "subItems" => array(
+        "mods" => array(
+          "text" => "Modules",
+          "href" => "/mods"
+        )
+      )
     ));
     
     require_once APP_DIR . "/src/inc/logsys.php";

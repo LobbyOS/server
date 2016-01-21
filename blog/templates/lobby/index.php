@@ -47,6 +47,9 @@
         
         <?php echo($content); ?>
         
-        <?php //get_footer(); ?>
+        <?php
+        //get_footer();
+        require_once APPS_DIR . "/lobby-server/src/inc/views/track.php";
+        ?>
     </body>
 </html>

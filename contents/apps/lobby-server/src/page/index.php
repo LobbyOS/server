@@ -1,13 +1,39 @@
 <?php
 $this->addStyle("main.css");
+$this->addScript("responsiveslides.min.js");
 \Lobby::setTitle("A Localhost/Web Operating System");
 ?>
 <div class="section">
   <div class="contents">
     <center>
       <a href='//lobby.subinsb.com'><img src='<?php echo APP_SRC . "/src/image/logo.png";?>' /></a>
-      <p class='info'>Lobby is an Open Source multi-platform <b>localhost Operating System (LOS)</b><cl></cl>Lobby runs on any platform Linux, Windows, Mac, you name it<cl/>All it requires is a localhost server</p>
+      <p class='info'>Lobby is an Open Source multi-platform <b>localhost Operating System (LOS)</b><cl></cl>Lobby runs on any platform Linux, Windows, Mac, you name it !<cl/>All it requires is a <b>localhost server</b></p>
     </center>
+  </div>
+</div>
+<div class="section">
+  <div class="contents">
+    <ul class="rslides">
+      <li>
+        <img src="<?php echo APP_URL;?>/src/image/screenshots/dashboard.png" alt="">
+        <p class="caption">The Lobby Dashboard</p>
+      </li>
+      <li>
+        <img src="<?php echo APP_URL;?>/src/image/screenshots/app-diary.png" alt="">
+        <p class="caption">The <a href="/apps/diary">Diary App</a> On Lobby</p>
+      </li>
+      <li>
+        <img src="<?php echo APP_URL;?>/src/image/screenshots/lobby-store.png" alt="">
+        <p class="caption">Installing An App is Super Easy !</p>
+      </li>
+    </ul>
+    <script>
+      lobby.load(function(){
+        setTimeout(function(){
+          $(".rslides").responsiveSlides({pager: true});
+        }, 2000);
+      });
+    </script>
   </div>
 </div>
 <div class="section">
@@ -34,6 +60,9 @@ $this->addStyle("main.css");
     <div clear>
       <a class='button green' href='/docs/dev'>Developer Docs</a>
       <a class='button red' href='/docs/dev/create-app'>Create Apps</a>
+    </div>
+    <div clear>
+      <a class='button blue' href='https://github.com/LobbyOS/app-ledit'>Source Code Of lEdit App</a>
     </div>
   </div>
 </div>
