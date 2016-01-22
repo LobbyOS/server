@@ -29,11 +29,11 @@
         }
         if(H::input("action") == "remove" && H::csrf()){
           $App = new \Lobby\Apps($_GET['id']);
-          if($App->disableApp()){
-            sss("Removed", "The App <b>{$id}</b> was successfully removed.");
-          }else{
-            sss("Error", "The App <b>{$id}</b> was not found");
+          if(!$App->exists){
+            ser("Error", "App is not installed");
           }
+          $App->removeApp();
+          sss("Removed", "The App <b>{$_GET['id']}</b> was successfully removed.");
         }
         $id = H::input("id");
         if($id != null && H::input("action") == null && H::csrf()){

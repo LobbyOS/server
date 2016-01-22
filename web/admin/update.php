@@ -65,11 +65,51 @@ require L_DIR . "/includes/src/Update.php";
           </form>
         <?php
         }
-        if(!\H::input("action", "POST") == "updateApps"){
+        if(getOption("lobby_version") == getOption("lobby_latest_version") && !\H::input("action", "POST") == "updateApps"){
+          echo "<h2>Lobby</h2>";
+          sss("Latest Version", "You are using the latest version of Lobby. There are no new releases yet.");
+        }elseif(!isset($_GET['step']) && !\H::input("action", "POST") == "updateApps"){
         ?>
           <h2>Lobby</h2>
-          <p>Lobby Web Can't Be Updated.</p>
+          <p>
+            Welcome To The Lobby Update Page. A latest version is available for you to upgrade.
+          </p>
+          <blockquote>
+            Latest Version is <?php echo getOption("lobby_latest_version");?> released on <?php echo date( "jS F Y", strtotime(getOption("lobby_latest_version_release")) );?>
+          </blockquote>
+          <p>Release Notes :</p>
+          <blockquote>
+            <?php echo htmlspecialchars_decode(getOption("lobby_latest_version_release_notes"));?>
+          </blockquote>
+          <p style="margin-bottom: 10px;">
+            Lobby will automatically download the latest version and install. In case something happens, Lobby will not be accessible anymore. So backup your database and Lobby installation before you do anything.
+            <div clear></div>
+            <a class="button" href="backup-db.php">Export Lobby Database</a>
+          </p>
         <?php
+          if(is_writable(L_DIR)){
+            echo '<div clear style="margin-top: 10px;"></div>';
+            echo \Lobby::l("/admin/update.php?step=1" . H::csrf("g"), "Setup Lobby Update", "class='button red'");
+          }
+        }
+        if(isset($_GET['step']) && $_GET['step'] != "" && H::csrf()){
+          $step = $_GET['step'];
+          if($step === "1"){
+            if(!is_writable(L_DIR)){
+              ser("Lobby Directory Not Writable", "The Lobby directory (". L_DIR .") is not writable. Make the folder writable to update Lobby.");
+            }
+          ?>
+            <p>
+              Looks like everything is ok. Hope you backed up Lobby installation & Database.
+              <div clear></div>
+              You can update now.
+            </p>
+          <?php
+            echo \Lobby::l("/admin/update.php?step=2" . H::csrf("g"), "Start Update", "clear class='button green'");
+          }elseif($step == 2){
+            $version = getOption("lobby_latest_version");
+            echo '<iframe src="'. L_URL . "/admin/download.php?type=lobby&id=$version". H::csrf("g") .'" style="border: 0;width: 100%;height: 200px;"></iframe>';
+          }
         }
         ?>
       </div>

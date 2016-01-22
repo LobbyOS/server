@@ -33,7 +33,13 @@
             if( !$App->exists ){
               ser("Error", "I checked all over, but App does not Exist");
             }
-            if($action == "remove"){
+            if($action == "disable"){
+              if($App->disableApp()){
+                sss("Disabled", "The App <strong>$app</strong> has been disabled.");
+              }else{
+                ser("Error", "The App <strong>$app</strong> couldn't be disabled. Try again.", false);
+              }
+            }else if($action == "remove"){
           ?>
               <h2>Confirm</h2>
               <p>Are you sure you want to remove the app <b><?php echo $app;?></b> ?</p>
@@ -42,6 +48,12 @@
               <a class="button red" href="<?php echo L_URL ."/admin/apps.php";?>">No, I'm Not</a>
           <?php
               exit;
+            }else if($action == "enable"){
+              if($App->enableApp()){
+                sss("Enabled", "The App <strong>$app</strong> has been enabled.");
+              }else{
+                ser("Error", "The App couldn't be enabled. Try again.", false);
+              }
             }
           }
         }
@@ -86,6 +98,13 @@
                     <td><?php echo $data['version'];?></td>
                     <td><?php echo $data['short_description'];?></td>
                     <td style="text-align:center;">
+                      <?php
+                      if($enabled){
+                        echo '<a class="button" href="?action=disable&app='. $app . H::csrf('g') .'">Disable</a>';
+                      }else{
+                        echo '<a class="button" href="?action=enable&app='. $app . H::csrf('g') .'">Enable</a>';
+                      }
+                      ?>
                       <a class="button red" href="?action=remove&app=<?php echo $app . H::csrf('g');?>">Remove</a>
                     </td>
                   </tr>
@@ -96,7 +115,8 @@
             </table>
             <div id="combined_actions">
               <span style="padding-left: 20px;">^</span>
-              <button class="button green" name="action" value="remove">Remove</button>
+              <button class="button green" name="action" value="enable">Enable</button>
+              <button class="button blue" name="action" value="disable">Disable</button>
             </div>
             <?php echo H::csrf('i');?>
           </form>

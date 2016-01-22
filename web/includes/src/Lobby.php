@@ -186,7 +186,6 @@ class Lobby {
        * Add Lobby ID
        */
       $params["lobbyID"] = self::$lid;
-      $params["lobby_web"] = 1;
       
       foreach($params as $key => $value){
         $fields_string .= "{$key}={$value}&";

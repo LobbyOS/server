@@ -62,8 +62,8 @@ class DB extends \Lobby {
    */
   public static function getOption($name){
     if(self::$installed){
-      $sql = self::$dbh->prepare("SELECT `value` FROM `". self::$prefix ."options` WHERE `name` = ? AND `uid` = ?");
-      $sql->execute(array($name, \Fr\LS::$user));
+      $sql = self::$dbh->prepare("SELECT `value` FROM `". self::$prefix ."options` WHERE `name` = ?");
+      $sql->execute(array($name));
       
       if($sql->rowCount() != 0){
         $column = $sql->fetchColumn();
@@ -80,14 +80,14 @@ class DB extends \Lobby {
    */
   public static function saveOption($name, $value){
    if(self::$installed && $value != null){
-     $sql = self::$dbh->prepare("SELECT COUNT(`name`) FROM `". self::$prefix ."options` WHERE `name` = ? AND `uid` = ?");
-     $sql->execute(array($name, \Fr\LS::$user));
+     $sql = self::$dbh->prepare("SELECT COUNT(`name`) FROM `". self::$prefix ."options` WHERE `name` = ?");
+     $sql->execute(array($name));
      if($sql->fetchColumn() != 0){
-       $sql = self::$dbh->prepare("UPDATE `". self::$prefix ."options` SET `value` = ? WHERE `name` = ? AND `uid` = ?");
-       return $sql->execute(array($value, $name, \Fr\LS::$user));
+       $sql = self::$dbh->prepare("UPDATE `". self::$prefix ."options` SET `value` = ? WHERE `name` = ?");
+       return $sql->execute(array($value, $name));
      }else{
-       $sql = self::$dbh->prepare("INSERT INTO `". self::$prefix ."options` (`name`, `value, `uid`) VALUES (?, ?, ?)");
-       return $sql->execute(array($name, $value, \Fr\LS::$user));
+       $sql = self::$dbh->prepare("INSERT INTO `". self::$prefix ."options` (`name`, `value`) VALUES (?, ?)");
+       return $sql->execute(array($name, $value));
      }
     }else{
       return false;
@@ -102,12 +102,12 @@ class DB extends \Lobby {
       $return = array();
       $prefix = self::$prefix;
       if($id != "" && $name == ""){
-        $sql = self::$dbh->prepare("SELECT * FROM `{$prefix}data` WHERE `app` = ? AND `uid` = ?");
-        $sql->execute(array($id, \Fr\LS::$user));
+        $sql = self::$dbh->prepare("SELECT * FROM `{$prefix}data` WHERE `app` = ?");
+        $sql->execute(array($id));
         $return = $sql->fetchAll();
       }else{
-        $sql = self::$dbh->prepare("SELECT * FROM `{$prefix}data` WHERE `name` = ? AND `app` = ? AND `uid` = ?");
-        $sql->execute(array($name, $id, \Fr\LS::$user));
+        $sql = self::$dbh->prepare("SELECT * FROM `{$prefix}data` WHERE `name` = ? AND `app` = ?");
+        $sql->execute(array($name, $id));
         if($sql->rowCount() > 1){
           /**
            * Multiple Results; so give a multidimensional array of results
@@ -139,17 +139,17 @@ class DB extends \Lobby {
    */
   public static function saveData($appID, $key, $value = ""){
     if(self::$installed && \Lobby\Apps::exists($appID) && $key != ""){
-      $sql = self::$dbh->prepare("SELECT COUNT(`name`) FROM `". self::$prefix ."data` WHERE `name` = ? AND `app`=? AND `uid` = ?");
-      $sql->execute(array($key, $appID, \Fr\LS::$user));
+      $sql = self::$dbh->prepare("SELECT COUNT(`name`) FROM `". self::$prefix ."data` WHERE `name` = ? AND `app`=?");
+      $sql->execute(array($key, $appID));
      
       if($sql->fetchColumn() != 0){
-        $sql = self::$dbh->prepare("UPDATE `". self::$prefix ."data` SET `value` = ?, `updated` = NOW() WHERE `name` = ? AND `app` = ?AND `uid` = ?");
-        $sql->execute(array($value, $key, $appID, \Fr\LS::$user));
+        $sql = self::$dbh->prepare("UPDATE `". self::$prefix ."data` SET `value` = ?, `updated` = NOW() WHERE `name` = ? AND `app` = ?");
+        $sql->execute(array($value, $key, $appID));
         return true;
       }else{
         
-        $sql = self::$dbh->prepare("INSERT INTO `". self::$prefix ."data` (`app`, `name`, `value`, `created`, `updated`, `uid`) VALUES (?, ?, ?, NOW(), NOW(), ?)");
-       return $sql->execute(array($appID, $key, $value, \Fr\LS::$user));
+        $sql = self::$dbh->prepare("INSERT INTO `". self::$prefix ."data` (`app`, `name`, `value`, `created`, `updated`) VALUES (?, ?, ?, NOW(), NOW())");
+        return $sql->execute(array($appID, $key, $value));
       }
     }else{
       return false;
@@ -162,8 +162,8 @@ class DB extends \Lobby {
   public static function removeData($appID = "", $keyName){
     if(self::$installed){
      if($keyName != "" && $appID != ""){
-       $sql = self::$dbh->prepare("DELETE FROM `". self::$prefix ."data` WHERE `name`=? AND `app`=? AND `uid` = ?");
-       $sql->execute(array($keyName, $appID, \Fr\LS::$user));
+       $sql = self::$dbh->prepare("DELETE FROM `". self::$prefix ."data` WHERE `name`=? AND `app`=?");
+       $sql->execute(array($keyName, $appID));
        return true;
      }
     }

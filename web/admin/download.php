@@ -78,9 +78,7 @@ $GLOBALS['last'] = 0;
 };
 
 if($type == "app" && \Lobby\Update::app($id)){
-  $App = new \Lobby\Apps($id);
-  $App->enableApp();
-  
-  include_once L_DIR . "/openshift-copy-to-apps-dir.php";
-  echo "Installed - The app has been installed.";
+  echo "Installed - The app has been installed. <a target='_parent' href='". L_URL ."/admin/install-app.php?action=enable&id={$_GET['id']}". H::csrf("g") ."'>Enable the app</a> to use it.";
+}else if($type == "lobby"){
+  echo "Lobby Web Can't Be Updated";
 }

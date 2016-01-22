@@ -14,9 +14,7 @@ class Server {
     /**
      * Response is in JSON
      */
-    $response = \Requests::post(L_SERVER . "/apps", array(
-      "lobby_web" => "1"
-    ), $data)->body;
+    $response = \Requests::post(L_SERVER . "/apps", array(), $data)->body;
     if($response == "false"){
       return false;
     }else{
@@ -55,8 +53,7 @@ class Server {
     $apps = array_keys(\Lobby\Apps::getApps());
     try {
       $response = \Requests::post($url, array(), array(
-        "apps" => implode(",", $apps),
-        "lobby_web" => "1"
+        "apps" => implode(",", $apps)
       ))->body;
     }catch (\Requests_Exception $error){
       \Lobby::log("Checkup with server failed ($url) : $error");
@@ -66,9 +63,9 @@ class Server {
       
       $response = json_decode($response, true);
       if(is_array($response)){
-        /*saveOption("lobby_latest_version", $response['version']);
+        saveOption("lobby_latest_version", $response['version']);
         saveOption("lobby_latest_version_release", $response['released']);
-        saveOption("lobby_latest_version_release_notes", $response['release_notes']);*/
+        saveOption("lobby_latest_version_release_notes", $response['release_notes']);
     
         if(isset($response['apps']) && count($response['apps']) != 0){
           $AppUpdates = array();

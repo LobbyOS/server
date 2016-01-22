@@ -101,17 +101,18 @@ class lobby_server extends \Lobby\App {
   }
   
   public function menu_items(){
+    $this->addScript("responsive.js");
     $this->addStyle("style.css");
     \Lobby\UI\Panel::addTopItem("lobbyDownload", array(
       "position" => "left",
       "text" => "<span class='button orange' style='margin:0;padding: 0 10;'>Download</span>",
       "href" => "/download"
     ));
-    /*\Lobby\UI\Panel::addTopItem("lobbyWeb", array(
+    \Lobby\UI\Panel::addTopItem("lobbyWeb", array(
       "position" => "left",
-      "text" => "Lobby Web",
+      "text" => "<span class='button indigo' style='margin:0;padding: 0 10;'>Lobby Web</span>",
       "href" => "/web-readme"
-    ));*/
+    ));
     \Lobby\UI\Panel::addTopItem("lobbyApps", array(
       "position" => "left",
       "text" => "<span class='button green' style='margin:0;padding: 0 10;'>Apps</span>",
