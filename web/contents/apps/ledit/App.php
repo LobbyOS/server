@@ -1,4 +1,5 @@
 <?php
+namespace Lobby\App;
 class ledit extends \Lobby\App {
   
   public function page($page){
@@ -6,16 +7,7 @@ class ledit extends \Lobby\App {
   }
   
   public function indexPage(){
-    $this->addStyle("main.css");
-    $this->addScript("main.js");
-    $html = $this->inc("/src/Page/index.php");
-    
-    /* We obtain the save name from page-index.php */
-    if(isset($id)){
-      $this->setTitle($id);
-    }
-    
-    return $html;
+    return "auto";
   }
 }
 ?>

@@ -27,7 +27,7 @@ if(preg_match("/,/", $f)){
 foreach($files as $file){
   $file = str_replace(L_URL, "", $file);
   
-  if($file == "/includes/lib/jquery/jquery-ui.js" || $file == "/includes/lib/jquery/jquery.js" || $file == "/includes/lib/core/JS/main.js" || $file == "/includes/lib/core/JS/app.js"){
+  if($file == "/includes/lib/jquery/jquery-ui.js" || $file == "/includes/lib/jquery/jquery.js" || $file == "/includes/lib/lobby/js/main.js" || $file == "/includes/lib/core/JS/app.js"){
     $extraContent .= \Lobby\FS::get($file);
   }else{
     if(\Lobby\FS::exists($file)){
@@ -40,11 +40,12 @@ foreach($files as $file){
   
   if(isset($css)){
     $to_replace = array(
-      "<?L_URL?>" => L_URL
+      "<?L_URL?>" => L_URL,
+      "<?THEME_URL?>" => THEME_URL
     );
     if(isset($_GET['APP_URL'])){
-      $to_replace["<?APP_URL?>"] = urldecode($_GET['APP_URL']);
-      $to_replace["<?APP_SRC?>"] = urldecode($_GET['APP_SRC']);
+      $to_replace["<?APP_URL?>"] = htmlspecialchars(urldecode($_GET['APP_URL']));
+      $to_replace["<?APP_SRC?>"] = htmlspecialchars(urldecode($_GET['APP_SRC']));
     }
     foreach($to_replace as $from => $to){
       $content = str_replace($from, $to, $content);

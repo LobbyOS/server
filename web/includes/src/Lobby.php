@@ -12,7 +12,7 @@ class Lobby {
   public static $js, $css = array();
   
   public static $valid_hooks = array(
-    "init", "body.begin", "admin.body.begin", "head.begin", "head.end", "router.finish"
+    "init", "body.begin", "admin.body.begin", "head.begin", "admin.head.begin", "head.end", "router.finish"
   );
   public static $config = array(
     "db" => array(),
@@ -92,7 +92,9 @@ class Lobby {
       self::setTitle($title);
     }
     
-    /* JS */
+    /**
+     * JS Files
+     */
     if(count(self::$js) != 0 && !\Lobby::status("lobby.install")){
       /**
        * Load jQuery, jQuery UI, Lobby Main, App separately without async
@@ -106,7 +108,9 @@ class Lobby {
       $url = L_URL . "/includes/serve.php?file=" . implode(",", self::$js);
       echo "<script>lobby.load_script_url = '{$url}';</script>";
     }
-    /* CSS */
+    /**
+     * CSS Files
+     */
     if(count(self::$css) != 0){
       $url = L_URL . "/includes/serve.php?file=" . implode(",", self::$css);
       if(defined("APP_URL")){
@@ -138,23 +142,9 @@ class Lobby {
   */
   public static function redirect($url, $status = 302){
     $url = self::u($url);
-    echo $url;
     header("Location: $url", true, $status);
     exit;
     return true;
-  }
-  
-  /**
-   * Generate a random string
-   */
-  public static function randStr($length){
-    $str = "";
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    $size = 62; // strlen($chars)
-    for($i=0;$i < $length;$i++){
-      $str .= $chars[rand(0, $size-1)];
-    }
-    return $str;
   }
   
   /**
@@ -241,7 +231,7 @@ class Lobby {
        * If no Title, give a 404 Page
        */
       header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
-      include(L_DIR . "/includes/lib/core/Inc/error.php");
+      include(L_DIR . "/includes/lib/lobby/inc/error.php");
       exit;
     }else{
       $html .= "<div class='message'>";

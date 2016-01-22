@@ -59,9 +59,23 @@ class Router {
         /**
          * Add the App item to the navbar
          */
-        \Lobby\Panel::addTopItem("lobbyApp{$AppID}", array(
+        \Lobby\UI\Panel::addTopItem("lobbyApp{$AppID}", array(
           "text" => $AppInfo['name'],
           "href" => APP_URL,
+          "subItems" => array(
+            "app_admin" => array(
+              "text" => "Admin Page",
+              "href" => "/admin/app/$AppID"
+            ),
+            "app_disable" => array(
+              "text" => "Disable",
+              "href" => "/admin/apps.php?action=disable&app=$AppID" . \H::csrf("g")
+            ),
+            "app_remove" => array(
+              "text" => "Remove",
+              "href" => "/admin/apps.php?action=remove&app=$AppID" . \H::csrf("g")
+            )
+          ),
           "position" => "left"
         ));
         $page_response = $class->page($page);
@@ -70,7 +84,7 @@ class Router {
           if($page == "/"){
             $page = "/index";
           }
-          $GLOBALS['workspaceHTML'] = $class->inc("/src/Page{$page}.php");
+          $GLOBALS['workspaceHTML'] = $class->inc("/src/page{$page}.php");
         }else{
           $GLOBALS['workspaceHTML'] = $page_response;
         }
@@ -87,34 +101,24 @@ class Router {
      * The main Page. Add CSS & JS accordingly
      */
     self::route("/", function() {
-      \Lobby::addScript("metrojs", "/includes/lib/metrojs/metrojs.js");
-      \Lobby::addStyle("metrojs", "/includes/lib/metrojs/metrojs.css");
-      \Lobby::addScript("dynscroll", "/includes/lib/scrollbar/scrollbar.js");
-      \Lobby::addStyle("dynscroll", "/includes/lib/scrollbar/scrollbar.css");
-      \Lobby::addScript("jquery.contextmenu", "/includes/lib/jquery/jquery.contextmenu.js");
-      \Lobby::addStyle("jquery.contextmenu", "/includes/lib/jquery/jquery.contextmenu.css");
-      \Lobby::addScript("dashboard", "/includes/lib/core/JS/dashboard.js");
-      \Lobby::addStyle("dashboard", "/includes/lib/core/CSS/dashboard.css");
       \Lobby::setTitle("Dashboard");
-      $GLOBALS['workspaceHTML'] = array("/includes/lib/core/Inc/main.php");
+      \Lobby\UI\Themes::loadDashboard("head");
+      $GLOBALS['workspaceHTML'] = array("/includes/lib/lobby/inc/dashboard.php");
     });
     
     /**
-     * Administration
+     * App Admin Page
      */
     self::route("/admin/app/[:appID]?/[**:page]?", function($request){
       $AppID = $request->appID;
       $GLOBALS['AppID'] = $AppID;
-      $page = $request->page != "" ? "/Admin/{$request->page}" : "/Admin/index";
+      $page = $request->page != "" ? "/admin/{$request->page}" : "/admin/index";
 
       /**
        * Check if App exists
        */
       $App = new \Lobby\Apps($AppID);
       if($App->exists && $App->isEnabled()){
-        /**
-         * Redirect /src/ files to App's Source in /contents folder
-         */
         $class = $App->run();
         $AppInfo = $App->info;
       
@@ -126,18 +130,24 @@ class Router {
         /**
          * Add the App item to the navbar
          */
-        \Lobby\Panel::addTopItem("lobbyApp{$AppID}", array(
+        \Lobby\UI\Panel::addTopItem("lobbyApp{$AppID}", array(
           "text" => "Admin > " . $AppInfo['name'],
           "href" => "/admin/app/$AppID",
-          "position" => "left"
+          "position" => "left",
+          "subItems" => array(
+            "gotoapp" => array(
+              "text" => "Go To App",
+              "href" => "/app/$AppID"
+            )
+          )
         ));
         
         $page_response = $class->page($page);
         if($page_response == "auto"){
-          if($page == "/"){
+          if($page === "/"){
             $page = "/index";
           }
-          $GLOBALS['workspaceHTML'] = $class->inc("/src/Page{$page}.php");
+          $GLOBALS['workspaceHTML'] = $class->inc("/src/page{$page}.php");
         }else{
           $GLOBALS['workspaceHTML'] = $page_response;
         }

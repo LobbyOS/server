@@ -1,20 +1,22 @@
 <?php
 /**
  * \Lobby\Server
- * Class for communication with server
+ * A Class for communication with Lobby server
  */
 namespace Lobby;
 
 class Server {
   
   /**
-   * Lobby Store functions
+   * Lobby Store
    */
   public static function Store($data) {
     /**
      * Response is in JSON
      */
-    $response = \Lobby::loadURL(L_SERVER . "/apps", $data, "POST");
+    $response = \Requests::post(L_SERVER . "/apps", array(
+      "lobby_web" => "1"
+    ), $data)->body;
     if($response == "false"){
       return false;
     }else{
@@ -32,12 +34,15 @@ class Server {
     }
   }
   
+  /**
+   * Download Zip files
+   */
   public static function download($type = "app", $id){
     $url = "";
-    if($type == "app"){
-      $url = L_SERVER . "/download/app/{$id}";
-    }elseif($type == "lobby"){
-      $url = L_SERVER . "/download/lobby/{$id}";
+    if($type === "app"){
+      $url = L_SERVER . "/app/{$id}/download";
+    }elseif($type === "lobby"){
+      $url = L_SERVER . "/lobby/download/{$id}";
     }
     return $url;
   }
@@ -46,16 +51,24 @@ class Server {
    * Get updates
    */
   public static function check(){
+    $url = L_SERVER . "/lobby/updates";
     $apps = array_keys(\Lobby\Apps::getApps());
-    $response = \Lobby::loadURL(L_SERVER . "/updates", array(
-      "apps" => implode(",", $apps)
-    ), "POST");
+    try {
+      $response = \Requests::post($url, array(), array(
+        "apps" => implode(",", $apps),
+        "lobby_web" => "1"
+      ))->body;
+    }catch (\Requests_Exception $error){
+      \Lobby::log("Checkup with server failed ($url) : $error");
+      $response = false;
+    }
     if($response){
       
       $response = json_decode($response, true);
       if(is_array($response)){
         /*saveOption("lobby_latest_version", $response['version']);
-        saveOption("lobby_latest_version_release", $response['released']);*/
+        saveOption("lobby_latest_version_release", $response['released']);
+        saveOption("lobby_latest_version_release_notes", $response['release_notes']);*/
     
         if(isset($response['apps']) && count($response['apps']) != 0){
           $AppUpdates = array();

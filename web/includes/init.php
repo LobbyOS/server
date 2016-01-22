@@ -2,8 +2,8 @@
 /**
  * Default Styles
  */
-\Lobby::addStyle("home", "/includes/lib/core/CSS/font.css");
-\Lobby::addStyle("main", "/includes/lib/core/CSS/main.css");
+\Lobby::addStyle("home", "/includes/lib/lobby/css/font.css");
+\Lobby::addStyle("main", "/includes/lib/lobby/css/main.css");
 
 /**
  * Some checking to make sure Lobby works fine
@@ -30,21 +30,9 @@ if(isset($GLOBALS['initError'])){
  */
 if(\Lobby::curPage() != "/admin/install.php"){
   /**
-   * Styles
-   */
-  \Lobby::addStyle("jqueryui", "/includes/lib/jquery/jquery-ui.css"); // jQuery UI
- 
-  /**
-   * Scripts
-   */
-  \Lobby::addScript("jquery", "/includes/lib/jquery/jquery.js");
-  \Lobby::addScript("jqueryui", "/includes/lib/jquery/jquery-ui.js"); // jQuery UI
-  \Lobby::addScript("main", "/includes/lib/core/JS/main.js");
-
-  /**
    * Left Menu
    */
-  \Lobby\Panel::addTopItem("lobbyHome", array(
+  \Lobby\UI\Panel::addTopItem("lobbyHome", array(
     "text" => "Home",
     "href" => L_URL,
     "position" => "left"
@@ -64,11 +52,11 @@ if(\Lobby::curPage() != "/admin/install.php"){
       "href" => "/admin/lobby-store.php",
     ),
     "About" => array(
-      "text" => "About",
-      "href" => "/admin/about.php"
+      "text" => "Settings",
+      "href" => "/admin/settings.php"
     )
   );
-  \Lobby\Panel::addTopItem("lobbyAdmin", $adminArray);
+  \Lobby\UI\Panel::addTopItem("lobbyAdmin", $adminArray);
   
   /**
    * If there is a update available either app or core, add an 
@@ -90,7 +78,7 @@ if(\Lobby::curPage() != "/admin/install.php"){
   }
   
   if((count($AppUpdates) != 0) || ($latestVersion && $lobby_version != $latestVersion)){
-    \Lobby\Panel::addTopItem("updateNotify", array(
+    \Lobby\UI\Panel::addTopItem("updateNotify", array(
       "html" => \Lobby::l("/admin/update.php", "<span id='update' title='An Update Is Available'></span>"),
       "position" => "right"
     ));
@@ -98,14 +86,14 @@ if(\Lobby::curPage() != "/admin/install.php"){
 }
 
 if(\Lobby::status("lobby.install")){
-  \Lobby::addStyle("admin", "/includes/lib/core/CSS/admin.css");
+  \Lobby::addStyle("admin", "/includes/lib/lobby/css/admin.css");
 }
 
 if(\Lobby::status("lobby.admin")){
   /**
    * Add Admin Pages' stylesheet
    */
-  \Lobby::addStyle("admin", "/includes/lib/core/CSS/admin.css");
+  \Lobby::addStyle("admin", "/includes/lib/lobby/css/admin.css");
   
   /**
    * Check For New Versions (Apps & Core)

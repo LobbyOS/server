@@ -1,16 +1,19 @@
 <?php
-include "../load.php";
-require \Lobby\FS::loc("/includes/src/Update.php");
+require "../load.php";
+require L_DIR . "/includes/src/Update.php";
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <?php \Lobby::head("Update");?>
+    <?php
+    \Lobby::doHook("admin.head.begin");
+    \Lobby::head("Update");
+    ?>
   </head>
   <body>
     <?php
     \Lobby::doHook("admin.body.begin");
-    include "$docRoot/admin/sidebar.php";
+    require "$docRoot/admin/inc/sidebar.php";
     ?>
     <div class="workspace">
       <div class="content">
@@ -22,7 +25,7 @@ require \Lobby\FS::loc("/includes/src/Update.php");
           foreach($AppUpdates as $appID => $neverMindThisVariable){
             if(isset($_POST[$appID])){
               echo '<iframe src="'. L_URL . "/admin/download.php?type=app&id={$appID}". H::csrf("g") .'" style="border: 0;width: 100%;height: 200px;"></iframe>';
-              unset($AppUpdates[$appID]);              
+              unset($AppUpdates[$appID]);
             }
           }
           saveOption("app_updates", json_encode($AppUpdates));
@@ -37,8 +40,8 @@ require \Lobby\FS::loc("/includes/src/Update.php");
             <table>
               <thead>
                 <tr>
-                  <td style='width: 5%;'>Update ?</td>
-                  <td style='width: 10%;'>App</td>
+                  <td style='width: 2%;'>Update ?</td>
+                  <td style='width: 20%;'>App</td>
                   <td style='width: 5%;'>Current Version</td>
                   <td style='width: 20%;'>Latest Version</td>
                 </tr>
@@ -49,7 +52,7 @@ require \Lobby\FS::loc("/includes/src/Update.php");
                 $App = new \Lobby\Apps($appID);
                 $AppInfo = $App->info;
                 echo '<tr>';
-                  echo '<td><input style="vertical-align:top;display:inline-block;" checked="checked" type="checkbox" name="'. $appID .'" /></td>';
+                  echo '<td><label><input style="vertical-align:top;display:inline-block;" checked="checked" type="checkbox" name="'. $appID .'" /><span></span></label></td>';
                   echo '<td><span style="vertical-align:middle;display:inline-block;margin-left:5px;">'. $AppInfo['name'] .'</span></td>';
                   echo '<td>'. $AppInfo['version'] .'</td>';
                   echo '<td>'. $latest_version .'</td>';
@@ -58,7 +61,7 @@ require \Lobby\FS::loc("/includes/src/Update.php");
               ?>
             </tbody></table>
             <input type="hidden" name="action" value="updateApps" />
-            <button class="red" style='padding: 10px 15px;' clear>Update Selected Apps</button>
+            <button class="button red" clear>Update Selected Apps</button>
           </form>
         <?php
         }

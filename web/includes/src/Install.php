@@ -23,7 +23,7 @@ class Install extends \Lobby {
       ser("Error", "Lobby Directory is not Writable. Please set <blockquote>" . L_DIR . "</blockquote> directory's permission to writable.<cl/><a href='install.php?step=1' class='button'>Check Again</a>");
       return false;
     }elseif(\Lobby\FS::exists("/config.php")){
-      ser("config.php File Exists", "A config.php file already exitsts in <blockquote>". L_DIR ."</blockquote> directory. Remove it and try again. <cl/><a href='install.php?step=1". H::csrf('g') ."' class='button'>Check Again</a>");
+      ser("config.php File Exists", "A config.php file already exitsts in <blockquote>". L_DIR ."</blockquote> directory. Remove it and try again. <cl/><a href='install.php?step=1". \H::csrf('g') ."' class='button'>Check Again</a>");
       return false;
     }else{
       return true;
@@ -65,13 +65,13 @@ class Install extends \Lobby {
    * Make the config.php file
    */
   public static function makeConfigFile(){
-    $lobbyID = self::randStr(10) . self::randStr(15) . self::randStr(20); // Lobby Global ID
-    $lobbySID   = hash("sha512", self::randStr(15) . self::randStr(30)); // Lobby Secure ID
+    $lobbyID = \H::randStr(10) . \H::randStr(15) . \H::randStr(20); // Lobby Global ID
+    $lobbySID   = hash("sha512", \H::randStr(15) . \H::randStr(30)); // Lobby Secure ID
     $configFileLoc = L_DIR . "/config.php";
     $cfg = self::$database;
     
     /* Make the configuration file */
-    $config_sample = \Lobby\FS::get("/includes/lib/core/Inc/config-sample.php");
+    $config_sample = \Lobby\FS::get("/includes/lib/lobby/inc/config-sample.php");
     $config_file   = $config_sample;
     $config_file   = preg_replace("/host'(.*?)'(.*?)'/", "host'$1'{$cfg['host']}'", $config_file);
     $config_file   = preg_replace("/port'(.*?)'(.*?)'/", "port'$1'{$cfg['port']}'", $config_file);
@@ -98,21 +98,18 @@ class Install extends \Lobby {
       /* Create Tables */
       $sql = self::$dbh->prepare("
         CREATE TABLE IF NOT EXISTS `{$prefix}options` (
-          `id` int(11) NOT NULL AUTO_INCREMENT,
+          `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
           `name` varchar(64) NOT NULL,
-          `val` text NOT NULL,
-          PRIMARY KEY (`id`),
-          UNIQUE(`name`)
-        ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+          `value` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
         CREATE TABLE IF NOT EXISTS `{$prefix}data` (
-          `id` int(11) NOT NULL AUTO_INCREMENT,
+          `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
           `app` varchar(50) NOT NULL,
           `name` varchar(150) NOT NULL,
-          `content` longtext NOT NULL,
+          `value` longblob NOT NULL,
           `created` datetime NOT NULL,
-          `updated` datetime NOT NULL,
-           PRIMARY KEY (`id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;"
+          `updated` datetime NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;"
       );
       $sql->execute();
 
@@ -120,24 +117,16 @@ class Install extends \Lobby {
       $lobby_info = \Lobby\FS::get("/lobby.json");
       $lobby_info = json_decode($lobby_info, true);
       $sql = self::$dbh->prepare("
-        INSERT INTO `{$prefix}options` (
-          `id`, 
-          `name`, 
-          `val`
-        ) VALUES (
-          NULL,
-          'lobby_version',
-          ?
-        ),(
-          NULL,
-          'lobby_version_release',
-          ?
-        );"
+        INSERT INTO `{$prefix}options`
+          (`id`, `name`, `value`)
+        VALUES
+          (NULL, 'lobby_version', ?),
+          (NULL, 'lobby_version_release', ?);"
       );
       $sql->execute(array($lobby_info['version'], $lobby_info['released']));
-      
-      return true;
+    return true;
     }catch(\PDOException $Exception){
+      self::log("Install error : " . $Exception->getMessage());
       return false;
     }
   }

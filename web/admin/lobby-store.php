@@ -1,18 +1,19 @@
 <?php
-include "../load.php";
+require "../load.php";
 header( 'Content-type: text/html; charset=utf-8' );
 ?>
 <html>
   <head>
     <?php
-    \Lobby::addStyle("lobby-store", "/includes/lib/core/CSS/lobby-store.css");
+    \Lobby::addStyle("lobby-store", "/admin/css/lobby-store.css");
+    \Lobby::doHook("admin.head.begin");
     \Lobby::head("Lobby Store");
     ?>
   </head>
   <body>
     <?php
     \Lobby::doHook("admin.body.begin");
-    include "$docRoot/admin/sidebar.php";
+    require "$docRoot/admin/inc/sidebar.php";
     ?>
     <div class="workspace">
       <div class="content">
@@ -26,7 +27,7 @@ header( 'Content-type: text/html; charset=utf-8' );
           if($app == "false"){
             ser("404 - App Not Found", "App was not found in Lobby Store.");
           }else{
-            $appImage = $app['image'] != "" ? $app['image'] : L_URL . "/includes/lib/core/Img/blank.png";
+            $appImage = $app['image'] != "" ? $app['image'] : L_URL . "/includes/lib/lobby/image/blank.png";
             $c = $app['category'];
             $sc = $app['sub_category'];
         ?>
@@ -39,7 +40,7 @@ header( 'Content-type: text/html; charset=utf-8' );
               <?php
               $App = new \Lobby\Apps($_GET['id']);
               if(!$App->isEnabled()){
-                echo \Lobby::l("/admin/install-app.php?id={$_GET['id']}" . H::csrf("g"), "Install", "class='button'");
+                echo \Lobby::l("/admin/install-app.php?id={$_GET['id']}" . H::csrf("g"), "Install", "class='button red'");
               }elseif(version_compare($App->info['version'], $app['version'])){
                 echo \Lobby::l("/admin/check-updates.php", "Update App", "class='button red'");
               }else{
@@ -84,7 +85,7 @@ header( 'Content-type: text/html; charset=utf-8' );
           <div clear></div>
           <form method="GET" action="<?php echo \Lobby::u("/admin/lobby-store.php");?>">
             <input type="text" placeholder="Type an app name" name="q" style="width:450px;"/>
-            <button>Search</button>
+            <button class="button red">Search</button>
           </form>
           <?php
           if(isset($_GET['q'])){
@@ -105,7 +106,7 @@ header( 'Content-type: text/html; charset=utf-8' );
             ser("Nothing Found", "Nothing was found that matches your criteria. Sorry...");
           }else{
             foreach($server_response['apps'] as $app){
-              $appImage = $app['image'] != "" ? $app['image'] : L_URL."/includes/lib/core/Img/blank.png";
+              $appImage = $app['image'] != "" ? $app['image'] : L_URL."/includes/lib/lobby/image/blank.png";
               $url = \Lobby::u("/admin/lobby-store.php?id={$app['id']}");
           ?>
             <div class="app">

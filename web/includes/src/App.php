@@ -14,12 +14,12 @@ class App {
   }
   
   public function addStyle($fileName){
-    $url = "/contents/apps/{$this->id}/src/CSS/$fileName";
+    $url = "/contents/apps/{$this->id}/src/css/$fileName";
     \Lobby::addStyle("{$this->id}-{$fileName}", $url);
   }
   
   public function addScript($fileName){
-    $url = "/contents/apps/{$this->id}/src/JS/$fileName";
+    $url = "/contents/apps/{$this->id}/src/js/$fileName";
     \Lobby::addScript("{$this->id}-{$fileName}", $url);
   }
   
@@ -37,6 +37,10 @@ class App {
   
   public static function get($path){
     return \Lobby\FS::get(APP_DIR . $path);
+  }
+  
+  public static function write($path, $content, $type = "w"){
+    return \Lobby\FS::write(APP_DIR . $path, $content, $type);
   }
   
   /**

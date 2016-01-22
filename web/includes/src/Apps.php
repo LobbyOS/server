@@ -38,7 +38,7 @@ class Apps extends \Lobby {
     
       foreach($appFolders as $appFolderName){
         if(self::valid($appFolderName)){
-          $apps[$appFolderName] = 1;
+          $apps[] = $appFolderName;
         }
       }
       self::$cache["apps"] = $apps;
@@ -53,7 +53,7 @@ class Apps extends \Lobby {
     if(isset(self::$cache["enabled_apps"])){
       $enabled_apps = self::$cache["enabled_apps"];
     }else{
-      $enabled_apps = getOption("active_apps");
+      $enabled_apps = getOption("enabled_apps");
       $enabled_apps = json_decode($enabled_apps, true);
       
       if(!is_array($enabled_apps) || count($enabled_apps) == 0){
@@ -76,7 +76,7 @@ class Apps extends \Lobby {
 
       foreach(self::getApps() as $app){
         if(array_search($app, $enabledApps) === false){
-          $disabled_apps[$app] = 1;
+          $disabled_apps[] = $app;
         }
       }
       self::$cache["disabled_apps"] = $disabled_apps;
@@ -89,7 +89,7 @@ class Apps extends \Lobby {
    */
   public static function exists($app){
     $apps = self::getApps();
-    return isset($apps[$app]);
+    return in_array($app, $apps, true);
   }
   
   /**
@@ -115,7 +115,7 @@ class Apps extends \Lobby {
         require_once L_DIR . "/includes/src/App.php";
         require_once "$appDir/App.php";
       
-        $className = str_replace("-", "_", $name);
+        $className = "\\Lobby\App\\" . str_replace("-", "_", $name);
         if( !class_exists($className) ){
           $valid = false; // The class doesn't exist, so app's not valid
         }else{
@@ -162,14 +162,7 @@ class Apps extends \Lobby {
    * Returns boolean of installation status
    */
   public function isEnabled(){
-    if(isset(self::$cache["enabled_apps"][$this->app])){
-      $enabled = self::$cache["enabled_apps"][$this->app];
-    }else{
-      $enabledApps = self::getEnabledApps();
-      $enabled = isset($enabledApps[$this->app]);
-      self::$cache["enabled_apps"][$this->app] = $enabled;
-    }
-    return $enabled;
+    return in_array($this->app, self::getEnabledApps(), true);
   }
  
   /**
@@ -188,10 +181,11 @@ class Apps extends \Lobby {
       $details['location'] = $this->appDir;
       $details['URL'] = L_URL . "/app/{$this->app}";
       $details['srcURL'] = L_URL . "/contents/apps/{$this->app}";
+      $details['adminURL'] = L_URL . "/admin/app/{$this->app}";
       
       $details['logo'] = isset($details['logo']) ?
-        APPS_URL . "/{$this->app}/src/Image/logo.png" :
-        L_URL . "/includes/lib/core/Img/blank.png";
+        APPS_URL . "/{$this->app}/src/image/logo.png" :
+        L_URL . "/includes/lib/lobby/image/blank.png";
        
       /**
        *Insert the info as a property
@@ -209,10 +203,10 @@ class Apps extends \Lobby {
   public function enableApp(){
     if($this->app){
       $apps = self::getEnabledApps();
-      if(!isset($apps[$this->app])){
-        $apps[$this->app] = 1;
+      if(!in_array($this->app, $apps, true)){
+        $apps[] = $this->app;
         
-        saveOption("active_apps", json_encode($apps));
+        saveOption("enabled_apps", json_encode($apps));
         self::clearCache();
         return true;
       }else{
@@ -229,11 +223,12 @@ class Apps extends \Lobby {
   public function disableApp(){
     if($this->app && $this->isEnabled()){
       $apps = self::getEnabledApps();
-      
-      if(isset($apps[$this->app])){
-        unset($apps[$this->app]);
+
+      if(in_array($this->app, $apps, true)){
+        $key = array_search($this->app, $apps);
+        unset($apps[$key]);
         
-        saveOption("active_apps", json_encode($apps));
+        saveOption("enabled_apps", json_encode($apps));
         self::clearCache();
         return true;
       }else{
@@ -256,15 +251,7 @@ class Apps extends \Lobby {
         }
         
         $this->disableApp();
-        $files = array_diff(scandir($dir), array('.', '..'));
-        foreach ($files as $file) { 
-          if(is_dir("$dir/$file")){
-            delTree("$dir/$file");
-          }else{
-            \Lobby\FS::remove("$dir/$file");
-          }
-        } 
-        return rmdir($dir);
+        return \Lobby\FS::remove($dir);
       }else{
         return false;
       }
@@ -281,15 +268,19 @@ class Apps extends \Lobby {
       require_once L_DIR . "/includes/src/App.php";
       require_once $this->appDir . "/App.php";
       
-      \Lobby::addScript("app", "/includes/lib/core/JS/app.js");
+      \Lobby::addScript("app", "/includes/lib/lobby/js/app.js");
      
       $appInfo = $this->info;
-      $className = str_replace("-", "_", $this->app);
+      $className = "\\Lobby\App\\" . str_replace("-", "_", $this->app);
      
-      /* Create the \Lobby\App Object */
+      /**
+       * Create the \Lobby\App Object
+       */
       $class = new $className;
      
-      /* Send app details to the \Lobby\App */
+      /**
+       * Send app details to the App Object
+       */
       $class->setTheVars($appInfo);
       
       /**
@@ -303,6 +294,7 @@ class Apps extends \Lobby {
          * because it may be already defined by `singleapp` module.
          */
         define("APP_URL", $this->info['URL']);
+        define("APP_ADMIN_URL", $this->info['adminURL']);
       }
      
       /* Return the App Object */

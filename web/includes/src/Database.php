@@ -19,7 +19,7 @@ class DB extends \Lobby {
         \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
       );
       try{
-        self::$dbh = new \PDO("mysql:dbname={$config['dbname']};host={$config['host']};port={$config['port']}", $config['username'], $config['password'], $options);
+        self::$dbh = new \PDO("mysql:dbname={$config['dbname']};host={$config['host']};port={$config['port']};charset=utf8;", $config['username'], $config['password'], $options);
         
         $notable = false;
         $tables = array("options", "data"); // The Tables of Lobby
@@ -62,7 +62,7 @@ class DB extends \Lobby {
    */
   public static function getOption($name){
     if(self::$installed){
-      $sql = self::$dbh->prepare("SELECT `val` FROM `". self::$prefix ."options` WHERE `name` = ? AND `uid` = ?");
+      $sql = self::$dbh->prepare("SELECT `value` FROM `". self::$prefix ."options` WHERE `name` = ? AND `uid` = ?");
       $sql->execute(array($name, \Fr\LS::$user));
       
       if($sql->rowCount() != 0){
@@ -79,14 +79,14 @@ class DB extends \Lobby {
    * Save option
    */
   public static function saveOption($name, $value){
-   if(self::$installed&& $value != null){
+   if(self::$installed && $value != null){
      $sql = self::$dbh->prepare("SELECT COUNT(`name`) FROM `". self::$prefix ."options` WHERE `name` = ? AND `uid` = ?");
      $sql->execute(array($name, \Fr\LS::$user));
      if($sql->fetchColumn() != 0){
-       $sql = self::$dbh->prepare("UPDATE `". self::$prefix ."options` SET `val` = ? WHERE `name` = ?  AND `uid` = ?");
+       $sql = self::$dbh->prepare("UPDATE `". self::$prefix ."options` SET `value` = ? WHERE `name` = ? AND `uid` = ?");
        return $sql->execute(array($value, $name, \Fr\LS::$user));
      }else{
-       $sql = self::$dbh->prepare("INSERT INTO `". self::$prefix ."options` (`name`, `val`, `uid`) VALUES (?, ?, ?)");
+       $sql = self::$dbh->prepare("INSERT INTO `". self::$prefix ."options` (`name`, `value, `uid`) VALUES (?, ?, ?)");
        return $sql->execute(array($name, $value, \Fr\LS::$user));
      }
     }else{
@@ -102,11 +102,11 @@ class DB extends \Lobby {
       $return = array();
       $prefix = self::$prefix;
       if($id != "" && $name == ""){
-        $sql = self::$dbh->prepare("SELECT `content`, `name`, `updated` FROM `{$prefix}data` WHERE `app` = ? AND `uid` = ?");
+        $sql = self::$dbh->prepare("SELECT * FROM `{$prefix}data` WHERE `app` = ? AND `uid` = ?");
         $sql->execute(array($id, \Fr\LS::$user));
         $return = $sql->fetchAll();
       }else{
-        $sql = self::$dbh->prepare("SELECT `content`, `name`, `updated` FROM `{$prefix}data` WHERE `name` = ? AND `app` = ? AND `uid` = ?");
+        $sql = self::$dbh->prepare("SELECT * FROM `{$prefix}data` WHERE `name` = ? AND `app` = ? AND `uid` = ?");
         $sql->execute(array($name, $id, \Fr\LS::$user));
         if($sql->rowCount() > 1){
           /**
@@ -120,7 +120,7 @@ class DB extends \Lobby {
           if($sql->rowCount() != 0){
             $return = $sql->fetch(\PDO::FETCH_ASSOC);
             if($extra === false){
-              $return = $return['content'];
+              $return = $return['value'];
             }
           }else{
             $return = array();
@@ -137,19 +137,20 @@ class DB extends \Lobby {
   /**
    * Save App Data
    */
-  public static function saveData($appID, $key = "", $value = ""){
+  public static function saveData($appID, $key, $value = ""){
     if(self::$installed && \Lobby\Apps::exists($appID) && $key != ""){
-     $sql = self::$dbh->prepare("SELECT COUNT(`name`) FROM `". self::$prefix ."data` WHERE `name` = ? AND `app`=? AND `uid` = ?");
-     $sql->execute(array($key, $appID, \Fr\LS::$user));
+      $sql = self::$dbh->prepare("SELECT COUNT(`name`) FROM `". self::$prefix ."data` WHERE `name` = ? AND `app`=? AND `uid` = ?");
+      $sql->execute(array($key, $appID, \Fr\LS::$user));
      
-     if($sql->fetchColumn() != 0){
-       $sql = self::$dbh->prepare("UPDATE `". self::$prefix ."data` SET `content` = ?, `updated` = NOW() WHERE `name` = ? AND `app` = ? AND `uid` = ?");
-       $sql->execute(array($value, $key, $appID, \Fr\LS::$user));
-       return true;
-     }else{
-       $sql = self::$dbh->prepare("INSERT INTO `". self::$prefix ."data` (`app`, `name`, `content`, `created`, `updated`, `uid`) VALUES (?, ?, ?, NOW(), NOW(), ?)");
+      if($sql->fetchColumn() != 0){
+        $sql = self::$dbh->prepare("UPDATE `". self::$prefix ."data` SET `value` = ?, `updated` = NOW() WHERE `name` = ? AND `app` = ?AND `uid` = ?");
+        $sql->execute(array($value, $key, $appID, \Fr\LS::$user));
+        return true;
+      }else{
+        
+        $sql = self::$dbh->prepare("INSERT INTO `". self::$prefix ."data` (`app`, `name`, `value`, `created`, `updated`, `uid`) VALUES (?, ?, ?, NOW(), NOW(), ?)");
        return $sql->execute(array($appID, $key, $value, \Fr\LS::$user));
-     }
+      }
     }else{
       return false;
     }

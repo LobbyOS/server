@@ -8,7 +8,6 @@ namespace Lobby;
 
 class FS {
   
-  
   public static function init(){
     
   }
@@ -41,12 +40,12 @@ class FS {
    */
   public static function write($path, $content, $type = "w"){
     $file = self::loc($path, false);
-    if($type == "w"){
+    if($type === "w"){
       $fh = fopen($file, 'w');
       $status = fwrite($fh, $content);
       fclose($fh);
       return $status === false || $status == 0 ? false : true;
-    }elseif($type == "a"){
+    }elseif($type === "a"){
       $fh = fopen($file, 'a');
       $status = fwrite($fh, "$content\n");
       fclose($fh);
@@ -54,9 +53,31 @@ class FS {
     }
   }
   
-  public static function remove($path){
-    return unlink(self::loc($path));
+  public static function remove($path, $exclude = array(), $remove_parent = true){
+    $path = self::loc($path);
+    
+    if(is_dir($path)){
+      $it = new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::SKIP_DOTS);
+      $files = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::CHILD_FIRST);
+      foreach($files as $file) {
+        $file_name = $file->getFilename();
+        $file_path = $file->getRealPath();
+        if ($file_name === '.' || $file_name === '..' || in_array($file_path, $exclude)) {
+            continue;
+        }
+        if ($file->isDir()){
+          rmdir($file_path);
+        } else {
+          unlink($file_path);
+        }
+      }
+      if($remove_parent){
+        rmdir($path);
+      }
+      return true;
+    }else{
+      return unlink($path);
+    }
   }
 }
 //\Lobby\FS::init();
-?>

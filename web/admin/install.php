@@ -1,15 +1,19 @@
 <?php
-include "../load.php";
+require "../load.php";
 require L_DIR . "/includes/src/Install.php";
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-     <?php \Lobby::head("Install");?>
+     <?php
+     \Lobby\UI\Themes::loadTheme();
+     \Lobby::addStyle("install", "/admin/css/install.css");
+     \Lobby::head("Install");
+     ?>
   </head>
   <body class="workspace">
      <div class="contents">
-        <h1 style="margin-bottom: 32px;text-align: center;">
+        <h1 style="text-align: center;">
           <?php echo \Lobby::l(L_URL, "Install Lobby");?>
         </h1>
         <?php
@@ -18,8 +22,8 @@ require L_DIR . "/includes/src/Install.php";
         }elseif(!isset($_GET['step'])){
         ?>
           <p>Welcome to the Lobby Installation process. Thank you for downloading Lobby.</p>
-          <p>For further help, see our <a target='_blank' href='http://lobby.subinsb.com/docs/quick'>documentation</a>.</p>
-          <p>To Start Installation, click the Install button</p>
+          <p>For further help, see <a target='_blank' href='http://lobby.subinsb.com/docs/quick'>Quick Install</a>.</p>
+          <p>To start Installation, click the Install button</p>
           <center clear>
             <a href="?step=1<?php echo H::csrf("g");?>" class="button red" style="font-size: 18px;width: 200px;">Install</a>
           </center>
@@ -99,16 +103,6 @@ require L_DIR . "/includes/src/Install.php";
                     ?></td>
                   </tr>
                   <tr>
-                    <td>PHP cURL Extension</td>
-                    <td><?php if (extension_loaded('curl')){
-                      sss("Ok", "cURL extension is enabled");
-                    }else{
-                      $error = 1;
-                      ser("Not Ok", "cURL extension seems to be missing");
-                    }
-                    ?></td>
-                  </tr>
-                  <tr>
                     <td>PHP Zip Extension</td>
                     <td><?php if (extension_loaded('zip')){
                       sss("Ok", "Zip extension is enabled");
@@ -146,7 +140,7 @@ require L_DIR . "/includes/src/Install.php";
             <?php
             if(!isset($error)){
             ?>
-              <a href="?step=2<?php echo H::csrf("g");?>" class="button">Proceed To Installation</a>
+              <a href="?step=2<?php echo H::csrf("g");?>" class="button orange" id="step1_continue">Proceed To Installation</a>
           <?php
             }else{
               echo "<p>Cannot Procced to Installation. Please make the requirements satisfied.</p>";
@@ -194,7 +188,7 @@ require L_DIR . "/includes/src/Install.php";
                * Check if connection to database can be established using the credentials given by the user
                */
               if($prefix == "" || preg_match("/[^0-9,a-z,A-Z,\$,_]+/i", $prefix) != 0 || strlen($prefix) > 50){
-                ser("Error", "A Prefix should only contain basic Latin letters, digits 0-9, dollar, underscore and shouldn't exceed 50 characters. <a href='install.php?step=2'>Try Again</a>");
+                ser("Error", "A Prefix should only contain basic Latin letters, digits 0-9, dollar, underscore and shouldn't exceed 50 characters.<cl/>" . \Lobby::l("/admin/install.php?step=2" . H::csrf("g"), "Try Again", "class='button'"));
               }elseif(\Lobby\Install::checkDatabaseConnection() !== false){
                 /**
                  * Make the Config File
@@ -205,7 +199,7 @@ require L_DIR . "/includes/src/Install.php";
                  * Create Tables
                  */
                 if(\Lobby\Install::makeDatabase($prefix)){
-                  sss("Success", "Database Tables and configuration file was successfully created.");
+                  sss("Success", "Database Tables and <b>config.php</b> file was successfully created.");
                   /**
                    * Enable app lEdit
                    */
@@ -215,22 +209,29 @@ require L_DIR . "/includes/src/Install.php";
                   $App->enableApp();
                   echo '<cl/><a href="?step=3" class="button">Proceed</a>';
                 }else{
-                  ser("Unable To Create Database Tables", "Are there any tables with the same name ? Or Does the user have the permissions to create tables ?<cl/>The <b>config.php</b> file is created. To try again, remove the <b>config.php</b> file and click the button. <cl/>" . \Lobby::l("/admin/install.php?step=2", "Try Again", "class='button'"));
-                  
+                  ser("Unable To Create Database Tables", "Are there any tables with the same name ? Or Does the user have the permissions to create tables ?<cl/>The <b>config.php</b> file is created. To try again, remove the <b>config.php</b> file and click the button. <cl/>" . \Lobby::l("/admin/install.php?step=2" . H::csrf("g"), "Try Again", "class='button'"));
                 }
               }
             }else{
             ?>
-              <h2 style="margin-top: -20px;">Database Configuration</h2>
+              <h2>Database</h2>
+              <p>Provide the database credentials. Double check before submitting</p>
               <form action="<?php \Lobby::u();?>" method="POST">
-                 <table>
+                <table>
+                  <thead>
+                    <tr>
+                      <td width="20%">Name</td>
+                      <td width="40%">Value</td>
+                      <td width="40%">Description</td>
+                    </tr>
+                  </thead>
                   <tbody>
                     <tr>
                       <td>Database Host</td>
                       <td>
                         <input type="text" name="dbhost" value="localhost">
                       </td>
-                      <td>On Most Systems, It's localhost</td>
+                      <td>The hostname of database</td>
                     </tr>
                     <tr>
                       <td>Database Port</td>
@@ -244,7 +245,7 @@ require L_DIR . "/includes/src/Install.php";
                       <td>
                         <input type="text" name="dbname" />
                       </td>
-                      <td>The name of the database you want to run Lobby in. Database should exist and Lobby won't create if it doesn't.</td>
+                      <td>The name of the database you want to run Lobby in. <b>Database should exist</b> and Lobby won't create DB if it doesn't exist.</td>
                     </tr>
                     <tr>
                       <td>User Name</td>
@@ -265,12 +266,12 @@ require L_DIR . "/includes/src/Install.php";
                       <td>
                         <input type="text" name="prefix" value="l_" />
                       </td>
-                      <td>Lobby's Table name starts with this value</td>
+                      <td>The name of tables created by Lobby would start with this value</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>
-                        <button name="submit" style="width:200px;font-size:15px;" class="green">Install Lobby</button>
+                        <button name="submit" style="width:200px;font-size:15px;" class="button green">Install Lobby</button>
                       </td>
                       <td></td>
                     </tr>

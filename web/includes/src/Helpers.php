@@ -9,18 +9,31 @@ class H {
   
   public static function init(){
     if(!isset($_COOKIE['csrf_token'])){
-      $token = base64_encode(rand(20000, 30000));
+      $token = self::randStr(10);
       setcookie("csrf_token", $token, 0);
       $_COOKIE['csrf_token'] = $token;
     }
   }
   
   /**
-   * Get value from $_GET and $_POST
+   * Generate a random string
+   */
+  public static function randStr($length){
+    $str = "";
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $size = 62; // strlen($chars)
+    for($i=0;$i < $length;$i++){
+      $str .= $chars[rand(0, $size-1)];
+    }
+    return $str;
+  }
+  
+  /**
+   * Get value from $_GET and $_POST according to request
    * returns null if it doesn't exist
    */
   public static function input($name, $type = ""){
-    if($type == "GET" || (count($_GET) != 0 && $type != "POST")){
+    if($type == "GET" || (count($_GET) != 0 && $type != "POST" && count($_POST) == 0)){
       $arr = $_GET;
     }elseif($type == "POST" || count($_POST) != 0){
       $arr = $_POST;
