@@ -1,14 +1,14 @@
 <?php
 /**
  *
- * index.php file for LobbyOS
+ * Server index.php file for LobbyOS
  *
  * A localhost/Web OS For Web Apps: http://lobby.subinsb.com
  *
  * @category   lobby
  * @package    lobby
  * @author     The LobbyOS developer community
- * @license    Apache License
+ * @license    Apache License (v2)
  * @version    0.2.1
  */
 
