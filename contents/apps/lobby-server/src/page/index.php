@@ -31,7 +31,7 @@ $this->addScript("responsiveslides.min.js");
       lobby.load(function(){
         setTimeout(function(){
           $(".rslides").responsiveSlides({pager: true});
-        }, 1500);
+        }, 2000);
       });
     </script>
   </div>
