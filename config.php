@@ -32,7 +32,7 @@ $cfg = array(
   'lobby_url' => "https://lobby.subinsb.com"
 );
 
-if($_SERVER["HTTP_HOST"] === "server.lobby.sim"){
+if($_SERVER["HTTP_HOST"] === "server.lobby".".sim"){
   unset($cfg['lobby_url']);
 }
 return $cfg;
