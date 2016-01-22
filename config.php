@@ -32,7 +32,7 @@ $cfg = array(
   'lobby_url' => "https://lobby.subinsb.com"
 );
 
-if($_SERVER["REMOTE_ADDR"] === "192.168.1.2"){
+if($_SERVER["HTTP_HOST"] === "server.lobby.sim"){
   unset($cfg['lobby_url']);
 }
 return $cfg;
