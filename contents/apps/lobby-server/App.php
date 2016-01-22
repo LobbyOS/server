@@ -36,6 +36,9 @@ class lobby_server extends \Lobby\App {
   );
   
   public function page($p){
+    /**
+     * Clean up Assets
+     */
     unset(\Lobby::$css["theme.hine-/src/dashboard/css/scrollbar.css"]);
     unset(\Lobby::$css["theme.hine-/src/dashboard/css/jquery.contextmenu.css"]);
     unset(\Lobby::$css["theme.hine-/src/dashboard/css/dashboard.css"]);
@@ -47,6 +50,13 @@ class lobby_server extends \Lobby\App {
     unset(\Lobby::$js["theme.hine-/src/dashboard/js/Packery.js"]);
     unset(\Lobby::$js["theme.hine-/src/dashboard/js/dashboard.js"]);
     unset(\Lobby::$js["app"]);
+    
+    /**
+     * Mobile
+     */
+    \Lobby::hook("head.end", function(){
+      echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+    });
     
     $path = explode("/", $p);
     if($path[1] == "docs"){
