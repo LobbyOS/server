@@ -88,6 +88,11 @@ if($node === "index"){
   if($sql->rowCount() == "0"){
     ser();
   }else{
+    /**
+     * Re add jQueryUI
+     */
+    \Lobby::addStyle("jqueryui", "/includes/lib/jquery/jquery-ui.css"); // jQuery UI
+    
     $this->addStyle("app.css");
     $app_info = $sql->fetch(\PDO::FETCH_ASSOC);
     
