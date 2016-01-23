@@ -124,7 +124,7 @@ if($node == "index"){
         <input type="text" name="me_site" value="<?php echo \Fr\LS2::getUser("web_page");?>" placeholder="Required" />
       </label>
       <?php H::csrf(1);?>
-      <button>Update Profile</button>
+      <button class="button green">Update Profile</button>
     </form>
   </div>
   <style>
@@ -220,6 +220,16 @@ if($node == "index"){
     ?>
     <h1><?php echo $app_edit == true ? $app_info['name'] : "New App";?></h1>
     <p>Use the following form to fill information about your app. After you submit, an admin will review your app and take the final decision whether to add your app to the App Center.</p>
+    <?php
+    if($app_edit === true){
+    ?>
+      <h2>Update</h2>
+      <p>Click the following button to update the app on Lobby from Git :</p>
+      <a class="button green" href="">Update</a>
+    <?php
+    }
+    ?>
+    <h2>Edit</h2>
     <form action="<?php echo \Lobby::u();?>" method="POST">
       <label>
         <span>App ID</span>
@@ -233,12 +243,18 @@ if($node == "index"){
       if($app_edit != true){
       ?>
         <label>
-          <span>App Source Code URL</span>
-          <input type="text" name="app_src" placeholder="URL to your app's source code for reviewing. GitHub repo or Zip File" size="70" />
+          <span>Git URL</span>
+          <p>You should <a href="https://help.github.com/articles/create-a-repo/">create a Git repo</a> of your app and host the code there. Then paste the URL to the .git file here :</p>
+          <input type="text" name="app_src" placeholder="The URL to the git file of your app" size="70" />
         </label>
       <?php
       }else{
-        echo "<input type='hidden' name='app_src' value='1' />";
+      ?>
+        <label>
+          <span>Git URL</span>
+          <input type="text" name="app_src" placeholder="The URL to git repo of your app" value="<?php echo $app_info['git_url'];?>" size="70" />
+        </label>
+      <?php
       }
       ?>
       <label>
@@ -250,7 +266,7 @@ if($node == "index"){
         <textarea type="text" name="app_description" rows="10" cols="70"><?php echo $app_edit == true ? $app_info['description'] : "";?></textarea>
       </label>
       <?php
-      if($app_edit == true){
+      if($app_edit === true){
       ?>
         <label>
           <span>Screenshots</span>
@@ -327,14 +343,17 @@ if($node == "index"){
       <label>
         <span>Lobby Web App ?</span>
         <p>Whether this app is able to run on <b>Lobby Web</b></p>
-        <input type="checkbox" name="app_lobby_web" <?php if(isset($app_info['lobby_web'])){echo "checked='checked'";}?> />
+        <label>
+          <input type="checkbox" name="app_lobby_web" <?php if(isset($app_info['lobby_web'])){echo "checked='checked'";}?> />
+          <span></span>
+        </label>
       </label>
       <label>
         <span>App Page</span>
         <input type="text" name="app_page" placeholder="http:// or https://" value="<?php echo $app_edit == true ? $app_info['app_page'] : "";?>" />
       </label>
       <?php H::csrf(1);?>
-      <button style="padding: 8px 15px;" class='green'><?php echo $app_edit == true ? "Update App" : "Submit App";?></button>
+      <button class="button green"><?php echo $app_edit == true ? "Update App" : "Submit App";?></button>
     </form>
   </div>
   <style>
