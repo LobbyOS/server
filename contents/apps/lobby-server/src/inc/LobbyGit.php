@@ -23,8 +23,18 @@ class LobbyGit {
     }
   }
   
+  public function update(){
+    $sql = \Lobby\DB::$dbh->prepare("DELETE FROM `git_cache` WHERE `git_url` = ?");
+    $sql->execute(array($this->git_url));
+    
+    $this->recursiveRemoveDirectory($this->git_dir);
+    $this->register();
+  }
+  
   public function getRepo(){
     $repo = Gitonomy\Git\Admin::cloneTo($this->git_dir, $this->git_url, false);
+    var_dump($repo->getReferences());
+    die();
     $this->recursiveRemoveDirectory($this->git_dir . "/.git");
     
     if(exec("cd {$this->git_dir};zip -r '{$this->git_dir}/app.zip' ./ -1 -q;") !== false){

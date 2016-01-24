@@ -80,7 +80,7 @@ $this->addScript("responsiveslides.min.js");
   <div class="contents" style="padding: 20px 0;">
     <h1 style='font-size: 4em;margin-top:0;'><a href="/download">Download</a></h1>
     <div clear>
-      <a class='button pink' href='/api/download/lobby/script' clear>Download Bash Script</a>
+      <a class='button pink' href='/api/download/lobby/deb' clear>Download (.deb)</a>
       <a class='button green' href='/api/download/lobby/latest' clear>Direct Download (.zip)</a>
       <a class='button blue' href='/docs/quick' clear>Manual Install</a>
       <a class='button' href='/web-readme' clear>Web Version</a>

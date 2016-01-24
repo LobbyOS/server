@@ -78,15 +78,17 @@ if($node == "index"){
     <?php
     echo \Lobby::l("/me/profile", "My Profile", "class='button green'") . "<br/>";
     
-    echo "<h2>Apps</h2>";
-    echo \Lobby::l("/me/app", "Submit A New App", "class='button'") . "<br/>";
+    echo "<h2>My Apps</h2>";
+    echo \Lobby::l("/me/app", "Submit A New App", "class='button blue'") . "<br/>";
     
     $sql = \Lobby\DB::$dbh->prepare("SELECT `id`, `name` FROM `apps` WHERE `author` = ?");
     $sql->execute(array(\Fr\LS::$user));
     
-    while($r = $sql->fetch()){
-      echo "<a href='/me/app/{$r['id']}' class='button green'>{$r['name']}</a><br/>";
-    }
+    echo "<center>";
+      while($r = $sql->fetch()){
+        echo "<a href='/me/app/{$r['id']}' class='button green' style='margin: 5px 10px;'>{$r['name']}</a>";
+      }
+    echo "</center>";
     ?>
   </div>
 <?php
@@ -137,7 +139,7 @@ if($node == "index"){
     }
   </style>
 <?php
-}else if($node == "app"){
+}else if($node === "app"){
   $app_edit = false;
   $app_info = array();
   
@@ -152,11 +154,19 @@ if($node == "index"){
       
       $result = $sql->fetch(\PDO::FETCH_ASSOC);
       $app_info = $result;
+      $AppID = $app_info['id'];
     }
   }
 ?>
   <div class="contents">
     <?php
+    if($app_edit && isset($_GET['update'])){
+      require_once APP_DIR . "/src/inc/LobbyGit.php";
+      
+      $lg = new \LobbyGit($AppID, $app_info['git_url']);
+      $lg->update();
+    }
+    
     if(isset($_POST['app_name'])){
       $app_info_required = array(
         "id" => $app_edit ? $path[3] : H::input("app_id"),
@@ -224,8 +234,9 @@ if($node == "index"){
     if($app_edit === true){
     ?>
       <h2>Update</h2>
-      <p>Click the following button to update the app on Lobby from Git :</p>
-      <a class="button green" href="">Update</a>
+      <p>If the app's Git repo (branch master) was updated, Lobby will update it automatically within an hour.<cl/>If that didn't happen or you want to update immediately, please click the following button to update the app :</p>
+      <center><a class="button green" href="?update">Update</a></center>
+      <p>When you click update, the app's version will be automatically bumped to the next value (0.1 to 0.2 or 0.9 to 1.0). You can change the version number by changing the value in the form below.</p>
     <?php
     }
     ?>
@@ -253,6 +264,16 @@ if($node == "index"){
         <label>
           <span>Git URL</span>
           <input type="text" name="app_src" placeholder="The URL to git repo of your app" value="<?php echo $app_info['git_url'];?>" size="70" />
+        </label>
+      <?php
+      }
+      ?>
+      <?php
+      if($app_edit === true){
+      ?>
+        <label>
+          <span>Version</span>
+          <input type="text" name="app_version" placeholder="0.1" value="<?php echo $app_edit == true ? $app_info['version'] : "";?>" />
         </label>
       <?php
       }
@@ -335,10 +356,6 @@ if($node == "index"){
           echo "</select>";
         }
         ?>
-      </label>
-      <label>
-        <span>Version</span>
-        <input type="text" name="app_version" placeholder="0.1" value="<?php echo $app_edit == true ? $app_info['version'] : "";?>" />
       </label>
       <label>
         <span>Lobby Web App ?</span>

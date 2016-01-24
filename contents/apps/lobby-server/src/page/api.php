@@ -1,6 +1,7 @@
 <?php
 $lobby_downloads = array(
   "script" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/lobby-install.sh",
+  "deb" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/lobby.deb",
   "0.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.1.zip",
   "0.1.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.1.1.zip",
   "0.2" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.zip",

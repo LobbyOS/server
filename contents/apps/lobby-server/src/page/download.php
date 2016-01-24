@@ -31,8 +31,11 @@
 		</ul>
 	</p>
 	<h2>Auto Install</h2>
+  <p>There are 2 ways to auto install Lobby :</p>
+  <p>One is to download a .deb file and install it :</p>
+  <a class="button red" href="<?php L_URL;?>/api/lobby/download/deb">Download (.deb)</a>
 	<p>
-		A <b>bash script</b> is avaialble for installing the dependencies, downloading lobby and installing it on a directory.
+		Another way is to run a <b>bash script</b> on the directory where you want Lobby.
 	</p>
   <p>
     It works on all Linux systems that has the <a href='https://en.wikipedia.org/wiki/Advanced_Packaging_Tool' target='_blank'>Advanced Packaging Tools (APT)</a>
