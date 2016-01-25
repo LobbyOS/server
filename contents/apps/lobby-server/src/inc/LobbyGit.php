@@ -33,8 +33,8 @@ class LobbyGit {
   
   public function getRepo(){
     $repo = Gitonomy\Git\Admin::cloneTo($this->git_dir, $this->git_url, false);
-    var_dump($repo->getReferences());
-    die();
+    /**var_dump($repo->getReferences());
+    die();*/
     $this->recursiveRemoveDirectory($this->git_dir . "/.git");
     
     if(exec("cd {$this->git_dir};zip -r '{$this->git_dir}/app.zip' ./ -1 -q;") !== false){

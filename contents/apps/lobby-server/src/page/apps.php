@@ -5,7 +5,7 @@ if($node === "index"){
   $this->addScript("jquery.isotope.js");
   $this->addScript("apps.js");
   
-  \Lobby::setTitle("Store");
+  \Lobby::setTitle("Store - Lobby");
   
   $query = "SELECT * FROM `apps` WHERE 1 ";
   $params = array();
