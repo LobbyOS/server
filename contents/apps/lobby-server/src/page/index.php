@@ -27,15 +27,15 @@ $this->addScript("responsiveslides.min.js");
     <div class="row">
       <ul class="rslides">
         <li>
-          <img src="<?php echo APP_URL;?>/src/image/screenshots/dashboard.png" alt="">
+          <img src="<?php echo APP_SRC;?>/src/image/screenshots/dashboard.png" alt="">
           <p class="caption">The Lobby Dashboard</p>
         </li>
         <li>
-          <img src="<?php echo APP_URL;?>/src/image/screenshots/app-diary.png" alt="">
+          <img src="<?php echo APP_SRC;?>/src/image/screenshots/app-diary.png" alt="">
           <p class="caption">The <a href="/apps/diary">Diary App</a> On Lobby</p>
         </li>
         <li>
-          <img src="<?php echo APP_URL;?>/src/image/screenshots/lobby-store.png" alt="">
+          <img src="<?php echo APP_SRC;?>/src/image/screenshots/lobby-store.png" alt="">
           <p class="caption">Installing An App is Super Easy !</p>
         </li>
       </ul>

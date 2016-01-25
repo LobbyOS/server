@@ -10,4 +10,5 @@
   <a class="button red" href="/web">PROCEED</a>
 </div>
 <?php
+\Lobby::setTitle("Web");
 require_once APP_DIR . "/src/inc/views/track.php";
