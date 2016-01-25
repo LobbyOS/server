@@ -11,7 +11,7 @@ How to download & install Lobby on various systems.
   2. MySQL 5.0 or later versions
   3. PHP version 5.3 or later with :
     * PDO extension
-    * cURL extension
+    * cURL extension (recommended)
     * JSON extension
     * Output Buffering Enabled
   
@@ -24,9 +24,9 @@ There are localhost softwares with everything already buiilt into it. Here are s
 * [MAMP](http://sourceforge.net/projects/mamp/) - Mac
 * [AMMPS](http://sourceforge.net/projects/ampps/) - Windows, Linux, Mac
 
-## Linux
+## *nix (Linux, Mac)
 
-As you may know, the localhost site directory on Linux is 
+As you may know, the localhost site directory on *nix systems is 
 ```
 /var/www/html
 ```
@@ -36,17 +36,15 @@ In older systems, it was "/var/www". So, if you're installing on an older system
 
   * Make sure dependencies of Lobby is satisfied
   * [Download Lobby](/api/download/lobby/latest)
-  * Become the root user & open the "/var/www/html" folder :
-    ```bash
-    gksudo nautilus /var/www/html
-    ```
-    
   * Create a Direcory named **lobby** in "/var/www/html" directory :
     ```bash
     sudo mkdir /var/www/html/lobby
     ```
     
-  * Extract the downloaded Lobby Zip file into **/var/www/lobby**
+  * Extract the downloaded Lobby Zip file into **/var/www/html/lobby**
+    ```bash
+    sudo unzip <path_to_lobby.zip> -d /var/www/html/lobby
+    ```
   * Do the steps in the **Permissions** section below
   * Open a Web Browser and visit the URL [//localhost/lobby](http://localhost/lobby) to configure Lobby
 
@@ -56,11 +54,11 @@ After installing Lobby, change the permission of **Lobby Directory** (/var/www/l
 
 An easy way is to do this is by the following commands :
 ```bash
-chown -R root:www-data /var/www/lobby
-chmod -R ug+rw /var/www/lobby
-chmod -R o+r /var/www/lobby
+sudo chown -R root:www-data /var/www/lobby
+sudo chmod -R ug+rw /var/www/lobby
+sudo chmod -R o+r /var/www/lobby
 ```
-The above commands will make root the owner and sets the group as "www-data" ie Apache. And the second & third command will make the owner & group have full permissions where as others will only have read permission.
+The above commands will make **root** the owner and sets the group as "www-data" ie web server. And the second & third command will make the owner & group have full permissions whereas others will only have read permission.
 
 ### Lobby on a Domain
 
@@ -70,14 +68,14 @@ http://lobby.dev
 http://lobby.localhost
 http://lobby.com
 ```
-I (Subin Siby) have written Blog posts addressing this localhost site creation :
+Subin has written a tutorial on creating a localhost site :
 
-1. [How To Create A Localhost Web Site In Linux Using Apache Web Server](http://subinsb.com/linux-apache-localhost)
+1. [How To Create A localhost Web Site In Linux Using Apache Web Server](http://subinsb.com/linux-apache-localhost)
 2. [Create a localhost Website in Ubuntu 11.04 & Up](http://subinsb.com/ubuntu-linux-create-localhost-website)
 
 ## Windows
 
-It is recommended that on Windows, you install [WampServer]() instead of XAMPP.
+It is recommended that on Windows, you install [WampServer](http://sourceforge.net/projects/wampserver/) instead of XAMPP.
 
 * Make sure dependencies of Lobby is satisfied
 * [Download Lobby](/api/download/lobby/latest)
@@ -94,28 +92,28 @@ Follow the instructions in the installation page to successfully configure & ins
 
 * The first step is to verify that all dependencies of Lobby is met
 
-  If everything is satisfied, a "Proceed To Installation" button is seen at the far bottom.
+  If everything is satisfied, a "Proceed To Installation" button will be available at the far bottom of page
   
 * In the second step, you have to provide your Database credentials.
 
-  Double check before continuing
+  Double check before continuing. The database will be created if it doesn't exist.
   
 * Setup will create tables in the given database and will also create a "config.php" file
 
 * After Setup is finished, a message will be shown to Proceed.
 
-  Congratulations, you have successfuly installed Lobby.
+  Congratulations, you have successfuly installed Lobby !
 
 ## Common Problems
 
 ### 404 Not Found Error
 
-Sometimes, when you visit **[//lobby.dev](//lobby.dev)**, a 404 error is shown. This is because the rules in **.htaccess** is not active.To make it active, you must edit the configuration file.
+Sometimes, when you visit **[//lobby.dev](//lobby.dev)**, a 404 error is shown. This is because the rules in **.htaccess** is not active. To make it active, you must edit the configuration file.
 
 For this run the following command to edit the config file :
 
 ```
-gksudo gedit /etc/apache2/apache2.conf
+sudo nano /etc/apache2/apache2.conf
 ```
 Search for **Directory /var/www** and under the found string replace :
 
