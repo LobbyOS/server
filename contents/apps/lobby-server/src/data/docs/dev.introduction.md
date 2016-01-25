@@ -1,5 +1,7 @@
 # Introduction
-Creating Apps for Lobby is really Easy. You have the full control over the app, but with some restrictions. The Lobby Tree will look something like this :
+Creating Apps for Lobby is really easy. You have the full control over the app, but with some restrictions.
+
+The Lobby tree will look something like this :
 - Lobby
 	- [dir]  admin
 	- [dir]  contents
