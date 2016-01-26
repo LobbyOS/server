@@ -1,164 +1,151 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--
+ created with Free Online Sitemap Generator www.xml-sitemaps.com 
+-->
 <url>
-  <loc>https://lobby.subinsb.com/</loc>
-  <changefreq>weekly</changefreq>
-  <priority>1.00</priority>
+<loc>https://lobby.subinsb.com/</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/download</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/download</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/apps</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/mods</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/docs</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/mods</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/me</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/me</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/me/login</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/me/login</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps/diary</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/apps/diary</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps/millionaire</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/apps/millionaire</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/dev</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/docs/quick</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/dev/create-app</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/apps/fr-logsys</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/quick</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+<loc>https://lobby.subinsb.com/apps/ledit</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps/ledit</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/apps/sige</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps/sige</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/apps/anagram</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps/site-compressor</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/apps/site-compressor</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/mods/admin</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/about</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/mods/indi</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/contact</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/about</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/config</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/contact</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/install-app</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/install-app</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/dev</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/dev/introduction</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/dev/introduction</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/dev/app</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/dev/create-app</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/dev/app/manifest.json</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/dev/debug</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/dev/app/App.php</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/dev/app</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps?c=accessories</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>
+https://lobby.subinsb.com/docs/dev/app/manifest.json
+</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps?sc=tools</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/docs/dev/app/App.php</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps?c=games</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/mods/admin</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps?sc=puzzles</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/mods/indi</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/docs/dev/app/pages</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
+<loc>https://lobby.subinsb.com/apps?c=accessories</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps?c=development</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.51</priority>
+<loc>https://lobby.subinsb.com/apps?sc=tools</loc>
+<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://lobby.subinsb.com/apps?sc=web</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.51</priority>
+<loc>https://lobby.subinsb.com/u/1</loc>
+<changefreq>daily</changefreq>
+</url>
+<url>
+<loc>https://lobby.subinsb.com/apps?c=games</loc>
+<changefreq>daily</changefreq>
+</url>
+<url>
+<loc>https://lobby.subinsb.com/apps?sc=puzzles</loc>
+<changefreq>daily</changefreq>
+</url>
+<url>
+<loc>https://lobby.subinsb.com/apps?c=development</loc>
+<changefreq>daily</changefreq>
+</url>
+<url>
+<loc>https://lobby.subinsb.com/apps?sc=web</loc>
+<changefreq>daily</changefreq>
+</url>
+<url>
+<loc>https://lobby.subinsb.com/docs/dev/app/pages</loc>
+<changefreq>daily</changefreq>
 </url>
 </urlset>
