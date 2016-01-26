@@ -89,7 +89,7 @@ $this->addScript("responsiveslides.min.js");
     </div>
   </div>
 </section>
-<section>
+<section id="download">
   <div class="contents" style="padding: 20px 0;">
     <h1 style='font-size: 4em;margin-top:0;'><a href="/download">Download</a></h1>
     <div clear>
@@ -101,7 +101,16 @@ $this->addScript("responsiveslides.min.js");
     <p style='margin-top: 50px;'>&copy; Copyleft <a href="https://github.com/orgs/LobbyOS/people" target="_blank">Lobby Team</a> 2014 - <?php echo date("Y");?></p>
   </div>
 </section>
-<script src="<?php echo APP_SRC;?>/src/lib/scolling-nav/js/jquery.easing.min.js"></script>
-<script src="<?php echo APP_SRC;?>/src/lib/scolling-nav/js/scrolling-nav.js"></script>
+<script>
+$(function(){
+  $('a.page-scroll').live('click', function(event) {
+    var $anchor = $(this);
+    $('.workspace').stop().animate({
+      scrollTop: $($anchor.attr('href')).offset().top
+    }, 1500, 'easeInOutExpo');
+    event.preventDefault();
+  });
+});
+</script>
 <?php
 require_once APP_DIR . "/src/inc/views/track.php";
