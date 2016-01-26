@@ -13,15 +13,21 @@ The Lobby tree will look something like this :
 
 This directory structure is like **WordPress**, but not exactly like it.
 
-The Apps, Extra Stuff and User created stuff goes in the _contents_ directory. Here is the `contents` directory tree :
+The Apps, themes and User created stuff goes in the _contents_ directory. Here is the `contents` directory tree :
 
 - contents
 	- [dir] apps
 	- [dir] extra
-	- [dir] upgrade
+  - [dir] modules
+  - [dir] themes
+	- [dir] update
 
-_apps_ folder has the Apps Source Code.
+_apps_ folder is where Apps are stored.
 
-_extra_ contains extra stuf like logs. The user can create what she/he like here.
+_extra_ contains extra stuff like logs. It is like a temporary folder
 
-_upgrade_ folder is a temporary location for all downloaded files. The App Source code containing Zip (Archive) File and New Versions of Lobby is downloaded to here.
+_update_ folder is a temporary location for all downloaded files. The app.zip (Archive) File and zip files of new versions of Lobby is downloaded to here.
+
+## Standards
+
+While creating apps or 
