@@ -12,7 +12,7 @@ What's different about Lobby is that it supports server side along with the clie
 
 Browse through the collection of [Lobby's web apps here](/apps).
 
-It is easy to modify Lobby through [modules](/docs/modules). The [indi module](/mods/indi) helps Lobby to be used as a framework for developing independent web apps not on localhost, but on websites.
+It is easy to modify Lobby through [modules](/mods). The [indi module](/mods/indi) helps Lobby to be used as a framework for developing independent web apps not on localhost, but on websites.
 
 ## Web Apps
 
