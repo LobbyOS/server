@@ -1,3 +1,5 @@
+About
+
 # What's Lobby ?
 
 Lobby is a software that runs on a [localhost](http://en.wikipedia.org/wiki/Localhost) server. It is downloaded, installed in your web server of your computer and is accessed throuhg any web browser in your system.

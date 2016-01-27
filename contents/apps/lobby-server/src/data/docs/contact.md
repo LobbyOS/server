@@ -1,3 +1,5 @@
+Contact
+
 # Contact
 
 In case of an emergency or for other purposes about Lobby, you can contact the Lobby project leaders by the following e-mails (Please DO NOT SPAM) :

@@ -1,3 +1,5 @@
+Manifest File
+
 # manifest.json
 
 The information about the app is stored as [JSON](http://en.wikipedia.org/wiki/JSON) format in this file.
