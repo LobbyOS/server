@@ -9,20 +9,18 @@ $doc = isset($doc) ? $doc : "index";
 if(isset($doc) && array_search($doc, $docs) !== false){
   $doc_path = "$docs_location/$doc.md";
   
-  if($doc == "index"){
+  $f = fopen($doc_path, 'r');
+  $doc_name = fgets($f);
+  $content = fread($f, filesize($doc_path));
+  fclose($f);
+  
+  if($doc === "index"){
     \Lobby::setTitle("Documentation");
   }else{
     if(substr($doc, 0, 4) == "dev."){
       $doc = substr_replace($doc, '', 0, 4);
-      if(substr($doc, 0, 4) == "app."){
-        $doc_name = ucwords(preg_replace("/[-|.]/", " ", substr_replace($doc, '', 0, 4)));
-        \Lobby::setTitle($doc_name . " | App Dev Docs");
-      }else{
-        $doc_name = ucwords(preg_replace("/[-|.]/", " ", $doc));
-        \Lobby::setTitle($doc_name . " | Developer Docs");
-      }
+      \Lobby::setTitle($doc_name . " | Developer Docs");
     }else{
-      $doc_name = ucwords(preg_replace("/[-|.]/", " ", $doc));
       \Lobby::setTitle($doc_name . " | Docs");
     }
   }
@@ -65,7 +63,6 @@ $this->addStyle("docs.css");
   <?php
   require_once APP_DIR . "/src/inc/Parsedown.php";
   $Parsedown = new ParsedownExtra();
-  $content = file_get_contents($doc_path);
   echo $Parsedown->text($content);
   ?>
 </div>

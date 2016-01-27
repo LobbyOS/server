@@ -1,3 +1,5 @@
+App.php File
+
 # App.php
 
 A file named **App.php** should be in the root directory of your app along with **manifest.json**.
