@@ -47,12 +47,12 @@ Subcategories helps to find an app in depth. Only some main categories have subc
 
 It is not necessary for your app to have a sub category, but it will help to quickly find apps for users.
 
-| Category    | Sub Category| Description
+| Category    | Sub Category| Description + Examples
 | --------    | ------------| -----------
 | accessories | office      | Office related apps <br/> Calculator
-|             | tools       | Extra Tools <br/> text editors
-|             | security    | Security related apps <br/> Like Password Manager
-| development | graphics    | Apps for graphic designers <br/> image editing softwares, etc...
+|             | tools       | Extra Tools <br/> Text Editors
+|             | security    | Security related apps <br/> Password Manager
+| development | graphics    | Apps for graphic designers <br/> Image editing softwares, etc...
 |             | web         | For Web Developers <br/> HTML, CSS, JS, jQuery etc...
 |             | programming | Apps related to Programming Languages <br/> Python, Java, C++ etc...
 | games       | multiplayer | Multiplayer games

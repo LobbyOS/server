@@ -17,6 +17,7 @@ In case there's a "-" character in your App ID, then when naming the class, repl
 The class should be the child class of **\Lobby\App** and under the namespace **Lobby\App**. Here is a basic App.php file :
 
 ```php
+<?php
 namespace Lobby\App;
 
 class myAppID extends \Lobby\App {
