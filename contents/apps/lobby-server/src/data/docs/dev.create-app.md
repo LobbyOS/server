@@ -42,14 +42,14 @@ Here is the file/folder structure inside your app's directory :
 | [manifest.json](app/manifest.json) |  |  | The Manifest File |
 | [App.php](app/App.php) | | | The Core File of App |
 | src | | | The folder containing resources of app |
-| | Ajax | | Contains files for AJAX requests |
-| | CSS | | Contains stylesheets to be used via **\Lobby\App::addStyle()** |
-| | Data | | Contains files for settings as well as other custom files of app |
-| | Image | | Contains image files for app. The App's logo (**logo.png**) is inside this folder |
-| | Inc | | Contains PHP libraries, class files to be used by other PHP files inside app |
-| | JS | | Contains JavaScript files that is required by the app in it's pages |
-| | Page | | [Pages of app](app/pages) is in this file |
-| |  | Admin | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The administration pages of app is in this folder |
+| | ajax | | Contains files for AJAX requests |
+| | css | | Contains stylesheets to be used via **\Lobby\App::addStyle()** |
+| | data | | Contains files for settings as well as other custom files of app |
+| | image | | Contains image files for app. The App's logo (**logo.png**) is inside this folder |
+| | inc | | Contains PHP libraries, class files to be used by other PHP files inside app |
+| | js | | Contains JavaScript files that is required by the app in it's pages |
+| | page | | [Pages of app](app/pages) is in this file |
+| |  | admin | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The administration pages of app is in this folder |
 
 ### manifest.json & App.php
 

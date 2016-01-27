@@ -1,5 +1,15 @@
 # Introduction
-Creating Apps for Lobby is really easy. You have the full control over the app, but with some restrictions.
+
+
+
+## Apps
+
+Creating Apps for Lobby is really easy. You have the full control over the app, but with some restrictions :
+
+- DON'T BE EVIL
+  A Lobby app can access the user's system. So, user's privacy must be respected.
+
+## Lobby
 
 The Lobby tree will look something like this :
 - Lobby
@@ -30,4 +40,17 @@ _update_ folder is a temporary location for all downloaded files. The app.zip (A
 
 ## Standards
 
-While creating apps or 
+While creating apps or making a change in Lobby core, please follow these guidelines :
+
+- Filenames should be lowercase except when :
+  - It is a PHP class file. If it is a file that contains a class, the name of the file should be the same as that of class.
+    Example : The class 'FileSystem' would be in a file 'FileSystem.php'
+- Short names are used for folder names :
+
+  | Short name | Full name | Descripton |
+  | ----- | ---- | ---- |
+  | css | CSS | CSS files used in pages is in here |
+  | inc | includes | External files that are included. Eg: 'url.php' for parsing URLs used by other scripts |
+  | lib | library | Contains standalone libraries. Eg: jQuery, Bootstrap |
+  | js | JavaScript | JavaScript files used in pages is in here |
+  | src | source | The source files goes in this. |
