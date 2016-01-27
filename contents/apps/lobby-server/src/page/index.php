@@ -11,7 +11,9 @@ $this->addScript("responsiveslides.min.js");
       <p style="margin-top: 20px;">Lobby is a framework to run web apps. It can be attributed as a combination of <a href="https://en.wikipedia.org/wiki/Android" target="_blank" >Android</a> & <a href="https://en.wikipedia.org/wiki/WordPress" target="_blank" >WordPress</a></p>
       <p>Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and can be used via a browser (Chrome, Firefox)</p>
       <p>Hence Lobby is platform independent and can be installed on any localhost server</p>
-      <div style="margin-top: 20px;">
+      <p>Still don't understand it ? See a detailed description here :</p>
+      <a href="/docs/about" class="button indigo">About Lobby</a>
+      <div style="margin-top: 10px;">
         <a class="button page-scroll" href="#screenshots">Screenshots</a>
         <a class="button blue page-scroll" href="#features">Features</a>
         <a class="button page-scroll" href="#lobby-store">Lobby Store</a>

@@ -120,7 +120,7 @@ class lobby_server extends \Lobby\App {
     ));
     \Lobby\UI\Panel::addTopItem("lobbyWeb", array(
       "position" => "left",
-      "text" => "<span class='button indigo' style='margin:0;padding: 0 10;'>Lobby Web</span>",
+      "text" => "<span class='button indigo' style='margin:0;padding: 0 10;'>Demo</span>",
       "href" => "/web-readme"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyApps", array(
