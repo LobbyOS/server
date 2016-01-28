@@ -9,4 +9,4 @@ In case of an emergency or for other purposes about Lobby, you can contact the L
 
 Replace the [dot] and [at] with "." and "@" respectively in the above E-Mail addresses.
 
-Everyone are required to set the starting of the subject of e-mail with "Lobby - ".
+When you email, please set the starting of the subject as "Lobby - ".
