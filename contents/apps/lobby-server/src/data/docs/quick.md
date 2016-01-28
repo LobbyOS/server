@@ -1,3 +1,5 @@
+Install Lobby
+
 # Quick Install
 
 How to download & install Lobby on various systems.

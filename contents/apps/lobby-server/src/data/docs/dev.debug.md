@@ -1,3 +1,5 @@
+Debugging
+
 # Debugging
 
 Debugging is disabled by default. To enable it, you must set the ["debug" setting in the config file](/docs/config#DebugSetting).

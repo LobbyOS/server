@@ -1,3 +1,5 @@
+Configuration
+
 # Configuration
 
 Lobby can be configured through the file "config.php" situated in the root directory (lobby/).

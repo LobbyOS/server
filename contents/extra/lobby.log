@@ -4423,3 +4423,8 @@ Stack trace:
 [2016-01-27 15:38:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
 [2016-01-27 15:38:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
 [2016-01-27 15:38:17] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-28 02:44:06] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-28 02:44:07] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-28 02:44:09] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-28 02:45:37] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
+[2016-01-28 02:50:08] 2048 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/UI/Themes.php on line 31 : Non-static method Lobby\UI\Themes::loadDefaults() should not be called statically
