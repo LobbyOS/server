@@ -7,6 +7,9 @@
 .contents strong{
   font-weight: bold;
 }
+.contents img{
+  max-width: 100%;
+}
 .sidebar, .contents{
   display: inline-block;
 }
