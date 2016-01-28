@@ -24,7 +24,7 @@
 }
 .sidebar a[href]{
   color: white;
-  font-size: 14px;
+  font-size: 1rem;
 }
 .sidebar ul{
   display: block;
@@ -34,7 +34,7 @@
 .sidebar ul a.head{
 	display: block;
   margin: 10px 0px 5px;
-  font-size: 17px;
+  font-size: 1.2rem;
 }
 .sidebar ul li.head ul li{
 	margin-left:5px;
@@ -53,12 +53,12 @@
 	margin-top:5px;
 	margin-left: -16px;
 }
-.contents{
-  margin: 0px 0px 0px 200px !important;
+.workspace .contents{
+  margin: 0px 0px 0px 15%;
   padding: 0px 20px 40px;
   width: 85% !important;
   line-height: 24px;
-  font-size: 15px;
+  font-size: 1.1rem;
 }
 .contents p{
   margin-top: 10px;
