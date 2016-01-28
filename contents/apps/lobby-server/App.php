@@ -141,6 +141,10 @@ class lobby_server extends \Lobby\App {
         "mods" => array(
           "text" => "Modules",
           "href" => "/mods"
+        ),
+        "install_apps" => array(
+          "text" => "Install Apps",
+          "href" => "/docs/install-app"
         )
       )
     ));
