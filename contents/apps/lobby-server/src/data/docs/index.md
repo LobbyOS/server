@@ -1,3 +1,5 @@
+Lobby Documentation
+
 # Lobby Docs
 
 Welcome to Lobby Docs. Learn how to use Lobby as well as how to develop on Lobby.

@@ -14,15 +14,11 @@ if(isset($doc) && array_search($doc, $docs) !== false){
   $content = fread($f, filesize($doc_path));
   fclose($f);
   
-  if($doc === "index"){
-    \Lobby::setTitle("Documentation");
+  if(substr($doc, 0, 4) == "dev."){
+    $doc = substr_replace($doc, '', 0, 4);
+    \Lobby::setTitle($doc_name . " | Developer Docs");
   }else{
-    if(substr($doc, 0, 4) == "dev."){
-      $doc = substr_replace($doc, '', 0, 4);
-      \Lobby::setTitle($doc_name . " | Developer Docs");
-    }else{
-      \Lobby::setTitle($doc_name . " | Docs");
-    }
+    \Lobby::setTitle($doc_name . " | Docs");
   }
 }else{
   ser();
