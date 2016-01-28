@@ -145,6 +145,10 @@ class lobby_server extends \Lobby\App {
         "install_apps" => array(
           "text" => "Install Apps",
           "href" => "/docs/install-app"
+        ),
+        "dev_docs" => array(
+          "text" => "Developer",
+          "href" => "/docs/dev"
         )
       )
     ));
