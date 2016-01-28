@@ -26,7 +26,7 @@ $cfg = array(
    * Never reveal it TO ANYONE
    */
   'secureID' => getenv('LOBBY_secureID'),
-  'debug' => true,
+  'debug' => false,
   'server_check' => false,
   
   'lobby_url' => "https://lobby.subinsb.com"

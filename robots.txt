@@ -2,7 +2,7 @@ User-agent: *
 
 Allow: /
 Disallow: /admin
-Disallow: /contents
 Disallow: /includes
+Disallow: /contents/extra
 Disallow: /web
 Disallow: /api
