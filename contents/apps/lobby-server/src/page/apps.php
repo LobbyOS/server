@@ -131,18 +131,19 @@ if($node === "index"){
           <p><?php echo $Parsedown->text($app_info['description']);?></p>
         </div>
         <div id="screenshots">
-          <center style="margin: 20px;"><img src="<?php echo L_URL;?>/api/app/<?php echo $node;?>/logo" alt='Logo' title="App Logo" /></center>
           <?php
           $screenshots = explode("\n", $app_info['screenshots']);
           if(count($screenshots) > 1){
-            $this->addScript("jquery.responsiveslides.js");
-            
+
             echo '<ul class="rslides">';
               foreach($screenshots as $screenshot){
-                echo "<li><img src='$screenshot' /></li>";
+                if($screenshot != ""){
+                  echo "<li><img src='$screenshot' /></li>";
+                }
               }
             echo "</ul>";
           ?>
+            <script src="<?php echo APP_SRC;?>/src/js/responsiveslides.min.js"></script>
             <script>
               $(function() {
                 $(".workspace #screenshots .rslides").responsiveSlides({
