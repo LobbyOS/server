@@ -2,7 +2,6 @@
 $this->addStyle("apps.css");
 
 if($node === "index"){
-  $this->addScript("jquery.isotope.js");
   $this->addScript("apps.js");
   
   \Lobby::setTitle("Store");
@@ -44,36 +43,29 @@ if($node === "index"){
   require_once APP_DIR . "/src/inc/Fr.star.php";
   $star = new \Fr\Star(array());
   
-  require_once APP_DIR . "/src/inc/views/sidebar.apps.php";
+  require_once APP_DIR . "/src/inc/views/top.apps.php";
 ?>
   <div class="contents">
-    <div class="apps" id="apps" style="height: 100%;width: 100%;">
+    <div class="apps" id="apps">
       <?php
       if(count($apps) == 0){
         ser("No App Found", "No app was found with the critera you gave");
       }
       foreach($apps as $app){
-        $app['image'] == "" ? $app['image'] = $this->srcURL . "/src/image/blank.png" : "";
+        $app['image'] = $app['image'] === "0" ? APP_URL . "/src/image/blank.png" : APP_URL . "/api/app/{$app['id']}/logo";
       ?>
         <div class="app">
-          <a href="/apps/<?php echo $app['id'];?>" style="display: block;">
-            <div class="cover">
-              <?php echo $app['short_description'];?>
-            </div>
-            <div class="main">
-              <img src="<?php echo L_URL;?>/api/app/<?php echo $app['id'];?>/logo" />
-              <div class="info">
-                <div style="float: left;">
-                  <span><?php echo $app['name'];?></span>
-                  <?php
-                  $star->id = "app-" . $app['id'];
-                  echo $star->getRating();
-                  ?>
-                </div>
-                <span style="position: absolute;bottom: 0px;right: 0;"><?php echo $app['downloads'];?> downloads</span>
-              </div>
-            </div>
-          </a>
+          <div class="lpane">
+            <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>">
+              <img src="<?php echo $app['image'];?>" />
+            </a>
+          </div>
+          <div class="rpane">
+            <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>"><?php echo $app['name'];?></a>
+          </div>
+          <div class="bpane">
+          
+          </div>
         </div>
       <?php
       }

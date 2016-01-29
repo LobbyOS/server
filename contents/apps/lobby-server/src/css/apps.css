@@ -46,81 +46,34 @@
  * End \Fr\Star
  */
 
-.workspace{
-  margin: 0px auto;
-  width: 1300px;
-  border: 1px solid #ccc;
-}
-.sidebar, .contents{
-  position: relative;
-  float: left;
-}
-.sidebar{
-  min-height: 100%;
-  width: 22.5%;
-  padding: 0px 20px;
-  background: #2EA2CC;
-  color: white;
-}
+/**
+ * Apps Page
+ */
 .workspace .contents{
-  padding: 1px;
-  height: 100%;
-  width: 77.5%;
-  padding-bottom: 40px;
-  background: white;
-  overflow: auto;
+  width: 940px;
+  background: none;
+  padding: 0;
 }
-.sidebar a[href]{
-  color: white;
-  font-size: 14px;
-}
-.sidebar #search input{
-  width: 100%;
-  padding: 5px;
+.nav{
+  
 }
 .apps .app{
+  display: inline-block;
   position: relative;
   height: 200px;
-  width: 200px;
+  width: 48.5%;
   background: white;
-  margin: 4px 10px;
+  margin: 20px 5px;
+  padding: 10px 20px;
   border: 1px solid #c6c6c6;
 }
-.apps .app img{
-  height: 198px;
-  width: 198px;
+.apps .app .lpane{
+  float: left;
 }
-.apps .app .info{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 4px;
-  background: #fff;
+.apps .app .lpane img{
+  width: 128px;
+  height: 128px;
 }
-.apps .app:hover .info{
-  opacity: 1;
-}
-.apps .app .info .Fr-star{
-  width: 77px;
-  height: 15px;
-  margin-top: 2px;
-}
-.apps .app .cover{
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  padding: 20%;
-  text-align: center;
-  opacity: 0;
-  background: rgba(0, 0, 0, 0);
-  transition: 1s all;
-  color: white;
-}
-.apps .app:hover .cover{
-  display: block;
-  opacity: 1;
-  background: rgba(0, 0, 0, 1);
+.apps .app .rpane{
+  margin: 30px 0;
 }
