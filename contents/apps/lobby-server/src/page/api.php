@@ -101,14 +101,14 @@ if($node === "dot.gif"){
   if($what === "logo"){
     require_once __DIR__ . "/../inc/LobbyGit.php";
   
-    $sql = \Lobby\DB::$dbh->prepare("SELECT `image`, `git_url` FROM `apps` WHERE `id` = ?");
+    $sql = \Lobby\DB::$dbh->prepare("SELECT `logo`, `git_url` FROM `apps` WHERE `id` = ?");
     $sql->execute(array($appID));
     
     if($sql->rowCount() === 0){
       echo "error : app doesn't exist";
     }else{
       $r = $sql->fetch(\PDO::FETCH_ASSOC);
-      if($r['image'] == 0){
+      if($r['logo'] === "0"){
         header("Location: " . L_URL . "/contents/apps/lobby-server/src/image/blank.png");
       }else{
         $lg = new LobbyGit($appID, $r['git_url']);

@@ -190,6 +190,7 @@ if($node == "index"){
       $app_info = array_merge($app_info, $app_info_required);
       $app_info["screenshots"] = H::input("app_screenshots");
       $app_info["lobby_web"] = isset($_POST["app_lobby_web"]) ? 1 : 0;
+      $app_info["logo"] = isset($_POST["app_logo"]) ? "1" : "0";
     }
 
     if(isset($_POST['app_name']) && H::csrf() && array_search(null, $app_info_required) === false){
@@ -222,9 +223,9 @@ if($node == "index"){
         
           sss("App Submitted", "Your app was added to the review queue. You will be notified by email after reviewing");
         }else{        
-          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `screenshots` = ?, `description` = ?, `short_description` = ?, `category` = ?, `sub_category` = ?, `version` = ?, `app_page` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
+          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `screenshots` = ?, `description` = ?, `short_description` = ?, `category` = ?, `sub_category` = ?, `version` = ?, `app_page` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
           
-          $sql->execute(array($app_info['name'], $app_info['screenshots'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], $app_info['id'], \Fr\LS2::$user));
+          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['screenshots'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], $app_info['id'], \Fr\LS2::$user));
           
           sss("Updated", "Your app was successfully updated.");
         }
@@ -291,6 +292,11 @@ if($node == "index"){
       <?php
       }
       ?>
+      <label>
+        <span>Logo</span>
+        <input type="checkbox" name="app_logo" <?php if($app_info['logo'] === "1"){echo "checked='checked'";}?> />
+        <span>Does the app have a logo ?</span>
+      </label>
       <label>
         <span>Short Description</span>
         <input type="text" name="app_short_description" value="<?php echo $app_edit == true ? $app_info['short_description'] : "";?>" />

@@ -95,13 +95,13 @@ if($node === "index"){
             }
         }
         foreach($apps as $app){
-          $app['image'] = $app['image'] === "0" ? APP_URL . "/src/image/blank.png" : APP_URL . "/api/app/{$app['id']}/logo";
+          $app['logo'] = $app['logo'] === "0" ? APP_URL . "/src/image/blank.png" : APP_URL . "/api/app/{$app['id']}/logo";
         ?>
           <div class="app">
             <div class="app-inner">
               <div class="lpane">
                 <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>">
-                  <img src="<?php echo $app['image'];?>" />
+                  <img src="<?php echo $app['logo'];?>" />
                 </a>
               </div>
               <div class="rpane">
