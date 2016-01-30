@@ -24,7 +24,7 @@ $this->addScript("responsiveslides.min.js");
     </div>
   </div>
 </section>
-<section id="screenshots" class="even-section" style="padding:70px 0 10px">
+<section id="screenshots" class="even-section" style="padding: 80px 0 10px">
   <div class="container">
     <div class="row">
       <ul class="rslides">
