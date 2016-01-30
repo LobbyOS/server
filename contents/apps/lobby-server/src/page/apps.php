@@ -1,9 +1,7 @@
 <?php
 $this->addStyle("apps.css");
 
-if($node === "index"){
-  $this->addScript("apps.js");
-  
+if($node === "index"){  
   \Lobby::setTitle("Store");
   
   $query = "SELECT * FROM `apps` WHERE 1 ";
@@ -59,7 +57,6 @@ if($node === "index"){
   $star = new \Fr\Star(array());
 ?>
   <div class="contents">
-    <h1><a href="<?php echo APP_URL;?>/apps">Lobby Store</a></h1>
     <?php
     require_once APP_DIR . "/src/inc/views/top.apps.php";
     ?>
@@ -155,10 +152,10 @@ if($node === "index"){
     $Parsedown = new Parsedown();
 ?>
     <div class="contents" style='padding-left: 10px;'>
-      <h1><a href=""><?php echo $app_info['name'];?></a></h1>
       <?php
       require_once APP_DIR . "/src/inc/views/top.apps.php";
       ?>
+      <h1><a href=""><?php echo $app_info['name'];?></a></h1>
       <p><?php echo $app_info['short_description'];?></p>
       <ol style="list-style: none;padding: 0px;">
         <li style="display: inline-block;">
@@ -176,11 +173,7 @@ if($node === "index"){
           <li><a href="#download">Download</a></li>
         </ul>
         <script>
-          $(".workspace #app-tabs").tabs({
-            activate: function(event, ui) {
-              window.location.hash = ui.newPanel.attr('id');
-            }
-          });
+          $(".workspace #app-tabs").tabs();
         </script>
         <div id="description">
           <p><?php echo $Parsedown->text($app_info['description']);?></p>
@@ -214,19 +207,22 @@ if($node === "index"){
           ?>
         </div>
         <div id="stats">
-          <h2>Ratings</h2>
+          <h2>Stats</h2>
+          <div>
+            <strong><?php echo $app_info['downloads'];?> Downloads</strong>
+          </div>
           <?php
           require_once APP_DIR . "/src/inc/Fr.star.php";
           $this->addScript("Fr.star.js");
           
           $star = new \Fr\Star(array(), "app-{$app_info['id']}");
           echo "<div class='ratings'>";
-            echo $star->getRating();
+            echo $star->getRating("ableToRate");
             echo "<div id='rating'></div>";
           echo "</div>";
           ?>
           <script>
-            window.addEventListener('load', function(){ 
+            lobby.load(function(){
               function fr_star(){
                 $(".contents .ratings #rating").text($(".Fr-star").data("title"));
                 $(".Fr-star").Fr_star(function(rating){
@@ -242,8 +238,7 @@ if($node === "index"){
               }
               fr_star();
             });
-          </script>
-          <h3><?php echo $app_info['downloads'];?> Downloads</h3>
+          </script>          
         </div>
         <div id="download">
           <table style="width: 700px;">
@@ -262,7 +257,7 @@ if($node === "index"){
               </tr>
               <tr>
                 <td>Web Page</td>
-                <td><?php echo "<a href='{$app_info['app_page']}' target='_blank'>App's Web Page</a>";?></td>
+                <td><?php echo "<a href='{$app_info['app_page']}' target='_blank'>". htmlspecialchars($app_info['app_page']) ."</a>";?></td>
               </tr>
               <tr>
                 <td></td>

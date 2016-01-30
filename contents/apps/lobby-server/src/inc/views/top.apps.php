@@ -1,3 +1,4 @@
+<h1><a href="<?php echo APP_URL;?>/apps">Lobby Store</a></h1>
 <div class="nav">
   <div class="nav-item">
     <a href="<?php echo L_URL;?>/apps" class="button">Featured</a>

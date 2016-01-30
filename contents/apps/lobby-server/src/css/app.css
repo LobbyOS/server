@@ -1,6 +1,12 @@
 /**
  * App Page
  */
+.Fr-star.ableToRate {
+  width: 225px;
+  height: 40px;
+  position: relative;
+  background-color: #ccc;
+}
 .rslides {
   position: relative;
   list-style: none;
@@ -78,4 +84,10 @@
 }
 .workspace #app-tabs #description:target, .workspace #app-tabs #screenshots:target, .workspace #app-tabs #stats:target, .workspace #app-tabs #download:target{
   display: block;
+}
+#description ~ #screenshots:target {
+  display: none;
+}
+div .ui-tabs .ui-tabs-hide {
+display: none;
 }
