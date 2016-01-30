@@ -81,6 +81,7 @@
 }
 .workspace #app-tabs #screenshots, .workspace #app-tabs #stats, .workspace #app-tabs #download{
   display: none;
+  padding: 10px 0;
 }
 .workspace #app-tabs #description:target, .workspace #app-tabs #screenshots:target, .workspace #app-tabs #stats:target, .workspace #app-tabs #download:target{
   display: block;

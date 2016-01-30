@@ -152,12 +152,9 @@ if($node === "index"){
     $Parsedown = new Parsedown();
 ?>
     <div class="contents" style='padding-left: 10px;'>
-      <?php
-      require_once APP_DIR . "/src/inc/views/top.apps.php";
-      ?>
       <h1><a href=""><?php echo $app_info['name'];?></a></h1>
       <p><?php echo $app_info['short_description'];?></p>
-      <ol style="list-style: none;padding: 0px;">
+      <ol style="list-style: none;padding: 0 0 5px 0;">
         <li style="display: inline-block;">
           <a href="/apps?c=<?php echo $app_info['category'];?>" class='button red'><?php echo $this->app_categories[$app_info['category']];?></a> >
         </li>
@@ -186,7 +183,7 @@ if($node === "index"){
             echo '<ul class="rslides">';
               foreach($screenshots as $screenshot){
                 if($screenshot != ""){
-                  echo "<li><img src='$screenshot' /></li>";
+                  echo "<li><a href='$screenshot' target='_blank'><img src='$screenshot' /></a></li>";
                 }
               }
             echo "</ul>";
@@ -207,10 +204,9 @@ if($node === "index"){
           ?>
         </div>
         <div id="stats">
-          <h2>Stats</h2>
-          <div>
+          <p>
             <strong><?php echo $app_info['downloads'];?> Downloads</strong>
-          </div>
+          </p>
           <?php
           require_once APP_DIR . "/src/inc/Fr.star.php";
           $this->addScript("Fr.star.js");
@@ -222,7 +218,7 @@ if($node === "index"){
           echo "</div>";
           ?>
           <script>
-            lobby.load(function(){
+            window.addEventListener("load", function(){
               function fr_star(){
                 $(".contents .ratings #rating").text($(".Fr-star").data("title"));
                 $(".Fr-star").Fr_star(function(rating){
@@ -241,7 +237,7 @@ if($node === "index"){
           </script>          
         </div>
         <div id="download">
-          <table style="width: 700px;">
+          <table style="width: 700px;margin: 20px auto;">
             <tbody>
               <tr>
                 <td>Author</td>
@@ -261,7 +257,12 @@ if($node === "index"){
               </tr>
               <tr>
                 <td></td>
-                <td><a style='display: block;font-size: 16px;height: 60px;color: white;' class='button green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip File<font size='1' style='display:block;margin-top: -10px;'><?php echo $app_info['downloads'];?> Downloads</font></a></td>
+                <td>
+                  <a style='display: block;font-size: 16px;height: 60px;color: white;' class='button green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip File<font size='1' style='display:block;margin-top: -10px;'><?php echo $app_info['downloads'];?> Downloads</font></a>
+                  <div style="margin: 10px 0;">
+                    <a href="http://server.lobby.sim/docs/install-app" target="_blank">App Installation Instructions</a>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
