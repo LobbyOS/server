@@ -7,7 +7,7 @@ if(\Fr\LS2::$loggedIn && isset($_POST['id']) && isset($_POST['rating']) && subst
   $star = new \Fr\Star(array(), $_POST['id']);
   $star->addRating(\Fr\LS2::$user, $_POST['rating']);
   
-  echo $star->getRating();
+  echo $star->getRating("ableToRate");
   echo "<div id='rating'></div>";
 }else{
   echo "error";

@@ -222,14 +222,14 @@ if($node === "index"){
               function fr_star(){
                 $(".contents .ratings #rating").text($(".Fr-star").data("title"));
                 $(".Fr-star").Fr_star(function(rating){
-                  lobby.app.ajax("rate.php", {'id' : '<?php echo "app-{$app_info['id']}";?>', 'rating': rating}, function(r){
+                  lobby.ajax("rate.php", {'id' : '<?php echo "app-{$app_info['id']}";?>', 'rating': rating}, function(r){
                     if(r == "error"){
                       alert("You have to log in to rate apps");
                     }else{
                       $(".contents .ratings").html(r);
                       fr_star();
                     }
-                  });
+                  }, "lobby-server");
                 });
               }
               fr_star();
