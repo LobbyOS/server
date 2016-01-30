@@ -189,7 +189,7 @@ if($node == "index"){
       );
       $app_info = array_merge($app_info, $app_info_required);
       $app_info["screenshots"] = H::input("app_screenshots");
-      $app_info["lobby_web"] = isset($_POST["app_lobby_web"]) ? 1 : 0;
+      $app_info["lobby_web"] = isset($_POST["app_lobby_web"]) ? "1" : "0";
       $app_info["logo"] = isset($_POST["app_logo"]) ? "1" : "0";
     }
 
@@ -205,8 +205,6 @@ if($node == "index"){
       }else if($app_edit != true && preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $app_info['git_url']) == 0){
         ser("Invalid URL", "The app's source code URL you provided was invalid.");
       }else{
-        $app_info["lobby_web"] = isset($_POST["app_lobby_web"]) ? 1 : 0;
-        
         if($app_edit != true){
           $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps_queue` (`id`, `name`, `src`, `description`, `short_description`, `category`, `sub_category`, `version`, `app_page`, `author`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
           $sql->execute(array($app_info['id'], $app_info['name'], $app_info['git_url'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], \Fr\LS2::$user));
@@ -223,9 +221,9 @@ if($node == "index"){
         
           sss("App Submitted", "Your app was added to the review queue. You will be notified by email after reviewing");
         }else{        
-          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `screenshots` = ?, `description` = ?, `short_description` = ?, `category` = ?, `sub_category` = ?, `version` = ?, `app_page` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
+          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `screenshots` = ?, `description` = ?, `short_description` = ?, `category` = ?, `sub_category` = ?, `version` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
           
-          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['screenshots'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], $app_info['id'], \Fr\LS2::$user));
+          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['screenshots'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], $app_info['lobby_web'], $app_info['id'], \Fr\LS2::$user));
           
           sss("Updated", "Your app was successfully updated.");
         }
@@ -380,7 +378,7 @@ if($node == "index"){
         <span>Lobby Web App ?</span>
         <p>Whether this app is able to run on <b>Lobby Web</b></p>
         <label>
-          <input type="checkbox" name="app_lobby_web" <?php if(isset($app_info['lobby_web'])){echo "checked='checked'";}?> />
+          <input type="checkbox" name="app_lobby_web" <?php if($app_info['lobby_web'] === "1"){echo "checked='checked'";}?> />
           <span></span>
         </label>
       </label>
