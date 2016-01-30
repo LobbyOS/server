@@ -122,7 +122,8 @@ if($node === "index"){
                 ?>
               </div>
               <div class="rside">
-                <div>Updated <?php echo get_timeago($app['updated']);?></div>
+                <div>Updated <?php echo get_timeago(strtotime($app['updated']));?></div>
+                <div>Version : <?php echo $app['version'];?></div>
               </div>
             </div>
           </div>

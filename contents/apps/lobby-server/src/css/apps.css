@@ -99,7 +99,7 @@
   line-height: 1.3;
 }
 .apps .app .bpane{
-  background: #eeefff;
+  background: #eeeeef;
   padding: 10px 20px;
   margin: 0;
   height: 65px;
@@ -109,6 +109,7 @@
 }
 .apps .app .bpane .rside{
   float: right;
+  text-align: right;
 }
 .apps .app .bpane .lside .downloads{
   margin: 5px 0 0;
