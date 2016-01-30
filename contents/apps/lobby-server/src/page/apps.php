@@ -8,12 +8,16 @@ if($node === "index"){
   
   $query = "SELECT * FROM `apps` WHERE 1 ";
   $params = array();
-  
+   
+  /**
+   * Search
+   */
   if(isset($_GET['q'])){
     $query .= "AND (`name` LIKE :q OR `description` LIKE :q) ";
     $params[":q"] = "%{$_GET['q']}%";
     $q = htmlspecialchars(urldecode($_GET['q']));
   }
+  
   /**
    * Category
    */
@@ -36,38 +40,94 @@ if($node === "index"){
     \Lobby::setTitle(ucfirst($sc) . " Store");
   }
   
+  /**
+   * Browse
+   */
+  if(isset($_GET['browse'])){
+    if($_GET['browse'] === "new"){
+      $query .= "ORDER BY `updated` DESC";
+    }else if($_GET['browse'] === "popular"){
+      $query .= "ORDER BY `downloads` DESC";
+    }
+  }
+  
   $sql = \Lobby\DB::$dbh->prepare($query);
   $sql->execute($params);
   $apps = $sql->fetchAll();
   
   require_once APP_DIR . "/src/inc/Fr.star.php";
   $star = new \Fr\Star(array());
-  
-  require_once APP_DIR . "/src/inc/views/top.apps.php";
 ?>
   <div class="contents">
-    <div class="apps" id="apps">
+    <h1><a href="<?php echo APP_URL;?>/apps">Lobby Store</a></h1>
+    <?php
+    require_once APP_DIR . "/src/inc/views/top.apps.php";
+    ?>
+    <div class="apps">
       <?php
       if(count($apps) == 0){
         ser("No App Found", "No app was found with the critera you gave");
-      }
-      foreach($apps as $app){
-        $app['image'] = $app['image'] === "0" ? APP_URL . "/src/image/blank.png" : APP_URL . "/api/app/{$app['id']}/logo";
-      ?>
-        <div class="app">
-          <div class="lpane">
-            <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>">
-              <img src="<?php echo $app['image'];?>" />
-            </a>
+      }else{
+        function get_timeago( $ptime )
+        {
+            $estimate_time = time() - $ptime;
+        
+            if( $estimate_time < 1 )
+            {
+                return 'less than 1 second ago';
+            }
+        
+            $condition = array( 
+                        12 * 30 * 24 * 60 * 60  =>  'year',
+                        30 * 24 * 60 * 60       =>  'month',
+                        24 * 60 * 60            =>  'day',
+                        60 * 60                 =>  'hour',
+                        60                      =>  'minute',
+                        1                       =>  'second'
+            );
+        
+            foreach( $condition as $secs => $str )
+            {
+                $d = $estimate_time / $secs;
+        
+                if( $d >= 1 )
+                {
+                    $r = round( $d );
+                    return 'about ' . $r . ' ' . $str . ( $r > 1 ? 's' : '' ) . ' ago';
+                }
+            }
+        }
+        foreach($apps as $app){
+          $app['image'] = $app['image'] === "0" ? APP_URL . "/src/image/blank.png" : APP_URL . "/api/app/{$app['id']}/logo";
+        ?>
+          <div class="app">
+            <div class="app-inner">
+              <div class="lpane">
+                <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>">
+                  <img src="<?php echo $app['image'];?>" />
+                </a>
+              </div>
+              <div class="rpane">
+                <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>" class="name"><?php echo $app['name'];?></a>
+                <p class="description"><?php echo $app['short_description'];?></p>
+                <p>By: <a href="<?php echo APP_URL . "/u/" . $app['author'];?>"><?php echo \Fr\LS2::getUser("name", $app['author']);?></a></p>
+              </div>
+            </div>
+            <div class="bpane">
+              <div class="lside">
+                <?php
+                $star->id = "app-" . $app['id'];
+                echo $star->getRating();
+                echo "<div class='downloads'>" . $app['downloads'] . " downloads</div>";
+                ?>
+              </div>
+              <div class="rside">
+                <div>Updated <?php echo get_timeago($app['updated']);?></div>
+              </div>
+            </div>
           </div>
-          <div class="rpane">
-            <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>"><?php echo $app['name'];?></a>
-          </div>
-          <div class="bpane">
-          
-          </div>
-        </div>
-      <?php
+        <?php
+        }
       }
       ?>
     </div>
@@ -92,10 +152,12 @@ if($node === "index"){
     
     require_once APP_DIR . "/src/inc/Parsedown.php";
     $Parsedown = new Parsedown();
-    require_once APP_DIR . "/src/inc/views/sidebar.apps.php";
 ?>
     <div class="contents" style='padding-left: 10px;'>
       <h1><a href=""><?php echo $app_info['name'];?></a></h1>
+      <?php
+      require_once APP_DIR . "/src/inc/views/top.apps.php";
+      ?>
       <p><?php echo $app_info['short_description'];?></p>
       <ol style="list-style: none;padding: 0px;">
         <li style="display: inline-block;">

@@ -139,7 +139,7 @@ class Star {
       $rate_times = count($rate_db);
       $sum_rates = array_sum($sum_rates);
       $rate_value = $sum_rates/$rate_times;
-      $rate_bg = ( ($rate_value/5)*100 ) + 0.3;
+      $rate_bg = ( ($rate_value/5)*100 );
     }
     
     if($type == "html"){

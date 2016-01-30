@@ -2,11 +2,10 @@
  * \Fr\Star
  */
 .Fr-star {
-  width: 225px;
-  height: 42px;
+  width: 115px;
+  height: 20px;
   position: relative;
   background-color: #ccc;
-  border: #ccc 1px solid;
 }
 .Fr-star[data-title]:hover:after {
   content: attr(data-title);
@@ -54,18 +53,36 @@
   background: none;
   padding: 0;
 }
+.nav, .apps .app{
+  box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+  border: 1px solid #e5e5e5;
+}
 .nav{
-  
+  background: #fff;
+  padding: 20px;
+}
+.nav .nav-item{
+  display: inline-block;
+  margin-right: 10px;
+}
+.nav #search{
+  float: right;
+  margin: -10px 0;
+}
+.nav #search *{
+  margin: 0;
 }
 .apps .app{
   display: inline-block;
-  position: relative;
-  height: 200px;
+  vertical-align: top;
   width: 48.5%;
-  background: white;
   margin: 20px 5px;
-  padding: 10px 20px;
-  border: 1px solid #c6c6c6;
+}
+.apps .app .app-inner{
+  position: relative;
+  height: 170px;
+  background: white;
+  padding: 20px;
 }
 .apps .app .lpane{
   float: left;
@@ -75,5 +92,24 @@
   height: 128px;
 }
 .apps .app .rpane{
-  margin: 30px 0;
+  margin: 0 0 0 148px;
+}
+.apps .app .rpane .name{
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+.apps .app .bpane{
+  background: #eeefff;
+  padding: 10px 20px;
+  margin: 0;
+  height: 65px;
+}
+.apps .app .bpane .lside{
+  float: left;
+}
+.apps .app .bpane .rside{
+  float: right;
+}
+.apps .app .bpane .lside .downloads{
+  margin: 5px 0 0;
 }

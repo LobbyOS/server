@@ -22,7 +22,7 @@ function log(m){
         var width = elem.offsetWidth;
         
         percent = ( (xCoor/width) * 100 ) + 0.1;
-        if(percent < 101){
+        if(percent <= 100){
           rating_decimal = ("" + (percent / 100) * 5 + "").substr(0, 3);
           if(rating_decimal.substr(-2) == ".9"){
             rating_decimal = Math.round(rating_decimal, 2);
