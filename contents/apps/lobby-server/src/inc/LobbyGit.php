@@ -17,7 +17,7 @@ class LobbyGit {
     $sql->execute(array($this->git_url));
     
     if($sql->rowCount() === 0 && !file_exists($this->git_dir)){
-      $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `git_cache` VALUES(?, NOW())");
+      $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `git_cache` VALUES(?, '', NOW())");
       $sql->execute(array($this->git_url));
       $this->getRepo();
     }
@@ -33,8 +33,11 @@ class LobbyGit {
   
   public function getRepo(){
     $repo = Gitonomy\Git\Admin::cloneTo($this->git_dir, $this->git_url, false);
-    /**var_dump($repo->getReferences());
-    die();*/
+    $commit_hash = $repo->getReferences()->getBranch('master')->getCommitHash();
+    
+    $sql = \Lobby\DB::$dbh->prepare("UPDATE `git_cache` SET `last_commit` = ? WHERE `git_url` = ?");
+    $sql->execute(array($commit_hash, $this->git_url));
+    
     $this->recursiveRemoveDirectory($this->git_dir . "/.git");
     
     if(exec("cd {$this->git_dir};zip -r '{$this->git_dir}/app.zip' ./ -1 -q;") !== false){

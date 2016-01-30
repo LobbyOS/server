@@ -160,11 +160,19 @@ if($node == "index"){
 ?>
   <div class="contents">
     <?php
-    if($app_edit && isset($_GET['update'])){
+    if($app_edit && isset($_GET['update']) && !isset($_GET['app-updated'])){
       require_once APP_DIR . "/src/inc/LobbyGit.php";
       
       $lg = new \LobbyGit($AppID, $app_info['git_url']);
       $lg->update();
+      
+      /**
+       * Bump version
+       */
+      $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `version` = `version` + 0.1, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
+      $sql->execute(array($app_info['id'], \Fr\LS2::$user));
+      
+      \Lobby::redirect(\Lobby::u() . "&app-updated");
     }
     
     if(isset($_POST['app_name'])){
@@ -234,6 +242,11 @@ if($node == "index"){
     if($app_edit === true){
     ?>
       <h2>Update</h2>
+      <?php
+      if(isset($_GET['app-updated'])){
+        echo sss("Updated App", "The app was updated from the Git source.<br/>The app's version was automatically bumped to <b>{$app_info['version']}</b>. You can change it using 'Edit' form below");
+      }
+      ?>
       <p>If the app's Git repo (branch master) was updated, Lobby will update it automatically within an hour.<cl/>If that didn't happen or you want to update immediately, please click the following button to update the app :</p>
       <center><a class="button green" href="?update">Update</a></center>
       <p>When you click update, the app's version will be automatically bumped to the next value (0.1 to 0.2 or 0.9 to 1.0). You can change the version number by changing the value in the form below.</p>
@@ -241,7 +254,7 @@ if($node == "index"){
     }
     ?>
     <h2>Edit</h2>
-    <form action="<?php echo \Lobby::u();?>" method="POST">
+    <form action="/me/app/<?php echo $app_info['id'];?>" method="POST">
       <label>
         <span>App ID</span>
         <input type="text" name="app_id" value="<?php echo $app_edit == true ? $app_info['id'] : "";?>" <?php if($app_edit == true){echo "disabled";}?>/>

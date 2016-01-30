@@ -12,7 +12,7 @@ $this->addScript("responsiveslides.min.js");
       <p>Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and can be used via a browser (Chrome, Firefox)</p>
       <p>Hence Lobby is platform independent and can be installed on any localhost server</p>
       <p>Still don't understand it ? See a detailed description here :</p>
-      <a href="/docs/about" class="button indigo">About Lobby</a>
+      <a href="/docs/about" class="button indigo" target="_blank">About Lobby</a>
       <div style="margin-top: 10px;">
         <a class="button page-scroll" href="#screenshots">Screenshots</a>
         <a class="button blue page-scroll" href="#features">Features</a>
@@ -42,10 +42,8 @@ $this->addScript("responsiveslides.min.js");
         </li>
       </ul>
       <script>
-        lobby.load(function(){
-          setTimeout(function(){
-            $(".rslides").responsiveSlides({pager: true});
-          }, 2000);
+        window.addEventListener("load", function(){
+          $(".rslides").responsiveSlides({pager: true});
         });
       </script>
     </div>
@@ -107,9 +105,7 @@ $this->addScript("responsiveslides.min.js");
 $(function(){
   $('a.page-scroll').live('click', function(event) {
     var $anchor = $(this);
-    $('.workspace').stop().animate({
-      scrollTop: $($anchor.attr('href')).offset().top - 50
-    }, 1500, 'easeInOutExpo');
+    $('.workspace').scrollTo($($anchor.attr('href')));
     event.preventDefault();
   });
 });
