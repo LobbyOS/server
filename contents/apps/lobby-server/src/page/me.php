@@ -86,7 +86,7 @@ if($node == "index"){
     
     echo "<center>";
       while($r = $sql->fetch()){
-        echo "<a href='/me/app/{$r['id']}' class='button green' style='margin: 5px 10px;'>{$r['name']}</a>";
+        echo "<a href='". APP_URL . "/me/app/{$r['id']}' class='button green' style='margin: 5px 10px;'>{$r['name']}</a>";
       }
     echo "</center>";
     ?>
