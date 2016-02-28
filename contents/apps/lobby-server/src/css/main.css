@@ -98,3 +98,21 @@ section{
 .app:hover .app_name{
   display: block;
 }
+#download .platform{
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  margin-right: 10px;
+}
+#download .ubuntu{
+  background: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/ubuntu.svg);
+  background-size: contain;
+}
+#download .windows{
+  background: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/windows.svg);
+  background-size: contain;
+}
+#download .zip{
+  background: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/zip.svg);
+  background-size: contain;
+}

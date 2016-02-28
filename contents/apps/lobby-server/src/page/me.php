@@ -13,7 +13,7 @@ if($node == "index"){
     <p><strong>Lobby Me</strong> is an account on Lobby that would help you to add your own apps to the App Center and do more with your Lobby installation.</p>
     <div clear="clear">
       <?php
-      echo \Lobby::l("/me/login", "Log In Or Register", "class='button green'");
+      echo \Lobby::l("/me/login", "Log In Or Register", "class='btn green'");
       ?>
     </div>
   </div>
@@ -26,13 +26,13 @@ if($node == "index"){
   <div class="contents">
     <h1>Login Or Register</h1>
     <div>
-      <a class="button" href="<?php echo APP_URL . "/me/open?" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 52px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #7BBDE7 url(<?php echo APP_SRC;?>/src/image/open_icon.png) no-repeat 35% 5px scroll;background-size: 2em;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Open</a>
+      <a class="btn" href="<?php echo APP_URL . "/me/open?" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 52px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #7BBDE7 url(<?php echo APP_SRC;?>/src/image/open_icon.png) no-repeat 35% 5px scroll;background-size: 2em;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Open</a>
     </div>
     <div clear="clear">
-      <a class="button" href="<?php echo APP_URL . "/me/open?facebook" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 100px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #3b579d url(<?php echo APP_SRC;?>/src/image/fb_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Facebook</a>
+      <a class="btn" href="<?php echo APP_URL . "/me/open?facebook" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 100px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #3b579d url(<?php echo APP_SRC;?>/src/image/fb_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Facebook</a>
     </div>
     <div clear="clear">
-      <a class="button b-red" href="<?php echo APP_URL . "/me/open?google" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 90px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background:rgb(231, 38, 54) url(<?php echo APP_SRC;?>/src/image/plus_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;">Login With Google +</a>
+      <a class="btn b-red" href="<?php echo APP_URL . "/me/open?google" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 90px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background:rgb(231, 38, 54) url(<?php echo APP_SRC;?>/src/image/plus_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;">Login With Google +</a>
     </div>
   </div>
 <?php
@@ -76,17 +76,17 @@ if($node == "index"){
     <h1>Me Home</h1>
     <p>Are you a PHP developer ? Do you want to create an app for Lobby. Head straight to <?php echo \Lobby::l("/docs", "Docs", "target='_blank'");?> and learn how to create an app from scratch easily.</p>
     <?php
-    echo \Lobby::l("/me/profile", "My Profile", "class='button green'") . "<br/>";
+    echo \Lobby::l("/me/profile", "My Profile", "class='btn green'") . "<br/>";
     
     echo "<h2>My Apps</h2>";
-    echo \Lobby::l("/me/app", "Submit A New App", "class='button blue'") . "<br/>";
+    echo \Lobby::l("/me/app", "Submit A New App", "class='btn blue'") . "<br/>";
     
     $sql = \Lobby\DB::$dbh->prepare("SELECT `id`, `name` FROM `apps` WHERE `author` = ?");
     $sql->execute(array(\Fr\LS::$user));
     
     echo "<center>";
       while($r = $sql->fetch()){
-        echo "<a href='". APP_URL . "/me/app/{$r['id']}' class='button green' style='margin: 5px 10px;'>{$r['name']}</a>";
+        echo "<a href='". APP_URL . "/me/app/{$r['id']}' class='btn green' style='margin: 5px 10px;'>{$r['name']}</a>";
       }
     echo "</center>";
     ?>
@@ -126,7 +126,7 @@ if($node == "index"){
         <input type="text" name="me_site" value="<?php echo \Fr\LS2::getUser("web_page");?>" placeholder="Required" />
       </label>
       <?php H::csrf(1);?>
-      <button class="button green">Update Profile</button>
+      <button class="btn green">Update Profile</button>
     </form>
   </div>
   <style>
@@ -247,7 +247,7 @@ if($node == "index"){
       }
       ?>
       <p>If the app's Git repo (branch master) was updated, Lobby will update it automatically within an hour.<cl/>If that didn't happen or you want to update immediately, please click the following button to update the app :</p>
-      <center><a class="button green" href="?update">Update</a></center>
+      <center><a class="btn green" href="?update">Update</a></center>
       <p>When you click update, the app's version will be automatically bumped to the next value (0.1 to 0.2 or 0.9 to 1.0). You can change the version number by changing the value in the form below.</p>
     <?php
     }
@@ -279,14 +279,16 @@ if($node == "index"){
         </label>
       <?php
       }
-      ?>
-      <?php
       if($app_edit === true){
       ?>
         <label>
           <span>Version</span>
           <input type="text" name="app_version" placeholder="0.1" value="<?php echo $app_edit == true ? $app_info['version'] : "";?>" />
         </label>
+      <?php
+      }else{
+      ?>
+        <input type="hidden" name="app_version" value="0.1" />
       <?php
       }
       ?>
@@ -387,7 +389,7 @@ if($node == "index"){
         <input type="text" name="app_page" placeholder="http:// or https://" value="<?php echo $app_edit == true ? $app_info['app_page'] : "";?>" />
       </label>
       <?php H::csrf(1);?>
-      <button class="button green"><?php echo $app_edit == true ? "Update App" : "Submit App";?></button>
+      <button class="btn green"><?php echo $app_edit == true ? "Update App" : "Submit App";?></button>
     </form>
   </div>
   <style>

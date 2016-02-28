@@ -1,5 +1,6 @@
 <?php
 $this->addStyle("apps.css");
+$this->addScript("apps.js");
 
 if($node === "index"){  
   \Lobby::setTitle("Store");
@@ -152,25 +153,32 @@ if($node === "index"){
     $Parsedown = new Parsedown();
 ?>
     <div class="contents" style='padding-left: 10px;'>
+      <?php
+      $no_header = 1;
+      require_once APP_DIR . "/src/inc/views/top.apps.php";
+      ?>
       <h1><a href=""><?php echo $app_info['name'];?></a></h1>
       <p><?php echo $app_info['short_description'];?></p>
+      <a data-path="/admin/lobby-store.php?id=<?php echo $node;?>" class="btn open-via-lobby">Open in Lobby</a>
       <ol style="list-style: none;padding: 0 0 5px 0;">
         <li style="display: inline-block;">
-          <a href="/apps?c=<?php echo $app_info['category'];?>" class='button red'><?php echo $this->app_categories[$app_info['category']];?></a> >
+          <a href="/apps?c=<?php echo $app_info['category'];?>" class='btn red'><?php echo $this->app_categories[$app_info['category']];?></a> >
         </li>
         <li style="display: inline-block;">
-          <a href="/apps?sc=<?php echo $app_info['sub_category'];?>" class='button green'><?php echo $this->app_sub_categories[$app_info['category']][$app_info['sub_category']];?></a>
+          <a href="/apps?sc=<?php echo $app_info['sub_category'];?>" class='btn green'><?php echo $this->app_sub_categories[$app_info['category']][$app_info['sub_category']];?></a>
         </li>
       </ol>
       <div id="app-tabs">
-        <ul>
-          <li><a href="#description">Description</a></li>
-          <li><a href="#screenshots">Screenshots</a></li>
-          <li><a href="#stats">Stats</a></li>
-          <li><a href="#download">Download</a></li>
+        <ul class="tabs">
+          <li class="tab"><a href="#description">Description</a></li>
+          <li class="tab"><a href="#screenshots">Screenshots</a></li>
+          <li class="tab"><a href="#stats">Stats</a></li>
+          <li class="tab"><a href="#download">Download</a></li>
         </ul>
         <script>
-          $(".workspace #app-tabs").tabs();
+          lobby.load(function(){
+            $(".workspace #app-tabs").tabs();
+          });
         </script>
         <div id="description">
           <p><?php echo $Parsedown->text($app_info['description']);?></p>
@@ -258,7 +266,7 @@ if($node === "index"){
               <tr>
                 <td></td>
                 <td>
-                  <a style='display: block;font-size: 16px;height: 60px;color: white;' class='button green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip File<font size='1' style='display:block;margin-top: -10px;'><?php echo $app_info['downloads'];?> Downloads</font></a>
+                  <a style='display: block;font-size: 16px;height: 60px;color: white;' class='btn green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip File<font size='1' style='display:block;margin-top: -10px;'><?php echo $app_info['downloads'];?> Downloads</font></a>
                   <div style="margin: 10px 0;">
                     <a href="http://server.lobby.sim/docs/install-app" target="_blank">App Installation Instructions</a>
                   </div>

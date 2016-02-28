@@ -7,7 +7,6 @@ $this->setTitle("New App");
   $app_info = array(
     "id" => H::input("app_id"),
     "name" => H::input("app_name"),
-    "image" => H::input("app_image"),
     "git_url" => H::input("app_download"),
     "short_description" => H::input("app_short_description"),
     "description" => H::input("app_description"),
@@ -25,12 +24,12 @@ $this->setTitle("New App");
     if($apps_sql->fetchColumn() != 0){
       ser("App Exists", "Hmmm... Looks like the App ID you submitted already exists either on App Center Or in the App Queue. " . \Lobby::l("/apps/{$app_info['id']}", "See Existing App"));
     }else{
-      $app_info['image'] = $app_info['image'] == "null" ? "" : $app_info['image'];
+      $app_info["logo"] = isset($_POST["app_logo"]) ? "1" : "0";
       $lobby_web = isset($_POST['app_lobby_web']) ? 1 : 0;
       
-      $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps` (`id`, `name`, `version`, `image`, `git_url`, `description`, `short_description`, `category`, `sub_category`, `app_page`, `author`, `lobby_web`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
+      $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps` (`id`, `name`, `version`, `logo`, `git_url`, `description`, `short_description`, `category`, `sub_category`, `app_page`, `author`, `lobby_web`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
       
-      $sql->execute(array($app_info['id'], $app_info['name'], $app_info['version'], $app_info['image'], $app_info['git_url'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['page'], $app_info['author_id'], $lobby_web));
+      $sql->execute(array($app_info['id'], $app_info['name'], $app_info['version'], $app_info['logo'], $app_info['git_url'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['page'], $app_info['author_id'], $lobby_web));
       
       sss("App Added", "App was added to the repository");
     }
@@ -46,12 +45,12 @@ $this->setTitle("New App");
       <input type="text" name="app_name" />
     </label>
     <label>
-      <span>Download URL</span>
-      <input type="text" name="app_download" placeholder="Google Drive" size="70" />
+      <span>Git URL</span>
+      <input type="text" name="app_download" placeholder="Git URL" size="70" />
     </label>
     <label>
-      <span>Logo</span>
-      <input type="text" name="app_image" placeholder="Google Drive" size="70" />
+      <input type="checkbox" name="app_logo" />
+      <span>Logo ?</span>
     </label>
     <label>
       <span>Short Description</span>
@@ -67,7 +66,7 @@ $this->setTitle("New App");
         <?php
         require_once L_DIR . "/includes/src/App.php";
         require_once APPS_DIR . "/lobby-server/App.php";
-        $obj = new lobby_server;
+        $obj = new \Lobby\App\lobby_server;
         
         foreach($obj->app_categories as $value => $category){
           echo "<option value='$value'>$category</option>";
@@ -100,8 +99,8 @@ $this->setTitle("New App");
       <input type="number" name="author_id" placeholder="Author's user ID" />
     </label>
     <label>
-      <span>Lobby Web App ?</span>
       <input type="checkbox" name="app_lobby_web" />
+      <span>Lobby Web App ?</span>
     </label>
     <?php H::csrf(1);?>
     <button>Submit App</button>

@@ -37,10 +37,10 @@ class Server {
    */
   public static function download($type = "app", $id){
     $url = "";
-    if($type == "app"){
-      $url = L_SERVER . "/download/app/{$id}";
-    }elseif($type == "lobby"){
-      $url = L_SERVER . "/download/lobby/{$id}";
+    if($type === "app"){
+      $url = L_SERVER . "/app/{$id}/download";
+    }elseif($type === "lobby"){
+      $url = L_SERVER . "/lobby/download/{$id}";
     }
     return $url;
   }
@@ -49,7 +49,7 @@ class Server {
    * Get updates
    */
   public static function check(){
-    $url = L_SERVER . "/updates";
+    $url = L_SERVER . "/lobby/updates";
     $apps = array_keys(\Lobby\Apps::getApps());
     try {
       $response = \Requests::post($url, array(), array(
@@ -65,6 +65,7 @@ class Server {
       if(is_array($response)){
         saveOption("lobby_latest_version", $response['version']);
         saveOption("lobby_latest_version_release", $response['released']);
+        saveOption("lobby_latest_version_release_notes", $response['release_notes']);
     
         if(isset($response['apps']) && count($response['apps']) != 0){
           $AppUpdates = array();

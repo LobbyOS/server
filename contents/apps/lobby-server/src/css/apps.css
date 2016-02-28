@@ -63,6 +63,7 @@
 }
 .nav .nav-item{
   display: inline-block;
+  vertical-align: middle;
   margin-right: 10px;
 }
 .nav #search{
@@ -71,6 +72,12 @@
 }
 .nav #search *{
   margin: 0;
+}
+.nav #settings{
+  float: right;
+}
+.nav #settings i{
+  font-size: 2.5em;
 }
 .apps .app{
   display: inline-block;

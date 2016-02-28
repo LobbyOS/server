@@ -10,3 +10,9 @@
 pre{
   margin: 10px 15px;
 }
+nav ul a{
+  padding: 0;
+}
+nav ul a:hover{
+  background-color: initial !important;
+}

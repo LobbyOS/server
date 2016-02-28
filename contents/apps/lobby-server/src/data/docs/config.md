@@ -18,7 +18,10 @@ Some keys are used for each setting. The following sections show what the values
 
 ### db
 
-An array of database credentials :
+Lobby supports both MySQL and SQLite. So, this array will vary.
+
+For MySQL :
+
 ```php
 array(
   'host' => 'localhost',
@@ -29,6 +32,18 @@ array(
   'prefix' => 'lobby_' // Prefix of table names
 )
 ```
+
+For SQLite :
+
+```php
+'db' => array(
+  'type' => 'sqlite',
+  'path' => '/contents/extra/lobby_db.sqlite',
+  'prefix' => 'l_'
+),
+```
+
+The `path` is relative to the lobby directory. The SQLite DB will be created if it doesn't exist. So you don't have to create the ".sqlite" file manually
 
 ### lobbyID
 
@@ -42,9 +57,9 @@ This is another unique identifier for your Lobby installation. It is a secret ke
 
 ### lobby_url
 
-In some cases like [this](http://subinsb.com/lobby#comment-2254238753), Lobby couldn't find the correct Base URL and Lobby will end in stupid redirections.
+In cases like [this](http://subinsb.com/lobby#comment-2254238753), Lobby couldn't find the correct Base URL and Lobby will end up in a redirect loop.
 
-To solve this, you can manually add `lobby_url` setting into the **config.php** file and mention the Base URL (without trailing slash) as its value. Example :
+To solve this, you can manually add `lobby_url` setting into the **config.php** file and mention the Base URL (**without trailing slash**) as its value. Example :
 
 ```php
 'lobby_url' => 'http://localhost/mydirectory/lobby'
@@ -53,3 +68,10 @@ To solve this, you can manually add `lobby_url` setting into the **config.php** 
 ### debug {#DebugSetting}
 
 When some apps or parts of Lobby doesn't work, you can identify the problem by enabling Debugging. When this value is set to "true", all debug messages are logged in **contents/extra** as **.log** files. See [Debugging](/docs/dev/debug).
+
+### server_check
+
+Whether Lobby should communicate with server to check for updates. This parameter needs a boolean value. Default value is `TRUE`.
+
+```
+'server_check' => true

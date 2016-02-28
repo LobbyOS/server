@@ -12,10 +12,13 @@ class Lobby {
   public static $js, $css = array();
   
   public static $valid_hooks = array(
-    "init", "body.begin", "admin.body.begin", "head.begin", "admin.head.begin", "head.end", "router.finish"
+    "init", "body.begin", "admin.body.begin", "head.begin", "admin.head.begin", "head.end", "router.finish",
+    "panel.end"
   );
   public static $config = array(
-    "db" => array(),
+    "db" => array(
+      "type" => "mysql"
+    ),
     "debug" => false,
     "server_check" => true
   );
@@ -38,16 +41,14 @@ class Lobby {
       self::$host_name = $url_parts['host'];
       self::$url = self::$config['lobby_url'];
     }else{
-      $base_dir  = L_DIR;
-      $doc_root  = preg_replace("!${_SERVER['SCRIPT_NAME']}$!", '', $_SERVER['SCRIPT_FILENAME']);
-      $base_url  = preg_replace("!^${doc_root}!", '', $base_dir); # ex: '' or '/mywebsite'
-      $protocol  = empty($_SERVER['HTTPS']) ? 'http' : 'https';
-      $port      = $_SERVER['SERVER_PORT'];
-      $disp_port = ($protocol == 'http' && $port == 80 || $protocol == 'https' && $port == 443) ? '' : ":$port";
-      $domain    = $_SERVER['SERVER_NAME'];
+      $docDir = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+      $subdir = str_replace($docDir, '', L_DIR);
+      $urladdr = $_SERVER['HTTP_HOST'] . $subdir;
+      $urladdr = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $urladdr;
+      self::$url = rtrim($urladdr, "/");
       
-      self::$url  = "${protocol}://${domain}${disp_port}${base_url}";
-      self::$host_name = $domain;
+      unset($tempPath1, $tempPath2, $tempPath3, $urladdr);
+      self::$host_name = $_SERVER['HTTP_HOST'];
     }
   }
   
@@ -59,17 +60,16 @@ class Lobby {
       $config = include(L_DIR . "/config.php");
       
       if(is_array($config) && count($config) != 0){
-        self::$config = array_merge(self::$config, $config);
-        
-        $config = self::$config;
+        self::$config = array_replace_recursive(self::$config, $config);
+
         if($db === true){
-          return $config['db'];
+          return self::$config['db'];
         }else{
-          if($config['debug'] === true){
+          if(self::$config['debug'] === true){
             ini_set("display_errors","on");
             self::$debug = true;
           }
-          self::$lid = $config['lobbyID'];// The Global Lobby installation ID
+          self::$lid = self::$config['lobbyID'];// The Global Lobby installation ID
         }
       }else{
         return false;
@@ -95,7 +95,7 @@ class Lobby {
     /**
      * JS Files
      */
-    if(count(self::$js) != 0 && !\Lobby::status("lobby.install")){
+    if(count(self::$js) != 0){
       /**
        * Load jQuery, jQuery UI, Lobby Main, App separately without async
        */
@@ -153,7 +153,7 @@ class Lobby {
   public static function log($msg = "", $file = "lobby.log"){
     $msg = !is_string($msg) ? serialize($msg) : $msg;
     if($msg != "" && self::$debug === true){
-      $logFile = "/contents/extra/{$file}";
+      $logFile = "/contents/extra/logs/{$file}";
       $message = "[" . date("Y-m-d H:i:s") . "] $msg";
       \Lobby\FS::write($logFile, $message, "a");
     }
@@ -367,6 +367,16 @@ class Lobby {
     $url = $path;
     $parts = parse_url($path);
     
+    /**
+     * Make host along with port:
+     * 127.0.0.1:9000
+     */
+    if(isset($parts['host'])){
+      $url_host = $parts['host'] . (isset($parts['port']) ? ":{$parts['port']}" : "");
+    }else{
+      $url_host = "";
+    }
+
     if($path === ""){
       /**
        * If no path, give the current page URL
@@ -386,9 +396,9 @@ class Lobby {
       }
       
       $url = $pageURL;
-    }elseif($path === L_URL){
+    }else if($path === L_URL){
       $url = L_URL;
-    }elseif(!preg_match("/http/", $path) || $parts['host'] != $_SERVER['HTTP_HOST']){
+    }else if(!preg_match("/http/", $path) || $url_host != self::$host_name){
       if(!defined("APP_DIR") || substr($orPath, 0, 1) == "/"){
         $url = L_URL . "/$path";
       }else{
@@ -422,4 +432,3 @@ class Lobby {
   }
 }
 \Lobby::init();
-?>

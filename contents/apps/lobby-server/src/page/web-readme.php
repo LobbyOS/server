@@ -7,7 +7,7 @@
     <li>There is no guarantee that all apps will work in Lobby Web</li>
     <li>Bugs are possible anywhere just like electrons in an atomic orbital</li>
   </ul>
-  <a class="button red" href="/web">PROCEED</a>
+  <a class="btn red" href="/web">PROCEED</a>
 </div>
 <?php
 \Lobby::setTitle("Web");

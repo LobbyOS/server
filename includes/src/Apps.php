@@ -53,7 +53,7 @@ class Apps extends \Lobby {
     if(isset(self::$cache["enabled_apps"])){
       $enabled_apps = self::$cache["enabled_apps"];
     }else{
-      $enabled_apps = getOption("active_apps");
+      $enabled_apps = getOption("enabled_apps");
       $enabled_apps = json_decode($enabled_apps, true);
       
       if(!is_array($enabled_apps) || count($enabled_apps) == 0){
@@ -89,7 +89,7 @@ class Apps extends \Lobby {
    */
   public static function exists($app){
     $apps = self::getApps();
-    return in_array($app, $apps);
+    return in_array($app, $apps, true);
   }
   
   /**
@@ -162,16 +162,7 @@ class Apps extends \Lobby {
    * Returns boolean of installation status
    */
   public function isEnabled(){
-    if(isset(self::$cache["enabled_apps"][$this->app])){
-      $enabled = self::$cache["enabled_apps"][$this->app];
-    }else{
-      $enabledApps = self::getEnabledApps();
-      $enabled = in_array($this->app, $enabledApps);
-      if($enabled){
-        self::$cache["enabled_apps"][$this->app] = $enabled;
-      }
-    }
-    return $enabled;
+    return in_array($this->app, self::getEnabledApps(), true);
   }
  
   /**
@@ -192,8 +183,14 @@ class Apps extends \Lobby {
       $details['srcURL'] = L_URL . "/contents/apps/{$this->app}";
       $details['adminURL'] = L_URL . "/admin/app/{$this->app}";
       
+      /**
+       * Prefer SVG over PNG
+       */
       $details['logo'] = isset($details['logo']) ?
-        APPS_URL . "/{$this->app}/src/image/logo.png" :
+        (file_exists($this->appDir . "/src/image/logo.svg") ?
+          APPS_URL . "/{$this->app}/src/image/logo.svg" :
+          APPS_URL . "/{$this->app}/src/image/logo.png"
+        ) :
         L_URL . "/includes/lib/lobby/image/blank.png";
        
       /**
@@ -212,10 +209,10 @@ class Apps extends \Lobby {
   public function enableApp(){
     if($this->app){
       $apps = self::getEnabledApps();
-      if(!in_array($this->app, $apps)){
+      if(!in_array($this->app, $apps, true)){
         $apps[] = $this->app;
         
-        saveOption("active_apps", json_encode($apps));
+        saveOption("enabled_apps", json_encode($apps));
         self::clearCache();
         return true;
       }else{
@@ -232,11 +229,12 @@ class Apps extends \Lobby {
   public function disableApp(){
     if($this->app && $this->isEnabled()){
       $apps = self::getEnabledApps();
-      
-      if(!in_array($this->app, $apps)){
-        unset($apps[array_search($this->app, $apps)]);
+
+      if(in_array($this->app, $apps, true)){
+        $key = array_search($this->app, $apps);
+        unset($apps[$key]);
         
-        saveOption("active_apps", json_encode($apps));
+        saveOption("enabled_apps", json_encode($apps));
         self::clearCache();
         return true;
       }else{
@@ -259,15 +257,7 @@ class Apps extends \Lobby {
         }
         
         $this->disableApp();
-        $files = array_diff(scandir($dir), array('.', '..'));
-        foreach ($files as $file) { 
-          if(is_dir("$dir/$file")){
-            delTree("$dir/$file");
-          }else{
-            \Lobby\FS::remove("$dir/$file");
-          }
-        } 
-        return rmdir($dir);
+        return \Lobby\FS::remove($dir);
       }else{
         return false;
       }

@@ -12,13 +12,13 @@ $this->addScript("responsiveslides.min.js");
       <p>Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and can be used via a browser (Chrome, Firefox)</p>
       <p>Hence Lobby is platform independent and can be installed on any localhost server</p>
       <p>Still don't understand it ? See a detailed description here :</p>
-      <a href="/docs/about" class="button indigo" target="_blank">About Lobby</a>
+      <a href="/docs/about" class="btn indigo" target="_blank">About Lobby</a>
       <div style="margin-top: 10px;">
-        <a class="button page-scroll" href="#screenshots">Screenshots</a>
-        <a class="button blue page-scroll" href="#features">Features</a>
-        <a class="button page-scroll" href="#lobby-store">Lobby Store</a>
+        <a class="btn page-scroll" href="#screenshots">Screenshots</a>
+        <a class="btn blue page-scroll" href="#features">Features</a>
+        <a class="btn page-scroll" href="#lobby-store">Lobby Store</a>
         <div style="margin-top: 10px;">
-          <a class="button red page-scroll" href="#download">Download</a>
+          <a class="btn red page-scroll" href="#download">Download</a>
         </div>
       </div>
     </div>
@@ -62,8 +62,8 @@ $this->addScript("responsiveslides.min.js");
         <li>Theming support</li>
         <li>Use as a framework for developing Web Sites (<a href="https://lobby.subinsb.com">This site</a> is an example)</li>
       </ul>
-      <a class='button orange' href='https://github.com/subins2000/lobby'>GitHub Repository</a>
-      <a class='button red' href='https://github.com/subins2000/lobby/issues'>Bugs, Support</a>
+      <a class='btn orange' href='https://github.com/subins2000/lobby'>GitHub Repository</a>
+      <a class='btn red' href='https://github.com/subins2000/lobby/issues'>Bugs, Support</a>
     </div>
   </div>
 </section>
@@ -93,10 +93,12 @@ $this->addScript("responsiveslides.min.js");
   <div class="contents" style="padding: 20px 0;">
     <h1 style='font-size: 4em;margin-top:0;'><a href="/download">Download</a></h1>
     <div clear>
-      <a class='button pink' href='/api/lobby/download/deb' clear>Download (.deb)</a>
-      <a class='button green' href='/api/lobby/download/latest' clear>Direct Download (.zip)</a>
-      <a class='button blue' href='/docs/quick' clear>Manual Install</a>
-      <a class='button' href='/web-readme' clear>Web Demo</a>
+      <a class='platform ubuntu' href='/api/lobby/download/deb' title='Download DEB File'></a>
+      <a class='platform windows' href='/api/lobby/download/msi' title='Download MSI File'></a>
+      <a class='platform zip' href='/api/lobby/download/latest' title='Download Zip File'></a>
+    </div>
+    <div clear style='margin-top: 20px;' >
+      <a class='btn' href='/download' clear>How To Install ?</a>
     </div>
     <p style='margin-top: 50px;'>&copy; Copyleft <a href="https://github.com/orgs/LobbyOS/people" target="_blank">Lobby Team</a> 2014 - <?php echo date("Y");?></p>
   </div>

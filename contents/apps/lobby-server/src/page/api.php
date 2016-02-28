@@ -2,11 +2,13 @@
 $lobby_downloads = array(
   "script" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/lobby-install.sh",
   "deb" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/lobby.deb",
+  "msi" => "https://raw.githubusercontent.com/LobbyOS/windows-installer/master/LobbyInstaller/Lobby.msi",
   "0.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.1.zip",
   "0.1.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.1.1.zip",
   "0.2" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.zip",
   "0.2.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.1.zip",
-  "0.3" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.3.zip"
+  "0.3" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.3.zip",
+  "0.4" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.4.zip",
 );
 
 if($node === "dot.gif"){
@@ -142,42 +144,47 @@ if($node === "dot.gif"){
   
   if($p === null){
     $start = 0;
-    $stop = 10;
+    $stop = 6;
   }else{
-    $start = ($p - 1) * 10;
-    $stop = (($p - 1) * 10) + 10;
+    $start = ($p - 1) * 6;
+    $stop = (($p - 1) * 6) + 6;
   }
   
   $append = array();
-  if($get == "newApps"){
+  if($get === "newApps"){
     if($lobby_web){
       $query = "SELECT * FROM `apps` WHERE `lobby_web` = '1' ORDER BY `updated` DESC";
-      $total_query = "SELECT COUNT(1) FROM `apps` WHERE `lobby_web` = '1'";
+      $total_query = "SELECT COUNT(*) FROM `apps` WHERE `lobby_web` = '1'";
     }else{
       $query = "SELECT * FROM `apps` ORDER BY `updated` DESC";
-      $total_query = "SELECT COUNT(1) FROM `apps`";
+      $total_query = "SELECT COUNT(*) FROM `apps`";
     }
-  }else if($get == "app"){
+  }else if($get === "app"){
     if($lobby_web){
       $query = "SELECT * FROM `apps` WHERE `id` = :id AND `lobby_web` = '1'";
     }else{
       $query = "SELECT * FROM `apps` WHERE `id` = :id";
     }
     $append[":id"] = H::input("id");
-  }else if($q != null){
+  }else if($q !== null){
     $q = "%{$q}%";
     
     if($lobby_web){
       $query = "SELECT * FROM `apps` WHERE `lobby_web` = '1' AND (`name` LIKE :q OR `description` LIKE :q) ORDER BY `updated` DESC";
+      $total_query = "SELECT COUNT(*) FROM `apps` WHERE `lobby_web` = '1' AND (`name` LIKE :q OR `description` LIKE :q)";
     }else{
       $query = "SELECT * FROM `apps` WHERE `name` LIKE :q OR `description` LIKE :q ORDER BY `updated` DESC";
+      $total_query = "SELECT COUNT(*) FROM `apps` WHERE `name` LIKE :q OR `description` LIKE :q";
     }
     $append[":q"] = $q;
+    $total_query_params = 1;
   }else{
     if($lobby_web){
       $query = "SELECT * FROM `apps` WHERE `lobby_web` = '1' ORDER BY `downloads` DESC";
+      $total_query = "SELECT * FROM `apps` WHERE `lobby_web` = '1' ORDER BY `downloads` DESC";
     }else{
       $query = "SELECT * FROM `apps` ORDER BY `downloads` DESC";
+      $total_query = "SELECT * FROM `apps` ORDER BY `downloads` DESC";
     }
   }
   
@@ -198,7 +205,13 @@ if($node === "dot.gif"){
     $results = $sql->fetchAll(\PDO::FETCH_ASSOC);
     
     if(isset($total_query)){
-      $total_apps = \Lobby\DB::$dbh->query($total_query);
+      $total_apps = \Lobby\DB::$dbh->prepare($total_query);
+      if(isset($total_query_params)){
+        foreach($append as $name => $value){
+          $total_apps->bindParam($name, $value);
+        }
+      }
+      $total_apps->execute();
       $total_apps = $total_apps->fetchColumn();
     }else{
       $total_apps = 0;
@@ -226,14 +239,44 @@ if($node === "dot.gif"){
       return $GLOBALS['star']->getRating("", "rate_value");
     }
     
+    function get_timeago( $ptime ) {
+      $estimate_time = time() - $ptime;
+  
+      if( $estimate_time < 1 )
+      {
+          return 'less than 1 second ago';
+      }
+  
+      $condition = array( 
+                  12 * 30 * 24 * 60 * 60  =>  'year',
+                  30 * 24 * 60 * 60       =>  'month',
+                  24 * 60 * 60            =>  'day',
+                  60 * 60                 =>  'hour',
+                  60                      =>  'minute',
+                  1                       =>  'second'
+      );
+  
+      foreach( $condition as $secs => $str )
+      {
+          $d = $estimate_time / $secs;
+  
+          if( $d >= 1 )
+          {
+              $r = round( $d );
+              return 'about ' . $r . ' ' . $str . ( $r > 1 ? 's' : '' ) . ' ago';
+          }
+      }
+    }
+    
     $i = 0;
     foreach($results as $r){
       $response['apps'][$i] = $r;
-      $response['apps'][$i]['description'] = $Parsedown->text(htmlspecialchars($r['description']));
       $response['apps'][$i]['author'] = getAuthorName($r['author']);
       $response['apps'][$i]['author_page'] = \Lobby::u("/u/{$r['author']}");
-      $response['apps'][$i]['rating'] = getRating($r['id']) . "/5";
+      $response['apps'][$i]['description'] = $Parsedown->text(htmlspecialchars($r['description']));
       $response['apps'][$i]['image'] = L_URL . "/api/app/{$r['id']}/logo";
+      $response['apps'][$i]['rating'] = getRating($r['id']) . "/5";
+      $response['apps'][$i]['updated'] = get_timeago(strtotime($r['updated']));
       $i++;
     }
     

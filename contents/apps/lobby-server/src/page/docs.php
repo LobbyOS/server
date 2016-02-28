@@ -36,6 +36,7 @@ $this->addStyle("docs.css");
         <li><?php echo "<a href='". L_URL ."/docs/quick'>Quickstart</a>";?></li>
         <li><?php echo "<a href='". L_URL ."/docs/config'>Configuration</a>";?></li>
         <li><?php echo "<a href='". L_URL ."/docs/install-app'>Install Apps</a>";?></li>
+        <li><?php echo "<a href='". L_URL ."/docs/update'>Updates</a>";?></li>
       </ul>
     </li>
     <li>
@@ -73,7 +74,7 @@ $this->addStyle("docs.css");
 <style>
 li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8{
   list-style-type: decimal !important;
-}
+}div.el {margin-left: 2em}
 </style>
 <?php
 require_once APP_DIR . "/src/inc/views/track.php";
