@@ -122,3 +122,6 @@
 .apps .app .bpane .lside .downloads{
   margin: 5px 0 0;
 }
+.tabs{
+  overflow: hidden;
+}

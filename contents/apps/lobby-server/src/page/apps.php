@@ -157,9 +157,11 @@ if($node === "index"){
       $no_header = 1;
       require_once APP_DIR . "/src/inc/views/top.apps.php";
       ?>
-      <h1><a href=""><?php echo $app_info['name'];?></a></h1>
+      <h1>
+        <a href=""><?php echo $app_info['name'];?></a>
+        <a data-path="/admin/lobby-store.php?id=<?php echo $node;?>" class="open-via-lobby" title="Open in Lobby"><i class="material-icons">open_in_new</i></a>
+      </h1>
       <p><?php echo $app_info['short_description'];?></p>
-      <a data-path="/admin/lobby-store.php?id=<?php echo $node;?>" class="btn open-via-lobby">Open in Lobby</a>
       <ol style="list-style: none;padding: 0 0 5px 0;">
         <li style="display: inline-block;">
           <a href="/apps?c=<?php echo $app_info['category'];?>" class='btn red'><?php echo $this->app_categories[$app_info['category']];?></a> >
@@ -177,7 +179,7 @@ if($node === "index"){
         </ul>
         <script>
           lobby.load(function(){
-            $(".workspace #app-tabs").tabs();
+            $(".workspace #app-tabs .tabs").tabs();
           });
         </script>
         <div id="description">

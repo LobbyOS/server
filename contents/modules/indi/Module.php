@@ -62,5 +62,14 @@ class indi extends \Lobby\Module {
     \Lobby\Router::route("/app/[:appID]?/[**:page]?", function($request){
       ser();
     });
+    /**
+     * Disable FilePicker Module
+     */
+    if(\Lobby\Modules::exists("filepicker")){
+      \Lobby\Modules::disableModule("filepicker");
+    }
+    \Lobby\Router::route("/includes/lib/modules?/[**:page]?", function($request){
+      ser();
+    });
   }
 }

@@ -35,4 +35,4 @@ Here is the procedure to update Lobby :
   
   If everything is Ok, then a big green button "Start Update" will be seen. Click on it to start the update
   
-If the update is interrupted, you can start again.
+If the update is interrupted (during download), you can start again.

@@ -137,10 +137,10 @@ if($node === "dot.gif"){
 }else if($node === "ping"){
   echo "pong";
 }else if($node === "apps"){
-  $get = H::input("get");
-  $p = H::input("p");
-  $q = H::input("q");
-  $lobby_web = H::input("lobby_web") != null;
+  $get = H::i("get");
+  $p = H::i("p");
+  $q = H::i("q");
+  $lobby_web = H::i("lobby_web") != null;
   
   if($p === null){
     $start = 0;
@@ -165,7 +165,7 @@ if($node === "dot.gif"){
     }else{
       $query = "SELECT * FROM `apps` WHERE `id` = :id";
     }
-    $append[":id"] = H::input("id");
+    $append[":id"] = H::i("id");
   }else if($q !== null){
     $q = "%{$q}%";
     
