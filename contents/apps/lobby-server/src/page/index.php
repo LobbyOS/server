@@ -1,16 +1,16 @@
 <?php
 $this->addStyle("main.css");
 $this->addScript("responsiveslides.min.js");
-\Lobby::setTitle("Lobby - Do More With localhost");
+\Lobby::setTitle("A Web OS");
 ?>
 <section id="intro">
   <div class="container">
     <div class="row">
       <a href='//lobby.subinsb.com'><img src='<?php echo APP_SRC . "/src/image/logo.png";?>' /></a>
-      <p style="margin-top: 20px;">Do More With localhost</p>
+      <p style="margin-top: 20px;">A Web OS</p>
       <p style="margin-top: 20px;">Lobby is a framework to run web apps. It can be attributed as a combination of <a href="https://en.wikipedia.org/wiki/Android" target="_blank" >Android</a> & <a href="https://en.wikipedia.org/wiki/WordPress" target="_blank" >WordPress</a></p>
       <p>Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and can be used via a browser (Chrome, Firefox)</p>
-      <p>Hence Lobby is platform independent and can be installed on any localhost server</p>
+      <p>Hence Lobby is platform independent and can be installed on Windows, Linux, Mac etc.</p>
       <p>Still don't understand it ? See a detailed description here :</p>
       <a href="/docs/about" class="btn indigo" target="_blank">About Lobby</a>
       <div style="margin-top: 10px;">

@@ -1,10 +1,16 @@
 function changeLinks(){
   $(".open-via-lobby").each(function(){
     p = $(this).data("path");
-    $(this).attr({
-      href: localStorage["lobbyURL"] + p,
-      target: '_blank'
-    });
+    if(typeof localStorage["lobbyURL"] === "undefined"){
+      $(this).live("click", function(){
+        alert("You have to set Lobby URL. Please do it so by clicking the settings icon in the apps navbar.");
+      });
+    }else{
+      $(this).attr({
+        href: localStorage["lobbyURL"] + p,
+        target: '_blank'
+      });
+    }
   });
 }
 lobby.load(function(){
@@ -25,5 +31,7 @@ lobby.load(function(){
     localStorage["lobbyURL"] = $('.workspace .modal-content #lobby_url').val();
     changeLinks();
   });
+});
+$(document).ready(function(){
   changeLinks();
 });

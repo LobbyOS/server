@@ -42,7 +42,7 @@ class lobby_server extends \Lobby\App {
     unset(\Lobby::$css["theme.hine-/src/dashboard/css/scrollbar.css"]);
     unset(\Lobby::$css["theme.hine-/src/dashboard/css/jquery.contextmenu.css"]);
     unset(\Lobby::$css["theme.hine-/src/dashboard/css/dashboard.css"]);
-    unset(\Lobby::$css["jqueryui"]);
+    unset(\Lobby::$css['theme.hine-/src/main/lib/jquery-ui/jquery-ui.css']);
     
     unset(\Lobby::$js["jquery-ui"]);
     unset(\Lobby::$js["theme.hine-/src/dashboard/js/scrollbar.js"]);
