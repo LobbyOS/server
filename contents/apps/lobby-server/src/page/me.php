@@ -98,12 +98,12 @@ if($node == "index"){
   <div class="contents">
     <h1>My Profile</h1>
     <?php
-    $site = H::input("me_site");
+    $site = \H::i("me_site");
     $site = $site != null ? $site : \Fr\LS2::getUser("web_page");
-    $display_name = H::input("me_display");
+    $display_name = \H::i("me_display");
     $display_name = $display_name != null ? $display_name : \Fr\LS2::getUser("display_name");
 
-    if(H::input("me_site") != null && H::input("me_display") != null && H::csrf()){
+    if(\H::i("me_site") != null && \H::i("me_display") != null && H::csrf()){
       if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $site)){
         \Fr\LS2::updateUser(array(
           "web_page" => $site,
@@ -177,18 +177,19 @@ if($node == "index"){
     
     if(isset($_POST['app_name'])){
       $app_info_required = array(
-        "id" => $app_edit ? $path[3] : H::input("app_id"),
-        "name" => H::input("app_name"),
-        "git_url" => H::input("app_src"),
-        "short_description" => H::input("app_short_description"),
-        "description" => H::input("app_description"),
-        "category" => H::input("app_category"),
-        "sub_category" => H::input("app_sub_category"),
-        "version" => H::input("app_version"),
-        "app_page" => H::input("app_page")
+        "id" => $app_edit ? $path[3] : \H::i("app_id"),
+        "name" => \H::i("app_name"),
+        "git_url" => \H::i("app_src"),
+        "requires" => \H::i("app_requires"),
+        "short_description" => \H::i("app_short_description"),
+        "description" => \H::i("app_description"),
+        "category" => \H::i("app_category"),
+        "sub_category" => \H::i("app_sub_category"),
+        "version" => \H::i("app_version"),
+        "app_page" => \H::i("app_page")
       );
       $app_info = array_merge($app_info, $app_info_required);
-      $app_info["screenshots"] = H::input("app_screenshots");
+      $app_info["screenshots"] = \H::i("app_screenshots");
       $app_info["lobby_web"] = isset($_POST["app_lobby_web"]) ? "1" : "0";
       $app_info["logo"] = isset($_POST["app_logo"]) ? "1" : "0";
     }
@@ -221,9 +222,9 @@ if($node == "index"){
         
           sss("App Submitted", "Your app was added to the review queue. You will be notified by email after reviewing");
         }else{        
-          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `screenshots` = ?, `description` = ?, `short_description` = ?, `category` = ?, `sub_category` = ?, `version` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
+          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `requires` = ?, `screenshots` = ?, `description` = ?, `short_description` = ?, `category` = ?, `sub_category` = ?, `version` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
           
-          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['screenshots'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], $app_info['lobby_web'], $app_info['id'], \Fr\LS2::$user));
+          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['requires'], $app_info['screenshots'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], $app_info['lobby_web'], $app_info['id'], \Fr\LS2::$user));
           
           sss("Updated", "Your app was successfully updated.");
         }
@@ -285,10 +286,15 @@ if($node == "index"){
           <span>Version</span>
           <input type="text" name="app_version" placeholder="0.1" value="<?php echo $app_edit == true ? $app_info['version'] : "";?>" />
         </label>
+        <label>
+          <span>Requires</span>
+          <textarea type="text" style="height: 10rem;" name="app_requires" placeholder="JSON Data of dependencies required by app"><?php echo $app_edit == true ? $app_info['requires'] : "";?></textarea>
+        </label>
       <?php
       }else{
       ?>
         <input type="hidden" name="app_version" value="0.1" />
+        <input type="hidden" name="app_requires" value="{}" />
       <?php
       }
       ?>
@@ -303,7 +309,7 @@ if($node == "index"){
       </label>
       <label>
         <span>Description</span>
-        <textarea type="text" name="app_description" rows="10" cols="70"><?php echo $app_edit == true ? $app_info['description'] : "";?></textarea>
+        <textarea type="text" style="height: 10rem;" name="app_description" rows="10" cols="70"><?php echo $app_edit == true ? $app_info['description'] : "";?></textarea>
       </label>
       <?php
       if($app_edit === true){
@@ -313,7 +319,7 @@ if($node == "index"){
           <div clear>
             <input type="file" name="files[]" multiple id="screenshot_upload" />
           </div>
-          <textarea clear type="text" name="app_screenshots" rows="4" cols="50" placeholder="Choose multiple files above and the URLs will be seen here"><?php echo $app_edit == true ? $app_info['screenshots'] : "";?></textarea>
+          <textarea clear type="text" style="height: 10rem;" name="app_screenshots" rows="4" cols="50" placeholder="Choose multiple files above and the URLs will be seen here"><?php echo $app_edit == true ? $app_info['screenshots'] : "";?></textarea>
         </label>
         <script>
           $(function(){

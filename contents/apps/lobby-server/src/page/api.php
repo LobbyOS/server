@@ -9,6 +9,8 @@ $lobby_downloads = array(
   "0.2.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.1.zip",
   "0.3" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.3.zip",
   "0.4" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.4.zip",
+  "0.4.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.zip", // Legacy. I screwed up
+  "0.5" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.zip"
 );
 
 if($node === "dot.gif"){
@@ -275,7 +277,9 @@ if($node === "dot.gif"){
       $response['apps'][$i]['author_page'] = \Lobby::u("/u/{$r['author']}");
       $response['apps'][$i]['description'] = $Parsedown->text(htmlspecialchars($r['description']));
       $response['apps'][$i]['image'] = L_URL . "/api/app/{$r['id']}/logo";
+      $response['apps'][$i]['permalink'] = L_URL . "/apps/{$r['id']}";
       $response['apps'][$i]['rating'] = getRating($r['id']) . "/5";
+      $response['apps'][$i]['requires'] = json_decode($r['requires'], true);
       $response['apps'][$i]['updated'] = get_timeago(strtotime($r['updated']));
       $i++;
     }

@@ -3,9 +3,9 @@ namespace Lobby\App;
 
 class lobby_server extends \Lobby\App {
   
-  public $lobby_version = "0.4.1";
-  public $lobby_released = "2015-02-27";
-  public $lobby_release_notes = 'The update is expected to work smoothly. If anything happened, please report it <a href="https://github.com/LobbyOS/lobby/issues">here</a>. Thanks for using Lobby. :-)';
+  public $lobby_version = "0.5";
+  public $lobby_released = "2015-03-05";
+  public $lobby_release_notes = '<h2>Important</h2><p>Disable all apps before proceeding.</p><p>The update is expected to work smoothly. If anything happened, please report it <a href="https://github.com/LobbyOS/lobby/issues">here</a>.</p><p>After updating Lobby, please update all the apps to make it work properly.</p><a href="https://server.lobby.sim/blog/version-0-5" target="_blank">Read More Here</a>';
   
   public $app_categories = array(
     "accessories" => "Accessories",
@@ -115,27 +115,27 @@ class lobby_server extends \Lobby\App {
     $this->addStyle("style.css");
     \Lobby\UI\Panel::addTopItem("lobbyDownload", array(
       "position" => "left",
-      "text" => "<span class='btn orange' style='margin:0;padding: 0 10;'>Download</span>",
+      "text" => "<span class='btn orange' style='margin:0;padding: 0 10px;'>Download</span>",
       "href" => "/download"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyWeb", array(
       "position" => "left",
-      "text" => "<span class='btn indigo' style='margin:0;padding: 0 10;'>Demo</span>",
+      "text" => "<span class='btn indigo' style='margin:0;padding: 0 10px;'>Demo</span>",
       "href" => "/web-readme"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyApps", array(
       "position" => "left",
-      "text" => "<span class='btn green' style='margin:0;padding: 0 10;'>Apps</span>",
+      "text" => "<span class='btn green' style='margin:0;padding: 0 10px;'>Apps</span>",
       "href" => "/apps"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyBlog", array(
       "position" => "left",
-      "text" => "<span class='btn red' style='margin:0;padding: 0 10;'>Blog</span>",
+      "text" => "<span class='btn red' style='margin:0;padding: 0 10px;'>Blog</span>",
       "href" => "/blog"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyDocs", array(
       "position" => "left",
-      "text" => "<span class='btn' style='margin:0;padding: 0 10;'>Docs</span>",
+      "text" => "<span class='btn' style='margin:0;padding: 0 10px;'>Docs</span>",
       "href" => "/docs",
       "subItems" => array(
         "mods" => array(
