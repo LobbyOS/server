@@ -10,7 +10,8 @@ $lobby_downloads = array(
   "0.3" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.3.zip",
   "0.4" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.4.zip",
   "0.4.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.zip", // Legacy. I screwed up
-  "0.5" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.zip"
+  "0.5" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.zip",
+  "0.5.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.1.zip",
 );
 
 if($node === "dot.gif"){

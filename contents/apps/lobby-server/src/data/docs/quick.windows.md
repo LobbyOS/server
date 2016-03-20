@@ -23,6 +23,18 @@ After finishing install, open the Start menu and you can see Lobby in it.
 
 #### Running Lobby
 
+PHP that is inside Lobby will sometimes make the following error upon starting :
+```
+msvcr110.dll is missing
+```
+To solve this, please go to this [page](http://www.dll-files.com/dllindex/dll-files.shtml?msvcr110), download the **Zip File** and extract the `msvcr110.dll` file to 
+```
+C:\Program Files\Lobby\php
+```
+Or you may extract it into the Windows System32 directory.
+
+A Lobby shortcut will be created in the desktop and in Start Menu. This shortcut will open `Lobby.exe`.
+
 When Lobby.exe is ran, an icon with [Lobby favicon](/favicon.ico) can be see in the tray area (Notification area) :
 
 ![Lobby Windows Tray Icon](/contents/apps/lobby-server/src/image/screenshots/windows/tray.png)

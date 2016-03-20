@@ -5,8 +5,8 @@ require_once L_DIR . "/includes/src/Update.php";
 header("Content-type: text/html");
 header('Cache-Control: no-cache');
 
-$id = H::input("id");
-$type = H::input("type");
+$id = H::i("id");
+$type = H::i("type");
 
 // Turn off output buffering
 ini_set('output_buffering', 'off');
@@ -47,31 +47,48 @@ $GLOBALS['name'] = $name;
 <p>
   Downloading <b><?php echo $name;?></b>...
 </p>
-<p class='downloadStatus'></p>
+<p id='downloadStatus'></p>
 <?php
 flush();
 
 function convertToReadableSize($size){
   $base = log($size) / log(1024);
-  $base = floor($base);
-  $suffix = array("", "KB", "MB", "GB", "TB");
-  return round(pow(1024, $base - floor($base)), 1) . $suffix[$base];
+  $suffix = array("", "KB", "M", "G", "T");
+  $f_base = floor($base);
+  return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
 }
 
 $GLOBALS['last'] = 0;
-\Lobby\Update::$progress = function($resource, $download_size, $downloaded, $upload_size, $uploaded){
-  if($download_size == 0){
-    $percent = 0;
-  }else{
-    $percent = round($downloaded / $download_size  * 100, 0);
+\Lobby\Update::$progress = function($resource, $download_size, $downloaded, $upload_size, $uploaded = ""){
+  /**
+   * On new versions of cURL, $resource parameter is not passed
+   * So, swap vars if it doesn't exist
+   */
+  if(!is_resource($resource)){
+    $uploaded = $upload_size;
+    $upload_size = $downloaded;
+    $downloaded = $download_size;
+    $download_size = $resource;
   }
-  if($GLOBALS['last'] != $percent ){
+  if($download_size > 1000 && $downloaded > 0){
+    $percent = round($downloaded / $download_size  * 100, 0);
+  }else{
+    $percent = 1;
+  }
+  if($GLOBALS['last'] != $percent || isset($GLOBALS['non_percent'])){
     $GLOBALS['last'] = $percent;
-    $rd_size = convertToReadableSize($download_size);
-    echo "<script>document.querySelector('.downloadStatus').innerHTML = 'Downloaded $percent% of {$rd_size}';</script>";
+    if($download_size > 0){
+      $rd_size = convertToReadableSize($download_size);
+      echo "<script>document.getElementById('downloadStatus').innerHTML = 'Downloaded $percent% of {$rd_size}';</script>";
+    }else{
+      $downloaded = convertToReadableSize($downloaded);
+      $GLOBALS['non_percent'] = 1;
+      echo "<script>document.getElementById('downloadStatus').innerHTML = 'Downloaded {$downloaded}';</script>";
+    }
     flush();
-    if($percent == 100){
+    if($percent == 100 && !isset($GLOBALS['install-msg-printed'])){
       echo "<p>Installing <b>{$GLOBALS['name']}</b>...</p>";
+      $GLOBALS['install-msg-printed'] = 1;
       flush();
     }
   }

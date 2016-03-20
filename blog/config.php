@@ -1,7 +1,7 @@
 <?php
 $blog_email = "mail@subinsb.com";
 $blog_twitter = "subinsiby";
-$blog_url = "http://server.lobby.sim/blog/";
+$blog_url = "https://server.lobby.sim/blog/";
 $blog_title = "Lobby Blog";
 $meta_description = "";
 $intro_title = "Lobby";

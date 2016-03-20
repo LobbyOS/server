@@ -3,9 +3,9 @@ namespace Lobby\App;
 
 class lobby_server extends \Lobby\App {
   
-  public $lobby_version = "0.5";
-  public $lobby_released = "2015-03-05";
-  public $lobby_release_notes = '<h2>Important</h2><p>Disable all apps before proceeding.</p><p>The update is expected to work smoothly. If anything happened, please report it <a href="https://github.com/LobbyOS/lobby/issues">here</a>.</p><p>After updating Lobby, please update all the apps to make it work properly.</p><a href="https://server.lobby.sim/blog/version-0-5" target="_blank">Read More Here</a>';
+  public $lobby_version = "0.5.1";
+  public $lobby_released = "2016-03-06";
+  public $lobby_release_notes = '<h2>Important</h2><p>Disable all apps before proceeding.</p><p>The update is expected to work smoothly. If anything happened, please report it <a href="https://github.com/LobbyOS/lobby/issues">here</a>.</p><p>After updating Lobby, please update all the apps to make it work properly.</p><a href="https://server.lobby.sim/blog/version-0-5" target="_blank">Read More Here</a><p>PS: 0.5.1 contains some major bug fixes that came in 0.5</p>';
   
   public $app_categories = array(
     "accessories" => "Accessories",
@@ -56,6 +56,9 @@ class lobby_server extends \Lobby\App {
      */
     \Lobby::hook("head.end", function(){
       echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+      if(\Lobby::$host_name != "server.lo"."bby.sim"){
+        echo '<script>if (window.location.protocol != "https:") window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);</script>';
+      }
     });
     
     $path = explode("/", $p);

@@ -33,7 +33,7 @@ $this->addStyle("docs.css");
       <ul>
         <li><?php echo "<a href='". L_URL ."/docs/about'>About</a>";?></li>
         <li><?php echo "<a href='". L_URL ."/docs/contact'>Contact</a>";?></li>
-        <li><?php echo "<a href='". L_URL ."/docs/quick'>Quickstart</a>";?></li>
+        <li><?php echo "<a href='". L_URL ."/docs/quick'>Quick Install</a>";?></li>
         <li><?php echo "<a href='". L_URL ."/docs/config'>Configuration</a>";?></li>
         <li><?php echo "<a href='". L_URL ."/docs/install-app'>Install Apps</a>";?></li>
         <li><?php echo "<a href='". L_URL ."/docs/update'>Updates</a>";?></li>
