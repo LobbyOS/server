@@ -19,12 +19,10 @@ section{
   background: #FF9800;
   color: white;
 }
-.section ul{
-  list-style: none;
-  padding: 0;
-  text-align: center;
+section ul{
+  color: #000;
 }
-.section img{
+section img{
   max-width: 100%;
 }
 .rslides {
@@ -103,16 +101,22 @@ section{
   height: 64px;
   width: 64px;
   margin-right: 10px;
+  background-repeat: no-repeat;
+}
+#download .linux{
+  background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/linux.svg);
+  background-size: contain;
+  margin-right: 0;
 }
 #download .ubuntu{
-  background: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/ubuntu.svg);
+  background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/ubuntu.svg);
   background-size: contain;
 }
 #download .windows{
-  background: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/windows.svg);
+  background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/windows.svg);
   background-size: contain;
 }
 #download .zip{
-  background: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/zip.svg);
+  background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/zip.svg);
   background-size: contain;
 }

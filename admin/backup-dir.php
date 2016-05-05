@@ -6,7 +6,7 @@ require "../load.php";
  * http://stackoverflow.com/a/19451938/1372424
  */
 $the_folder = L_DIR;
-$zip_file_name = L_DIR . "/contents/extra/lobby-" .date("Y-m-d H:i:s") . '.zip';
+$zip_file_name = L_DIR . "/contents/extra/lobby-" .date("Y-m-d@H-i-s") . '.zip';
 
 $download_file = true;
 

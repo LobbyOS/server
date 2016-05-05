@@ -8,6 +8,7 @@ $this->setTitle("New App");
     "id" => \H::i("app_id"),
     "name" => \H::i("app_name"),
     "git_url" => \H::i("app_download"),
+    "requires" => \H::i("app_requires"),
     "short_description" => \H::i("app_short_description"),
     "description" => \H::i("app_description"),
     "category" => \H::i("app_category"),
@@ -27,7 +28,7 @@ $this->setTitle("New App");
       $app_info["logo"] = isset($_POST["app_logo"]) ? "1" : "0";
       $lobby_web = isset($_POST['app_lobby_web']) ? 1 : 0;
       
-      $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps` (`id`, `name`, `version`, `logo`, `requires`, `git_url`, `description`, `short_description`, `category`, `sub_category`, `app_page`, `author`, `lobby_web`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
+      $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps` (`id`, `name`, `version`, `logo`, `requires`, `git_url`, `description`, `short_description`, `category`, `sub_category`, `app_page`, `author`, `lobby_web`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
       
       $sql->execute(array($app_info['id'], $app_info['name'], $app_info['version'], $app_info['logo'], $app_info['requires'], $app_info['git_url'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['page'], $app_info['author_id'], $lobby_web));
       
@@ -50,7 +51,7 @@ $this->setTitle("New App");
     </label>
     <label>
       <span>Requires</span>
-      <textarea type="text" name="app_requires" placeholder="Dependencies of app" size="70"></textarea>
+      <textarea type="text" name="app_requires" placeholder="Dependencies of app" class="materialize-textarea"></textarea>
     </label>
     <label>
       <input type="checkbox" name="app_logo" />
@@ -62,7 +63,7 @@ $this->setTitle("New App");
     </label>
     <label>
       <span>Description</span>
-      <textarea type="text" name="app_description" rows="6"></textarea>
+      <textarea type="text" name="app_description" class="materialize-textarea"></textarea>
     </label>
     <label>
       <span>Category</span>

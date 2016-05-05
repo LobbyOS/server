@@ -20,7 +20,7 @@ To disable a module, create a file named "disabled.txt" in the directory of the 
 
 You can find the location of active modules from Admin -> Modules page
 
-## Enable Module {#EnableModule}
+## Enable Module 
 
 To enable a module, delete or rename the file "disabled.txt" in the directory of the module.
 

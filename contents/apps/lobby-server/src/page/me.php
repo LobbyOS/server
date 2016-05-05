@@ -5,7 +5,7 @@ if(!isset($_GET['logout'])){
   \Fr\LS2::logout();
 }
 
-if($node == "index"){
+if($node === "index"){
   \Lobby::setTitle("Me");
 ?>
   <div class="contents">
@@ -18,7 +18,7 @@ if($node == "index"){
     </div>
   </div>
 <?php
-}else if($node == "login"){
+}else if($node === "login"){
   \Lobby::setTitle("Login | Me");
   $c = isset($_GET['c']) ? "&c=" . urlencode($_GET['c']) : "";
   $_SESSION['c'] = "";
@@ -211,7 +211,7 @@ if($node == "index"){
           $sql->execute(array($app_info['id'], $app_info['name'], $app_info['git_url'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], \Fr\LS2::$user));
         
           $admin_access_token = \Fr\LS2::getUser("username", 1);
-        
+          
           require_once APP_DIR . "/src/inc/open.auth.php";
           $Opth = new OpenAuth("EAtGbLfgxiCJxhwWfsLsyxA0p8Zj4oUyOd4POaVc", "80d23edfa535caf4cc44b91e16c55c0f09e3bed927fecff96b092df0f517f410");
         
@@ -220,7 +220,7 @@ if($node == "index"){
             "body" => "Dude, a person requested to review her/his app ({$app_info['id']}). Please go and check it. http://lobby.subinsb.com"
           ), $admin_access_token);
         
-          sss("App Submitted", "Your app was added to the review queue. You will be notified by email after reviewing");
+          sss("App Submitted", "Your app was added to the review queue. You will be notified by email about your app's review status.");
         }else{        
           $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `requires` = ?, `screenshots` = ?, `description` = ?, `short_description` = ?, `category` = ?, `sub_category` = ?, `version` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
           
@@ -231,7 +231,7 @@ if($node == "index"){
       }
     }
     if($app_edit){
-      \Lobby::setTitle($app_info['name'] . " | Me");
+      \Lobby::setTitle("Edit App " . $app_info['name'] . " | Me");
     }else{
       \Lobby::setTitle("New App | Me");
     }
@@ -254,7 +254,7 @@ if($node == "index"){
     }
     ?>
     <h2>Edit</h2>
-    <form action="/me/app/<?php echo $app_info['id'];?>" method="POST">
+    <form action="/me/app<?php echo $app_edit ? "/{$app_info['id']}" : "";?>" method="POST">
       <label>
         <span>App ID</span>
         <input type="text" name="app_id" value="<?php echo $app_edit == true ? $app_info['id'] : "";?>" <?php if($app_edit == true){echo "disabled";}?>/>
@@ -300,7 +300,7 @@ if($node == "index"){
       ?>
       <label>
         <span>Logo</span>
-        <input type="checkbox" name="app_logo" <?php if($app_info['logo'] === "1"){echo "checked='checked'";}?> />
+        <input type="checkbox" name="app_logo" <?php if($app_edit === true && $app_info['logo'] === "1"){echo "checked='checked'";}?> />
         <span>Does the app have a logo ?</span>
       </label>
       <label>
@@ -384,9 +384,9 @@ if($node == "index"){
       </label>
       <label>
         <span>Lobby Web App ?</span>
-        <p>Whether this app is able to run on <b>Lobby Web</b></p>
+        <p>Whether this app is able to run on <b><a href="//lobby.subinsb.com/web-readme" target="_blank">Lobby Demo</a></b></p>
         <label>
-          <input type="checkbox" name="app_lobby_web" <?php if($app_info['lobby_web'] === "1"){echo "checked='checked'";}?> />
+          <input type="checkbox" name="app_lobby_web" <?php if($app_edit === true && $app_info['lobby_web'] === "1"){echo "checked='checked'";}?> />
           <span></span>
         </label>
       </label>
@@ -418,6 +418,14 @@ if($node == "index"){
         $(".app_sub_category").attr("disabled", "disabled").hide();
         $("#app_sub_category_" + v).removeAttr("disabled").show();
       });
+      <?php
+      /**
+       * Make accessories' sub category show first
+       */
+      if(!$app_edit){
+        echo "$('#app_sub_category_accessories').removeAttr('disabled').show();";
+      }
+      ?>
     });
   </script>
 <?php

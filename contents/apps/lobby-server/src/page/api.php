@@ -1,17 +1,27 @@
 <?php
+require_once APP_DIR . "/src/inc/LobbyStats.php";
+
+$Stats = new LobbyStats();
+
+$driveFolderURL = "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk";
+/**
+ * List of available downloads
+ */
 $lobby_downloads = array(
-  "script" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/lobby-install.sh",
-  "deb" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/lobby.deb",
+  "linux" => "$driveFolderURL/Lobby-Linux.zip",
+  "script" => "$driveFolderURL/lobby-install.sh",
+  "deb" => "$driveFolderURL/lobby.deb",
   "msi" => "https://raw.githubusercontent.com/LobbyOS/windows-installer/master/LobbyInstaller/Lobby.msi",
-  "0.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.1.zip",
-  "0.1.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.1.1.zip",
-  "0.2" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.zip",
-  "0.2.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.2.1.zip",
-  "0.3" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.3.zip",
-  "0.4" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.4.zip",
-  "0.4.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.zip", // Legacy. I screwed up
-  "0.5" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.zip",
-  "0.5.1" => "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/0.5.1.zip",
+  "0.1" => "$driveFolderURL/0.1.zip",
+  "0.1.1" => "$driveFolderURL/0.1.1.zip",
+  "0.2" => "$driveFolderURL/0.2.zip",
+  "0.2.1" => "$driveFolderURL/0.2.1.zip",
+  "0.3" => "$driveFolderURL/0.3.zip",
+  "0.4" => "$driveFolderURL/0.4.zip",
+  "0.4.1" => "$driveFolderURL/0.5.zip", // Legacy. I screwed up
+  "0.5" => "$driveFolderURL/0.5.zip",
+  "0.5.1" => "$driveFolderURL/0.5.1.zip",
+  "0.6" => "$driveFolderURL/0.6.zip"
 );
 
 if($node === "dot.gif"){
@@ -280,7 +290,16 @@ if($node === "dot.gif"){
       $response['apps'][$i]['image'] = L_URL . "/api/app/{$r['id']}/logo";
       $response['apps'][$i]['permalink'] = L_URL . "/apps/{$r['id']}";
       $response['apps'][$i]['rating'] = getRating($r['id']) . "/5";
+      
       $response['apps'][$i]['requires'] = json_decode($r['requires'], true);
+      /**
+       * If `lobby` param is not present then,
+       * client is using Lobby < 0.6
+       */
+      if(!isset($_POST["lobby"])){
+        $response['apps'][$i]['requires']["lobby"] = array(">=", "0.6");
+      }
+      
       $response['apps'][$i]['updated'] = get_timeago(strtotime($r['updated']));
       $i++;
     }

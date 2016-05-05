@@ -2,13 +2,11 @@
 $mods_location = APP_DIR . "/src/data/mods/";
 
 $mods = array_diff(scandir($mods_location), array('..', '.'));
-array_filter($mods, function(&$key){
-  $key = str_replace('.md', '', $key);
-});
 
-$mod = isset($mod) ? $mod : "index";
+$mod = isset($mod) ? $mod . ".md" : "index.md";
+
 if(isset($mod) && array_search($mod, $mods) !== false){
-  $mod_path = "$mods_location/$mod.md";
+  $mod_path = "$mods_location/$mod";
   
   if($mod == "index"){
     \Lobby::setTitle("Modules");

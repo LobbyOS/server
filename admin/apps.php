@@ -3,7 +3,7 @@
   <head>
     <?php
     \Lobby::doHook("admin.head.begin");
-    \Lobby::addScript("admin.apps.js", "/admin/js/apps.js");
+    \Assets::js("admin.apps.js", "/admin/js/apps.js");
     \Lobby::head("App Manager");
     ?>
   </head>
@@ -86,7 +86,7 @@
                   $App = new \Lobby\Apps($app);
                   $data = $App->info;
                   $appImage = !isset($data['image']) ? L_URL . "/includes/lib/lobby/image/blank.png" : $data['image'];
-                  $enabled = $App->isEnabled();
+                  $enabled = $App->enabled;
                 ?>
                   <tr <?php if(!$enabled){echo 'style="background: #EEE;"';}?>>
                     <td>
@@ -96,7 +96,7 @@
                       </label>
                     </td>
                     <td>
-                      <a href="<?php echo \Lobby::u("/admin/app/$app");?>"><?php echo $data['name'];?></a>
+                      <a href="<?php echo \Lobby::u("/app/$app");?>"><?php echo $data['name'];?></a>
                     </td>
                     <td><?php echo $data['version'];?></td>
                     <td><?php echo $data['short_description'];?></td>
@@ -115,9 +115,20 @@
                 }
                 ?>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td width="5%">
+                    <label><input type="checkbox" id="select_all_apps" /><span></span></label>
+                  </td>
+                  <td width="15%">Name</td>
+                  <td width="10%">Version</td>
+                  <td width="40%">Description</td>
+                  <td width="30%">Actions</td>
+                </tr>
+              </tfoot>
             </table>
-            <div id="combined_actions">
-              <span style="padding-left: 20px;">^</span>
+            <div id="combined_actions" clear>
+              <span style="padding-left: 15px;">^</span>
               <button class="btn green" name="action" value="enable">Enable</button>
               <button class="btn blue" name="action" value="disable">Disable</button>
             </div>

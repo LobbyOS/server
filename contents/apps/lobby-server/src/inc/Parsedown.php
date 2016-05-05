@@ -570,7 +570,7 @@ class Parsedown
     # Reference
     protected function blockReference($Line)
     {
-        if (preg_match('/^\[(.+?)\]:[ ]*<?(\S+?)>?(?:[ ]+["\'(](.+)["\')])?[ ]*$/', $Line['text'], $matches))
+        if (preg_match('/^\[(.+?)\]:[ ]*<?php(\S+?)>?(?:[ ]+["\'(](.+)["\')])?[ ]*$/', $Line['text'], $matches))
         {
             $id = strtolower($matches[1]);
             $Data = array(

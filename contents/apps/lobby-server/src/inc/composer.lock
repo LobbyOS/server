@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "723a9cb838b88a69b7ea827e682d4fa5",
+    "content-hash": "e8ebab3c1a90718f6257c6feca551b2c",
     "packages": [
         {
             "name": "gitonomy/gitlib",
@@ -16,7 +17,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gitonomy/gitlib/zipball/f575b8f7da917ade7890c6aa705fa22545690389",
+                "url": "https://api.github.com/repos/gitonomy/gitlib/zipball/6e0c86f0b569918b93364329b6f411c21b69dc99",
                 "reference": "f575b8f7da917ade7890c6aa705fa22545690389",
                 "shasum": ""
             },

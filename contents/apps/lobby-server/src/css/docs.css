@@ -3,6 +3,14 @@
 }
 .contents h2{
   font-size: 2.5rem;
+  padding-bottom: 10px;
+  border-bottom: 2px dashed #000;
+}
+.contents h3{
+  font-size: 2rem;
+}
+.contents h4{
+  font-size: 1.5rem;
 }
 .contents strong{
   font-weight: bold;
@@ -72,4 +80,8 @@
   font-size: 90%;
   background-color: rgba(0,0,0,0.1);
   border-radius: 3px;
+}
+.contents ul, .contents ul li{
+  list-style-type: decimal;
+  margin-left: 20px;
 }

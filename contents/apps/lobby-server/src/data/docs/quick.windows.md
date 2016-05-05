@@ -7,7 +7,7 @@ There are two ways to install Lobby in Windows :
 * [By installing .MSI package](#msi-package)
 * [Manual Install](#manual)
 
-## Lobby Installer {#msi-package}
+## Lobby Installer 
 
 Download the .msi file [from here](/api/lobby/download/msi). Run the installer :
 
@@ -49,7 +49,7 @@ If you want to stop the PHP server and exit Lobby, right click on the tray icon 
 
 To configure Lobby through the web installation, [see this](/docs/quick#configure-lobby).
 
-## Manual Install {#manual}
+## Manual Install 
 
 The following localhost servers are available for Windows :
 

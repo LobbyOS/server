@@ -22,7 +22,7 @@ class indi extends \Lobby\Module {
            * Check if App exists
            */
           $App = new \Lobby\Apps($AppID);
-          if($App->exists && $App->isEnabled()){
+          if($App->exists && $App->enabled){
             /**
              * Redirect /src/ files to App's Source in /contents folder
              */

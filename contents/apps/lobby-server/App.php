@@ -3,9 +3,9 @@ namespace Lobby\App;
 
 class lobby_server extends \Lobby\App {
   
-  public $lobby_version = "0.5.1";
-  public $lobby_released = "2016-03-06";
-  public $lobby_release_notes = '<h2>Important</h2><p>Disable all apps before proceeding.</p><p>The update is expected to work smoothly. If anything happened, please report it <a href="https://github.com/LobbyOS/lobby/issues">here</a>.</p><p>After updating Lobby, please update all the apps to make it work properly.</p><a href="https://server.lobby.sim/blog/version-0-5" target="_blank">Read More Here</a><p>PS: 0.5.1 contains some major bug fixes that came in 0.5</p>';
+  public $lobby_version = "0.6";
+  public $lobby_released = "2016-05-04";
+  public $lobby_release_notes = '<p>0.6 version comes with new features and has fixed some <a href="https://media.giphy.com/media/3oEdv0RAeAqr2cv1Ic/giphy.gif" target="_blank">HUGE</a> bugs.</p><p>If you are using versions <b>0.5</b> or old, <b>REMOVE</b> all apps before proceeding to update.</p>';
   
   public $app_categories = array(
     "accessories" => "Accessories",
@@ -39,41 +39,60 @@ class lobby_server extends \Lobby\App {
     /**
      * Clean up Assets
      */
-    unset(\Lobby::$css["theme.hine-/src/dashboard/css/scrollbar.css"]);
-    unset(\Lobby::$css["theme.hine-/src/dashboard/css/jquery.contextmenu.css"]);
-    unset(\Lobby::$css["theme.hine-/src/dashboard/css/dashboard.css"]);
-    unset(\Lobby::$css['theme.hine-/src/main/lib/jquery-ui/jquery-ui.css']);
+    \Assets::removeCSS(array(
+      "theme.hine-/src/dashboard/css/scrollbar.css",
+      "theme.hine-/src/dashboard/css/jquery.contextmenu.css",
+      "theme.hine-/src/dashboard/css/dashboard.css",
+      "theme.hine-/src/main/lib/jquery-ui/jquery-ui.css",
+      
+    ));
     
-    unset(\Lobby::$js["jquery-ui"]);
-    unset(\Lobby::$js["theme.hine-/src/dashboard/js/scrollbar.js"]);
-    unset(\Lobby::$js["theme.hine-/src/dashboard/js/jquery.contextmenu.js"]);
-    unset(\Lobby::$js["theme.hine-/src/dashboard/js/Packery.js"]);
-    unset(\Lobby::$js["theme.hine-/src/dashboard/js/dashboard.js"]);
-    unset(\Lobby::$js["app"]);
+    \Assets::js("jqueryui", "");
+    
+    \Assets::removeJs(array(
+      "theme.hine-/src/dashboard/js/scrollbar.js",
+      "theme.hine-/src/dashboard/js/jquery.contextmenu.js",
+      "theme.hine-/src/dashboard/js/dashboard.js",
+      "app"
+    ));
     
     /**
      * Mobile
      */
     \Lobby::hook("head.end", function(){
       echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
-      if(\Lobby::$host_name != "server.lo"."bby.sim"){
+      if(\Lobby::$hostName != "server.lo"."bby.sim"){
         echo '<script>if (window.location.protocol != "https:") window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);</script>';
       }
     });
     
+    /**
+     * Add notifications
+     */
+    \Lobby\UI\Panel::addNotifyItem("lobby-0-6-released", array(
+      "contents" => "Lobby 0.6 Released",
+      "href" => "/downloads",
+      "icon" => "update"
+    ));
+    
     $path = explode("/", $p);
-    if($path[1] == "docs"){
+    
+    if($path[1] === "docs"){
       $doc = isset($path[2]) ? str_replace("/", ".", substr_replace($p, "", 0, 6)) : "index";
       
       $this->menu_items();
+      
+      \Assets::removeJs("theme.hine-/src/main/js/init.js");
 
       return $this->inc("/src/page/docs.php", array(
         "doc" => $doc
       ));
-    }elseif($path[1] == "mods"){
+    }elseif($path[1] === "mods"){
       $mod = isset($path[2]) ? str_replace("/", ".", substr_replace($p, "", 0, 6)) : "index";
       
       $this->menu_items();
+      
+      \Assets::removeJs("theme.hine-/src/main/js/init.js");
       
       return $this->inc("/src/page/mods.php", array(
         "mod" => $mod

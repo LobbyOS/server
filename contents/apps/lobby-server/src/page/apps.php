@@ -242,17 +242,17 @@ if($node === "index"){
           </script>          
         </div>
         <div id="download">
-          <div class="chip">Version : <?php echo $app_info['version'];?></div><cl/>
+          <div class="chip">Version : <?php echo $app_info['version'];?></div>
+          <div class="chip" title="UTC Time Zone">Updated : <?php echo $app_info['updated'];?></div><cl/>
           <div class="chip"><span>Requirements :</span></div>
           <ul class="collection" style="margin-left: 20px;">
             <?php
             foreach(json_decode($app_info['requires'], true) as $k => $v){
-              echo "<li class='collection-item'>$k {$v[0]} {$v[1]}</li>";
+              echo "<li class='collection-item'>$k $v</li>";
             }
             ?>
           </ul><cl/>
           <div class="chip">Author : <a href='/u/<?php echo $app_info['author'];?>'><?php echo \Fr\LS2::getUser("name", $app_info['author']);?></a></div><cl/>
-          <div class="chip" title="UTC Time Zone">Updated : <?php echo $app_info['updated'];?></div><cl/>
           <div class="chip">Web Page : <?php echo "<a href='{$app_info['app_page']}' target='_blank'>". htmlspecialchars($app_info['app_page']) ."</a>";?></div>
           <a style='display: block;font-size: 16px;height: 60px;color: white;margin: 20px;' class='btn green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip File<font size='1' style='display:block;margin-top: -10px;'><?php echo $app_info['downloads'];?> Downloads</font></a>
           <div style="margin: 10px 0;">

@@ -99,7 +99,7 @@ class OpenAuth {
   }
   
   public function action($what, $data = array(), $access_token = false){
-    $access_token = $access_token != false ?: $this->access_token;
+    $access_token = $access_token ?: $this->access_token;
 
     /**
      * isset() is used to reduce memory usage

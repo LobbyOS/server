@@ -7,7 +7,7 @@ There are two ways to install Lobby in Linux :
 * [By installing .deb package (Debian, Ubuntu, Linux Mint)](#deb-package)
 * [Manual Install](#manual)
 
-## Lobby Installer {#deb-package}
+## Lobby Installer 
 
 Lobby Installer is currently available for Debian and it's variants including Ubuntu, elementaryOS, Linux Mint etc.
 

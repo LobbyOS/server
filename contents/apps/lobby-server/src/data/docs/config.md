@@ -12,7 +12,7 @@ The **config.php** file is created automatically after installation. If you don'
 
 After making necessary changes to the *lobby/config.php* file, open Lobby in a browser to make sure that the configuration works.
 
-## Configuration Values {#ConfigValues}
+## Configuration Values
 
 Some keys are used for each setting. The following sections show what the values for each keys should be :
 
@@ -65,7 +65,7 @@ To solve this, you can manually add `lobby_url` setting into the **config.php** 
 'lobby_url' => 'http://localhost/mydirectory/lobby'
 ```
 
-### debug {#DebugSetting}
+### debug 
 
 When some apps or parts of Lobby doesn't work, you can identify the problem by enabling Debugging. When this value is set to "true", all debug messages are logged in **contents/extra** as **.log** files. See [Debugging](/docs/dev/debug).
 

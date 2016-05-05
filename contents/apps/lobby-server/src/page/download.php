@@ -12,10 +12,9 @@
   <p><a href="/docs/quick/windows" class="btn">How To Install ?</a></p>
   
 	<h2>Linux</h2>
-  <p>Download the ".deb" file and install it by <pre><code>dpkg -i lobby.deb</code></pre></p>
-  <a class="btn red" href="<?php L_URL;?>/api/lobby/download/deb" style="display: table;font-size: 18px;">Download .deb<font size='1' style='display:block;margin-top: -10px;'>Debian, Ubuntu, Linux Mint, elementaryOS...</font></a>
-  <p><a href="/docs/quick/linux" class="btn">How To Install ?</a></p>
-  <p>If you are using other Linux Distros, use the <a href="#direct-install">manual install</a>.</p>
+  <p>Download the <b>Lobby-Linux.zip</b> file and extract the folder inside the Zip file to anywhere you like.</p>
+  <a class="btn red" href="<?php L_URL;?>/api/lobby/download/linux" style="display: table;font-size: 18px;">Download Lobby-Linux.zip<font size='1' style='display:block;margin-top: -10px;'>Ubuntu, Linux Mint, openSUSE, Fedora, CentOS, ArchLinux, ElementaryOS etc.</font></a>
+  <p>To run, just open Lobby file inside the folder you extracted.</p>
   
 	<h2 id="direct-install">Manual Install</h2>
   <p>Mac and other platform users will have to manually install Lobby.</p>

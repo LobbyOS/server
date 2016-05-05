@@ -16,12 +16,15 @@ How to download & install Lobby on various systems :
     * Rewrite Module (mod_rewrite)
   2. MySQL 5.0 or later versions
   3. PHP version 5.3 or later with :
-    * PDO extension
-    * cURL extension (recommended)
-    * JSON extension
+    * **PDO** extension
+    * **cURL** extension (recommended)
+    * **JSON** extension
+    * **Zip** Extension
     * Output Buffering Enabled
 
-## Configure Lobby {#configure-lobby}
+As the support for PHP 5.3 has ended, it is recommended you use PHP **5.5** or later.
+
+## Configure Lobby 
 
 You will see an installation page when you first visit **Lobby** in your Browser after installing Lobby in a directory.
 
@@ -58,7 +61,7 @@ Follow the instructions in the installation page to successfully configure & ins
 
 ## Common Problems
 
-#### 404 Not Found Error
+### 404 Not Found Error
 
 Sometimes, when you visit **[//lobby.dev](//lobby.dev)**, a 404 error is shown. This is because the rules in **.htaccess** is not active. To make it active, you must edit the configuration file.
 
@@ -83,7 +86,7 @@ Also, make sure the Apache **rewrite** module is active. To make it active, do :
 sudo a2enmod rewrite && sudo service apache2 restart
 ```
 
-#### 500 Internal Server Error
+### 500 Internal Server Error
 
 A server error had occured. This problem occurs due to many reasons. It occured maybe due to missing components in your system. Make sure all the dependencies of Lobby is met in your system.
 
