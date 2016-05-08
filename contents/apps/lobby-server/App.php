@@ -5,7 +5,7 @@ class lobby_server extends \Lobby\App {
   
   public $lobby_version = "0.6";
   public $lobby_released = "2016-05-07";
-  public $lobby_release_notes = '<p>0.6 version comes with new features and has fixed some <a href="https://media.giphy.com/media/3oEdv0RAeAqr2cv1Ic/giphy.gif" target="_blank">HUGE</a> bugs.</p><p>If you are using versions <b>0.5</b> or old, <b>REMOVE</b> all apps before proceeding to update.</p>';
+  public $lobby_release_notes = '<p>Lobby 0.6 version comes with new features and has fixed some <a href="https://media.giphy.com/media/3oEdv0RAeAqr2cv1Ic/giphy.gif" target="_blank">HUGE</a> bugs.</p><p>If you are using versions <b>0.5</b> or old, <b>REMOVE</b> all apps before proceeding to update.</p><p><a class="button btn blue" target="_blank" href="http://subinsb.com/lobby/version-0-6">Read More</a></p>';
   
   public $app_categories = array(
     "accessories" => "Accessories",
