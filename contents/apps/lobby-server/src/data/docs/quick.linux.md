@@ -4,26 +4,29 @@ Install Lobby In Linux
 
 There are two ways to install Lobby in Linux :
 
-* [By installing .deb package (Debian, Ubuntu, Linux Mint)](#deb-package)
-* [Manual Install](#manual)
+* [Lobby Standalone](#section-lobby-standalone)
+* [Manual Install](#section-manual)
 
-## Lobby Installer 
+## Lobby Standalone
 
-Lobby Installer is currently available for Debian and it's variants including Ubuntu, elementaryOS, Linux Mint etc.
+Lobby Standalone's Linux version is a portable version. It works in all Linux distributions that has **Bash**.
 
-Download the ".deb" package [from here](/api/lobby/download/deb) and install it by command :
-```bash
-sudo dpkg -i lobby.deb
-```
-Replace "lobby.deb" in the above command to the location of the .deb file downloaded.
+* Download the **Zip** file [from here](/api/lobby/download/linux).
 
-DO NOT open it using Ubuntu Software Center as it doesn't show the console of installing the .deb file.
+* Extract the folder "Lobby" inside the Zip file to a location of your choice.
 
-During the install, the Lobby Zip will be downloaded and installed to /usr/share/lobby
-
-After installation, an application item will be available in Applications -> Internet. You may use it or run "lobby" in terminal.
+* Run the **Lobby** file or you can run the **Lobby.sh** file.
 
 Lobby will be then opened in your default browser. Then, [finish installing Lobby](/docs/quick#configure-lobby).
+
+### Change Host
+
+By default, Lobby Server runs on **127.0.0.1:2020**. You can change it by opening **Lobby.sh** file and changing the first variable :
+
+```bash
+# "hostname:port" where Lobby Server should be running
+host="127.0.0.1:9000"
+```
 
 ## Manual
 
@@ -37,7 +40,7 @@ sudo apt-get install php5-mysql php5-curl php5-json libapache2-mod-php5 unzip
 ```
 
 As you may know, the localhost site directory on Linux systems is 
-```
+```html
 /var/www/html
 ```
 So, we install Lobby in this directory.
@@ -73,7 +76,7 @@ The above commands will make **root** the owner and sets the group as "www-data"
 ### Lobby on a Domain
 
 Lobby can also be installed on a special domain in localhost. By using this, you can access Lobby easily from a domain. Examples :
-```
+```html
 http://lobby.dev
 http://lobby.localhost
 http://lobby.com

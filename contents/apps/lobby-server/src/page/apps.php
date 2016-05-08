@@ -147,7 +147,7 @@ if($node === "index"){
     require_once APP_DIR . "/src/inc/Parsedown.php";
     $Parsedown = new Parsedown();
 ?>
-    <div class="contents" style='padding-left: 10px;'>
+    <div class="contents">
       <?php
       $no_header = 1;
       require_once APP_DIR . "/src/inc/views/top.apps.php";

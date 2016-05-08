@@ -9,8 +9,8 @@ $this->addScript("responsiveslides.min.js");
       <a href='//lobby.subinsb.com'><img src='<?php echo APP_SRC . "/src/image/logo.png";?>' /></a>
       <p style="margin-top: 20px;">A Web OS</p>
       <p style="margin-top: 20px;">Lobby is a framework to run web apps. It can be attributed as a combination of <a href="https://en.wikipedia.org/wiki/Android" target="_blank" >Android</a> & <a href="https://en.wikipedia.org/wiki/WordPress" target="_blank" >WordPress</a></p>
-      <p>Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and can be used via a browser (Chrome, Firefox)</p>
-      <p>Hence Lobby is platform independent and can be installed on Windows, Linux, Mac etc.</p>
+      <p>Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and can be used via a browser</p>
+      <p>Hence Lobby can be installed on any platforms like Windows, Linux, Mac etc.</p>
       <p>Still don't understand it ? See a detailed description here :</p>
       <a href="/docs/about" class="btn indigo" target="_blank">About Lobby</a>
       <div style="margin-top: 10px;">
@@ -49,7 +49,7 @@ $this->addScript("responsiveslides.min.js");
     </div>
   </div>
 </section>
-<section id="features" class="odd-section" style="padding-top: 130px;">
+<section id="features" class="odd-section">
   <div class="container">
     <div class="row" style="text-align: left;">
       <h2>Features</h2>
@@ -67,7 +67,7 @@ $this->addScript("responsiveslides.min.js");
     </div>
   </div>
 </section>
-<section id="lobby-store" class="even-section" style="padding-top: 100px;">
+<section id="lobby-store" class="even-section">
   <div class="container">
     <div class="row" style="text-align: left;">
       <h2 style='font-size: 4em;'><a href="/apps" style="color: white;">Lobby Store</a></h2>
@@ -93,8 +93,7 @@ $this->addScript("responsiveslides.min.js");
   <div class="contents" style="padding: 20px 0;">
     <h1 style='font-size: 4em;margin-top:0;'><a href="/download">Download</a></h1>
     <div clear>
-      <a class='platform linux' href='/api/lobby/download/linux' title='Download DEB File'></a>
-      <a class='platform ubuntu' href='/api/lobby/download/deb' title='Download DEB File'></a>
+      <a class='platform linux' href='/api/lobby/download/linux' title='Download Linux Distro Supported Zip File'></a>
       <a class='platform windows' href='/api/lobby/download/msi' title='Download MSI File'></a>
       <a class='platform zip' href='/api/lobby/download/latest' title='Download Zip File'></a>
     </div>

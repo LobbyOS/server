@@ -13,9 +13,9 @@ if(isset($doc) && array_search($doc, $docs) !== false){
   
   if(substr($doc, 0, 4) === "dev."){
     $doc = substr_replace($doc, '', 0, 4);
-    \Lobby::setTitle($doc_name . " | Developer Docs");
+    \Lobby::setTitle($doc_name . " | Developer Documentation");
   }else{
-    \Lobby::setTitle($doc_name . " | Docs");
+    \Lobby::setTitle($doc_name . " | Documentation");
   }
 }else{
   ser();
@@ -25,7 +25,7 @@ $this->addStyle("docs.css");
 <div class="sidebar">
   <div style="position: absolute;right: 0px;top: 0px;bottom: 0px;width: 2px;box-shadow: -5px 0px 30px rgba(0,0,0,1);"></div>
   <ul>
-    <li>
+    <li class="doc-side-head">
       <?php echo \Lobby::l("/docs", "Preface", 'class="head"');?>
       <ul>
         <li><?php echo "<a href='". L_URL ."/docs/about'>About</a>";?></li>
@@ -36,7 +36,7 @@ $this->addStyle("docs.css");
         <li><?php echo "<a href='". L_URL ."/docs/update'>Updates</a>";?></li>
       </ul>
     </li>
-    <li>
+    <li class="doc-side-head">
       <?php echo \Lobby::l("/docs/dev", "Developer", 'class="head"');?>
       <ul>
         <li><?php echo "<a href='". L_URL ."/docs/dev/introduction'>Introduction</a>";?></li>
@@ -44,7 +44,7 @@ $this->addStyle("docs.css");
         <li><?php echo "<a href='". L_URL ."/docs/dev/debug'>Debugging</a>";?></li>
       </ul>
     </li>
-    <li>
+    <li class="doc-side-head">
       <?php echo \Lobby::l("/docs/dev/app", "App", 'class="head"');?>
       <ul>
         <li><?php echo "<a href='". L_URL ."/docs/dev/app/manifest.json'>Manifest File</a>";?></li>

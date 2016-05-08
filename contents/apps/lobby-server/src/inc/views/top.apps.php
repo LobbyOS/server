@@ -15,7 +15,6 @@ if(!isset($no_header)){
   <div class="nav-item">
     <a href="<?php echo L_URL;?>/apps?browse=new" class="btn green">New</a>
   </div>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <div class="nav-item" id="settings">
     <a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'><i class="material-icons">settings</i></a>
     <ul id='dropdown1' class='dropdown-content'>

@@ -10,7 +10,7 @@ How to download & install Lobby on various systems :
 
 ## Requirements
 
-1. Ubuntu/Linux, Windows 7/8/10, Apple Mac etc...
+1. Linux or Windows or Mac etc.
 2. Localhost that has :
   1. Apache Web Server with :
     * Rewrite Module (mod_rewrite)
@@ -24,40 +24,57 @@ How to download & install Lobby on various systems :
 
 As the support for PHP 5.3 has ended, it is recommended you use PHP **5.5** or later.
 
-## Configure Lobby 
+## Installation
 
-You will see an installation page when you first visit **Lobby** in your Browser after installing Lobby in a directory.
+* Download the "lobby.zip" file from [here](/download#direct).
+* Create a folder named "lobby" in your [server's document root](http://www.karelia.com/support/sandvox/help/z/Document_Root.html) folder.
+* Open the Zip file and extract the contents of it to this newly created folder named "lobby"
+* Open your web browser and access the "lobby" folder through web server
 
-Follow the instructions in the installation page to successfully configure & install **Lobby** in your system.
+  Example: If your server's URL is "http://localhost", then access:
+  ```html
+  http://localhost/lobby
+  ```
+* Proceed through the installation process. In this stage, you should [configure Lobby](#section-configuration).
+
+## Configuration
+
+You will see an installation page when you first visit **Lobby** in your web browser.
+
+Follow the instructions in the installation page to successfully configure & complete install of **Lobby** in your system.
 
 * The first step is to verify that all dependencies of Lobby is met
 
   If everything is satisfied, a "Proceed To Installation" button will be available at the far bottom of page.
   
-  The dependency of "mod_rewrite" module will be seen only if you are running Lobby on Apache Server.
+  The dependency of **mod_rewrite** module will be seen only if you are running Lobby on Apache Server.
   
 * In the second step, you have to choose what Database to use
 
   The quickest way is to use SQLite (Windows recommended).
   
-  If you are installing Lobby in a **Public Server, use MySQL** (Don't use SQLite).
+  If you are installing Lobby in a **Public Server, use MySQL** (**NEVER** use SQLite).
   
-* #### MySQL
+  #### MySQL
+  Type in the database connection information and the database name. The database will be created if it doesn't exist.
   
-  The database will be created if it doesn't exist.
+  Prefix is used to make the table names. If "l\_" is used as prefix, then tables created in the database will start from "l_" :
+  ```sql
+  `l_options`, `l_data`, `l_users`
+  ```
   
-  If tables with the same "prefix" exists, then an error is shown and "config.php" won't be installed.
+  If tables with the same "prefix" exists, then an error is shown and "config.php" file won't be created.
   
   #### SQLite
-  Type in the location where the ".sqlite" DB file should be created and submit it.
+  You only need to type in the location where the ".sqlite" DB file should be created.
   
-  If the file already exists, error will not shown and instead it will be used.
+  If the file already exists, no errors will be shown and instead the existing SQLite DB will be used.
   
-* A "config.php" file will be created in the Lobby directory
-
 * After Setup is finished, a message will be shown to Proceed.
 
   Congratulations, you have successfuly installed Lobby !
+
+Now, you can see a **config.php** file in the Lobby directory. The information you have given through the installation has been written to this file. You should keep it secure and **should only make modifications VERY carefully**.
 
 ## Common Problems
 

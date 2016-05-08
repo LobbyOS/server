@@ -4,7 +4,7 @@ namespace Lobby\App;
 class lobby_server extends \Lobby\App {
   
   public $lobby_version = "0.6";
-  public $lobby_released = "2016-05-04";
+  public $lobby_released = "2016-05-07";
   public $lobby_release_notes = '<p>0.6 version comes with new features and has fixed some <a href="https://media.giphy.com/media/3oEdv0RAeAqr2cv1Ic/giphy.gif" target="_blank">HUGE</a> bugs.</p><p>If you are using versions <b>0.5</b> or old, <b>REMOVE</b> all apps before proceeding to update.</p>';
   
   public $app_categories = array(
@@ -60,10 +60,26 @@ class lobby_server extends \Lobby\App {
      * Mobile
      */
     \Lobby::hook("head.end", function(){
+      echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" async="async" defer="defer">';
       echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
       if(\Lobby::$hostName != "server.lo"."bby.sim"){
         echo '<script>if (window.location.protocol != "https:") window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);</script>';
       }
+    });
+    
+    /**
+     * 
+     */
+    \Lobby::hook("panel.end", function(){
+      echo '<a href="#" data-activates="lobby-nav" id="lobby-nav-btn"><i class="material-icons">menu</i></a>';
+      echo '<ul class="side-nav" id="lobby-nav">
+        <li><a href="/">Lobby</a></li>
+        <li><a href="/apps">Apps</a></li>
+        <li><a href="/download">Download</a></li>
+        <li><a href="/web-readme">Demo</a></li>
+        <li><a href="/docs">Documentation</a></li>
+      </ul>';
+      echo '<script>lobby.load(function(){$("#lobby-nav-btn").sideNav({menuWidth: 200});});</script>';
     });
     
     /**
@@ -133,27 +149,21 @@ class lobby_server extends \Lobby\App {
   }
   
   public function menu_items(){
-    $this->addScript("responsive.js");
     $this->addStyle("style.css");
     \Lobby\UI\Panel::addTopItem("lobbyDownload", array(
       "position" => "left",
-      "text" => "<span class='btn orange' style='margin:0;padding: 0 10px;'>Download</span>",
+      "text" => "<span class='btn red' style='margin:0;padding: 0 10px;'>Download</span>",
       "href" => "/download"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyWeb", array(
       "position" => "left",
-      "text" => "<span class='btn indigo' style='margin:0;padding: 0 10px;'>Demo</span>",
+      "text" => "<span class='btn purple' style='margin:0;padding: 0 10px;'>Demo</span>",
       "href" => "/web-readme"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyApps", array(
       "position" => "left",
       "text" => "<span class='btn green' style='margin:0;padding: 0 10px;'>Apps</span>",
       "href" => "/apps"
-    ));
-    \Lobby\UI\Panel::addTopItem("lobbyBlog", array(
-      "position" => "left",
-      "text" => "<span class='btn red' style='margin:0;padding: 0 10px;'>Blog</span>",
-      "href" => "/blog"
     ));
     \Lobby\UI\Panel::addTopItem("lobbyDocs", array(
       "position" => "left",

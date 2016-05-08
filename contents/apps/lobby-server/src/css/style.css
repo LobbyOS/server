@@ -6,6 +6,7 @@
   min-height: 100%;
   margin: 0px auto;
   background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 pre{
   margin: 10px 15px;
@@ -15,4 +16,19 @@ nav ul a{
 }
 nav ul a:hover{
   background-color: initial !important;
+}
+nav #lobby-nav-btn i{
+  font-size: 44px;
+  line-height: 44px;
+}
+@media screen and (max-width: 900px){
+  nav ul.left .item{
+    display: none;
+  }
+  nav ul.left .item#home{
+    display: block;
+  }
+  nav ul.right{
+    right: 0;
+  }
 }

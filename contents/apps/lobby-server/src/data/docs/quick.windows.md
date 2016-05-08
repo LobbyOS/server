@@ -4,42 +4,33 @@ Install Lobby In Windows
 
 There are two ways to install Lobby in Windows :
 
-* [By installing .MSI package](#msi-package)
-* [Manual Install](#manual)
+* [By installing Lobby Standalone](#section-lobby-standalone)
+* [Manual Install](#section-manual)
 
-## Lobby Installer 
+## Lobby Standalone
 
-Download the .msi file [from here](/api/lobby/download/msi). Run the installer :
+* Download the **Zip** file [from here](/api/lobby/download/windows).
 
-![Lobby Windows Installer Startup](/contents/apps/lobby-server/src/image/screenshots/windows/start.png)
+* Extract the folder "Lobby" inside the Zip file to a location of your choice.
 
-Click Next, accept the License Terms, choose location, and Install !
+That's it. Now you should [run Lobby](#section-running-lobby).
 
-Windows will ask for administrative permissions while installing Lobby. Please allow it.
+### Running Lobby
 
-![Lobby Windows Installer Finish](/contents/apps/lobby-server/src/image/screenshots/windows/finish.png)
-
-After finishing install, open the Start menu and you can see Lobby in it.
-
-#### Running Lobby
+Run the "Lobby.exe" file in the "Lobby" folder.
 
 PHP that is inside Lobby will sometimes make the following error upon starting :
 ```
 msvcr110.dll is missing
 ```
-To solve this, please go to this [page](http://www.dll-files.com/dllindex/dll-files.shtml?msvcr110), download the **Zip File** and extract the `msvcr110.dll` file to 
-```
-C:\Program Files\Lobby\php
-```
-Or you may extract it into the Windows System32 directory.
 
-A Lobby shortcut will be created in the desktop and in Start Menu. This shortcut will open `Lobby.exe`.
+This is because **Visual Studio C++** is not installed in your system. You can get the installer file from [Microsoft's website](https://www.microsoft.com/en-in/download/details.aspx?id=48145). It's only about **13MB**.
 
 When Lobby.exe is ran, an icon with [Lobby favicon](/favicon.ico) can be see in the tray area (Notification area) :
 
 ![Lobby Windows Tray Icon](/contents/apps/lobby-server/src/image/screenshots/windows/tray.png)
 
-It means that the PHP Server embedded in Lobby is running. The server runs on [127.0.0.1:9000](http://127.0.0.1:9000), so Lobby can be accessed by going to that [URL](http://127.0.0.1:9000) :
+It means that the PHP Server embedded in Lobby is running. The server runs on [127.0.0.1:9000](http://127.0.0.1:2020) by default, so Lobby can be accessed by going to that [URL](http://127.0.0.1:2020) :
 
 ![Lobby Running On Windows](/contents/apps/lobby-server/src/image/screenshots/windows/running.png)
 
@@ -47,7 +38,16 @@ If you want to stop the PHP server and exit Lobby, right click on the tray icon 
 
 ![Lobby Tray App](/contents/apps/lobby-server/src/image/screenshots/windows/tray-open.png)
 
-To configure Lobby through the web installation, [see this](/docs/quick#configure-lobby).
+To further complete installation, [see this](/docs/quick#configure-lobby).
+
+#### Change Host
+
+You can change the host where Lobby server should listen. The default is **127.0.0.1:2020**. To change it, open **lobby.ini** file inside the "Lobby" folder and change the **serverHost** property :
+
+```ini
+[LobbyConfig]
+serverHost = "127.0.0.1:9000"
+```
 
 ## Manual Install 
 

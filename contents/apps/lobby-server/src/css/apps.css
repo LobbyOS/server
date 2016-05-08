@@ -52,12 +52,14 @@
   width: 940px;
   background: none;
   padding: 0 0 40px 0;
+  box-shadow: none;
 }
 .nav, .apps .app{
   box-shadow: 0 1px 1px rgba(0,0,0,0.04);
   border: 1px solid #e5e5e5;
 }
 .nav{
+  position: relative;
   background: #fff;
   padding: 20px;
 }
@@ -124,4 +126,30 @@
 }
 .tabs{
   overflow: hidden;
+}
+@media screen and (max-width: 940px){
+  .workspace .contents{
+    width: 100%;
+  }
+  .nav #search{
+    float: none;
+    margin: 0 auto;
+  }
+  .apps .app{
+    margin: 10px 0;
+  }
+}
+@media screen and (max-width: 750px){
+  .apps .app{
+    width: 100%;
+  }
+  .nav .nav-item{
+    display: block;
+    margin: 10px 0 0;
+  }
+  .nav #settings {
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
 }

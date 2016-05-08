@@ -64,7 +64,7 @@
 .workspace .contents{
   margin: 0px 0px 0px 15%;
   padding: 0px 20px 40px;
-  width: 85% !important;
+  width: 85%;
   line-height: 24px;
   font-size: 1.1rem;
 }
@@ -81,7 +81,28 @@
   background-color: rgba(0,0,0,0.1);
   border-radius: 3px;
 }
-.contents ul, .contents ul li{
+.contents ul, .contents li{
   list-style-type: decimal;
   margin-left: 20px;
+}
+.contents pre ul, .contents pre li{
+  margin-left: 0;
+}
+@media screen and (max-width: 900px){
+  .sidebar{
+    position: relative;
+    width: 100%;
+    padding-top: 0;
+  }
+  .sidebar .doc-side-head{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .sidebar ul li:nth-child(1) {
+    margin-top: 0;
+  }
+  .workspace .contents{
+    margin: 0;
+    width: 100%;
+  }
 }

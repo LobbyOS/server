@@ -3,26 +3,39 @@ require_once APP_DIR . "/src/inc/LobbyStats.php";
 
 $Stats = new LobbyStats();
 
-$driveFolderURL = "http://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk";
 /**
  * List of available downloads
  */
 $lobby_downloads = array(
-  "linux" => "$driveFolderURL/Lobby-Linux.zip",
-  "script" => "$driveFolderURL/lobby-install.sh",
-  "deb" => "$driveFolderURL/lobby.deb",
-  "msi" => "https://raw.githubusercontent.com/LobbyOS/windows-installer/master/LobbyInstaller/Lobby.msi",
-  "0.1" => "$driveFolderURL/0.1.zip",
-  "0.1.1" => "$driveFolderURL/0.1.1.zip",
-  "0.2" => "$driveFolderURL/0.2.zip",
-  "0.2.1" => "$driveFolderURL/0.2.1.zip",
-  "0.3" => "$driveFolderURL/0.3.zip",
-  "0.4" => "$driveFolderURL/0.4.zip",
-  "0.4.1" => "$driveFolderURL/0.5.zip", // Legacy. I screwed up
-  "0.5" => "$driveFolderURL/0.5.zip",
-  "0.5.1" => "$driveFolderURL/0.5.1.zip",
-  "0.6" => "$driveFolderURL/0.6.zip"
+  "linux" => "VtQfWaP2FQUNFNG",
+  "windows" => "OKKbctelksyxxqJ",
+  
+  // "script" => "lobby-install.sh",
+  // "deb" => "lobby.deb",
+  // "msi" => "https://raw.githubusercontent.com/LobbyOS/windows-installer/master/LobbyInstaller/Lobby.msi",
+  
+  "0.1" => "0.1.zip",
+  "0.1.1" => "0.1.1.zip",
+  "0.2" => "0.2.zip",
+  "0.2.1" => "0.2.1.zip",
+  "0.3" => "0.3.zip",
+  "0.4" => "0.4.zip",
+  "0.4.1" => "0.5.zip", // Legacy. I screwed up
+  "0.5" => "0.5.zip",
+  "0.5.1" => "0.5.1.zip",
+  "0.6" => "aulbvzUsw8ZtJNj"
 );
+
+function getDownloadURL($id, $lobby_downloads){
+  if(strlen($lobby_downloads[$id]) === 15){
+    /**
+     * ownCloud URL
+     */
+    return "https://sky-phpgeek.rhcloud.com/s/{$lobby_downloads[$id]}/download";
+  }else{
+    return "https://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/{$lobby_downloads[$id]}";
+  }
+}
 
 if($node === "dot.gif"){
   header("Content-type: image/gif");
@@ -54,7 +67,7 @@ if($node === "dot.gif"){
       /**
        * Download
        */
-      header("Location: {$lobby_downloads[$version]}");
+      header("Location: " . getDownloadURL($version, $lobby_downloads));
     }
   }else if($what === "updates"){
     $response = array(

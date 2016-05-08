@@ -3,11 +3,15 @@
   padding: 40px 0;
   width: 500px;
   min-height: 0;
+  box-shadow: none;
 }
 section{
   background: white;
   padding: 150px 0;
   text-align: center;
+}
+section h2{
+  margin-top: 0;
 }
 .odd-section {
   text-align: center;
@@ -119,4 +123,12 @@ section img{
 #download .zip{
   background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/zip.svg);
   background-size: contain;
+}
+@media screen and (max-width: 500px){
+  .workspace .contents{
+    width: 100%;
+  }
+  section{
+    padding: 20px 0;
+  }
 }
