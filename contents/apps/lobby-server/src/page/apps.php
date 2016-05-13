@@ -2,6 +2,32 @@
 $this->addStyle("apps.css");
 $this->addScript("apps.js");
 
+function get_timeago( $ptime ){
+  $estimate_time = time() - $ptime;
+
+  if( $estimate_time < 1 ){
+    return 'less than 1 second ago';
+  }
+
+  $condition = array( 
+    12 * 30 * 24 * 60 * 60  =>  'year',
+    30 * 24 * 60 * 60       =>  'month',
+    24 * 60 * 60            =>  'day',
+    60 * 60                 =>  'hour',
+    60                      =>  'minute',
+    1                       =>  'second'
+  );
+
+  foreach( $condition as $secs => $str ){
+    $d = $estimate_time / $secs;
+      
+    if( $d >= 1 ){
+      $r = round( $d );
+      return 'about ' . $r . ' ' . $str . ( $r > 1 ? 's' : '' ) . ' ago';
+    }
+  }
+}
+
 if($node === "index"){  
   \Lobby::setTitle("Store");
   
@@ -66,35 +92,6 @@ if($node === "index"){
       if(count($apps) == 0){
         ser("No App Found", "No app was found with the critera you gave");
       }else{
-        function get_timeago( $ptime )
-        {
-            $estimate_time = time() - $ptime;
-        
-            if( $estimate_time < 1 )
-            {
-                return 'less than 1 second ago';
-            }
-        
-            $condition = array( 
-                        12 * 30 * 24 * 60 * 60  =>  'year',
-                        30 * 24 * 60 * 60       =>  'month',
-                        24 * 60 * 60            =>  'day',
-                        60 * 60                 =>  'hour',
-                        60                      =>  'minute',
-                        1                       =>  'second'
-            );
-        
-            foreach( $condition as $secs => $str )
-            {
-                $d = $estimate_time / $secs;
-        
-                if( $d >= 1 )
-                {
-                    $r = round( $d );
-                    return 'about ' . $r . ' ' . $str . ( $r > 1 ? 's' : '' ) . ' ago';
-                }
-            }
-        }
         foreach($apps as $app){
           $app['logo'] = $app['logo'] === "0" ? APP_URL . "/src/image/blank.png" : APP_URL . "/api/app/{$app['id']}/logo";
         ?>
@@ -169,8 +166,8 @@ if($node === "index"){
         <ul class="tabs">
           <li class="tab"><a href="#description">Description</a></li>
           <li class="tab"><a href="#screenshots">Screenshots</a></li>
-          <li class="tab"><a href="#stats">Stats</a></li>
           <li class="tab"><a href="#download">Download</a></li>
+          <li class="tab"><a href="#about">About</a></li>
         </ul>
         <script>
           lobby.load(function(){
@@ -208,10 +205,25 @@ if($node === "index"){
           }
           ?>
         </div>
-        <div id="stats">
-          <p>
-            <strong><?php echo $app_info['downloads'];?> Downloads</strong>
-          </p>
+        <div id="download">
+          <div class="chip"><span>Requirements :</span></div>
+          <ul class="collection" style="margin-left: 20px;">
+            <?php
+            foreach(json_decode($app_info['requires'], true) as $k => $v){
+              echo "<li class='collection-item'>$k $v</li>";
+            }
+            ?>
+          </ul>
+          <div style="margin: 20px;text-align: center;">
+            <a data-path="/admin/lobby-store.php?id=anagram" class="open-via-lobby btn orange btn-large" title="Open in Lobby" style="display: inline-block;">
+              <i class="material-icons">open_in_new</i>
+            </a>
+            <a style='display: inline-block;color: white;position:relative;line-height: 40px;' class='btn btn-large green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip<span style='position: absolute;font-weight: bold;bottom: 7px;left: 0;line-height: 14px;right: 0;font-size: 0.8rem;'><?php echo \Lobby\FS::normalizeSize($app_info["download_size"]);?></span></a>
+            <a style="display: inline-block;" class="btn">
+              <strong><?php echo $app_info['downloads'];?> Downloads</strong>
+            </a>
+            <a href="http://server.lobby.sim/docs/install-app" class="btn" target="_blank">Installation Help</a>
+          </div>
           <?php
           require_once APP_DIR . "/src/inc/Fr.star.php";
           $this->addScript("Fr.star.js");
@@ -239,25 +251,13 @@ if($node === "index"){
               }
               fr_star();
             });
-          </script>          
+          </script>
         </div>
-        <div id="download">
-          <div class="chip">Version : <?php echo $app_info['version'];?></div>
-          <div class="chip" title="UTC Time Zone">Updated : <?php echo $app_info['updated'];?></div><cl/>
-          <div class="chip"><span>Requirements :</span></div>
-          <ul class="collection" style="margin-left: 20px;">
-            <?php
-            foreach(json_decode($app_info['requires'], true) as $k => $v){
-              echo "<li class='collection-item'>$k $v</li>";
-            }
-            ?>
-          </ul><cl/>
+        <div id="about">
+          <div class="chip">Version : <?php echo $app_info['version'];?></div><cl/>
+          <div class="chip" title="UTC Time Zone - <?php echo $app_info['updated'];?>">Updated : <?php echo get_timeago(strtotime($app_info['updated']));?></div><cl/>
           <div class="chip">Author : <a href='/u/<?php echo $app_info['author'];?>'><?php echo \Fr\LS2::getUser("name", $app_info['author']);?></a></div><cl/>
           <div class="chip">Web Page : <?php echo "<a href='{$app_info['app_page']}' target='_blank'>". htmlspecialchars($app_info['app_page']) ."</a>";?></div>
-          <a style='display: block;font-size: 16px;height: 60px;color: white;margin: 20px;' class='btn green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip File<font size='1' style='display:block;margin-top: -10px;'><?php echo $app_info['downloads'];?> Downloads</font></a>
-          <div style="margin: 10px 0;">
-            <a href="http://server.lobby.sim/docs/install-app" class="btn" target="_blank">App Installation Instructions</a>
-          </div>
         </div>
       </div>  
     </div>

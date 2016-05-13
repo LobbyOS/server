@@ -94,7 +94,7 @@ $this->addScript("responsiveslides.min.js");
     <h1 style='font-size: 4em;margin-top:0;'><a href="/download">Download</a></h1>
     <div clear>
       <a class='platform linux' href='/api/lobby/download/linux' title='Download Linux Distro Supported Zip File'></a>
-      <a class='platform windows' href='/api/lobby/download/msi' title='Download MSI File'></a>
+      <a class='platform windows' href='/api/lobby/download/windows' title='Download MSI File'></a>
       <a class='platform zip' href='/api/lobby/download/latest' title='Download Zip File'></a>
     </div>
     <div clear style='margin-top: 20px;' >

@@ -44,12 +44,11 @@ class lobby_server extends \Lobby\App {
       "theme.hine-/src/dashboard/css/jquery.contextmenu.css",
       "theme.hine-/src/dashboard/css/dashboard.css",
       "theme.hine-/src/main/lib/jquery-ui/jquery-ui.css",
-      
     ));
     
     \Assets::js("jqueryui", "");
     
-    \Assets::removeJs(array(
+    \Assets::removeJS(array(
       "theme.hine-/src/dashboard/js/scrollbar.js",
       "theme.hine-/src/dashboard/js/jquery.contextmenu.js",
       "theme.hine-/src/dashboard/js/dashboard.js",
@@ -87,7 +86,7 @@ class lobby_server extends \Lobby\App {
      */
     \Lobby\UI\Panel::addNotifyItem("lobby-0-6-released", array(
       "contents" => "Lobby 0.6 Released",
-      "href" => "/downloads",
+      "href" => "/download",
       "icon" => "update"
     ));
     

@@ -7,8 +7,8 @@ $Stats = new LobbyStats();
  * List of available downloads
  */
 $lobby_downloads = array(
-  "linux" => "VtQfWaP2FQUNFNG",
-  "windows" => "OKKbctelksyxxqJ",
+  "linux" => "BSMk6No0RZ8qZhq",
+  "windows" => "iRXEoTSvKYvdEmZ",
   
   // "script" => "lobby-install.sh",
   // "deb" => "lobby.deb",
@@ -23,7 +23,7 @@ $lobby_downloads = array(
   "0.4.1" => "0.5.zip", // Legacy. I screwed up
   "0.5" => "0.5.zip",
   "0.5.1" => "0.5.1.zip",
-  "0.6" => "aulbvzUsw8ZtJNj"
+  "0.6" => "qVHNgLfOxeVoLMd"
 );
 
 function getDownloadURL($id, $lobby_downloads){
@@ -31,7 +31,7 @@ function getDownloadURL($id, $lobby_downloads){
     /**
      * ownCloud URL
      */
-    return "https://sky-phpgeek.rhcloud.com/s/{$lobby_downloads[$id]}/download";
+    return "https://sky-phpgeek.rhcloud.com/index.php/s/{$lobby_downloads[$id]}/download";
   }else{
     return "https://googledrive.com/host/0B2VjYaTkCpiQM0JXUkVneFZtbUk/{$lobby_downloads[$id]}";
   }
@@ -127,35 +127,36 @@ if($node === "dot.gif"){
   $appID = $path[3];
   $what = $path[4];
   if($what === "logo"){
-    require_once __DIR__ . "/../inc/LobbyGit.php";
-  
-    $sql = \Lobby\DB::$dbh->prepare("SELECT `logo`, `git_url` FROM `apps` WHERE `id` = ?");
+    $sql = \Lobby\DB::$dbh->prepare("SELECT `logo`, `git_url`, `cloud_id` FROM `apps` WHERE `id` = ?");
     $sql->execute(array($appID));
     
     if($sql->rowCount() === 0){
       echo "error : app doesn't exist";
     }else{
+      require_once __DIR__ . "/../inc/LobbyGit.php";
       $r = $sql->fetch(\PDO::FETCH_ASSOC);
+      
       if($r['logo'] === "0"){
         header("Location: " . L_URL . "/contents/apps/lobby-server/src/image/blank.png");
       }else{
-        $lg = new LobbyGit($appID, $r['git_url']);
+        $lg = new LobbyGit($appID, $r['git_url'], $r["cloud_id"]);
         $lg->image();
       }
     }
   }else if($what === "download"){
-    $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url` FROM `apps` WHERE `id` = ?");
-    $sql->execute(array($appID)); // Here $version is actually App ID
+    $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url`, `cloud_id` FROM `apps` WHERE `id` = ?");
+    $sql->execute(array($appID));
     
     if($sql->rowCount() === 0){
       echo "error : app doesn't exist";
     }else{
-      $git_url = $sql->fetchColumn();
+      require_once __DIR__ . "/../inc/LobbyGit.php";
+      $r = $sql->fetch(\PDO::FETCH_ASSOC);
+      
       $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `downloads` = `downloads` + 1 WHERE `id` = ?");
       $sql->execute(array($appID));
       
-      require_once __DIR__ . "/../inc/LobbyGit.php";
-      $lg = new LobbyGit($appID, $git_url);
+      $lg = new LobbyGit($appID, $git_url, $r["cloud_id"]);
       $this->download("lobby-app-$appID.zip", $lg->download());
     }
   }
