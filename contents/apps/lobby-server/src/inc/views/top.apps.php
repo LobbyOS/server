@@ -31,7 +31,7 @@ if(!isset($no_header)){
   <div class="modal-content">
     <h4>Change Lobby URL</h4>
     <p>Type in the URL of your Lobby installation</p>
-    <p>Eg: http://127.0.0.1:9000, http://localhost/lobby</p>
+    <p>Eg: http://127.0.0.1:2020, http://localhost/lobby</p>
     <input type='text' id='lobby_url' />
   </div>
   <div class="modal-footer">
