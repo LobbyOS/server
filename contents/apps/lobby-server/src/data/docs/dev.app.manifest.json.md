@@ -90,19 +90,19 @@ Here is a sample manifest file of the **lEdit** app :
 
 ```php
 {
-   "name" : "lEdit",
-   "short_description" : "The Default Text Editor of Lobby",
-   "category" : "accessories",
-   "sub_category" : "",
-   "version" : "0.1",
-   "author" : "Lobby",
-   "author_page" : "http://lobby.subinsb.com",
-   "app_page" : "http://lobby.subinsb.com/apps/ledit",
-   "image" : "true"
+  "name" : "lEdit",
+  "short_description" : "The Default Text Editor of Lobby",
+  "category" : "accessories",
+  "sub_category" : "tools",
+  "version" : "0.1",
+  "author" : "Lobby",
+  "author_page" : "http://lobby.subinsb.com",
+  "app_page" : "http://lobby.subinsb.com/apps/ledit",
+  "logo" : "true"
 }
 ```
 And here is the **app/src/image/logo.png** file :
 
-![lEdit Logo](https://googledrive.com/host/0B2VjYaTkCpiQQmYzblNwa2t0NmM/logo.png)
+![lEdit Logo](https://lobby.subinsb.com/api/app/ledit/logo)
 
 If you want to see full source code of **lEdit**, you can download it [here](http://lobby.subinsb.com/api/download/app/ledit).

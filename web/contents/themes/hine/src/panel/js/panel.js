@@ -1,1 +1,0 @@
-lobby.load(function(){$('nav .left, nav .right').superfish({delay:100});});

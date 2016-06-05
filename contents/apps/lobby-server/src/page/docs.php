@@ -49,6 +49,7 @@ $this->addStyle("docs.css");
       <ul>
         <li><?php echo "<a href='". L_URL ."/docs/dev/app/manifest.json'>Manifest File</a>";?></li>
         <li><?php echo "<a href='". L_URL ."/docs/dev/app/App.php'>App.php</a>";?></li>
+        <li><?php echo "<a href='". L_URL ."/docs/dev/app/publish'>Publish</a>";?></li>
       </ul>
     </li>
   </ul>

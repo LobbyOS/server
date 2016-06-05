@@ -5,7 +5,7 @@ $this->setTitle("Download");
   <h1>Lobby Admin</h1>
   <?php
   $sql = \Lobby\DB::$dbh->query("SELECT * FROM `lobby` WHERE `key_name` = 'downloads'");
-  echo "<pre syle='word-wrap: break-word;white-space: pre-wrap;'><code>";
+  echo "<pre style='word-wrap: break-word;white-space: pre-wrap;'><code>";
   var_dump($sql->fetch());
   echo "</code></pre>";
   ?>

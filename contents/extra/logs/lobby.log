@@ -117,3 +117,29 @@ Stack trace:
 [2016-05-13 17:22:50] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyStats.php on line 11 : Undefined variable: uniqueID
 [2016-05-13 17:31:07] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 159 : Undefined variable: git_url
 [2016-05-13 17:31:07] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 159 : Undefined variable: git_url
+[2016-05-15 06:19:04] 64 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/admin/new-app.php on line 72 : require_once(): Failed opening required '/home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php' (include_path='.:/usr/share/php')
+[2016-05-15 06:19:04] 64 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/admin/new-app.php on line 72 : require_once(): Failed opening required '/home/simsu/Other/projects/Web/Lobby/Web/includes/src/App.php' (include_path='.:/usr/share/php')
+[2016-05-15 06:19:25] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/admin/new-app.php on line 81 : Invalid argument supplied for foreach()
+[2016-05-15 06:19:25] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/admin/new-app.php on line 81 : Invalid argument supplied for foreach()
+[2016-05-16 18:39:59] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 183 : Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=> '//i.imgur.com/dAFvGzDl.png' WHERE `id` = 'downloader'' at line 1 in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:183
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(183): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(40): LobbyGit->getRepo()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(58): LobbyGit->register()
+#3 /home/simsu/Other/projects/Web/Lobby/Web/services/cron/update-apps.php(24): LobbyGit->update()
+#4 {main}
+  thrown
+[2016-05-16 18:39:59] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 183 : Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=> '//i.imgur.com/dAFvGzDl.png' WHERE `id` = 'downloader'' at line 1 in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:183
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(183): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(40): LobbyGit->getRepo()
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(58): LobbyGit->register()
+#3 /home/simsu/Other/projects/Web/Lobby/Web/services/cron/update-apps.php(24): LobbyGit->update()
+#4 {main}
+  thrown
+[2016-05-17 07:21:53] 4096 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 193 : Object of class stdClass could not be converted to string
+[2016-05-17 07:21:53] 4096 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 193 : Object of class stdClass could not be converted to string
+[2016-06-05 08:01:17] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/mods.php on line 43 : file_get_contents(): Filename cannot be empty
+[2016-06-05 08:01:17] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/mods.php on line 43 : file_get_contents(): Filename cannot be empty
+[2016-06-05 08:40:06] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/docs.php on line 11 : fread(): Length parameter must be greater than 0
+[2016-06-05 08:40:06] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/docs.php on line 11 : fread(): Length parameter must be greater than 0

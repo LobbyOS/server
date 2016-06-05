@@ -19,7 +19,7 @@ function changeLinks(){
         if(confirm("You have to set Lobby URL. Please do it so by clicking the settings icon in the apps navbar.\n\nPress Ok if you want to change now."))
           $("#change_lobby_url").click();
       });
-      localhost["lobbyURL"] = "";
+      localStorage["lobbyURL"] = "";
     }else{
       $(this).unbind("click").attr({
         href: localStorage["lobbyURL"] + p,
@@ -46,7 +46,7 @@ lobby.load(function(){
   });
   $('.modal-trigger').leanModal({
     ready: function(){
-      $('.workspace .modal-content #lobby_url').val(localhost["lobbyURL"]);
+      $('.workspace .modal-content #lobby_url').val(localStorage["lobbyURL"]);
     }
   });
   

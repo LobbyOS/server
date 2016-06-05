@@ -73,5 +73,6 @@ When some apps or parts of Lobby doesn't work, you can identify the problem by e
 
 Whether Lobby should communicate with server to check for updates. This parameter needs a boolean value. Default value is `TRUE`.
 
-```
+```php
 'server_check' => true
+```

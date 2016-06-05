@@ -1,3 +1,5 @@
+Modules
+
 # Modules
 
 Modules are parts of Lobby that extend the current features.

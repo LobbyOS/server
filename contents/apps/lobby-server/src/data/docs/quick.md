@@ -7,6 +7,7 @@ How to download & install Lobby on various systems :
 * [Windows](/docs/quick/windows)
 * [Linux](/docs/quick/linux)
 * [Mac](/docs/quick/mac)
+* [Manual Server Install](/docs/quick/manual)
 
 ## Requirements
 

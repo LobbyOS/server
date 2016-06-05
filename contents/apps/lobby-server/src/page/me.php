@@ -166,12 +166,6 @@ if($node === "index"){
       $lg = new \LobbyGit($AppID, $app_info['git_url']);
       $lg->update();
       
-      /**
-       * Bump version
-       */
-      $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `version` = `version` + 0.1, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
-      $sql->execute(array($app_info['id'], \Fr\LS2::$user));
-      
       \Lobby::redirect(\Lobby::u() . "&app-updated");
     }
     
@@ -180,16 +174,12 @@ if($node === "index"){
         "id" => $app_edit ? $path[3] : \H::i("app_id"),
         "name" => \H::i("app_name"),
         "git_url" => \H::i("app_src"),
-        "requires" => \H::i("app_requires"),
-        "short_description" => \H::i("app_short_description"),
         "description" => \H::i("app_description"),
         "category" => \H::i("app_category"),
         "sub_category" => \H::i("app_sub_category"),
-        "version" => \H::i("app_version"),
         "app_page" => \H::i("app_page")
       );
       $app_info = array_merge($app_info, $app_info_required);
-      $app_info["screenshots"] = \H::i("app_screenshots");
       $app_info["lobby_web"] = isset($_POST["app_lobby_web"]) ? "1" : "0";
       $app_info["logo"] = isset($_POST["app_logo"]) ? "1" : "0";
     }
@@ -207,8 +197,8 @@ if($node === "index"){
         ser("Invalid URL", "The app's source code URL you provided was invalid.");
       }else{
         if($app_edit != true){
-          $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps_queue` (`id`, `name`, `src`, `description`, `short_description`, `category`, `sub_category`, `version`, `app_page`, `author`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
-          $sql->execute(array($app_info['id'], $app_info['name'], $app_info['git_url'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], \Fr\LS2::$user));
+          $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps_queue` (`id`, `name`, `src`, `description`, `category`, `sub_category`, `app_page`, `author`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
+          $sql->execute(array($app_info['id'], $app_info['name'], $app_info['git_url'], $app_info['description'], $app_info['category'], $app_info['sub_category'], $app_info['app_page'], \Fr\LS2::$user));
         
           $admin_access_token = \Fr\LS2::getUser("username", 1);
           
@@ -222,9 +212,9 @@ if($node === "index"){
         
           sss("App Submitted", "Your app was added to the review queue. You will be notified by email about your app's review status.");
         }else{        
-          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `requires` = ?, `screenshots` = ?, `description` = ?, `short_description` = ?, `category` = ?, `sub_category` = ?, `version` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
+          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `description` = ?, `category` = ?, `sub_category` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
           
-          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['requires'], $app_info['screenshots'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['version'], $app_info['app_page'], $app_info['lobby_web'], $app_info['id'], \Fr\LS2::$user));
+          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['description'], $app_info['category'], $app_info['sub_category'], $app_info['app_page'], $app_info['lobby_web'], $app_info['id'], \Fr\LS2::$user));
           
           sss("Updated", "Your app was successfully updated.");
         }
@@ -244,12 +234,11 @@ if($node === "index"){
       <h2>Update</h2>
       <?php
       if(isset($_GET['app-updated'])){
-        echo sss("Updated App", "The app was updated from the Git source.<br/>The app's version was automatically bumped to <b>{$app_info['version']}</b>. You can change it using 'Edit' form below");
+        echo sss("Updated App", "The app was updated from the Git source.");
       }
       ?>
       <p>If the app's Git repo (branch master) was updated, Lobby will update it automatically within an hour.<cl/>If that didn't happen or you want to update immediately, please click the following button to update the app :</p>
       <center><a class="btn green" href="?update">Update</a></center>
-      <p>When you click update, the app's version will be automatically bumped to the next value (0.1 to 0.2 or 0.9 to 1.0). You can change the version number by changing the value in the form below.</p>
     <?php
     }
     ?>
@@ -280,6 +269,8 @@ if($node === "index"){
         </label>
       <?php
       }
+      /**
+       * Now updated with Git
       if($app_edit === true){
       ?>
         <label>
@@ -297,21 +288,29 @@ if($node === "index"){
         <input type="hidden" name="app_requires" value="{}" />
       <?php
       }
+      */
+      
       ?>
       <label>
         <span>Logo</span>
         <input type="checkbox" name="app_logo" <?php if($app_edit === true && $app_info['logo'] === "1"){echo "checked='checked'";}?> />
         <span>Does the app have a logo ?</span>
       </label>
+      <?php
+      /**
       <label>
         <span>Short Description</span>
         <input type="text" name="app_short_description" value="<?php echo $app_edit == true ? $app_info['short_description'] : "";?>" />
       </label>
+      */
+      ?>
       <label>
         <span>Description</span>
         <textarea type="text" style="height: 10rem;" name="app_description" rows="10" cols="70"><?php echo $app_edit == true ? $app_info['description'] : "";?></textarea>
       </label>
       <?php
+      /**
+       * Screenshots are now obtained from manifest file
       if($app_edit === true){
       ?>
         <label>
@@ -351,6 +350,7 @@ if($node === "index"){
         </script>
       <?php
       }
+      */
       ?>
       <label>
         <span>Category</span>

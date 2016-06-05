@@ -1,18 +1,22 @@
 <?php
-$mods_location = APP_DIR . "/src/data/mods/";
+$docs_location = APP_DIR . "/src/data/mods/";
 
-$mods = array_diff(scandir($mods_location), array('..', '.'));
+$docs = array_diff(scandir($docs_location), array('..', '.'));
 
-$mod = isset($mod) ? $mod . ".md" : "index.md";
-
-if(isset($mod) && array_search($mod, $mods) !== false){
-  $mod_path = "$mods_location/$mod";
+$doc = isset($doc) ? $doc . ".md" : "index.md";
+if(isset($doc) && array_search($doc, $docs) !== false){
+  $doc_path = "$docs_location/$doc";
   
-  if($mod == "index"){
-    \Lobby::setTitle("Modules");
+  $f = fopen($doc_path, 'r');
+  $doc_name = fgets($f);
+  $content = fread($f, filesize($doc_path));
+  fclose($f);
+  
+  if(substr($doc, 0, 4) === "dev."){
+    $doc = substr_replace($doc, '', 0, 4);
+    \Lobby::setTitle($doc_name . " | Developer Documentation");
   }else{
-    $mod_name = ucwords(preg_replace("/[-|.]/", " ", $mod));
-    \Lobby::setTitle($mod_name . " | Modules");
+    \Lobby::setTitle($doc_name . " | Modules");
   }
 }else{
   ser();
@@ -35,8 +39,22 @@ $this->addStyle("docs.css");
   <?php
   require_once APP_DIR . "/src/inc/Parsedown.php";
   $Parsedown = new ParsedownExtra();
-  $content = file_get_contents($mod_path);
-  echo $Parsedown->text($content);
+  $html = $Parsedown->text($content);
+  
+  // This function adds nice anchor with id attribute to our h2 tags for reference
+  // @link: http://www.w3.org/TR/html4/struct/links.html#h-12.2.3
+  function anchor_content_headings($content) {
+    // now run the pattern and callback function on content
+    // and process it through a function that replaces the title with an id 
+    $content = preg_replace_callback("/\<h([1|2|3|4])\>(.*?)\<\/h([1|2|3|4])\>/", function ($matches) {
+      $hTag = $matches[1];
+      $title = $matches[2];
+      $slug = "section-" . str_replace(" ", "-", strtolower($title));
+      return '<a href="#'. $slug .'"><h'. $hTag .' id="' . $slug . '">' . $title . '</h'. $hTag .'></a>';
+    }, $content);
+    return $content;
+  }
+  echo anchor_content_headings($html);
   ?>
 </div>
 <script type="text/javascript" src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>

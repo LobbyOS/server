@@ -179,9 +179,10 @@ if($node === "index"){
         </div>
         <div id="screenshots">
           <?php
-          $screenshots = explode("\n", $app_info['screenshots']);
-          if(count($screenshots) > 1){
-
+          $screenshots = array_filter(explode("\n", $app_info['screenshots']));
+          if(empty($screenshots)){
+            ser("No Screenshots", "This app has no screenshots");
+          }else{
             echo '<ul class="rslides">';
               foreach($screenshots as $screenshot){
                 if($screenshot != ""){
@@ -200,8 +201,6 @@ if($node === "index"){
               });
             </script>
           <?php
-          }else{
-            ser("No Screenshots", "This app has no screenshots");
           }
           ?>
         </div>

@@ -21,8 +21,10 @@ if(isset($argv[1])){
     $r = $sql->fetch(\PDO::FETCH_ASSOC);
     
     $LG = new \LobbyGit($r['id'], $r['git_url']);
-    $LG->update();
-    echo "{$r['id']} updated\r\n";
+    if($LG->update())
+      echo "{$r['id']} updated\r\n";
+    else
+      echo "{$r['id']} failed to update\r\n";
   }
 }else{
   $sql = \Lobby\DB::$dbh->prepare("SELECT `id`, `git_url` FROM `apps` ORDER BY `downloads` DESC");

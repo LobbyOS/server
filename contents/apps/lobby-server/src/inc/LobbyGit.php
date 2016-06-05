@@ -36,7 +36,7 @@ class LobbyGit {
       $this->info = $sql->fetch(\PDO::FETCH_ASSOC);
     }
     
-    if($this->info["updated"] < strtotime("-2 days")){
+    if($this->info["updated"] < strtotime("-1 hour")){
       if($this->getRepo()){
         $sql = \Lobby\DB::$dbh->prepare("UPDATE `git_cache` SET `updated` = UNIX_TIMESTAMP() WHERE `git_url` = ?");
         $sql->execute(array($this->git_url));
@@ -52,10 +52,10 @@ class LobbyGit {
   }
   
   public function update(){
-    $sql = \Lobby\DB::$dbh->prepare("UPDATE `git_cache` SET `updated` = '0' WHERE `git_url` = ?");
+    $sql = \Lobby\DB::$dbh->prepare("UPDATE `git_cache` SET `updated` = '0', `last_commit` = '' WHERE `git_url` = ?");
     $sql->execute(array($this->git_url));
     
-    $this->register();
+    return $this->register();
   }
   
   public function getRepo(){
@@ -68,23 +68,57 @@ class LobbyGit {
     /**
      * If no tags, use master
      */
-    if(count($tags) === 0){
-      $commit_hash = $repo->getReferences()->getBranch('master')->getCommitHash();
+    if(empty($tags)){
+      $commitHash = $repo->getReferences()->getBranch('master')->getCommitHash();
     }else{
       $tags = rsort($tags);
       $latestTag = $tags[0];
-      $commit_hash = $repo->getReferences()->getTag($latestTag)->getCommitHash();
+      $commitHash = $repo->getReferences()->getTag($latestTag)->getCommitHash();
     }
     
-    if($commit_hash === $this->info["last_commit"]){
+    if($commitHash === $this->info["last_commit"]){
       // No need of update
       return true;
     }
     
     $sql = \Lobby\DB::$dbh->prepare("UPDATE `git_cache` SET `last_commit` = ? WHERE `git_url` = ?");
-    $sql->execute(array($commit_hash, $this->git_url));
+    $sql->execute(array($commitHash, $this->git_url));
     
     $this->recursiveRemoveDirectory($this->git_dir . "/.git");
+    
+    /**
+     * Get screenshots
+     */
+    $manifest = json_decode(file_get_contents($this->git_dir . "/manifest.json"), true);
+    
+    // Manifest file is invalid
+    if(!is_array($manifest))
+      return false;
+    
+    if(isset($manifest["version"]))
+      $latestVersion = $manifest["version"];
+    else
+      return false;
+    
+    if(isset($manifest->screenshots)){
+      $screenshots = array();
+      foreach($manifest["screenshots"] as $img){
+        $url = parse_url($img);
+        if($url["host"] === "i.imgur.com"){
+          $path = $url["path"];
+          
+          // $path has slash at beginning
+          $headers = @get_headers("http://i.imgur.com$path", 1);
+          
+          if($headers[0] === "HTTP/1.1 200 OK"){
+            $screenshots[] = "//i.imgur.com$path";
+          }
+        }
+      }
+      
+      if(empty($screenshots))
+        unset($screenshots);
+    }
     
     if(exec("cd {$this->git_dir};zip -r '{$this->git_dir}/app.zip' ./ -1 -q;") !== false){
       $logo = true;
@@ -127,11 +161,38 @@ class LobbyGit {
       $response = json_decode($request->body);
       $this->cloud_id = $response->ocs->data->token;
       
+      $extraColumnData = array(
+        "short_description" => $manifest["short_description"]
+      );
+      
+      if(isset($latestVersion))
+        $extraColumnData["version"] = $latestVersion;
+      
+      if(isset($screenshots))
+        $extraColumnData["screenshots"] = implode("\n", $screenshots);
+        
+      if(isset($manifest["require"]) && is_array($manifest["require"]))
+        $extraColumnData["requires"] = json_encode($manifest["require"]);
+      
       /**
        * Update Cloud ID and download file size
        */
-      $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `cloud_id` = ?, `download_size` = ? WHERE `id` = ?");
-      $sql->execute(array($this->cloud_id, filesize($this->git_dir . "/app.zip"), $this->id));
+      $appInfoUpdate = array(
+        ":cloudID" => $this->cloud_id,
+        ":downloadSize" => filesize($this->git_dir . "/app.zip"),
+        ":appID" => $this->id
+      );
+      
+      $extraColumns = "";
+      if(!empty($extraColumnData)){
+        foreach($extraColumnData as $k => $v){
+          $extraColumns .= ", $k = :$k";
+          $appInfoUpdate[":$k"] = $v;
+        }
+      }
+      
+      $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `cloud_id` = :cloudID, `download_size` = :downloadSize $extraColumns WHERE `id` = :appID");
+      $sql->execute($appInfoUpdate);
       
       $this->recursiveRemoveDirectory($this->git_dir);
       return true;
@@ -143,8 +204,12 @@ class LobbyGit {
     header("Location: {$this->cloud_url}/s/{$this->cloud_id}/download?path=%2F&files={$this->id}.zip");
   }
   
-  public function image(){
-    header("Location: {$this->cloud_url}/s/{$this->cloud_id}/download?path=%2F&files=logo.png");
+  public function logo($logo = 1){
+    if($this->cloud_id == null || $logo == 0){
+      header("Location: ". L_URL ."/contents/apps/lobby-server/src/image/blank.png");
+    }else{
+      header("Location: {$this->cloud_url}/s/{$this->cloud_id}/download?path=%2F&files=logo.png");
+    }
   }
   
   /**

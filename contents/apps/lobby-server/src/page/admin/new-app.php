@@ -32,6 +32,10 @@ $this->setTitle("New App");
       
       $sql->execute(array($app_info['id'], $app_info['name'], $app_info['version'], $app_info['logo'], $app_info['requires'], $app_info['git_url'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['page'], $app_info['author_id'], $lobby_web));
       
+      require_once __DIR__ . "/../../inc/LobbyGit.php";
+      $LG = new LobbyGit($app_info["id"], $app_info["git_url"]);
+      $LG->register();
+      
       sss("App Added", "App was added to the repository");
     }
   }
@@ -69,11 +73,7 @@ $this->setTitle("New App");
       <span>Category</span>
       <select name="app_category" id="app_category">
         <?php
-        require_once L_DIR . "/includes/src/App.php";
-        require_once APPS_DIR . "/lobby-server/App.php";
-        $obj = new \Lobby\App\lobby_server;
-        
-        foreach($obj->app_categories as $value => $category){
+        foreach($this->app_categories as $value => $category){
           echo "<option value='$value'>$category</option>";
         }
         ?>
@@ -82,7 +82,7 @@ $this->setTitle("New App");
     <label>
       <span>Sub Category</span>
       <?php
-      foreach($obj->app_sub_categories as $value => $category){
+      foreach($this->app_sub_categories as $value => $category){
         echo "<select name='app_sub_category' id='app_sub_category_$value' class='app_sub_category'>";
           foreach($category as $sub_value => $sub_category){
             echo "<span><option value='$sub_value'>$sub_category</option></span>";
@@ -108,7 +108,7 @@ $this->setTitle("New App");
       <span>Lobby Web App ?</span>
     </label>
     <?php H::csrf(1);?>
-    <button>Submit App</button>
+    <button class="btn green">Submit App</button>
   </form>
   <style>
     label{

@@ -136,12 +136,8 @@ if($node === "dot.gif"){
       require_once __DIR__ . "/../inc/LobbyGit.php";
       $r = $sql->fetch(\PDO::FETCH_ASSOC);
       
-      if($r['logo'] === "0"){
-        header("Location: " . L_URL . "/contents/apps/lobby-server/src/image/blank.png");
-      }else{
-        $lg = new LobbyGit($appID, $r['git_url'], $r["cloud_id"]);
-        $lg->image();
-      }
+      $lg = new LobbyGit($appID, $r['git_url'], $r["cloud_id"]);
+      $lg->logo($r['logo']);
     }
   }else if($what === "download"){
     $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url`, `cloud_id` FROM `apps` WHERE `id` = ?");
@@ -306,6 +302,7 @@ if($node === "dot.gif"){
       $response['apps'][$i]['rating'] = getRating($r['id']) . "/5";
       
       $response['apps'][$i]['requires'] = json_decode($r['requires'], true);
+      
       /**
        * If `lobby` param is not present then,
        * client is using Lobby < 0.6
@@ -313,6 +310,12 @@ if($node === "dot.gif"){
       if(!isset($_POST["lobby"])){
         $response['apps'][$i]['requires']["lobby"] = array(">=", "0.6");
       }
+      
+      /**
+       * Recommended : Singular word
+       * For versions >=0.7
+       */
+      $response['apps'][$i]['require'] = $response['apps'][$i]['requires'];
       
       $response['apps'][$i]['updated'] = get_timeago(strtotime($r['updated']));
       $i++;

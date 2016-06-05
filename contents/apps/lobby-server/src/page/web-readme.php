@@ -1,13 +1,12 @@
 <div class="contents">
   <h1>Lobby Demo</h1>
-  <p>Lobby Web is only for a demo purpose.</p>
-  <p>We recommend you <a href="/download">downloading Lobby</a> and installing it on your server.</p>
+  <p>Check out Lobby before you download !</p>
+  <p>But before seeing demo, note these :</p>
   <ul>
-    <li>Lobby Web may not be running the latest version of Lobby</li>
-    <li>There is no guarantee that all apps will work in Lobby Web</li>
-    <li>Bugs are possible anywhere just like electrons in an atomic orbital</li>
+    <li>Some apps may not work in the demo</li>
+    <li>The server runs on PHP 5.4 and some old packages.<br/>So, bugs are possible.</li>
   </ul>
-  <a class="btn red" href="/web">PROCEED</a>
+  <a class="btn red" href="https://lobby-ccl4.rhcloud.com">Go To Demo</a>
 </div>
 <style>
 ul, li{

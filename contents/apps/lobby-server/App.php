@@ -86,7 +86,7 @@ class lobby_server extends \Lobby\App {
      */
     \Lobby\UI\Panel::addNotifyItem("lobby-0-6-released", array(
       "contents" => "Lobby 0.6 Released",
-      "href" => "/download",
+      "href" => "http://subinsb.com/lobby/version-0-6",
       "icon" => "update"
     ));
     
@@ -110,7 +110,7 @@ class lobby_server extends \Lobby\App {
       \Assets::removeJs("theme.hine-/src/main/js/init.js");
       
       return $this->inc("/src/page/mods.php", array(
-        "mod" => $mod
+        "doc" => $mod
       ));
     }else if($path[1] == "api"){
       $node = isset($path[2]) ? $path[2] : "index";
