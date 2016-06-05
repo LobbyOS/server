@@ -52,3 +52,12 @@ Once you submit, the moderators of Lobby are notified and will look into your ap
 When your app on Lobby needs to be updated, just push the changes into your git repo. If it's a new version, don't forget to make the tag and push it too.
 
 Lobby will update your app within an `hour`. If you want to update it immediately, you should go to [your app's admin page](/me/home) and click the `Update` button.
+
+
+## How Apps Are Managed
+
+App source code is with the authors in their repositories. When their app is approved, the source code is referenced by the `git url` in Lobby.
+
+Lobby periodically checks for source code updates in the git repositories of apps every **hour**. When a new tag is found or when a new commit was found on the `master` branch, Lobby will get the full source code an make it into a `zip` file. This `zip` file is uploaded to a remote server and it's link is updated in the apps table inside Lobby Server.
+
+When users open Lobby, they are notified of the app updates and when they download, the `zip` file stored in the remote server is downloaded.

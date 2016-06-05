@@ -2,7 +2,11 @@
 
 The code of server at [http://lobby.subinsb.com](http://lobby.subinsb.com)
 
-## Note
+## Docs
+
+If you would like to fix a mistake or add new documentation, [go here and do what you like](https://github.com/LobbyOS/server/tree/master/contents/apps/lobby-server/src/data/docs).
+
+## Notes
 
 When upgrading Lobby to a new version :
 
