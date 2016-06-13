@@ -3,9 +3,10 @@ namespace Lobby\App;
 
 class lobby_server extends \Lobby\App {
   
-  public $lobby_version = "0.6";
-  public $lobby_released = "2016-05-07";
-  public $lobby_release_notes = '<p>Lobby 0.6 version comes with new features and has fixed some <a href="https://media.giphy.com/media/3oEdv0RAeAqr2cv1Ic/giphy.gif" target="_blank">HUGE</a> bugs.</p><p>If you are using versions <b>0.5</b> or old, <b>REMOVE</b> all apps before proceeding to update.</p><p><a class="button btn blue" target="_blank" href="http://subinsb.com/lobby/version-0-6">Read More</a></p>';
+  public $lobby_version = "0.7";
+  public $lobby_released = "2016-06-12";
+  public $lobby_release_notes = '<p>Lobby 0.7 version comes with new features and has fixed some huge bugs. Also, parts of the core was rewritten to be more awesome.</p><p>If you are using versions <b>0.6</b> or old, <b>UPDATE</b> all apps before updating Lobby.</p><p><a class="button btn blue" target="_blank" href="http://subinsb.com/lobby/version-0-7">Read More</a></p>';
+  public $lobby_annoucement = "http://subinsb.com/lobby/version-0-7";
   
   public $app_categories = array(
     "accessories" => "Accessories",
@@ -85,9 +86,14 @@ class lobby_server extends \Lobby\App {
      * Add notifications
      */
     \Lobby\UI\Panel::addNotifyItem("lobby-0-6-released", array(
-      "contents" => "Lobby 0.6 Released",
-      "href" => "http://subinsb.com/lobby/version-0-6",
+      "contents" => "Lobby ". $this->lobby_version ." Released",
+      "href" => $this->lobby_annoucement,
       "icon" => "update"
+    ));
+    \Lobby\UI\Panel::addNotifyItem("z-new-game", array(
+      "contents" => "New Game!",
+      "href" => "https://lobby.subinsb.com/apps/amoebam",
+      "icon" => "new"
     ));
     
     $path = explode("/", $p);

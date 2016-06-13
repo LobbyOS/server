@@ -71,9 +71,8 @@ class LobbyGit {
     if(empty($tags)){
       $commitHash = $repo->getReferences()->getBranch('master')->getCommitHash();
     }else{
-      $tags = rsort($tags);
-      $latestTag = $tags[0];
-      $commitHash = $repo->getReferences()->getTag($latestTag)->getCommitHash();
+      rsort($tags);
+      $commitHash = $tags[0]->getCommitHash();
     }
     
     if($commitHash === $this->info["last_commit"]){
@@ -191,7 +190,7 @@ class LobbyGit {
         }
       }
       
-      $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `cloud_id` = :cloudID, `download_size` = :downloadSize $extraColumns WHERE `id` = :appID");
+      $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `cloud_id` = :cloudID, `download_size` = :downloadSize, `updated` = NOW() $extraColumns WHERE `id` = :appID");
       $sql->execute($appInfoUpdate);
       
       $this->recursiveRemoveDirectory($this->git_dir);

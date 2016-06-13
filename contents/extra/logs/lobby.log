@@ -143,3 +143,33 @@ Stack trace:
 [2016-06-05 08:01:17] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/mods.php on line 43 : file_get_contents(): Filename cannot be empty
 [2016-06-05 08:40:06] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/docs.php on line 11 : fread(): Length parameter must be greater than 0
 [2016-06-05 08:40:06] 2 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/docs.php on line 11 : fread(): Length parameter must be greater than 0
+[2016-06-05 17:25:01] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 155 : Undefined variable: git_url
+[2016-06-05 17:25:01] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 155 : Undefined variable: git_url
+[2016-06-05 17:25:26] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 155 : Undefined variable: git_url
+[2016-06-05 17:25:26] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 155 : Undefined variable: git_url
+[2016-06-05 17:25:49] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 155 : Undefined variable: git_url
+[2016-06-05 17:25:49] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 155 : Undefined variable: git_url
+[2016-06-05 17:26:13] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 155 : Undefined variable: git_url
+[2016-06-05 17:26:13] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/page/api.php on line 155 : Undefined variable: git_url
+[2016-06-11 19:36:41] 4096 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/vendor/gitonomy/gitlib/src/Gitonomy/Git/ReferenceBag.php on line 309 : Object of class Gitonomy\Git\Reference\Tag could not be converted to string
+[2016-06-11 19:36:41] 4096 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/vendor/gitonomy/gitlib/src/Gitonomy/Git/ReferenceBag.php on line 309 : Object of class Gitonomy\Git\Reference\Tag could not be converted to string
+[2016-06-11 19:37:36] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 75 : Uncaught Error: Cannot access protected property Gitonomy\Git\Reference\Tag::$commitHash in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:75
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(40): LobbyGit->getRepo()
+#1 /home/simsu/Other/projects/Web/Lobby/Web/services/cron/update-apps.php(40): LobbyGit->register()
+#2 {main}
+  thrown
+[2016-06-11 19:37:36] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php on line 75 : Uncaught Error: Cannot access protected property Gitonomy\Git\Reference\Tag::$commitHash in /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php:75
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/src/inc/LobbyGit.php(40): LobbyGit->getRepo()
+#1 /home/simsu/Other/projects/Web/Lobby/Web/services/cron/update-apps.php(40): LobbyGit->register()
+#2 {main}
+  thrown
+[2016-06-13 02:31:43] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php on line 89 : Undefined property: Lobby\App\lobby_server::$version
+[2016-06-13 02:31:43] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php on line 89 : Undefined property: Lobby\App\lobby_server::$version
+[2016-06-13 02:31:45] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php on line 89 : Undefined property: Lobby\App\lobby_server::$version
+[2016-06-13 02:31:45] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php on line 89 : Undefined property: Lobby\App\lobby_server::$version
+[2016-06-13 02:31:49] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php on line 89 : Undefined property: Lobby\App\lobby_server::$version
+[2016-06-13 02:31:49] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php on line 89 : Undefined property: Lobby\App\lobby_server::$version
+[2016-06-13 02:31:58] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php on line 89 : Undefined property: Lobby\App\lobby_server::$version
+[2016-06-13 02:31:58] 8 caused by /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/lobby-server/App.php on line 89 : Undefined property: Lobby\App\lobby_server::$version

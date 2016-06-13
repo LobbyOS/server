@@ -23,7 +23,8 @@ $lobby_downloads = array(
   "0.4.1" => "0.5.zip", // Legacy. I screwed up
   "0.5" => "0.5.zip",
   "0.5.1" => "0.5.1.zip",
-  "0.6" => "qVHNgLfOxeVoLMd"
+  "0.6" => "qVHNgLfOxeVoLMd",
+  "0.7" => "fJY9iGB5ffCX6HB"
 );
 
 function getDownloadURL($id, $lobby_downloads){
@@ -136,7 +137,7 @@ if($node === "dot.gif"){
       require_once __DIR__ . "/../inc/LobbyGit.php";
       $r = $sql->fetch(\PDO::FETCH_ASSOC);
       
-      $lg = new LobbyGit($appID, $r['git_url'], $r["cloud_id"]);
+      $lg = new LobbyGit($appID, $r["git_url"], $r["cloud_id"]);
       $lg->logo($r['logo']);
     }
   }else if($what === "download"){
@@ -152,7 +153,7 @@ if($node === "dot.gif"){
       $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `downloads` = `downloads` + 1 WHERE `id` = ?");
       $sql->execute(array($appID));
       
-      $lg = new LobbyGit($appID, $git_url, $r["cloud_id"]);
+      $lg = new LobbyGit($appID, $r["git_url"], $r["cloud_id"]);
       $this->download("lobby-app-$appID.zip", $lg->download());
     }
   }
