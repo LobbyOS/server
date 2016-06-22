@@ -3,21 +3,12 @@
  * Some checking to make sure Lobby works fine
  */
 if(!is_writable(L_DIR) || !is_writable(APPS_DIR)){
-  $GLOBALS['initError'] = array("Wrong Permissions", "The permission of Lobby is not correct. All you have to do is change the permission of <blockquote>". L_DIR ."</blockquote>to read and write (0775).");
+  $error = array("Wrong Permissions", "The permission of Lobby is not correct. All you have to do is change the permission of <blockquote>". L_DIR ."</blockquote>to read and write (0755).");
   
-  if(\Lobby::$sysInfo['os'] === "linux"){
-    $GLOBALS['initError'][1] = $GLOBALS['initError'][1] . "<p clear>On Linux systems, do this in terminal : <blockquote>sudo chown \${USER}:www-data ". L_DIR ." -R && sudo chmod u+rwx,g+rw,o+r ". L_DIR ." -R</blockquote></p>";
+  if(\Lobby::getSysInfo("os") === "linux"){
+    $error[1] .= "<p clear>On Linux systems, do this in terminal : <blockquote>sudo chown \${USER}:www-data ". L_DIR ." -R && sudo chmod u+rwx,g+rw,o+r ". L_DIR ." -R</blockquote></p>";
   }
-}
-
-if(isset($GLOBALS['initError'])){
-  echo "<html><head>";
-    \Assets::$js = array();
-    \Lobby::head();
-  echo "</head><body><div class='workspace'><div class='contents'>";
-    ser($GLOBALS['initError'][0], $GLOBALS['initError'][1]);
-  echo "</div></div></body></html>";
-  exit;
+  \Response::showError($error[0], $error[1]);
 }
 
 /**
@@ -38,15 +29,15 @@ if(!\Lobby::status("lobby.install")){
     "position" => "left"
   );
   $adminArray["subItems"] = array(
-    "AppManager" => array(
+    "app_manager" => array(
       "text" => "Apps",
       "href" => "/admin/apps.php"
     ),
-    "LobbyStore" => array(
+    "lobby_store" => array(
       "text" => "Lobby Store",
       "href" => "/admin/lobby-store.php",
     ),
-    "About" => array(
+    "about" => array(
       "text" => "Settings",
       "href" => "/admin/settings.php"
     )
@@ -58,8 +49,8 @@ if(!\Lobby::status("lobby.install")){
     $l_info = json_decode(\Lobby\FS::get("/lobby.json"));
     
     if($lobby_version != $l_info->version){
-      saveOption("lobby_latest_version", $l_info->version);
-      saveOption("lobby_latest_version_release", $l_info->released);
+      Lobby\DB::saveOption("lobby_latest_version", $l_info->version);
+      Lobby\DB::saveOption("lobby_latest_version_release", $l_info->released);
     }
     \Lobby\Update::finish_software_update();
   }
@@ -81,7 +72,7 @@ if(\Lobby::status("lobby.admin")){
   /**
    * Check For New Versions (Apps & Core)
    */
-  if(\Lobby::$config['server_check'] === true && !isset($_SESSION['checkedForLatestVersion'])){
+  if(\Lobby::getConfig('server_check') === true && !isset($_SESSION['checkedForLatestVersion'])){
     \Lobby\Server::check();
     $_SESSION['checkedForLatestVersion'] = 1;
   }
@@ -96,17 +87,17 @@ if(\Lobby::status("lobby.admin")){
     window.tmp = {};
     window.lobbyExtra = {
       url: "<?php echo L_URL;?>",
-      csrf_token: "<?php echo csrf("s");?>",
+      csrfToken: "<?php echo CSRF::get();?>",
       sysInfo: {
-        os: "<?php echo \Lobby::$sysInfo['os'];?>"
+        os: "<?php echo \Lobby::getSysInfo("os");?>"
       }
     };
     <?php
-    if(\Lobby\Apps::$appID){
+    if(\Lobby\Apps::isAppRunning()){
       echo 'window.lobbyExtra["app"] = {
-        id: "'. \Lobby\Apps::$appID .'",
-        url: "'. APP_URL .'",
-        src: "'. \Lobby::u("/contents/apps/" . \Lobby\Apps::$appID) .'"
+        id: "'. \Lobby\Apps::getInfo("id") .'",
+        url: "'. \Lobby\Apps::getInfo("url") .'",
+        src: "'. \Lobby\Apps::getInfo("srcURL") .'"
       };';
     }
   ?></script>

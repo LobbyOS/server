@@ -42,11 +42,11 @@ class admin extends \Lobby\Module {
          */
         if(\Lobby\Modules::exists("indi") === false){
           if(\Lobby::curPage() != "/admin/login" && !\Lobby::status("lobby.install")){
-            \Lobby::redirect("/admin/login");
+            \Response::redirect("/admin/login");
           }
         }else{
           if(\Lobby::curPage() != "/admin/login" && \Lobby::curPage() != "/admin/install.php" && substr(\Lobby::curPage(), 0, 6) == "/admin"){
-            \Lobby::redirect("/admin/login");
+            \Response::redirect("/admin/login");
           }
         }
         \Lobby::hook("init", function(){
@@ -62,7 +62,7 @@ class admin extends \Lobby\Module {
    * Create the `users` table
    */
   public function install(){
-    if(getOption("admin_installed") == null && \Lobby::$installed){
+    if(\Lobby\DB::getOption("admin_installed") == null && \Lobby::$installed){
       /**
        * Install Module
        */
@@ -75,7 +75,7 @@ class admin extends \Lobby\Module {
       /**
        * Create `users` TABLE
        */
-      $sql = \Lobby\DB::$dbh->prepare("CREATE TABLE IF NOT EXISTS `{$prefix}users` (
+      $sql = \Lobby\DB::getDBH()->prepare("CREATE TABLE IF NOT EXISTS `{$prefix}users` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `username` varchar(10) NOT NULL,
         `email` tinytext NOT NULL,

@@ -48,7 +48,7 @@
 /**
  * Apps Page
  */
-.workspace .contents{
+#workspace .contents{
   width: 940px;
   background: none;
   padding: 0 0 40px 0;
@@ -129,7 +129,7 @@
   overflow: hidden;
 }
 @media screen and (max-width: 940px){
-  .workspace .contents{
+  #workspace .contents{
     width: 100%;
   }
   .nav #search{

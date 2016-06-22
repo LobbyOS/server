@@ -14,7 +14,7 @@ require APPS_DIR . "/lobby-server/src/inc/LobbyGit.php";
  * Argument 1 has the App ID
  */
 if(isset($argv[1])){
-  $sql = \Lobby\DB::$dbh->prepare("SELECT `id`, `git_url` FROM `apps` WHERE `id` = ?");
+  $sql = \Lobby\DB::getDBH()->prepare("SELECT `id`, `git_url` FROM `apps` WHERE `id` = ?");
   $sql->execute(array($argv[1]));
   
   if($sql->rowCount() !== 0){
@@ -27,7 +27,7 @@ if(isset($argv[1])){
       echo "{$r['id']} failed to update\r\n";
   }
 }else{
-  $sql = \Lobby\DB::$dbh->prepare("SELECT `id`, `git_url` FROM `apps` ORDER BY `downloads` DESC");
+  $sql = \Lobby\DB::getDBH()->prepare("SELECT `id`, `git_url` FROM `apps` ORDER BY `downloads` DESC");
   $sql->execute();
   
   while($r = $sql->fetch()){

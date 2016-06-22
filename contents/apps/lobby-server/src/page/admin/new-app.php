@@ -19,7 +19,7 @@ $this->setTitle("New App");
   );
   
   if(isset($_POST['app_id']) && array_search(null, $app_info) === false && H::csrf()){
-    $apps_sql = \Lobby\DB::$dbh->prepare("SELECT COUNT(1) FROM `apps` WHERE `id` = ?");
+    $apps_sql = \Lobby\DB::getDBH()->prepare("SELECT COUNT(1) FROM `apps` WHERE `id` = ?");
     $apps_sql->execute(array($app_info['id']));
     
     if($apps_sql->fetchColumn() != 0){
@@ -28,7 +28,7 @@ $this->setTitle("New App");
       $app_info["logo"] = isset($_POST["app_logo"]) ? "1" : "0";
       $lobby_web = isset($_POST['app_lobby_web']) ? 1 : 0;
       
-      $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps` (`id`, `name`, `version`, `logo`, `requires`, `git_url`, `description`, `short_description`, `category`, `sub_category`, `app_page`, `author`, `lobby_web`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
+      $sql = \Lobby\DB::getDBH()->prepare("INSERT INTO `apps` (`id`, `name`, `version`, `logo`, `requires`, `git_url`, `description`, `short_description`, `category`, `sub_category`, `app_page`, `author`, `lobby_web`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
       
       $sql->execute(array($app_info['id'], $app_info['name'], $app_info['version'], $app_info['logo'], $app_info['requires'], $app_info['git_url'], $app_info['description'], $app_info['short_description'], $app_info['category'], $app_info['sub_category'], $app_info['page'], $app_info['author_id'], $lobby_web));
       

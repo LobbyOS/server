@@ -62,7 +62,7 @@ class lobby_server extends \Lobby\App {
     \Lobby::hook("head.end", function(){
       echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" async="async" defer="defer">';
       echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
-      if(\Lobby::$hostName != "server.lo"."bby.sim"){
+      if(\Lobby::getHostname() != "server.lo"."bby.sim"){
         echo '<script>if (window.location.protocol != "https:") window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);</script>';
       }
     });
@@ -103,7 +103,7 @@ class lobby_server extends \Lobby\App {
       
       $this->menu_items();
       
-      \Assets::removeJs("theme.hine-/src/main/js/init.js");
+      \Assets::removeJS("theme.hine-/src/main/js/init.js");
 
       return $this->inc("/src/page/docs.php", array(
         "doc" => $doc
@@ -113,7 +113,7 @@ class lobby_server extends \Lobby\App {
       
       $this->menu_items();
       
-      \Assets::removeJs("theme.hine-/src/main/js/init.js");
+      \Assets::removeJS("theme.hine-/src/main/js/init.js");
       
       return $this->inc("/src/page/mods.php", array(
         "doc" => $mod
@@ -190,7 +190,7 @@ class lobby_server extends \Lobby\App {
       )
     ));
     
-    require_once APP_DIR . "/src/inc/logsys.php";
+    require_once $this->dir . "/src/inc/logsys.php";
     
     $meSubItems = array();
     if(\Fr\LS2::$loggedIn){

@@ -2,7 +2,7 @@
 require "../load.php";
 
 $page_title = "Lobby Store";
-$AppID = \H::i('id');
+$AppID = \Request::get('id');
 if($AppID !== null){
   $app = \Lobby\Server::store(array(
     "get" => "app",
@@ -17,9 +17,11 @@ if($AppID !== null){
   <head>
     <?php
     \Assets::css("lobby-store", "/admin/css/lobby-store.css");
+    \Assets::css("view-app", "/admin/css/view-app.css");
     \Assets::js("lobby-store", "/admin/js/lobby-store.js");
+    
     \Lobby::doHook("admin.head.begin");
-    \Lobby::head($page_title);
+    \Response::head($page_title);
     ?>
   </head>
   <body>
@@ -27,12 +29,12 @@ if($AppID !== null){
     \Lobby::doHook("admin.body.begin");
     require "$docRoot/admin/inc/sidebar.php";
     ?>
-    <div class="workspace">
+    <div id="workspace">
       <div class="content">
         <?php
         if($AppID !== null){
           if($app === false){
-            ser("404 - App Not Found", "App was not found in Lobby Store.");
+            echo ser("404 - App Not Found", "App was not found in Lobby Store.");
           }else{
             $appImage = $app['image'] != "" ? $app['image'] : L_URL . "/includes/lib/lobby/image/blank.png";
             $c = $app['category'];
@@ -56,15 +58,16 @@ if($AppID !== null){
                 </script>
                 <?php
                 $App = new \Lobby\Apps($AppID);
-                $requires = $app['requires'];
+                $require = $app['require'];
+                
                 if(!$App->exists){
                   /**
                    * Check whether Lobby version is compatible
                    */
-                  if(\Lobby\Need::checkRequirements($requires, true)){
+                  if(\Lobby\Need::checkRequirements($require, true)){
                     echo "<a class='btn red disabled' title='The app requirements are not satisfied. See `Info` tab.'>Install</a>";
                   }else{
-                    echo \Lobby::l("/admin/install-app.php?id={$_GET['id']}" . H::csrf("g"), "Install", "class='btn red'");
+                    echo \Lobby::l("/admin/install-app.php?id={$_GET['id']}" . CSRF::getParam(), "Install", "class='btn red'");
                   }
                 }else if(version_compare($app['version'], $App->info['version'], ">")){
                   /**
@@ -72,17 +75,16 @@ if($AppID !== null){
                    */
                   echo \Lobby::l("/admin/check-updates.php", "Update App", "class='btn red'");
                 }else if($App->enabled){
-                  echo \Lobby::l($App->info['URL'], "Open App", "class='btn green'");
+                  echo \Lobby::l($App->info['url'], "Open App", "class='btn green'");
                 }else{
                   /**
                    * App is Disabled. Show button to enable it
                    */
-                  echo \Lobby::l("/admin/apps.php?action=enable&redirect=1&app=" . $AppID . H::csrf("g"), "Enable App", "class='btn green'");
+                  echo \Lobby::l("/admin/apps.php?action=enable&redirect=1&app=" . $AppID . CSRF::getParam(), "Enable App", "class='btn green'");
                 }
                 ?>
                 <div class="chip" clear>Developed By <a href="<?php echo $app['author_page'];?>" target="_blank"><?php echo $app['author'];?></a></div>
                 <div class="chip" clear><a href="<?php echo $app['app_page'];?>" target="_blank">App's Webpage</a></div>
-                <style>#leftpane .btn{width:100%;margin: 5px 0px;}</style>
               </div>
               <div class="col m9">
                 <ul class="tabs">
@@ -97,8 +99,8 @@ if($AppID !== null){
                   <div class="chip"><span>Requirements :</span></div>
                     <ul class="collection" style="margin-left: 20px;">
                       <?php
-                      $requirementsInSystemInfo = \Lobby\Need::checkRequirements($requires);
-                      foreach($requires as $k => $v){
+                      $requirementsInSystemInfo = \Lobby\Need::checkRequirements($require);
+                      foreach($require as $k => $v){
                         if($requirementsInSystemInfo[$k]){
                           echo "<li class='collection-item'>$k $v</li>";
                         }else{
@@ -139,7 +141,7 @@ if($AppID !== null){
                     </script>
                     <?php
                   }else{
-                    ser("No Screenshots", "This app has no screenshots");
+                    echo ser("No Screenshots", "This app has no screenshots");
                   }
                   ?>
                 </div>
@@ -180,7 +182,7 @@ if($AppID !== null){
           
           $server_response = \Lobby\Server::store($request_data);
           if($server_response == false){
-            ser("Nothing Found", "Nothing was found that matches your criteria. Sorry...");
+            echo ser("Nothing Found", "Nothing was found that matches your criteria. Sorry...");
           }else{
             echo "<div class='apps'>";
               foreach($server_response['apps'] as $app){
@@ -217,7 +219,7 @@ if($AppID !== null){
               }
             echo '</div>';
             $apps_pages = (ceil($server_response['apps_count'] / 6)) + 1;
-            $cur_page = \H::i("p", "1");
+            $cur_page = \Request::get("p", "1");
             echo "<ul class='pagination'>";
               for($i = 1;$i < $apps_pages;$i++){
                 echo "<li class='waves-effect ". ($cur_page == $i ? "active" : "") ."'>";

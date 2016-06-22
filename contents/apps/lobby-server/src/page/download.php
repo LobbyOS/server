@@ -1,5 +1,5 @@
 <?php
-\Lobby::setTitle("Download");
+\Response::setTitle("Download");
 ?>
 <div class="contents">
   <h1>Download</h1>
@@ -46,4 +46,4 @@
   </div>
 </div>
 <?php
-require_once APP_DIR . "/src/inc/views/track.php";
+require_once $this->dir . "/src/inc/views/track.php";

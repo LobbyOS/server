@@ -3,7 +3,7 @@
   <head>
     <?php
     \Lobby::doHook("admin.head.begin");
-    \Lobby::head("Admin");
+    \Response::head("Admin");
     ?>
   </head>
   <body>
@@ -11,7 +11,7 @@
     \Lobby::doHook("admin.body.begin");
     require "$docRoot/admin/inc/sidebar.php";
     ?>
-    <div class="workspace">
+    <div id="workspace">
       <div class="content">
         <h1>Admin</h1>
         <p>Here, you can manage your Lobby installation :</p>
@@ -26,7 +26,7 @@
         <h2>Thank You</h2>
         <p>We, the <a href="https://github.com/orgs/LobbyOS/people" target="_blank">Lobby Team</a> would like to thank you for installing Lobby.</p>
         <p>Lobby is in <b>public beta mode</b>, so bugs may exist and some things may not work for you.</p>
-        <p>As you know, Lobby is an <a href="https://en.wikipedia.org/wiki/Open-source_software" target="_blank">Open Source Software</a>. We will be very glad and happy if you report any kinds of problems/bugs you faced :</p>
+        <p>As you know, Lobby is an <a href="https://en.wikipedia.org/wiki/Open-source_software" target="_blank">Open Source Software</a>. We will be very glad and happy if you report <b>any kinds of problems/bugs</b> you faced :</p>
         <p>Encoutered a problem or want to make a suggestion ? Please do it on our <a target="_blank" class="btn orange" href="https://github.com/subins2000/lobby/issues">GitHub Repo</a></p>
       </div>
     </div>

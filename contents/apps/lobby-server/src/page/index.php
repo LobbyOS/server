@@ -1,12 +1,12 @@
 <?php
 $this->addStyle("main.css");
 $this->addScript("responsiveslides.min.js");
-\Lobby::setTitle("A Web OS");
+\Response::setTitle("A Web OS");
 ?>
 <section id="intro">
   <div class="container">
     <div class="row">
-      <a href='//lobby.subinsb.com'><img src='<?php echo APP_SRC . "/src/image/logo.png";?>' /></a>
+      <a href='//lobby.subinsb.com'><img src='<?php echo $this->srcURL . "/src/image/logo.png";?>' /></a>
       <p style="margin-top: 20px;">A Web OS</p>
       <p style="margin-top: 20px;">Lobby is a framework to run web apps. It can be attributed as a combination of <a href="https://en.wikipedia.org/wiki/Android" target="_blank" >Android</a> & <a href="https://en.wikipedia.org/wiki/WordPress" target="_blank" >WordPress</a></p>
       <p>Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and can be used via a browser</p>
@@ -29,15 +29,15 @@ $this->addScript("responsiveslides.min.js");
     <div class="row">
       <ul class="rslides">
         <li>
-          <img src="<?php echo APP_SRC;?>/src/image/screenshots/dashboard.png" alt="">
+          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/dashboard.png" alt="">
           <p class="caption">The Lobby Dashboard</p>
         </li>
         <li>
-          <img src="<?php echo APP_SRC;?>/src/image/screenshots/app-diary.png" alt="">
+          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/app-diary.png" alt="">
           <p class="caption">The <a href="/apps/diary">Diary App</a> On Lobby</p>
         </li>
         <li>
-          <img src="<?php echo APP_SRC;?>/src/image/screenshots/lobby-store.png" alt="">
+          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/lobby-store.png" alt="">
           <p class="caption">Installing An App is Super Easy !</p>
         </li>
       </ul>
@@ -82,7 +82,7 @@ $this->addScript("responsiveslides.min.js");
           <div class='app_name'>Who Wants To Be A Millionaire</div>
         </a>
         <a href="/apps/millionaire" class='app'>
-          <img src="<?php echo APP_URL;?>/api/app/anagram/logo" />
+          <img src="<?php echo $this->url;?>/api/app/anagram/logo" />
           <div class='app_name'>Anagram</div>
         </a>
       </div>
@@ -113,4 +113,4 @@ $(function(){
 });
 </script>
 <?php
-require_once APP_DIR . "/src/inc/views/track.php";
+require_once $this->dir . "/src/inc/views/track.php";

@@ -7,8 +7,8 @@ use \Lobby\Apps;
 header("Content-type: text/html");
 header('Cache-Control: no-cache');
 
-$id = H::i("id");
-$type = H::i("type");
+$id = Request::get("id");
+$type = Request::get("type");
 
 // Turn off output buffering
 ini_set('output_buffering', 'off');
@@ -23,7 +23,7 @@ while (@ob_end_flush());
 ini_set('implicit_flush', true);
 ob_implicit_flush(true);
 
-if($id == null || H::csrf() == false){
+if($id == null || CSRF::check() == false){
   exit;
 }
 
@@ -93,7 +93,7 @@ if($type == "app" && \Lobby\Update::app($id)){
   $App = new Apps($id);
   $App->enableApp();
   
-  echo "Installed - The app has been installed. <a target='_parent' href='". $App->info["URL"] ."'>Open App</a>";
+  echo "Installed - The app has been installed. <a target='_parent' href='". $App->info["url"] ."'>Open App</a>";
 }else if($type == "lobby" && $redirect = \Lobby\Update::software()){
   echo "<a target='_parent' href='$redirect'>Updated Lobby</a>";
 }

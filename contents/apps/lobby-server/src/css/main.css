@@ -1,4 +1,4 @@
-.workspace .contents{
+#workspace .contents{
   background: none;
   padding: 40px 0;
   width: 500px;
@@ -125,7 +125,7 @@ section img{
   background-size: contain;
 }
 @media screen and (max-width: 500px){
-  .workspace .contents{
+  #workspace .contents{
     width: 100%;
   }
   section{

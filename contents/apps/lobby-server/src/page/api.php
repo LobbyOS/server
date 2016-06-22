@@ -1,5 +1,5 @@
 <?php
-require_once APP_DIR . "/src/inc/LobbyStats.php";
+require_once $this->dir . "/src/inc/LobbyStats.php";
 
 $Stats = new LobbyStats();
 
@@ -40,7 +40,7 @@ function getDownloadURL($id, $lobby_downloads){
 
 if($node === "dot.gif"){
   header("Content-type: image/gif");
-  include APP_DIR . "/src/image/blank_dot.gif";
+  include $this->dir . "/src/image/blank_dot.gif";
 }else if($node === "lobby" && isset($path[3])){
   $what = $path[3];
   $version = isset($path[4]) ? $path[4] : "";
@@ -52,7 +52,7 @@ if($node === "dot.gif"){
       /**
        * Stats
        */
-      $sql = \Lobby\DB::$dbh->query("SELECT `value` FROM `lobby` WHERE `key_name` = 'downloads'");
+      $sql = \Lobby\DB::getDBH()->query("SELECT `value` FROM `lobby` WHERE `key_name` = 'downloads'");
       $lobby_data = json_decode($sql->fetchColumn(), true);
 
       if(!is_array($lobby_data)){
@@ -62,7 +62,7 @@ if($node === "dot.gif"){
       }
       $lobby_data[$version] = isset($lobby_data[$version]) ? $lobby_data[$version] + 1 : 1;
       
-      $sql = \Lobby\DB::$dbh->prepare("UPDATE `lobby` SET `value` = ? WHERE `key_name` = 'downloads'");
+      $sql = \Lobby\DB::getDBH()->prepare("UPDATE `lobby` SET `value` = ? WHERE `key_name` = 'downloads'");
       $sql->execute(array(json_encode($lobby_data)));
       
       /**
@@ -89,7 +89,7 @@ if($node === "dot.gif"){
       }
       
       foreach($apps as $app){
-        $sql = \Lobby\DB::$dbh->prepare("SELECT `version` FROM `apps` WHERE `id` = ?");
+        $sql = \Lobby\DB::getDBH()->prepare("SELECT `version` FROM `apps` WHERE `id` = ?");
         $sql->execute(array($app));
         $lat_version = $sql->fetchColumn();
         
@@ -128,7 +128,7 @@ if($node === "dot.gif"){
   $appID = $path[3];
   $what = $path[4];
   if($what === "logo"){
-    $sql = \Lobby\DB::$dbh->prepare("SELECT `logo`, `git_url`, `cloud_id` FROM `apps` WHERE `id` = ?");
+    $sql = \Lobby\DB::getDBH()->prepare("SELECT `logo`, `git_url`, `cloud_id` FROM `apps` WHERE `id` = ?");
     $sql->execute(array($appID));
     
     if($sql->rowCount() === 0){
@@ -141,7 +141,7 @@ if($node === "dot.gif"){
       $lg->logo($r['logo']);
     }
   }else if($what === "download"){
-    $sql = \Lobby\DB::$dbh->prepare("SELECT `git_url`, `cloud_id` FROM `apps` WHERE `id` = ?");
+    $sql = \Lobby\DB::getDBH()->prepare("SELECT `git_url`, `cloud_id` FROM `apps` WHERE `id` = ?");
     $sql->execute(array($appID));
     
     if($sql->rowCount() === 0){
@@ -150,7 +150,7 @@ if($node === "dot.gif"){
       require_once __DIR__ . "/../inc/LobbyGit.php";
       $r = $sql->fetch(\PDO::FETCH_ASSOC);
       
-      $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `downloads` = `downloads` + 1 WHERE `id` = ?");
+      $sql = \Lobby\DB::getDBH()->prepare("UPDATE `apps` SET `downloads` = `downloads` + 1 WHERE `id` = ?");
       $sql->execute(array($appID));
       
       $lg = new LobbyGit($appID, $r["git_url"], $r["cloud_id"]);
@@ -214,7 +214,7 @@ if($node === "dot.gif"){
   
   $query .= " LIMIT :start, :stop";
   
-  $sql = \Lobby\DB::$dbh->prepare($query);
+  $sql = \Lobby\DB::getDBH()->prepare($query);
   foreach($append as $name => $value){
     $sql->bindParam($name, $value);
   }
@@ -229,7 +229,7 @@ if($node === "dot.gif"){
     $results = $sql->fetchAll(\PDO::FETCH_ASSOC);
     
     if(isset($total_query)){
-      $total_apps = \Lobby\DB::$dbh->prepare($total_query);
+      $total_apps = \Lobby\DB::getDBH()->prepare($total_query);
       if(isset($total_query_params)){
         foreach($append as $name => $value){
           $total_apps->bindParam($name, $value);
@@ -246,14 +246,14 @@ if($node === "dot.gif"){
       "apps_count" => $total_apps
     );
     
-    require_once APP_DIR . "/src/inc/Parsedown.php";
-    require_once APP_DIR . "/src/inc/Fr.star.php";
+    require_once $this->dir . "/src/inc/Parsedown.php";
+    require_once $this->dir . "/src/inc/Fr.star.php";
     
     $Parsedown = new Parsedown();
     $GLOBALS['star'] = new \Fr\Star(array());
     
     function getAuthorName($id = 1){
-      $sql = \Lobby\DB::$dbh->prepare("SELECT `name` FROM `users` WHERE `id` = ?");
+      $sql = \Lobby\DB::getDBH()->prepare("SELECT `name` FROM `users` WHERE `id` = ?");
       $sql->execute(array($id));
       return $sql->fetchColumn();
     }

@@ -17,5 +17,5 @@ ul{
 }
 </style>
 <?php
-\Lobby::setTitle("Web");
-require_once APP_DIR . "/src/inc/views/track.php";
+\Response::setTitle("Web");
+require_once $this->dir . "/src/inc/views/track.php";

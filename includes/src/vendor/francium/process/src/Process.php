@@ -1,6 +1,34 @@
 <?php
 namespace Fr;
 
+/**
+.---------------------------------------------------------------------------.
+| The Francium Project                                                      |
+| ------------------------------------------------------------------------- |
+| This software 'Process' is a part of the Francium (Fr) project.           |
+| http://subinsb.com/the-francium-project                                   |
+| ------------------------------------------------------------------------- |
+|     Author: Subin Siby                                                    |
+| Copyright (c) 2014 - 2015, Subin Siby. All Rights Reserved.               |
+| ------------------------------------------------------------------------- |
+|   License: Distributed under the Apache License, Version 2.0              |
+|            http://www.apache.org/licenses/LICENSE-2.0                     |
+| This program is distributed in the hope that it will be useful - WITHOUT  |
+| ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or     |
+| FITNESS FOR A PARTICULAR PURPOSE.                                         |
+'---------------------------------------------------------------------------'
+*/
+
+/**
+.---------------------------------------------------------------------------.
+|  Software:      Francium Process                                          |
+|  Version:       0.3.1 (Last Updated on 2016 May 07)                       |
+|  Contact:       http://github.com/subins2000/Francium-Process             |
+|  Documentation: https://subinsb.com/francium-process                      |
+|  Support:       https://subinsb.com/francium-process                      |
+'---------------------------------------------------------------------------'
+*/
+
 class Process{
 
   public static $os = null;
@@ -8,6 +36,8 @@ class Process{
     "output" => null,
     "arguments" => array()
   );
+  
+  private $uniqueID = null;
   
   private static function setOS(){
     if(self::$os === null){
@@ -25,13 +55,25 @@ class Process{
     }
   }
   
+  private static function randStr($length){
+    $str="";
+    $chars = "subinsblogabcdefghijklmanopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $size = strlen($chars);
+    for($i = 0;$i < $length;$i++) {
+      $str .= $chars[rand(0,$size-1)];
+    }
+    return $str;
+  }
+  
   /**
-   * 
+   * @param string $cmd The command to run
+   * @param array $options Configuration array
    */
   public function __construct($cmd, $options){
     $this->cmd = $cmd;
     $this->options = array_replace_recursive($this->options, $options);
     self::setOS();
+    $this->uniqueID = self::randStr(10);
   }
   
   /**
@@ -66,7 +108,7 @@ class Process{
      * Where to output
      */
     if($this->options["output"] === null){
-      $outputFile = "/dev/null";
+      $outputFile = "nul";
     }else{
       $outputFile = $this->options["output"];
     }
@@ -74,10 +116,13 @@ class Process{
     
     $cmd = escapeshellarg($this->cmd) . $arguments . $output;
     
-    $bgCmd = escapeshellarg(self::getPHPExecutable()) . " " . escapeshellarg(self::getBGPath()) . " " . escapeshellarg(base64_encode($cmd)) . " > nul 2>&1";
+    $bgCmd = "start /B " . escapeshellcmd(self::getPHPExecutable()) . " " . escapeshellarg(self::getBGPath()) . " " . escapeshellarg(base64_encode($cmd)) . " ". escapeshellarg($this->uniqueID) ." > nul 2>&1";
+    pclose(popen($bgCmd, "r"));
     
-    $WshShell = new COM("WScript.Shell");
+    /**
+    $WshShell = new \COM("WScript.Shell");
     $oExec = $WshShell->Run($bgCmd, 0, false);
+    */
     
     /**
      * If callback is valid, call callback,
@@ -129,7 +174,7 @@ class Process{
     
     $cmd = escapeshellarg($this->cmd) . $arguments . $output;
     
-    $bgCmd = escapeshellcmd(self::getPHPExecutable()) . " " . escapeshellarg(self::getBGPath()) . " " . escapeshellarg(base64_encode($cmd)) . " > /dev/null &";
+    $bgCmd = escapeshellcmd(self::getPHPExecutable()) . " " . escapeshellarg(self::getBGPath()) . " " . escapeshellarg(base64_encode($cmd)) . " ". escapeshellarg($this->uniqueID) ." > /dev/null &";
     exec($bgCmd);
     
     /**
@@ -150,11 +195,19 @@ class Process{
     return $cmd;
   }
   
+  public function stop(){
+    if(self::$os === "linux" || self::$os === "mac"){
+      return exec("kill $(pstree -pn $(ps -ef | awk '/[". substr($this->uniqueID, 0, 1) ."]". substr($this->uniqueID, 1) ."/{print $2}') | grep -o '([[:digit:]]*)' |grep -o '[[:digit:]]*')");
+    }else if(self::$os === "windows"){
+      return exec("wmic Path win32_process Where \"CommandLine Like '%". $this->uniqueID ."%'\" Call Terminate");
+    }
+  }
+  
   /**
    * Get the Path to PHP binary file
    * Linux - /usr/bin/php
    */
-  public function getPHPExecutable() {
+  public static function getPHPExecutable() {
     if(defined("PHP_BINARY") && PHP_BINARY != ""){
       return PHP_BINARY;
     }else{

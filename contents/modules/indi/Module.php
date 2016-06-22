@@ -1,67 +1,64 @@
 <?php
 namespace Lobby\Module;
 
+use Response;
+use Lobby\Apps;
+
 class indi extends \Lobby\Module {
 
   public function init(){
     $config = json_decode(\Lobby\FS::get("/contents/modules/indi/config.json"), true);
-    $GLOBALS['AppID'] = $config['app_id'];
+    $appID = $config['app_id'];
+    
+    $App = new Apps($appID);
+    $App->run();
     
     \Lobby::hook("router.finish", function(){
       /**
        * Route App Pages (/app/{appname}/{page}) to according apps
        */
       \Lobby\Router::route("/?[*:page]?", function($request){
-        $AppID = $GLOBALS['AppID'];
-        $page = $request->page != "" ? "/{$request->page}" : "/";
+        $appID = Apps::getInfo("id");
+        $page = $request->page === null ? "/" : "/{$request->page}";
         
         if(substr($page, 0, 6) == "/admin"){
           return false;
         }else{
+          $App = new \Lobby\Apps($appID);
+          
+          $class = $App->run();
+    
           /**
-           * Check if App exists
+           * Set the title
            */
-          $App = new \Lobby\Apps($AppID);
-          if($App->exists && $App->enabled){
-            /**
-             * Redirect /src/ files to App's Source in /contents folder
-             */
-            if(substr($page, 0, 5) == "/src/"){
-              \Lobby::redirect("/contents/apps/{$AppID}/src/" . substr($page, 5));
+          Response::setTitle($App->info["name"]);
+          
+          $pageResponse = $class->page($page);
+          if($pageResponse === "auto"){
+            if($page === "/"){
+              $page = "/index";
+            }
+            $html = $class->inc("/src/page{$page}.php");
+            if($html){
+              Response::setPage($html);
             }else{
-              /**
-               * Change APP_URL constant
-               */
-              define("APP_URL", L_URL);
-              
-              $class = $App->run();
-              $AppInfo = $App->info;
-        
-              /**
-               * Set the title
-               */
-              \Lobby::setTitle($AppInfo['name']);
-      
-              $page_response = $class->page($page);
-              if($page_response == "auto"){
-                if($page == "/"){
-                  $page = "/index";
-                }
-                $GLOBALS['workspaceHTML'] = $class->inc("/src/page{$page}.php");
-              }else{
-                $GLOBALS['workspaceHTML'] = $page_response;
-              }
-              if($GLOBALS['workspaceHTML'] == ""){
-                return false;
-              }
+              ser();
+            }
+          }else{
+            if($pageResponse === null){
+              ser();
+            }else{
+              Response::setPage($pageResponse);
             }
           }
         }
       });
     });
+    
     \Lobby\Router::route("/app/[:appID]?/[**:page]?", function($request){
       ser();
     });
+    
     /**
      * Disable FilePicker Module
      */

@@ -1,5 +1,5 @@
 <?php
-$docs_location = APP_DIR . "/src/data/docs/";
+$docs_location = $this->dir . "/src/data/docs/";
 $docs = array_diff(scandir($docs_location), array('..', '.'));
 
 $doc = isset($doc) ? $doc . ".md" : "index.md";
@@ -13,9 +13,9 @@ if(isset($doc) && array_search($doc, $docs) !== false){
   
   if(substr($doc, 0, 4) === "dev."){
     $doc = substr_replace($doc, '', 0, 4);
-    \Lobby::setTitle($doc_name . " | Developer Documentation");
+    \Response::setTitle($doc_name . " | Developer Documentation");
   }else{
-    \Lobby::setTitle($doc_name . " | Documentation");
+    \Response::setTitle($doc_name . " | Documentation");
   }
 }else{
   ser();
@@ -56,7 +56,7 @@ $this->addStyle("docs.css");
 </div>
 <div class="contents">
   <?php
-  require_once APP_DIR . "/src/inc/Parsedown.php";
+  require_once $this->dir . "/src/inc/Parsedown.php";
   $Parsedown = new ParsedownExtra();
   $html = $Parsedown->text($content);
   
@@ -90,4 +90,4 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8{
 }div.el {margin-left: 2em}
 </style>
 <?php
-require_once APP_DIR . "/src/inc/views/track.php";
+require_once $this->dir . "/src/inc/views/track.php";

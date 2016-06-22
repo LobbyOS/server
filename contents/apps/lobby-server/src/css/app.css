@@ -70,23 +70,23 @@
   background: rgba(255,255,255,.1);
   font-weight: bold;
 }
-.workspace h1{
+#workspace h1{
   margin-top: 0;
 }
-.workspace #app-tabs{
+#workspace #app-tabs{
   background: none;
   border-bottom: 0;
   border-left: 0;
   border-right: 0;
 }
-.workspace #app-tabs ul *{
+#workspace #app-tabs ul *{
   outline: none;
 }
-.workspace #app-tabs #screenshots, .workspace #app-tabs #stats, .workspace #app-tabs #download{
+#workspace #app-tabs #screenshots, #workspace #app-tabs #stats, #workspace #app-tabs #download{
   display: none;
   padding: 10px 0;
 }
-.workspace #app-tabs #description:target, .workspace #app-tabs #screenshots:target, .workspace #app-tabs #stats:target, .workspace #app-tabs #download:target{
+#workspace #app-tabs #description:target, #workspace #app-tabs #screenshots:target, #workspace #app-tabs #stats:target, #workspace #app-tabs #download:target{
   display: block;
 }
 #description ~ #screenshots:target {

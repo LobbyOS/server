@@ -1,7 +1,7 @@
 /*body{
   background: #eee url('<?APP_SRC?>/src/image/bg.gif') repeat left top;
 }*/
-.workspace .contents{
+#workspace .contents{
   padding: 0px 20px 40px;
   min-height: 100%;
   margin: 0px auto;

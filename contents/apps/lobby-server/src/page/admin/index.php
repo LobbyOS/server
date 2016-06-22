@@ -9,7 +9,7 @@ $this->setTitle("Admin");
   echo \Lobby::l("https://lobby-subins.rhcloud.com/phpmyadmin", "Database", "class='btn red' clear target='_blank'");
   echo \Lobby::l("/admin/app/lobby-server?clear-git-cache" . \H::csrf("g"), "Clear Git Cache", "class='btn orange' clear");
   if(isset($_GET["clear-git-cache"]) && \H::csrf()){
-    \Lobby\DB::$dbh->exec("TRUNCATE TABLE `git_cache`");
+    \Lobby\DB::getDBH()->exec("TRUNCATE TABLE `git_cache`");
     echo "<h2>cleared</h2>";
   }
   ?>

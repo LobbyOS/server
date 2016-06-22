@@ -1,18 +1,18 @@
 <?php
 class logSysLobbyDB {
   public function prepare($query){
-    $obj = \Lobby\DB::$dbh->prepare($query);
+    $obj = \Lobby\DB::getDBH()->prepare($query);
     return $obj;
   }
 }
 require_once __DIR__ . "/class.logsys.php";
 
-$salt = getOption("admin_secure_salt");
-$cookie = getOption("admin_secure_cookie");
+$salt = \Lobby\DB::getOption("admin_secure_salt");
+$cookie = \Lobby\DB::getOption("admin_secure_cookie");
 
 \Fr\LS::$config = array(
   "db" => array(
-    "table" => \Lobby\DB::$prefix . "users"
+    "table" => \Lobby\DB::getPrefix() . "users"
   ),
   "features" => array(
     "auto_init" => false,

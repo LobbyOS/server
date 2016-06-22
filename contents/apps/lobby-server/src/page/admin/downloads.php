@@ -4,7 +4,7 @@ $this->setTitle("Download");
 <div class="contents">
   <h1>Lobby Admin</h1>
   <?php
-  $sql = \Lobby\DB::$dbh->query("SELECT * FROM `lobby` WHERE `key_name` = 'downloads'");
+  $sql = \Lobby\DB::getDBH()->query("SELECT * FROM `lobby` WHERE `key_name` = 'downloads'");
   echo "<pre style='word-wrap: break-word;white-space: pre-wrap;'><code>";
   var_dump($sql->fetch());
   echo "</code></pre>";
@@ -27,7 +27,7 @@ $this->setTitle("Download");
     </thead>
     <tbody>
       <?php
-      $sql = \Lobby\DB::$dbh->query("SELECT * FROM `lobby_api_access`");
+      $sql = \Lobby\DB::getDBH()->query("SELECT * FROM `lobby_api_access`");
       while($r = $sql->fetch()){
         echo "<tr>";
           echo "<td>{$r['version']}</td>";

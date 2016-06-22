@@ -1,7 +1,7 @@
 <?php
 if(!isset($no_header)){
 ?>
-  <h1><a href="<?php echo APP_URL;?>/apps">Lobby Store</a></h1>
+  <h1><a href="<?php echo $this->url;?>/apps">Lobby Store</a></h1>
 <?php
 }
 ?>
@@ -22,7 +22,7 @@ if(!isset($no_header)){
     </ul>
   </div>
   <div class="nav-item" id="search">
-    <form action="<?php echo APP_URL . "/apps";?>">
+    <form action="<?php echo $this->url . "/apps";?>">
       <input name="q" placeholder="Search..." value="<?php echo isset($q) ? $q : "";?>" />
     </form>
   </div>

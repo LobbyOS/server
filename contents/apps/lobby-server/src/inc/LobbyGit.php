@@ -21,16 +21,16 @@ class LobbyGit {
   public function __construct($id, $git_url, $cloud_id = null){
     $this->id = $id;
     $this->git_url = $git_url;
-    $this->git_dir = APP_DIR . "/src/data/git-cache/$id";
+    $this->git_dir = $this->dir . "/src/data/git-cache/$id";
     $this->cloud_id = $cloud_id;
   }
   
   public function register(){
-    $sql = \Lobby\DB::$dbh->prepare("SELECT * FROM `git_cache` WHERE `git_url` = ?");
+    $sql = \Lobby\DB::getDBH()->prepare("SELECT * FROM `git_cache` WHERE `git_url` = ?");
     $sql->execute(array($this->git_url));
     
     if($sql->rowCount() === 0){
-      $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `git_cache` (`git_url`, `last_commit`, `updated`) VALUES(?, '', '0')");
+      $sql = \Lobby\DB::getDBH()->prepare("INSERT INTO `git_cache` (`git_url`, `last_commit`, `updated`) VALUES(?, '', '0')");
       $sql->execute(array($this->git_url));
     }else{
       $this->info = $sql->fetch(\PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ class LobbyGit {
     
     if($this->info["updated"] < strtotime("-1 hour")){
       if($this->getRepo()){
-        $sql = \Lobby\DB::$dbh->prepare("UPDATE `git_cache` SET `updated` = UNIX_TIMESTAMP() WHERE `git_url` = ?");
+        $sql = \Lobby\DB::getDBH()->prepare("UPDATE `git_cache` SET `updated` = UNIX_TIMESTAMP() WHERE `git_url` = ?");
         $sql->execute(array($this->git_url));
         
         $this->info["updated"] = time();
@@ -52,7 +52,7 @@ class LobbyGit {
   }
   
   public function update(){
-    $sql = \Lobby\DB::$dbh->prepare("UPDATE `git_cache` SET `updated` = '0', `last_commit` = '' WHERE `git_url` = ?");
+    $sql = \Lobby\DB::getDBH()->prepare("UPDATE `git_cache` SET `updated` = '0', `last_commit` = '' WHERE `git_url` = ?");
     $sql->execute(array($this->git_url));
     
     return $this->register();
@@ -80,7 +80,7 @@ class LobbyGit {
       return true;
     }
     
-    $sql = \Lobby\DB::$dbh->prepare("UPDATE `git_cache` SET `last_commit` = ? WHERE `git_url` = ?");
+    $sql = \Lobby\DB::getDBH()->prepare("UPDATE `git_cache` SET `last_commit` = ? WHERE `git_url` = ?");
     $sql->execute(array($commitHash, $this->git_url));
     
     $this->recursiveRemoveDirectory($this->git_dir . "/.git");
@@ -190,7 +190,7 @@ class LobbyGit {
         }
       }
       
-      $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `cloud_id` = :cloudID, `download_size` = :downloadSize, `updated` = NOW() $extraColumns WHERE `id` = :appID");
+      $sql = \Lobby\DB::getDBH()->prepare("UPDATE `apps` SET `cloud_id` = :cloudID, `download_size` = :downloadSize, `updated` = NOW() $extraColumns WHERE `id` = :appID");
       $sql->execute($appInfoUpdate);
       
       $this->recursiveRemoveDirectory($this->git_dir);

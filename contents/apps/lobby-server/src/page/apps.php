@@ -29,7 +29,7 @@ function get_timeago( $ptime ){
 }
 
 if($node === "index"){  
-  \Lobby::setTitle("Store");
+  \Response::setTitle("Store");
   
   $query = "SELECT * FROM `apps` WHERE 1 ";
   $params = array();
@@ -51,7 +51,7 @@ if($node === "index"){
     $query .= "AND `category` = :c ";
     $params[":c"] = $c;
     
-    \Lobby::setTitle(ucfirst($c) . " Store");
+    \Response::setTitle(ucfirst($c) . " Store");
   }
   
   /**
@@ -62,7 +62,7 @@ if($node === "index"){
     $query .= "AND `sub_category` = :sc ";
     $params[":sc"] = $sc;
     
-    \Lobby::setTitle(ucfirst($sc) . " Store");
+    \Response::setTitle(ucfirst($sc) . " Store");
   }
   
   /**
@@ -76,16 +76,16 @@ if($node === "index"){
     }
   }
   
-  $sql = \Lobby\DB::$dbh->prepare($query);
+  $sql = \Lobby\DB::getDBH()->prepare($query);
   $sql->execute($params);
   $apps = $sql->fetchAll();
   
-  require_once APP_DIR . "/src/inc/Fr.star.php";
+  require_once $this->dir . "/src/inc/Fr.star.php";
   $star = new \Fr\Star(array());
 ?>
   <div class="contents">
     <?php
-    require_once APP_DIR . "/src/inc/views/top.apps.php";
+    require_once $this->dir . "/src/inc/views/top.apps.php";
     ?>
     <div class="apps">
       <?php
@@ -93,19 +93,19 @@ if($node === "index"){
         ser("No App Found", "No app was found with the critera you gave");
       }else{
         foreach($apps as $app){
-          $app['logo'] = $app['logo'] === "0" ? APP_URL . "/src/image/blank.png" : APP_URL . "/api/app/{$app['id']}/logo";
+          $app['logo'] = $app['logo'] === "0" ? $this->url . "/src/image/blank.png" : $this->url . "/api/app/{$app['id']}/logo";
         ?>
           <div class="app">
             <div class="app-inner">
               <div class="lpane">
-                <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>">
+                <a href="<?php echo $this->url . "/apps/" . $app['id'];?>">
                   <img src="<?php echo $app['logo'];?>" />
                 </a>
               </div>
               <div class="rpane">
-                <a href="<?php echo APP_URL . "/apps/" . $app['id'];?>" class="name"><?php echo $app['name'];?></a>
+                <a href="<?php echo $this->url . "/apps/" . $app['id'];?>" class="name"><?php echo $app['name'];?></a>
                 <p class="description"><?php echo $app['short_description'];?></p>
-                <p>By: <a href="<?php echo APP_URL . "/u/" . $app['author'];?>"><?php echo \Fr\LS2::getUser("name", $app['author']);?></a></p>
+                <p>By: <a href="<?php echo $this->url . "/u/" . $app['author'];?>"><?php echo \Fr\LS2::getUser("name", $app['author']);?></a></p>
               </div>
             </div>
             <div class="bpane">
@@ -130,7 +130,7 @@ if($node === "index"){
   </div>
 <?php
 }else{
-  $sql = \Lobby\DB::$dbh->prepare("SELECT * FROM `apps` WHERE `id` = ?");
+  $sql = \Lobby\DB::getDBH()->prepare("SELECT * FROM `apps` WHERE `id` = ?");
   $sql->execute(array($node));
   
   if($sql->rowCount() == "0"){
@@ -139,15 +139,15 @@ if($node === "index"){
     $this->addStyle("app.css");
     $app_info = $sql->fetch(\PDO::FETCH_ASSOC);
     
-    \Lobby::setTitle($app_info['name'] . " | Store");
+    \Response::setTitle($app_info['name'] . " | Store");
     
-    require_once APP_DIR . "/src/inc/Parsedown.php";
+    require_once $this->dir . "/src/inc/Parsedown.php";
     $Parsedown = new Parsedown();
 ?>
     <div class="contents">
       <?php
       $no_header = 1;
-      require_once APP_DIR . "/src/inc/views/top.apps.php";
+      require_once $this->dir . "/src/inc/views/top.apps.php";
       ?>
       <h1>
         <a href=""><?php echo $app_info['name'];?></a>
@@ -191,7 +191,7 @@ if($node === "index"){
               }
             echo "</ul>";
           ?>
-            <script src="<?php echo APP_SRC;?>/src/js/responsiveslides.min.js"></script>
+            <script src="<?php echo $this->srcURL;?>/src/js/responsiveslides.min.js"></script>
             <script>
               $(function() {
                 $(".workspace #screenshots .rslides").responsiveSlides({
@@ -224,7 +224,7 @@ if($node === "index"){
             <a href="http://server.lobby.sim/docs/install-app" class="btn" target="_blank">Installation Help</a>
           </div>
           <?php
-          require_once APP_DIR . "/src/inc/Fr.star.php";
+          require_once $this->dir . "/src/inc/Fr.star.php";
           $this->addScript("Fr.star.js");
           
           $star = new \Fr\Star(array(), "app-{$app_info['id']}");
@@ -263,4 +263,4 @@ if($node === "index"){
 <?php
   }
 }
-require_once APP_DIR . "/src/inc/views/track.php";
+require_once $this->dir . "/src/inc/views/track.php";

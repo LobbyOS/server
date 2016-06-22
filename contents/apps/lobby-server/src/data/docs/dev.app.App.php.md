@@ -92,6 +92,6 @@ For easability, there are some **constants** for your app which can be used in *
 
 | Constant | Value | Example
 | -------- | ----- | -------
-| APP_DIR | The absolute path to the App Directory.	| /var/www/lobby/contents/apps/ledit
+| $this->dir | The absolute path to the App Directory.	| /var/www/lobby/contents/apps/ledit
 | APP_URL | The App's URL. | http://localhost/lobby/app/ledit
 | APP_SRC	| The App's Source URL. | http://localhost/lobby/contents/apps/ledit

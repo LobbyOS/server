@@ -1,10 +1,10 @@
 <?php
-$sql = \Lobby\DB::$dbh->prepare("SELECT * FROM `users` WHERE `id` = ?");
+$sql = \Lobby\DB::getDBH()->prepare("SELECT * FROM `users` WHERE `id` = ?");
 $sql->execute(array($user));
 
 if($sql->rowCount() != 0){
   $u = $sql->fetch(\PDO::FETCH_ASSOC);
-  \Lobby::setTitle($u['display_name']);
+  \Response::setTitle($u['display_name']);
 ?>
   <div class="contents">
     <h1><?php echo $u['display_name'];?></h1>
@@ -12,7 +12,7 @@ if($sql->rowCount() != 0){
     <p>Member of Lobby since <?php echo date("d F Y", $u['registered']);?></p>
     <h2>Apps</h2>
     <?php
-    $sql = \Lobby\DB::$dbh->prepare("SELECT `id`, `name`, `short_description`, `downloads` FROM `apps` WHERE `author` = ?");
+    $sql = \Lobby\DB::getDBH()->prepare("SELECT `id`, `name`, `short_description`, `downloads` FROM `apps` WHERE `author` = ?");
     $sql->execute(array($user));
     
     if($sql->rowCount() != 0){

@@ -46,12 +46,12 @@ lobby.load(function(){
   });
   $('.modal-trigger').leanModal({
     ready: function(){
-      $('.workspace .modal-content #lobby_url').val(localStorage["lobbyURL"]);
+      $('#workspace .modal-content #lobby_url').val(localStorage["lobbyURL"]);
     }
   });
   
-  $('.workspace .modal-footer #save').live('click', function(e){
-    if(setLobbyURL($('.workspace .modal-content #lobby_url').val()))
+  $('#workspace .modal-footer #save').live('click', function(e){
+    if(setLobbyURL($('#workspace .modal-content #lobby_url').val()))
       changeLinks();
     else
       alert("Invalid URL");

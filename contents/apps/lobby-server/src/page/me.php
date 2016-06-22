@@ -6,7 +6,7 @@ if(!isset($_GET['logout'])){
 }
 
 if($node === "index"){
-  \Lobby::setTitle("Me");
+  \Response::setTitle("Me");
 ?>
   <div class="contents">
     <h1>Lobby Me</h1>
@@ -19,30 +19,30 @@ if($node === "index"){
   </div>
 <?php
 }else if($node === "login"){
-  \Lobby::setTitle("Login | Me");
+  \Response::setTitle("Login | Me");
   $c = isset($_GET['c']) ? "&c=" . urlencode($_GET['c']) : "";
   $_SESSION['c'] = "";
 ?>
   <div class="contents">
     <h1>Login Or Register</h1>
     <div>
-      <a class="btn" href="<?php echo APP_URL . "/me/open?" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 52px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #7BBDE7 url(<?php echo APP_SRC;?>/src/image/open_icon.png) no-repeat 35% 5px scroll;background-size: 2em;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Open</a>
+      <a class="btn" href="<?php echo $this->url . "/me/open?" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 52px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #7BBDE7 url(<?php echo $this->srcURL;?>/src/image/open_icon.png) no-repeat 35% 5px scroll;background-size: 2em;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Open</a>
     </div>
     <div clear="clear">
-      <a class="btn" href="<?php echo APP_URL . "/me/open?facebook" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 100px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #3b579d url(<?php echo APP_SRC;?>/src/image/fb_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Facebook</a>
+      <a class="btn" href="<?php echo $this->url . "/me/open?facebook" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 100px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #3b579d url(<?php echo $this->srcURL;?>/src/image/fb_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Facebook</a>
     </div>
     <div clear="clear">
-      <a class="btn b-red" href="<?php echo APP_URL . "/me/open?google" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 90px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background:rgb(231, 38, 54) url(<?php echo APP_SRC;?>/src/image/plus_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;">Login With Google +</a>
+      <a class="btn b-red" href="<?php echo $this->url . "/me/open?google" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 90px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background:rgb(231, 38, 54) url(<?php echo $this->srcURL;?>/src/image/plus_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;">Login With Google +</a>
     </div>
   </div>
 <?php
 }else if($node == "open"){
-  \Lobby::setTitle("Open Auth");
+  \Response::setTitle("Open Auth");
   if(isset($_GET['c'])){
     $_SESSION['c'] = urldecode($_GET['c']);
   }
 
-  require_once APP_DIR . "/src/inc/open.auth.php";
+  require_once $this->dir . "/src/inc/open.auth.php";
   $Opth = new OpenAuth("EAtGbLfgxiCJxhwWfsLsyxA0p8Zj4oUyOd4POaVc", "80d23edfa535caf4cc44b91e16c55c0f09e3bed927fecff96b092df0f517f410");
   $access_token = $Opth->login("http://server.lobby.sim/me/open", array(
     "email-send",
@@ -51,7 +51,7 @@ if($node === "index"){
   
   if(is_array($access_token)){
     if($access_token["error"] == "obtain_failed"){
-      \Lobby::redirect("/me/login");
+      \Response::redirect("/me/login");
     }
   }else if($access_token != false){
     $info = json_decode($Opth->get("info"), true);
@@ -70,7 +70,7 @@ if($node === "index"){
   
   exit;
 }else if($node == "home"){
-  \Lobby::setTitle("Home | Me");
+  \Response::setTitle("Home | Me");
 ?>
   <div class="contents">
     <h1>Me Home</h1>
@@ -81,19 +81,19 @@ if($node === "index"){
     echo "<h2>My Apps</h2>";
     echo \Lobby::l("/me/app", "Submit A New App", "class='btn blue'") . "<br/>";
     
-    $sql = \Lobby\DB::$dbh->prepare("SELECT `id`, `name` FROM `apps` WHERE `author` = ?");
+    $sql = \Lobby\DB::getDBH()->prepare("SELECT `id`, `name` FROM `apps` WHERE `author` = ?");
     $sql->execute(array(\Fr\LS::$user));
     
     echo "<center>";
       while($r = $sql->fetch()){
-        echo "<a href='". APP_URL . "/me/app/{$r['id']}' class='btn green' style='margin: 5px 10px;'>{$r['name']}</a>";
+        echo "<a href='". $this->url . "/me/app/{$r['id']}' class='btn green' style='margin: 5px 10px;'>{$r['name']}</a>";
       }
     echo "</center>";
     ?>
   </div>
 <?php
 }else if($node == "profile"){
-  \Lobby::setTitle("Edit Profile | Me");
+  \Response::setTitle("Edit Profile | Me");
 ?>
   <div class="contents">
     <h1>My Profile</h1>
@@ -144,7 +144,7 @@ if($node === "index"){
   $app_info = array();
   
   if(isset($path[3])){
-    $sql = \Lobby\DB::$dbh->prepare("SELECT * FROM `apps` WHERE `author` = ? AND `id` = ?");
+    $sql = \Lobby\DB::getDBH()->prepare("SELECT * FROM `apps` WHERE `author` = ? AND `id` = ?");
     $sql->execute(array(\Fr\LS2::$user, $path[3]));
     
     if($sql->rowCount() == "0"){
@@ -161,12 +161,12 @@ if($node === "index"){
   <div class="contents">
     <?php
     if($app_edit && isset($_GET['update']) && !isset($_GET['app-updated'])){
-      require_once APP_DIR . "/src/inc/LobbyGit.php";
+      require_once $this->dir . "/src/inc/LobbyGit.php";
       
       $lg = new \LobbyGit($AppID, $app_info['git_url']);
       $lg->update();
       
-      \Lobby::redirect(\Lobby::u() . "&app-updated");
+      \Response::redirect(\Lobby::u() . "&app-updated");
     }
     
     if(isset($_POST['app_name'])){
@@ -185,10 +185,10 @@ if($node === "index"){
     }
 
     if(isset($_POST['app_name']) && H::csrf() && array_search(null, $app_info_required) === false){
-      $apps_sql = \Lobby\DB::$dbh->prepare("SELECT COUNT(1) FROM `apps` WHERE `id` = ?");
+      $apps_sql = \Lobby\DB::getDBH()->prepare("SELECT COUNT(1) FROM `apps` WHERE `id` = ?");
       $apps_sql->execute(array($app_info['id']));
       
-      $queue_sql = \Lobby\DB::$dbh->prepare("SELECT COUNT(1) FROM `apps_queue` WHERE `id` = ?");
+      $queue_sql = \Lobby\DB::getDBH()->prepare("SELECT COUNT(1) FROM `apps_queue` WHERE `id` = ?");
       $queue_sql->execute(array($app_info['id']));
       
       if($app_edit != true && ($queue_sql->fetchColumn() != 0 || $apps_sql->fetchColumn() != 0)){
@@ -197,12 +197,12 @@ if($node === "index"){
         ser("Invalid URL", "The app's source code URL you provided was invalid.");
       }else{
         if($app_edit != true){
-          $sql = \Lobby\DB::$dbh->prepare("INSERT INTO `apps_queue` (`id`, `name`, `src`, `description`, `category`, `sub_category`, `app_page`, `author`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
+          $sql = \Lobby\DB::getDBH()->prepare("INSERT INTO `apps_queue` (`id`, `name`, `src`, `description`, `category`, `sub_category`, `app_page`, `author`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
           $sql->execute(array($app_info['id'], $app_info['name'], $app_info['git_url'], $app_info['description'], $app_info['category'], $app_info['sub_category'], $app_info['app_page'], \Fr\LS2::$user));
         
           $admin_access_token = \Fr\LS2::getUser("username", 1);
           
-          require_once APP_DIR . "/src/inc/open.auth.php";
+          require_once $this->dir . "/src/inc/open.auth.php";
           $Opth = new OpenAuth("EAtGbLfgxiCJxhwWfsLsyxA0p8Zj4oUyOd4POaVc", "80d23edfa535caf4cc44b91e16c55c0f09e3bed927fecff96b092df0f517f410");
         
           $Opth->action("email", array(
@@ -212,7 +212,7 @@ if($node === "index"){
         
           sss("App Submitted", "Your app was added to the review queue. You will be notified by email about your app's review status.");
         }else{        
-          $sql = \Lobby\DB::$dbh->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `description` = ?, `category` = ?, `sub_category` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
+          $sql = \Lobby\DB::getDBH()->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `description` = ?, `category` = ?, `sub_category` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
           
           $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['description'], $app_info['category'], $app_info['sub_category'], $app_info['app_page'], $app_info['lobby_web'], $app_info['id'], \Fr\LS2::$user));
           
@@ -221,9 +221,9 @@ if($node === "index"){
       }
     }
     if($app_edit){
-      \Lobby::setTitle("Edit App " . $app_info['name'] . " | Me");
+      \Response::setTitle("Edit App " . $app_info['name'] . " | Me");
     }else{
-      \Lobby::setTitle("New App | Me");
+      \Response::setTitle("New App | Me");
     }
     ?>
     <h1><?php echo $app_edit == true ? $app_info['name'] : "New App";?></h1>
@@ -430,4 +430,4 @@ if($node === "index"){
   </script>
 <?php
 }
-require_once APP_DIR . "/src/inc/views/track.php";
+require_once $this->dir . "/src/inc/views/track.php";

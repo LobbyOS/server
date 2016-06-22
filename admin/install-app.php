@@ -7,7 +7,7 @@ require "../load.php";
     <?php 
     \Lobby::doHook("admin.head.begin");
     \Assets::js("admin.apps.js", "/admin/js/install-app.js");
-    \Lobby::head("Install App");
+    \Response::head("Install App");
     ?>
   </head>
   <body>
@@ -15,39 +15,39 @@ require "../load.php";
     \Lobby::doHook("admin.body.begin");
     require "$docRoot/admin/inc/sidebar.php";
     ?>
-    <div class="workspace">
+    <div id="workspace">
       <div class="content">
         <?php
-        $id = H::i("id");
+        $id = Request::get("id");
         $displayID = htmlspecialchars($id);
         
         if($id == null){
-          ser("Error", "No App is mentioned. Install Apps from <a href='lobby-store.php'>Lobby Store</a>");
+          echo ser("Error", "No App is mentioned. Install Apps from <a href='lobby-store.php'>Lobby Store</a>");
         }
-        if(H::i("action") == "enable" && H::csrf()){
+        if(Request::get("action") == "enable" && CSRF::check()){
           $App = new \Lobby\Apps($id);
           if(!$App->exists){
-            ser("Error", "App is not installed");
+            echo ser("Error", "App is not installed");
           }
           $App->enableApp();
-          sss("Enabled", "The App <b>{$displayID}</b> is enabled. The author says thanks. <cl/><a href='".$App->info['URL']."' class='btn green'>Open App</a>");
+          echo sss("Enabled", "The App <b>{$displayID}</b> is enabled. The author says thanks. <cl/><a href='".$App->info['url']."' class='btn green'>Open App</a>");
         }
-        if(H::i("action") == "remove" && H::csrf()){
+        if(Request::get("action") == "remove" && CSRF::check()){
           $App = new \Lobby\Apps($id);
           if(!$App->exists){
-            ser("Error", "App is not installed");
+            echo ser("Error", "App is not installed");
           }
           $App->removeApp();
-          sss("Removed", "The App <b>{$displayID}</b> was successfully removed.");
+          echo sss("Removed", "The App <b>{$displayID}</b> was successfully removed.");
         }
-        if($id != null && H::i("action") == null && H::csrf()){
+        if($id != null && Request::get("action") == null && CSRF::check()){
         ?>
           <h1>Install App</h1>
-          <p>The install progress will be displayed below. If this doesn't work, try the <?php echo \Lobby::l("/admin/install-app.php?id=$id&do=alternate-install".csrf("g"), "alternate install");?>.</p>
+          <p>The install progress will be displayed below. If this doesn't work, try the <?php echo \Lobby::l("/admin/install-app.php?id=$id&do=alternate-install".CSRF::getParam(), "alternate install");?>.</p>
           <?php
-          if(isset($_GET["do"]) && $_GET["do"] === "alternate-install" && csrf()){
+          if(isset($_GET["do"]) && $_GET["do"] === "alternate-install" && CSRF::check()){
           ?>
-            <iframe src="<?php echo L_URL . "/admin/download.php?type=app&id={$id}". H::csrf("g");?>" style="border: 0;width: 100%;height: 300px;"></iframe>
+            <iframe src="<?php echo L_URL . "/admin/download.php?type=app&id={$id}". CSRF::getParam();?>" style="border: 0;width: 100%;height: 300px;"></iframe>
         <?php
           }else{
         ?>
