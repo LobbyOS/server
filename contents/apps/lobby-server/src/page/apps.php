@@ -93,19 +93,19 @@ if($node === "index"){
         ser("No App Found", "No app was found with the critera you gave");
       }else{
         foreach($apps as $app){
-          $app['logo'] = $app['logo'] === "0" ? $this->url . "/src/image/blank.png" : $this->url . "/api/app/{$app['id']}/logo";
+          $app['logo'] = $app['logo'] === "0" ? L_URL . "/src/image/blank.png" : L_URL . "/api/app/{$app['id']}/logo";
         ?>
           <div class="app">
             <div class="app-inner">
               <div class="lpane">
-                <a href="<?php echo $this->url . "/apps/" . $app['id'];?>">
+                <a href="<?php echo L_URL . "/apps/" . $app['id'];?>">
                   <img src="<?php echo $app['logo'];?>" />
                 </a>
               </div>
               <div class="rpane">
-                <a href="<?php echo $this->url . "/apps/" . $app['id'];?>" class="name"><?php echo $app['name'];?></a>
+                <a href="<?php echo L_URL . "/apps/" . $app['id'];?>" class="name"><?php echo $app['name'];?></a>
                 <p class="description"><?php echo $app['short_description'];?></p>
-                <p>By: <a href="<?php echo $this->url . "/u/" . $app['author'];?>"><?php echo \Fr\LS2::getUser("name", $app['author']);?></a></p>
+                <p>By: <a href="<?php echo L_URL . "/u/" . $app['author'];?>"><?php echo \Fr\LS2::getUser("name", $app['author']);?></a></p>
               </div>
             </div>
             <div class="bpane">

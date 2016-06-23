@@ -82,7 +82,7 @@ $this->addScript("responsiveslides.min.js");
           <div class='app_name'>Who Wants To Be A Millionaire</div>
         </a>
         <a href="/apps/millionaire" class='app'>
-          <img src="<?php echo $this->url;?>/api/app/anagram/logo" />
+          <img src="<?php echo L_URL;?>/api/app/anagram/logo" />
           <div class='app_name'>Anagram</div>
         </a>
       </div>

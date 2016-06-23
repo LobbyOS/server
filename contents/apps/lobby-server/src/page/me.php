@@ -26,13 +26,13 @@ if($node === "index"){
   <div class="contents">
     <h1>Login Or Register</h1>
     <div>
-      <a class="btn" href="<?php echo $this->url . "/me/open?" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 52px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #7BBDE7 url(<?php echo $this->srcURL;?>/src/image/open_icon.png) no-repeat 35% 5px scroll;background-size: 2em;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Open</a>
+      <a class="btn" href="<?php echo L_URL . "/me/open?" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 52px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #7BBDE7 url(<?php echo $this->srcURL;?>/src/image/open_icon.png) no-repeat 35% 5px scroll;background-size: 2em;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Open</a>
     </div>
     <div clear="clear">
-      <a class="btn" href="<?php echo $this->url . "/me/open?facebook" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 100px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #3b579d url(<?php echo $this->srcURL;?>/src/image/fb_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Facebook</a>
+      <a class="btn" href="<?php echo L_URL . "/me/open?facebook" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 100px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background: #3b579d url(<?php echo $this->srcURL;?>/src/image/fb_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;margin-right:5px;">Login With Facebook</a>
     </div>
     <div clear="clear">
-      <a class="btn b-red" href="<?php echo $this->url . "/me/open?google" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 90px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background:rgb(231, 38, 54) url(<?php echo $this->srcURL;?>/src/image/plus_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;">Login With Google +</a>
+      <a class="btn b-red" href="<?php echo L_URL . "/me/open?google" . $c;?>" style="display: inline-block;height: 43px;width: 98%;margin: 0px;padding: 0px 20px 0px 90px;font-family: 'Ubuntu', sans-serif;font-size: 18px;font-weight: 400;color: #fff;line-height: 41px;background:rgb(231, 38, 54) url(<?php echo $this->srcURL;?>/src/image/plus_icon.png) no-repeat 35% 7px scroll;border: none;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration: none;cursor:pointer;">Login With Google +</a>
     </div>
   </div>
 <?php
@@ -86,7 +86,7 @@ if($node === "index"){
     
     echo "<center>";
       while($r = $sql->fetch()){
-        echo "<a href='". $this->url . "/me/app/{$r['id']}' class='btn green' style='margin: 5px 10px;'>{$r['name']}</a>";
+        echo "<a href='". L_URL . "/me/app/{$r['id']}' class='btn green' style='margin: 5px 10px;'>{$r['name']}</a>";
       }
     echo "</center>";
     ?>

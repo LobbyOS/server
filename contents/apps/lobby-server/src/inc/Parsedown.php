@@ -49,7 +49,7 @@ class Parsedown
     protected $markupEscaped;
     function setUrlsLinked($urlsLinked)
     {
-        $this->urlsLinked = $urlsLinked;
+        L_URLsLinked = $urlsLinked;
         return $this;
     }
     protected $urlsLinked = true;
@@ -1017,7 +1017,7 @@ class Parsedown
     }
     protected function inlineUrl($Excerpt)
     {
-        if ($this->urlsLinked !== true or ! isset($Excerpt['text'][2]) or $Excerpt['text'][2] !== '/')
+        if (L_URLsLinked !== true or ! isset($Excerpt['text'][2]) or $Excerpt['text'][2] !== '/')
         {
             return;
         }
