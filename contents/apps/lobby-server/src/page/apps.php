@@ -137,9 +137,9 @@ if($node === "index"){
     ser();
   }else{
     $this->addStyle("app.css");
-    $app_info = $sql->fetch(\PDO::FETCH_ASSOC);
+    $appInfo = $sql->fetch(\PDO::FETCH_ASSOC);
     
-    \Response::setTitle($app_info['name'] . " | Store");
+    \Response::setTitle($appInfo['name'] . " | Store");
     
     require_once $this->dir . "/src/inc/Parsedown.php";
     $Parsedown = new Parsedown();
@@ -150,16 +150,16 @@ if($node === "index"){
       require_once $this->dir . "/src/inc/views/top.apps.php";
       ?>
       <h1>
-        <a href=""><?php echo $app_info['name'];?></a>
+        <a href=""><?php echo $appInfo['name'];?></a>
         <a data-path="/admin/lobby-store.php?id=<?php echo $node;?>" class="open-via-lobby" title="Open in Lobby"><i class="material-icons">open_in_new</i></a>
       </h1>
-      <p><?php echo $app_info['short_description'];?></p>
+      <p><?php echo $appInfo['short_description'];?></p>
       <ol style="list-style: none;padding: 0 0 5px 0;">
         <li style="display: inline-block;">
-          <a href="/apps?c=<?php echo $app_info['category'];?>" class='btn red'><?php echo $this->app_categories[$app_info['category']];?></a> >
+          <a href="/apps?c=<?php echo $appInfo['category'];?>" class='btn red'><?php echo $this->app_categories[$appInfo['category']];?></a> >
         </li>
         <li style="display: inline-block;">
-          <a href="/apps?sc=<?php echo $app_info['sub_category'];?>" class='btn green'><?php echo $this->app_sub_categories[$app_info['category']][$app_info['sub_category']];?></a>
+          <a href="/apps?sc=<?php echo $appInfo['sub_category'];?>" class='btn green'><?php echo $this->app_sub_categories[$appInfo['category']][$appInfo['sub_category']];?></a>
         </li>
       </ol>
       <div id="app-tabs">
@@ -175,11 +175,11 @@ if($node === "index"){
           });
         </script>
         <div id="description">
-          <p><?php echo $Parsedown->text($app_info['description']);?></p>
+          <p><?php echo $Parsedown->text($appInfo['description']);?></p>
         </div>
         <div id="screenshots">
           <?php
-          $screenshots = array_filter(explode("\n", $app_info['screenshots']));
+          $screenshots = array_filter(explode("\n", $appInfo['screenshots']));
           if(empty($screenshots)){
             ser("No Screenshots", "This app has no screenshots");
           }else{
@@ -208,18 +208,18 @@ if($node === "index"){
           <div class="chip"><span>Requirements :</span></div>
           <ul class="collection" style="margin-left: 20px;">
             <?php
-            foreach(json_decode($app_info['requires'], true) as $k => $v){
+            foreach(json_decode($appInfo['requires'], true) as $k => $v){
               echo "<li class='collection-item'>$k $v</li>";
             }
             ?>
           </ul>
           <div style="margin: 20px;text-align: center;">
-            <a data-path="/admin/lobby-store.php?id=anagram" class="open-via-lobby btn orange btn-large" title="Open in Lobby" style="display: inline-block;">
+            <a data-path="/admin/lobby-store.php?id=<?php echo $appInfo["id"];?>" class="open-via-lobby btn orange btn-large" title="Open in Lobby" style="display: inline-block;">
               <i class="material-icons">open_in_new</i>
             </a>
-            <a style='display: inline-block;color: white;position:relative;line-height: 40px;' class='btn btn-large green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $app_info['id'];?>/download">Download Zip<span style='position: absolute;font-weight: bold;bottom: 7px;left: 0;line-height: 14px;right: 0;font-size: 0.8rem;'><?php echo \Lobby\FS::normalizeSize($app_info["download_size"]);?></span></a>
+            <a style='display: inline-block;color: white;position:relative;line-height: 40px;' class='btn btn-large green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $appInfo['id'];?>/download">Download Zip<span style='position: absolute;font-weight: bold;bottom: 7px;left: 0;line-height: 14px;right: 0;font-size: 0.8rem;'><?php echo \Lobby\FS::normalizeSize($appInfo["download_size"]);?></span></a>
             <a style="display: inline-block;" class="btn">
-              <strong><?php echo $app_info['downloads'];?> Downloads</strong>
+              <strong><?php echo $appInfo['downloads'];?> Downloads</strong>
             </a>
             <a href="http://server.lobby.sim/docs/install-app" class="btn" target="_blank">Installation Help</a>
           </div>
@@ -227,7 +227,7 @@ if($node === "index"){
           require_once $this->dir . "/src/inc/Fr.star.php";
           $this->addScript("Fr.star.js");
           
-          $star = new \Fr\Star(array(), "app-{$app_info['id']}");
+          $star = new \Fr\Star(array(), "app-{$appInfo['id']}");
           echo "<div class='ratings'>";
             echo $star->getRating("ableToRate");
             echo "<div id='rating'></div>";
@@ -238,7 +238,7 @@ if($node === "index"){
               function fr_star(){
                 $(".contents .ratings #rating").text($(".Fr-star").data("title"));
                 $(".Fr-star").Fr_star(function(rating){
-                  lobby.ajax("rate.php", {'id' : '<?php echo "app-{$app_info['id']}";?>', 'rating': rating}, function(r){
+                  lobby.ajax("rate.php", {'id' : '<?php echo "app-{$appInfo['id']}";?>', 'rating': rating}, function(r){
                     if(r == "error"){
                       alert("You have to log in to rate apps");
                     }else{
@@ -253,10 +253,10 @@ if($node === "index"){
           </script>
         </div>
         <div id="about">
-          <div class="chip">Version : <?php echo $app_info['version'];?></div><cl/>
-          <div class="chip" title="UTC Time Zone - <?php echo $app_info['updated'];?>">Updated : <?php echo get_timeago(strtotime($app_info['updated']));?></div><cl/>
-          <div class="chip">Author : <a href='/u/<?php echo $app_info['author'];?>'><?php echo \Fr\LS2::getUser("name", $app_info['author']);?></a></div><cl/>
-          <div class="chip">Web Page : <?php echo "<a href='{$app_info['app_page']}' target='_blank'>". htmlspecialchars($app_info['app_page']) ."</a>";?></div>
+          <div class="chip">Version : <?php echo $appInfo['version'];?></div><cl/>
+          <div class="chip" title="UTC Time Zone - <?php echo $appInfo['updated'];?>">Updated : <?php echo get_timeago(strtotime($appInfo['updated']));?></div><cl/>
+          <div class="chip">Author : <a href='/u/<?php echo $appInfo['author'];?>'><?php echo \Fr\LS2::getUser("name", $appInfo['author']);?></a></div><cl/>
+          <div class="chip">Web Page : <?php echo "<a href='{$appInfo['app_page']}' target='_blank'>". htmlspecialchars($appInfo['app_page']) ."</a>";?></div>
         </div>
       </div>  
     </div>
