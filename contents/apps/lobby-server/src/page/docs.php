@@ -52,6 +52,12 @@ $this->addStyle("docs.css");
         <li><?php echo "<a href='". L_URL ."/docs/dev/app/publish'>Publish</a>";?></li>
       </ul>
     </li>
+    <li class="doc-side-head">
+      <?php echo \Lobby::l("/docs/dev/core", "Core", 'class="head"');?>
+      <ul>
+        <li><?php echo "<a href='". L_URL ."/docs/dev/core/hooks'>Hooks</a>";?></li>
+      </ul>
+    </li>
   </ul>
 </div>
 <div class="contents">
