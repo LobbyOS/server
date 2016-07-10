@@ -37,7 +37,7 @@ $this->addScript("responsiveslides.min.js");
           <p class="caption">The <a href="/apps/diary">Diary App</a> On Lobby</p>
         </li>
         <li>
-          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/lobby-store.png" alt="">
+          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/lobby-store-app.png" alt="">
           <p class="caption">Installing An App is Super Easy !</p>
         </li>
       </ul>
@@ -54,16 +54,14 @@ $this->addScript("responsiveslides.min.js");
     <div class="row" style="text-align: left;">
       <h2>Features</h2>
       <ul>
-        <li>Auto update Lobby & Apps when a new version comes out
+        <li><a href="#lobby-store">Lobby Store</a></li>
+        <li>Auto update Lobby & Apps when a new version comes out</li>
         <li>Lightweight - Lobby was created from scratch with performance in mind</li>
-        <li>Open Source & Licensed under Apache License v2</li>
+        <li>Open Source (Apache License)</li>
         <li>Lobby has a set of API which helps devs write shorter and better code</li>
         <li>Modules - helps Lobby to be customized as you like</li>
-        <li>Theming support</li>
-        <li>Use as a framework for developing Web Sites (<a href="https://lobby.subinsb.com">This site</a> is an example)</li>
+        <li>Develop rich web sites (<a href="https://lobby.subinsb.com">This site</a> runs on Lobby)</li>
       </ul>
-      <a class='btn orange' href='https://github.com/subins2000/lobby'>GitHub Repository</a>
-      <a class='btn red' href='https://github.com/subins2000/lobby/issues'>Bugs, Support</a>
     </div>
   </div>
 </section>
@@ -71,21 +69,8 @@ $this->addScript("responsiveslides.min.js");
   <div class="container">
     <div class="row" style="text-align: left;">
       <h2 style='font-size: 4em;'><a href="/apps" style="color: white;">Lobby Store</a></h2>
-      <p>Lobby Store is a collection of apps currently progressing with the help of developers all over the world</p>
-      <div clear>
-        <a href="/apps/diary" class='app'>
-          <img src="//googledrive.com/host/0B2VjYaTkCpiQdTl4TldwMmVqdU0/logo.png" />
-          <div class='app_name'>Diary</div>
-        </a>
-        <a href="/apps/millionaire" class='app'>
-          <img src="//googledrive.com/host/0B2VjYaTkCpiQflZzRE52WFRiSEpqNmJVQWNTQndJY0M3Y29XUmRFcGRnWm9xcFUyU1lVNkE/logo.png" />
-          <div class='app_name'>Who Wants To Be A Millionaire</div>
-        </a>
-        <a href="/apps/millionaire" class='app'>
-          <img src="<?php echo L_URL;?>/api/app/anagram/logo" />
-          <div class='app_name'>Anagram</div>
-        </a>
-      </div>
+      <p>Lobby Store is a repository of apps for you to install. Find great apps and <a href="<?php $this->u("/docs/dev/app/publish");?>">publish your apps</a> for others to use.</p>
+      <img src="<?php echo $this->srcURL;?>/src/image/screenshots/lobby-store.png" />
     </div>
   </div>
 </section>
@@ -98,6 +83,8 @@ $this->addScript("responsiveslides.min.js");
       <a class='platform zip' href='/api/lobby/download/latest' title='Download Zip File'></a>
     </div>
     <div clear style='margin-top: 20px;' >
+      <a class='platform' id='github' href='https://github.com/LobbyOS/lobby' title='GitHub'></a>
+      <a class='platform' id='facebook' href='https://www.facebook.com/groups/LobbyOS' title='Support & Help'></a>
       <a class='btn' href='/download' clear>How To Install ?</a>
     </div>
     <p style='margin-top: 50px;'>&copy; Copyleft <a href="https://github.com/orgs/LobbyOS/people" target="_blank">Lobby Team</a> 2014 - <?php echo date("Y");?></p>

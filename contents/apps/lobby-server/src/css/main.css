@@ -1,3 +1,6 @@
+#workspace{
+  font-size: 1.1em;
+}
 #workspace .contents{
   background: none;
   padding: 40px 0;
@@ -20,7 +23,7 @@ section h2{
 }
 .even-section{
   text-align: center;
-  background: #FF9800;
+  background: #9c27b0;
   color: white;
 }
 section ul{
@@ -106,23 +109,26 @@ section img{
   width: 64px;
   margin-right: 10px;
   background-repeat: no-repeat;
+  background-size: contain;
 }
 #download .linux{
   background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/linux.svg);
-  background-size: contain;
   margin-right: 0;
 }
 #download .ubuntu{
   background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/ubuntu.svg);
-  background-size: contain;
 }
 #download .windows{
   background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/windows.svg);
-  background-size: contain;
 }
 #download .zip{
   background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/zip.svg);
-  background-size: contain;
+}
+#download #github{
+  background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/github.png);
+}
+#download #facebook{
+  background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/facebook.png);
 }
 @media screen and (max-width: 500px){
   #workspace .contents{
