@@ -8,6 +8,10 @@ The most frequently asked questions (F.A.Q) about Lobby is answered here :
 
 Applications that run on a web browser is known as **Web Apps**. These apps are platform independent and can run on any modern browsers. Examples of web apps can be found in the **Chrome Web Store** and **Firefox Addons**.
 
+## Desktop Web Apps ?
+
+With PHP, the program can interact directly with the user's system like how a desktop app does. But unlike a standard desktop app, Lobby and apps runs on a browser. Hence it's `Desktop Apps + Web Apps = Desktop Web Apps`
+
 ## What's Lobby ?
 
 Lobby is a software that runs on a [localhost](http://en.wikipedia.org/wiki/Localhost) server for running Web Apps. Lobby provides a framework for running Web Apps in localhost.

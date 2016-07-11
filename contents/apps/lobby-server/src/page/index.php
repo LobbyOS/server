@@ -1,54 +1,85 @@
 <?php
 $this->addStyle("main.css");
 $this->addScript("responsiveslides.min.js");
-\Response::setTitle("A Web OS");
+\Response::setTitle("Make Cross Platform Desktop Apps With PHP, JavaScript And CSS");
 ?>
 <section id="intro">
   <div class="container">
     <div class="row">
       <a href='//lobby.subinsb.com'><img src='<?php echo $this->srcURL . "/src/image/logo.png";?>' /></a>
-      <p style="margin-top: 20px;">A Web OS</p>
-      <p style="margin-top: 20px;">Lobby is a framework to run web apps. It can be attributed as a combination of <a href="https://en.wikipedia.org/wiki/Android" target="_blank" >Android</a> & <a href="https://en.wikipedia.org/wiki/WordPress" target="_blank" >WordPress</a></p>
-      <p>Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and can be used via a browser</p>
-      <p>Hence Lobby can be installed on any platforms like Windows, Linux, Mac etc.</p>
-      <p>Still don't understand it ? See a detailed description here :</p>
-      <a href="/docs/about" class="btn indigo" target="_blank">About Lobby</a>
-      <div style="margin-top: 10px;">
-        <a class="btn page-scroll" href="#screenshots">Screenshots</a>
-        <a class="btn blue page-scroll" href="#features">Features</a>
-        <a class="btn page-scroll" href="#lobby-store">Lobby Store</a>
-        <div style="margin-top: 10px;">
-          <a class="btn red page-scroll" href="#download">Download</a>
-        </div>
-      </div>
+      <div class="section-intro">Make cross platform <a class="underlined" href="/docs/about#section-desktop-web-apps-?">desktop web apps</a><div class="byline">With PHP, JavaScript and CSS</div></div>
     </div>
   </div>
 </section>
-<section id="screenshots" class="even-section" style="padding: 80px 0 10px">
-  <div class="container">
-    <div class="row">
+<section id="runs-in" class="even-section">
+  <div class='browser-window'>
+    <div class='top-bar'>
+      <div class='circles'>
+         <div class="circle red"></div>
+         <div class="circle yellow"></div>
+         <div class="circle green"></div>
+         <div class="title">Google Chrome</div>
+      </div>
+    </div>
+    <div class='page-url'>
+      <a class="action-btn previous" href="#"></a>
+      <a class="action-btn next" href="#"></a>
+      <div id='page-url'>http://localhost/lobby</div>
+    </div>
+    <div class='page-content'>
       <ul class="rslides">
         <li>
-          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/dashboard.png" alt="">
-          <p class="caption">The Lobby Dashboard</p>
+          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/browser/dashboard.png" alt="">
         </li>
         <li>
-          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/app-diary.png" alt="">
-          <p class="caption">The <a href="/apps/diary">Diary App</a> On Lobby</p>
+          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/browser/app-millionaire.png" alt="">
         </li>
         <li>
-          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/lobby-store-app.png" alt="">
-          <p class="caption">Installing An App is Super Easy !</p>
+          <img src="<?php echo $this->srcURL;?>/src/image/screenshots/browser/lobby-store.png" alt="">
         </li>
       </ul>
       <script>
         window.addEventListener("load", function(){
-          $(".rslides").responsiveSlides({pager: true});
+          $(".rslides").responsiveSlides({
+            pager:true,
+            speed: 100,
+            before: function(i){
+              switch(i){
+                case 0:
+                  $("#page-url").text("http://localhost/lobby");
+                  break;
+                case 1:
+                  $("#page-url").text("http://localhost/lobby/app/millionaire");
+                  break;
+                case 2:
+                  $("#page-url").text("http://localhost/lobby/admin/lobby-store.php");
+              }
+            }
+          });
+          $(".action-btn.previous").click(function(){
+            $(".rslides_tabs .rslides_here").prevAll(":first").find("a").trigger("click");
+          });
+          $(".action-btn.next").click(function(){
+            $(".rslides_tabs .rslides_here").nextAll(":first").find("a").trigger("click");
+          });
         });
       </script>
     </div>
   </div>
+  <div class="container">
+    <div class="row">
+      <div class="section-intro">Lobby runs in <a target="_blank" href="https://en.wikipedia.org/wiki/Localhost" class="underlined">localhost</a>
+        <div class="byline">and can be used with a browser</div>
+      </div>
+    </div>
+  </div>
 </section>
+<div id="navigate">
+  <a class="btn red page-scroll" href="#features">Features</a>
+  <a class="btn blue page-scroll" href="#lobby-store">Lobby Store</a>
+  <a href="/docs/about" class="btn blue" target="_blank">About Lobby</a>
+  <a class="btn red page-scroll" href="#download">Download</a>
+</div>
 <section id="features" class="odd-section">
   <div class="container">
     <div class="row" style="text-align: left;">
