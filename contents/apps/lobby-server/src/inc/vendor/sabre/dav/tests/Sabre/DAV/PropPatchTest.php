@@ -226,7 +226,10 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
             '{DAV:}a' => 'foo',
         ]);
 
-        $propPatch->handle('{DAV:}a', function() {
+        $calledA = false;
+        $calledB = false;
+
+        $propPatch->handle('{DAV:}a', function() use (&$calledA) {
             return [];
         });
         $propPatch->commit();
@@ -343,7 +346,9 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
             '{DAV:}c' => null,
         ]);
 
-        $propPatch->handle(['{DAV:}a', '{DAV:}b', '{DAV:}c'], function($properties) {
+        $calledA = false;
+
+        $propPatch->handle(['{DAV:}a', '{DAV:}b', '{DAV:}c'], function($properties) use (&$calledA) {
             return 'hi';
         });
         $propPatch->commit();

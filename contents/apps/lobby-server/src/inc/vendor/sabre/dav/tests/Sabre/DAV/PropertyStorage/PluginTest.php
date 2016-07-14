@@ -21,15 +21,6 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testGetInfo() {
-
-        $this->assertArrayHasKey(
-            'name',
-            $this->plugin->getPluginInfo()
-        );
-
-    }
-
     function testSetProperty() {
 
         $this->server->updateProperties('', ['{DAV:}displayname' => 'hi']);

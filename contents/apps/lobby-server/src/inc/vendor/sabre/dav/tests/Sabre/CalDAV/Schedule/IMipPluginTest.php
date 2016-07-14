@@ -8,22 +8,12 @@ use Sabre\DAV\Server;
 
 class IMipPluginTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetPluginInfo() {
-
-        $plugin = new IMipPlugin('system@example.com');
-        $this->assertEquals(
-            'imip',
-            $plugin->getPluginInfo()['name']
-        );
-
-    }
-
     function testDeliverReply() {
 
         $message = new Message();
-        $message->sender = 'mailto:sender@example.org';
+        $message->sender = 'sender@example.org';
         $message->senderName = 'Sender';
-        $message->recipient = 'mailto:recipient@example.org';
+        $message->recipient = 'recipient@example.org';
         $message->recipientName = 'Recipient';
         $message->method = 'REPLY';
 
@@ -60,42 +50,12 @@ ICS;
 
     }
 
-    function testDeliverReplyNoMailto() {
-
-        $message = new Message();
-        $message->sender = 'mailto:sender@example.org';
-        $message->senderName = 'Sender';
-        $message->recipient = 'http://example.org/recipient';
-        $message->recipientName = 'Recipient';
-        $message->method = 'REPLY';
-
-        $ics = <<<ICS
-BEGIN:VCALENDAR\r
-METHOD:REPLY\r
-BEGIN:VEVENT\r
-SUMMARY:Birthday party\r
-END:VEVENT\r
-END:VCALENDAR\r
-
-ICS;
-
-
-        $message->message = Reader::read($ics);
-
-        $result = $this->schedule($message);
-
-        $expected = [];
-
-        $this->assertEquals($expected, $result);
-
-    }
-
     function testDeliverRequest() {
 
         $message = new Message();
-        $message->sender = 'mailto:sender@example.org';
+        $message->sender = 'sender@example.org';
         $message->senderName = 'Sender';
-        $message->recipient = 'mailto:recipient@example.org';
+        $message->recipient = 'recipient@example.org';
         $message->recipientName = 'Recipient';
         $message->method = 'REQUEST';
 
@@ -135,9 +95,9 @@ ICS;
     function testDeliverCancel() {
 
         $message = new Message();
-        $message->sender = 'mailto:sender@example.org';
+        $message->sender = 'sender@example.org';
         $message->senderName = 'Sender';
-        $message->recipient = 'mailto:recipient@example.org';
+        $message->recipient = 'recipient@example.org';
         $message->recipientName = 'Recipient';
         $message->method = 'CANCEL';
 
@@ -190,9 +150,9 @@ ICS;
     function testDeliverInsignificantRequest() {
 
         $message = new Message();
-        $message->sender = 'mailto:sender@example.org';
+        $message->sender = 'sender@example.org';
         $message->senderName = 'Sender';
-        $message->recipient = 'mailto:recipient@example.org';
+        $message->recipient = 'recipient@example.org';
         $message->recipientName = 'Recipient';
         $message->method = 'REQUEST';
         $message->significantChange = false;

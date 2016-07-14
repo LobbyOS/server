@@ -2,13 +2,15 @@
 
 namespace Sabre\DAV\Mock;
 
-use Sabre\DAV\IProperties;
-use Sabre\DAV\PropPatch;
+use
+    Sabre\DAV\IProperties,
+    Sabre\DAV\PropPatch;
+
 
 /**
  * A node specifically for testing property-related operations
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH. All rights reserved.
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -26,7 +28,7 @@ class PropertiesCollection extends Collection implements IProperties {
      * @param array $properties
      * @return void
      */
-    function __construct($name, array $children, array $properties = []) {
+    public function __construct($name, array $children, array $properties = []) {
 
         parent::__construct($name, $children, null);
         $this->properties = $properties;
@@ -45,15 +47,15 @@ class PropertiesCollection extends Collection implements IProperties {
      * @param array $mutations
      * @return bool|array
      */
-    function propPatch(PropPatch $proppatch) {
+    public function propPatch(PropPatch $proppatch) {
 
         $proppatch->handleRemaining(function($updateProperties) {
 
-            switch ($this->failMode) {
+            switch($this->failMode) {
                 case 'updatepropsfalse' : return false;
                 case 'updatepropsarray' :
                     $r = [];
-                    foreach ($updateProperties as $k => $v) $r[$k] = 402;
+                    foreach($updateProperties as $k=>$v) $r[$k] = 402;
                     return $r;
                 case 'updatepropsobj' :
                     return new \STDClass();
@@ -78,10 +80,10 @@ class PropertiesCollection extends Collection implements IProperties {
      * @param array $properties
      * @return array
      */
-    function getProperties($requestedProperties) {
+    public function getProperties($requestedProperties) {
 
-        $returnedProperties = [];
-        foreach ($requestedProperties as $requestedProperty) {
+        $returnedProperties = array();
+        foreach($requestedProperties as $requestedProperty) {
             if (isset($this->properties[$requestedProperty])) {
                 $returnedProperties[$requestedProperty] =
                     $this->properties[$requestedProperty];

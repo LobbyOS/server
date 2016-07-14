@@ -2,9 +2,10 @@
 
 namespace Sabre\CalDAV;
 
-use Sabre\DAV;
-use Sabre\DAVACL;
-use Sabre\DAV\PropPatch;
+use
+    Sabre\DAV,
+    Sabre\DAVACL,
+    Sabre\DAV\PropPatch;
 
 /**
  * This object represents a CalDAV calendar.
@@ -12,7 +13,7 @@ use Sabre\DAV\PropPatch;
  * A calendar can contain multiple TODO and or Events. These are represented
  * as \Sabre\CalDAV\CalendarObject objects.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -84,10 +85,10 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
 
         $response = [];
 
-        foreach ($this->calendarInfo as $propName => $propValue) {
+        foreach($requestedProperties as $prop) {
 
-            if ($propName[0] === '{')
-                $response[$propName] = $this->calendarInfo[$propName];
+            if (isset($this->calendarInfo[$prop]))
+                $response[$prop] = $this->calendarInfo[$prop];
 
         }
         return $response;
@@ -104,13 +105,13 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
      */
     function getChild($name) {
 
-        $obj = $this->caldavBackend->getCalendarObject($this->calendarInfo['id'], $name);
+        $obj = $this->caldavBackend->getCalendarObject($this->calendarInfo['id'],$name);
 
         if (!$obj) throw new DAV\Exception\NotFound('Calendar object not found');
 
         $obj['acl'] = $this->getChildACL();
 
-        return new CalendarObject($this->caldavBackend, $this->calendarInfo, $obj);
+        return new CalendarObject($this->caldavBackend,$this->calendarInfo,$obj);
 
     }
 
@@ -123,9 +124,9 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
 
         $objs = $this->caldavBackend->getCalendarObjects($this->calendarInfo['id']);
         $children = [];
-        foreach ($objs as $obj) {
+        foreach($objs as $obj) {
             $obj['acl'] = $this->getChildACL();
-            $children[] = new CalendarObject($this->caldavBackend, $this->calendarInfo, $obj);
+            $children[] = new CalendarObject($this->caldavBackend,$this->calendarInfo,$obj);
         }
         return $children;
 
@@ -137,16 +138,15 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
      *
      * If any children are not found, you do not have to return them.
      *
-     * @param string[] $paths
      * @return array
      */
     function getMultipleChildren(array $paths) {
 
         $objs = $this->caldavBackend->getMultipleCalendarObjects($this->calendarInfo['id'], $paths);
         $children = [];
-        foreach ($objs as $obj) {
+        foreach($objs as $obj) {
             $obj['acl'] = $this->getChildACL();
-            $children[] = new CalendarObject($this->caldavBackend, $this->calendarInfo, $obj);
+            $children[] = new CalendarObject($this->caldavBackend,$this->calendarInfo,$obj);
         }
         return $children;
 
@@ -160,7 +160,7 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
      */
     function childExists($name) {
 
-        $obj = $this->caldavBackend->getCalendarObject($this->calendarInfo['id'], $name);
+        $obj = $this->caldavBackend->getCalendarObject($this->calendarInfo['id'],$name);
         if (!$obj)
             return false;
         else
@@ -191,12 +191,12 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
      * @param resource $calendarData
      * @return string|null
      */
-    function createFile($name, $calendarData = null) {
+    function createFile($name,$calendarData = null) {
 
         if (is_resource($calendarData)) {
             $calendarData = stream_get_contents($calendarData);
         }
-        return $this->caldavBackend->createCalendarObject($this->calendarInfo['id'], $name, $calendarData);
+        return $this->caldavBackend->createCalendarObject($this->calendarInfo['id'],$name,$calendarData);
 
     }
 
@@ -392,7 +392,7 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
 
         // We need to inject 'read-free-busy' in the tree, aggregated under
         // {DAV:}read.
-        foreach ($default['aggregates'] as &$agg) {
+        foreach($default['aggregates'] as &$agg) {
 
             if ($agg['privilege'] !== '{DAV:}read') continue;
 

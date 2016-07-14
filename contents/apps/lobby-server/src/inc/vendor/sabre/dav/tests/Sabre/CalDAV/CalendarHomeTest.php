@@ -1,13 +1,13 @@
 <?php
 
 namespace Sabre\CalDAV;
+use Sabre\DAVACL;
+use Sabre\DAV;
 
-use
-    Sabre\DAV,
-    Sabre\DAV\MkCol,
-    Sabre\DAVACL;
+require_once 'Sabre/CalDAV/TestUtil.php';
 
-
+/**
+ */
 class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
 
     /**
@@ -161,11 +161,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      */
     function testCreateExtendedCollection() {
 
-        $mkCol = new MkCol(
-            ['{DAV:}collection', '{urn:ietf:params:xml:ns:caldav}calendar'],
-            []
-        );
-        $result = $this->usercalendars->createExtendedCollection('newcalendar', $mkCol);
+        $result = $this->usercalendars->createExtendedCollection('newcalendar', array('{DAV:}collection', '{urn:ietf:params:xml:ns:caldav}calendar'), array());
         $this->assertNull($result);
         $cals = $this->backend->getCalendarsForUser('principals/user1');
         $this->assertEquals(3,count($cals));
@@ -178,11 +174,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      */
     function testCreateExtendedCollectionBadResourceType() {
 
-        $mkCol = new MkCol(
-            ['{DAV:}collection', '{DAV:}blabla'],
-            []
-        );
-        $this->usercalendars->createExtendedCollection('newcalendar', $mkCol);
+        $this->usercalendars->createExtendedCollection('newcalendar', array('{DAV:}collection','{DAV:}blabla'), array());
 
     }
 
@@ -192,11 +184,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      */
     function testCreateExtendedCollectionNotACalendar() {
 
-        $mkCol = new MkCol(
-            ['{DAV:}collection'],
-            []
-        );
-        $this->usercalendars->createExtendedCollection('newcalendar', $mkCol);
+        $this->usercalendars->createExtendedCollection('newcalendar', array('{DAV:}collection'), array());
 
     }
 

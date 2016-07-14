@@ -2,13 +2,19 @@
 
 namespace Sabre\VObject\Property;
 
+use
+    Sabre\VObject\Property,
+    Sabre\VObject\Component,
+    Sabre\VObject\Parser\MimeDir,
+    Sabre\VObject\Document;
+
 /**
- * Unknown property.
+ * Unknown property
  *
  * This object represents any properties not recognized by the parser.
  * This type of value has been introduced by the jCal, jCard specs.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2011-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -21,9 +27,9 @@ class Unknown extends Text {
      *
      * @return array
      */
-    function getJsonValue() {
+    public function getJsonValue() {
 
-        return [$this->getRawMimeDirValue()];
+        return array($this->getRawMimeDirValue());
 
     }
 
@@ -35,9 +41,9 @@ class Unknown extends Text {
      *
      * @return string
      */
-    function getValueType() {
+    public function getValueType() {
 
-        return 'UNKNOWN';
+        return "UNKNOWN";
 
     }
 

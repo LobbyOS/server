@@ -6,9 +6,9 @@ $autoLoader = include __DIR__ . '/../vendor/autoload.php';
 
 // SabreDAV tests auto loading
 $autoLoader->add('Sabre\\', __DIR__);
-// VObject tests auto loading
+// VObject tests auto loadiong
 $autoLoader->addPsr4('Sabre\\VObject\\',__DIR__ . '/../vendor/sabre/vobject/tests/VObject');
-$autoLoader->addPsr4('Sabre\\Xml\\',__DIR__ . '/../vendor/sabre/xml/tests/Sabre/Xml');
+
 
 date_default_timezone_set('UTC');
 
@@ -20,13 +20,6 @@ $config = [
     'SABRE_MYSQLUSER' => 'root',
     'SABRE_MYSQLPASS' => '',
 ];
-
-if (file_exists(__DIR__ . '/config.user.php')) {
-    include __DIR__ . '/config.user.php';
-    foreach($userConfig as $key=>$value) {
-        $config[$key] = $value;
-    }
-}
 
 foreach($config as $key=>$value) {
     if (!defined($key)) define($key, $value);

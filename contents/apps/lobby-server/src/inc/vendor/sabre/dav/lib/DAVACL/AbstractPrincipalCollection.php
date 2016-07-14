@@ -2,8 +2,9 @@
 
 namespace Sabre\DAVACL;
 
-use Sabre\DAV;
-use Sabre\HTTP\URLUtil;
+use
+    Sabre\DAV,
+    Sabre\HTTP\URLUtil;
 
 /**
  * Principals Collection
@@ -13,7 +14,7 @@ use Sabre\HTTP\URLUtil;
  *
  * To use this class, simply implement the getChildForPrincipal method.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -79,7 +80,7 @@ abstract class AbstractPrincipalCollection extends DAV\Collection implements IPr
      */
     function getName() {
 
-        list(, $name) = URLUtil::splitPath($this->principalPrefix);
+        list(,$name) = URLUtil::splitPath($this->principalPrefix);
         return $name;
 
     }
@@ -95,7 +96,7 @@ abstract class AbstractPrincipalCollection extends DAV\Collection implements IPr
             throw new DAV\Exception\MethodNotAllowed('Listing members of this collection is disabled');
 
         $children = [];
-        foreach ($this->principalBackend->getPrincipalsByPrefix($this->principalPrefix) as $principalInfo) {
+        foreach($this->principalBackend->getPrincipalsByPrefix($this->principalPrefix) as $principalInfo) {
 
             $children[] = $this->getChildForPrincipal($principalInfo);
 
@@ -140,7 +141,6 @@ abstract class AbstractPrincipalCollection extends DAV\Collection implements IPr
      * used to call $this->getChild in the future.
      *
      * @param array $searchProperties
-     * @param string $test
      * @return array
      */
     function searchPrincipals(array $searchProperties, $test = 'allof') {
@@ -148,7 +148,7 @@ abstract class AbstractPrincipalCollection extends DAV\Collection implements IPr
         $result = $this->principalBackend->searchPrincipals($this->principalPrefix, $searchProperties, $test);
         $r = [];
 
-        foreach ($result as $row) {
+        foreach($result as $row) {
             list(, $r[]) = URLUtil::splitPath($row);
         }
 
@@ -174,7 +174,7 @@ abstract class AbstractPrincipalCollection extends DAV\Collection implements IPr
      */
     function findByUri($uri) {
 
-        return $this->principalBackend->findByUri($uri, $this->principalPrefix);
+        return $this->principalBackend->findByUri($uri);
 
     }
 

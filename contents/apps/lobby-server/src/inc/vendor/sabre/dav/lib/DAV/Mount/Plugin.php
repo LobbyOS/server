@@ -2,16 +2,17 @@
 
 namespace Sabre\DAV\Mount;
 
-use Sabre\DAV;
-use Sabre\HTTP\RequestInterface;
-use Sabre\HTTP\ResponseInterface;
+use
+    Sabre\DAV,
+    Sabre\HTTP\RequestInterface,
+    Sabre\HTTP\ResponseInterface;
 
 /**
  * This plugin provides support for RFC4709: Mounting WebDAV servers
  *
  * Simply append ?mount to any collection to generate the davmount response.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -33,7 +34,7 @@ class Plugin extends DAV\ServerPlugin {
     function initialize(DAV\Server $server) {
 
         $this->server = $server;
-        $this->server->on('method:GET', [$this, 'httpGet'], 90);
+        $this->server->on('method:GET', [$this,'httpGet'], 90);
 
     }
 
@@ -53,7 +54,7 @@ class Plugin extends DAV\ServerPlugin {
         $currentUri = $request->getAbsoluteUrl();
 
         // Stripping off everything after the ?
-        list($currentUri) = explode('?', $currentUri);
+        list($currentUri) = explode('?',$currentUri);
 
         $this->davMount($response, $currentUri);
 
@@ -65,14 +66,13 @@ class Plugin extends DAV\ServerPlugin {
     /**
      * Generates the davmount response
      *
-     * @param ResponseInterface $response
      * @param string $uri absolute uri
      * @return void
      */
     function davMount(ResponseInterface $response, $uri) {
 
         $response->setStatus(200);
-        $response->setHeader('Content-Type', 'application/davmount+xml');
+        $response->setHeader('Content-Type','application/davmount+xml');
         ob_start();
         echo '<?xml version="1.0"?>', "\n";
         echo "<dm:mount xmlns:dm=\"http://purl.org/NET/webdav/mount\">\n";

@@ -4,7 +4,8 @@ sabre/http
 This library provides a toolkit to make working with the HTTP protocol easier.
 
 Most PHP scripts run within a HTTP request but accessing information about the
-HTTP request is cumbersome at least.
+HTTP request is cumbersome at least, mainly do to superglobals and the CGI
+standard.
 
 There's bad practices, inconsistencies and confusion. This library is
 effectively a wrapper around the following PHP constructs:
@@ -30,8 +31,7 @@ Build status
 
 | branch | status |
 | ------ | ------ |
-| master | [![Build Status](https://travis-ci.org/fruux/sabre-http.svg?branch=master)](https://travis-ci.org/fruux/sabre-http) |
-| 3.0    | [![Build Status](https://travis-ci.org/fruux/sabre-http.svg?branch=3.0)](https://travis-ci.org/fruux/sabre-http) |
+| master | [![Build Status](https://travis-ci.org/fruux/sabre-http.png?branch=master)](https://travis-ci.org/fruux/sabre-http) |
 
 Installation
 ------------

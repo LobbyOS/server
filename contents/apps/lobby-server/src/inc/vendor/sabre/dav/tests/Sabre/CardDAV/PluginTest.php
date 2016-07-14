@@ -3,16 +3,15 @@
 namespace Sabre\CardDAV;
 
 use Sabre\DAV;
-use Sabre\DAV\Xml\Property\Href;
 
 class PluginTest extends AbstractPluginTest {
 
     function testConstruct() {
 
+        $this->assertEquals('card', $this->server->xmlNamespaces[Plugin::NS_CARDDAV]);
         $this->assertEquals('{' . Plugin::NS_CARDDAV . '}addressbook', $this->server->resourceTypeMapping['Sabre\\CardDAV\\IAddressBook']);
 
         $this->assertTrue(in_array('addressbook', $this->plugin->getFeatures()));
-        $this->assertEquals('carddav', $this->plugin->getPluginInfo()['name']);
 
     }
 
@@ -42,6 +41,25 @@ class PluginTest extends AbstractPluginTest {
 
     }
 
+    function testMeCardTest() {
+
+        $result = $this->server->getProperties(
+            'addressbooks/user1',
+            array(
+                '{http://calendarserver.org/ns/}me-card',
+            )
+        );
+
+        $this->assertEquals(
+            array(
+                '{http://calendarserver.org/ns/}me-card' =>
+                    new DAV\Property\Href('addressbooks/user1/book1/vcard1.vcf')
+            ),
+            $result
+        );
+
+    }
+
     function testDirectoryGateway() {
 
         $result = $this->server->getProperties('principals/user1', array('{' . Plugin::NS_CARDDAV . '}directory-gateway'));
@@ -54,7 +72,7 @@ class PluginTest extends AbstractPluginTest {
 
     function testReportPassThrough() {
 
-        $this->assertNull($this->plugin->report('{DAV:}foo', new \DomDocument(), ''));
+        $this->assertNull($this->plugin->report('{DAV:}foo', new \DomDocument()));
 
     }
 
@@ -65,6 +83,59 @@ class PluginTest extends AbstractPluginTest {
         $this->assertFalse($r);
 
         $this->assertTrue(!!strpos($output,'Display name'));
+
+    }
+
+    function testBrowserPostAction() {
+
+        $r = $this->server->emit('onBrowserPostAction', ['addressbooks/user1', 'mkaddressbook', [
+            'name' => 'NEWADDRESSBOOK',
+            '{DAV:}displayname' => 'foo',
+        ]]);
+        $this->assertFalse($r);
+
+        $addressbooks = $this->backend->getAddressBooksforUser('principals/user1');
+        $this->assertEquals(2, count($addressbooks));
+
+        $newAddressBook = null;
+        foreach($addressbooks as $addressbook) {
+           if ($addressbook['uri'] === 'NEWADDRESSBOOK') {
+                $newAddressBook = $addressbook;
+                break;
+           }
+        }
+        if (!$newAddressBook)
+            $this->fail('Could not find newly created addressbook');
+
+    }
+
+    function testUpdatePropertiesMeCard() {
+
+        $result = $this->server->updateProperties('addressbooks/user1', array(
+            '{http://calendarserver.org/ns/}me-card' => new DAV\Property\Href('/addressbooks/user1/book1/vcard2',true),
+        ));
+
+        $this->assertEquals(
+            array(
+                '{http://calendarserver.org/ns/}me-card' => 200,
+            ),
+            $result
+        );
+
+    }
+
+    function testUpdatePropertiesMeCardBadValue() {
+
+        $result = $this->server->updateProperties('addressbooks/user1', array(
+            '{http://calendarserver.org/ns/}me-card' => new DAV\Property\HrefList(array()),
+        ));
+
+        $this->assertEquals(
+            array(
+                '{http://calendarserver.org/ns/}me-card' => 400,
+            ),
+            $result
+        );
 
     }
 
@@ -79,11 +150,11 @@ class PluginTest extends AbstractPluginTest {
         $this->plugin->propFindEarly($propFind, $node);
 
         $this->assertInstanceOf(
-            'Sabre\\CardDAV\\Xml\\Property\\SupportedAddressData',
+            'Sabre\\CardDAV\\Property\\SupportedAddressData',
             $propFind->get($ns . 'supported-address-data')
         );
         $this->assertInstanceOf(
-            'Sabre\\CardDAV\\Xml\\Property\\SupportedCollationSet',
+            'Sabre\\CardDAV\\Property\\SupportedCollationSet',
             $propFind->get($ns . 'supported-collation-set')
         );
 

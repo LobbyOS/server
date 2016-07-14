@@ -2,9 +2,7 @@
 
 namespace Sabre\CalDAV;
 
-use
-    Sabre\DAV\MkCol,
-    Sabre\DAVACL;
+use Sabre\DAVACL;
 
 class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
 
@@ -14,7 +12,7 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
 
         $props = [
             '{DAV:}displayname' => 'baz',
-            '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/test.ics'),
+            '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Property\Href('http://example.org/test.ics'),
         ];
         $principal = [
             'uri' => 'principals/user1'
@@ -54,9 +52,9 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
 
         $props = [
             '{DAV:}displayname' => 'baz',
-            '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/test2.ics'),
+            '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Property\Href('http://example.org/test2.ics'),
         ];
-        $instance->createExtendedCollection('sub2', new MkCol($rt, $props));
+        $instance->createExtendedCollection('sub2', $rt, $props);
 
         $children = $instance->getChildren();
         $this->assertEquals(2, count($children));
@@ -66,7 +64,7 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\DAV\Exception\InvalidResourceType
      */
-    function testNoSubscriptionSupport() {
+    public function testNoSubscriptionSupport() {
 
         $principal = [
             'uri' => 'principals/user1'
@@ -78,9 +76,9 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
 
         $props = [
             '{DAV:}displayname' => 'baz',
-            '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/test2.ics'),
+            '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Property\Href('http://example.org/test2.ics'),
         ];
-        $uC->createExtendedCollection('sub2', new MkCol($rt, $props));
+        $uC->createExtendedCollection('sub2', $rt, $props);
 
     }
 

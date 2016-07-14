@@ -1,9 +1,8 @@
 CREATE TABLE propertystorage (
-    id integer primary key asc NOT NULL,
-    path text NOT NULL,
-    name text NOT NULL,
-    valuetype integer NOT NULL,
-    value string
+    id integer primary key asc,
+    path TEXT,
+    name TEXT,
+    value TEXT
 );
 
 

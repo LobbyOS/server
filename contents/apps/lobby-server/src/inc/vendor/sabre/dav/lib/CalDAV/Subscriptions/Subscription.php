@@ -2,19 +2,22 @@
 
 namespace Sabre\CalDAV\Subscriptions;
 
-use Sabre\DAV\Collection;
-use Sabre\DAV\Xml\Property\Href;
-use Sabre\DAV\PropPatch;
-use Sabre\DAV\Exception\MethodNotAllowed;
-use Sabre\DAVACL\IACL;
-use Sabre\CalDAV\Backend\SubscriptionSupport;
+use
+    Sabre\DAV\Collection,
+    Sabre\DAV\Property\Href,
+    Sabre\DAV\PropPatch,
+    Sabre\DAV\Exception\MethodNotAllowed,
+    Sabre\DAVACL\IACL,
+    Sabre\CalDAV\Backend\SubscriptionSupport;
+
+
 
 /**
  * Subscription Node
  *
  * This node represents a subscription.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -52,7 +55,7 @@ class Subscription extends Collection implements ISubscription, IACL {
             'source',
             ];
 
-        foreach ($required as $r) {
+        foreach($required as $r) {
             if (!isset($subscriptionInfo[$r])) {
                 throw new \InvalidArgumentException('The ' . $r . ' field is required when creating a subscription node');
             }
@@ -150,14 +153,14 @@ class Subscription extends Collection implements ISubscription, IACL {
 
         $r = [];
 
-        foreach ($properties as $prop) {
+        foreach($properties as $prop) {
 
-            switch ($prop) {
+            switch($prop) {
                 case '{http://calendarserver.org/ns/}source' :
                     $r[$prop] = new Href($this->subscriptionInfo['source'], false);
                     break;
                 default :
-                    if (array_key_exists($prop, $this->subscriptionInfo)) {
+                    if (isset($this->subscriptionInfo[$prop])) {
                         $r[$prop] = $this->subscriptionInfo[$prop];
                     }
                     break;

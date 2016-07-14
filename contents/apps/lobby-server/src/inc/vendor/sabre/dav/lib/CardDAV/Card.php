@@ -5,10 +5,11 @@ namespace Sabre\CardDAV;
 use Sabre\DAVACL;
 use Sabre\DAV;
 
+
 /**
  * The Card object represents a single Card from an addressbook
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -42,7 +43,7 @@ class Card extends DAV\File implements ICard, DAVACL\IACL {
      * @param array $addressBookInfo
      * @param array $cardData
      */
-    function __construct(Backend\BackendInterface $carddavBackend, array $addressBookInfo, array $cardData) {
+    function __construct(Backend\BackendInterface $carddavBackend,array $addressBookInfo,array $cardData) {
 
         $this->carddavBackend = $carddavBackend;
         $this->addressBookInfo = $addressBookInfo;
@@ -91,7 +92,7 @@ class Card extends DAV\File implements ICard, DAVACL\IACL {
         // Converting to UTF-8, if needed
         $cardData = DAV\StringUtil::ensureUTF8($cardData);
 
-        $etag = $this->carddavBackend->updateCard($this->addressBookInfo['id'], $this->cardData['uri'], $cardData);
+        $etag = $this->carddavBackend->updateCard($this->addressBookInfo['id'],$this->cardData['uri'],$cardData);
         $this->cardData['carddata'] = $cardData;
         $this->cardData['etag'] = $etag;
 
@@ -106,7 +107,7 @@ class Card extends DAV\File implements ICard, DAVACL\IACL {
      */
     function delete() {
 
-        $this->carddavBackend->deleteCard($this->addressBookInfo['id'], $this->cardData['uri']);
+        $this->carddavBackend->deleteCard($this->addressBookInfo['id'],$this->cardData['uri']);
 
     }
 
@@ -149,7 +150,7 @@ class Card extends DAV\File implements ICard, DAVACL\IACL {
      */
     function getLastModified() {
 
-        return isset($this->cardData['lastmodified']) ? $this->cardData['lastmodified'] : null;
+        return isset($this->cardData['lastmodified'])?$this->cardData['lastmodified']:null;
 
     }
 
@@ -261,3 +262,4 @@ class Card extends DAV\File implements ICard, DAVACL\IACL {
     }
 
 }
+

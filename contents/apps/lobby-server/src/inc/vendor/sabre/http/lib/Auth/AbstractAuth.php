@@ -2,15 +2,16 @@
 
 namespace Sabre\HTTP\Auth;
 
-use Sabre\HTTP\RequestInterface;
-use Sabre\HTTP\ResponseInterface;
+use
+    Sabre\HTTP\RequestInterface,
+    Sabre\HTTP\ResponseInterface;
 
 /**
  * HTTP Authentication base class.
  *
  * This class provides some common functionality for the various base classes.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */

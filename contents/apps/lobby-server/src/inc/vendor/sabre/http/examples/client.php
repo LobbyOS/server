@@ -8,8 +8,11 @@
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-use Sabre\HTTP\Request;
-use Sabre\HTTP\Client;
+
+use
+    Sabre\HTTP\Request,
+    Sabre\HTTP\Client;
+
 
 // Find the autoloader
 $paths = [
@@ -19,7 +22,7 @@ $paths = [
 
 ];
 
-foreach ($paths as $path) {
+foreach($paths as $path) {
     if (file_exists($path)) {
         include $path;
         break;

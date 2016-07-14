@@ -10,7 +10,7 @@ use Sabre\CalDAV;
  *
  * Checkout the BackendInterface for all the methods that must be implemented.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -110,7 +110,7 @@ abstract class AbstractBackend implements BackendInterface {
         $result = [];
         $objects = $this->getCalendarObjects($calendarId);
 
-        foreach ($objects as $object) {
+        foreach($objects as $object) {
 
             if ($this->validateFilterForObject($object, $filters)) {
                 $result[] = $object['uri'];
@@ -123,7 +123,7 @@ abstract class AbstractBackend implements BackendInterface {
     }
 
     /**
-     * This method validates if a filter (as passed to calendarQuery) matches
+     * This method validates if a filters (as passed to calendarQuery) matches
      * the given object.
      *
      * @param array $object
@@ -142,12 +142,7 @@ abstract class AbstractBackend implements BackendInterface {
         $vObject = VObject\Reader::read($object['calendardata']);
 
         $validator = new CalDAV\CalendarQueryValidator();
-        $result = $validator->validate($vObject, $filters);
-
-        // Destroy circular references so PHP will GC the object.
-        $vObject->destroy();
-
-        return $result;
+        return $validator->validate($vObject, $filters);
 
     }
 
@@ -174,38 +169,33 @@ abstract class AbstractBackend implements BackendInterface {
 
         // Note: this is a super slow naive implementation of this method. You
         // are highly recommended to optimize it, if your backend allows it.
-        foreach ($this->getCalendarsForUser($principalUri) as $calendar) {
+        foreach($this->getCalendarsForUser($principalUri) as $calendar) {
 
             // We must ignore calendars owned by other principals.
-            if ($calendar['principaluri'] !== $principalUri) {
-                continue;
-            }
-
-            // Ignore calendars that are shared.
-            if (isset($calendar['{http://sabredav.org/ns}owner-principal']) && $calendar['{http://sabredav.org/ns}owner-principal'] !== $principalUri) {
+            if ($calendar['principaluri']!==$principalUri) {
                 continue;
             }
 
             $results = $this->calendarQuery(
                 $calendar['id'],
                 [
-                    'name'         => 'VCALENDAR',
+                    'name' => 'VCALENDAR',
                     'prop-filters' => [],
                     'comp-filters' => [
                         [
-                            'name'           => 'VEVENT',
+                            'name' => 'VEVENT',
                             'is-not-defined' => false,
-                            'time-range'     => null,
-                            'comp-filters'   => [],
-                            'prop-filters'   => [
+                            'time-range' => null,
+                            'comp-filters' => [],
+                            'prop-filters' => [
                                 [
-                                    'name'           => 'UID',
+                                    'name' => 'UID',
                                     'is-not-defined' => false,
-                                    'time-range'     => null,
-                                    'text-match'     => [
-                                        'value'            => $uid,
+                                    'time-range' => null,
+                                    'text-match' => [
+                                        'value' => $uid,
                                         'negate-condition' => false,
-                                        'collation'        => 'i;octet',
+                                        'collation' => 'i;octet',
                                     ],
                                     'param-filters' => [],
                                 ],

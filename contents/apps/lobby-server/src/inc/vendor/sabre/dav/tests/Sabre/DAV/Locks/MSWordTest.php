@@ -10,12 +10,6 @@ require_once 'Sabre/TestUtil.php';
 
 class MSWordTest extends \PHPUnit_Framework_TestCase {
 
-    function tearDown() {
-
-        \Sabre\TestUtil::clearTempDir();
-
-    }
-
     function testLockEtc() {
 
         mkdir(SABRE_TEMPDIR . '/mstest');
@@ -57,6 +51,12 @@ class MSWordTest extends \PHPUnit_Framework_TestCase {
         $server->exec();
 
         $this->assertEquals(204, $server->httpResponse->status);
+
+    }
+
+    function tearDown() {
+
+        \Sabre\TestUtil::clearTempDir();
 
     }
 

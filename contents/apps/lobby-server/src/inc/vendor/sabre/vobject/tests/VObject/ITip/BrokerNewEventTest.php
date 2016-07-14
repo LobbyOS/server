@@ -2,7 +2,7 @@
 
 namespace Sabre\VObject\ITip;
 
-class BrokerNewEventTest extends BrokerTester {
+class BrokerNewEventTest extends \PHPUnit_Framework_TestCase {
 
     function testNoAttendee() {
 
@@ -11,12 +11,11 @@ BEGIN:VCALENDAR
 BEGIN:VEVENT
 UID:foobar
 DTSTART:20140811T220000Z
-DTEND:20140811T230000Z
 END:VEVENT
 END:VCALENDAR
 ICS;
 
-        $result = $this->parse(null, $message, []);
+        $result = $this->parse($message);
 
     }
 
@@ -30,7 +29,7 @@ END:VTODO
 END:VCALENDAR
 ICS;
 
-        $result = $this->parse(null, $message, []);
+        $result = $this->parse($message);
 
     }
 
@@ -42,7 +41,6 @@ VERSION:2.0
 BEGIN:VEVENT
 UID:foobar
 DTSTART:20140811T220000Z
-DTEND:20140811T230000Z
 ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=White:mailto:white@example.org
 END:VEVENT
@@ -59,27 +57,26 @@ METHOD:REQUEST
 BEGIN:VEVENT
 UID:foobar
 DTSTART:20140811T220000Z
-DTEND:20140811T230000Z
 ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=White;PARTSTAT=NEEDS-ACTION:mailto:white@example.org
 END:VEVENT
 END:VCALENDAR
 ICS;
 
-        $expected = [
-            [
-                'uid'           => 'foobar',
-                'method'        => 'REQUEST',
-                'component'     => 'VEVENT',
-                'sender'        => 'mailto:strunk@example.org',
-                'senderName'    => 'Strunk',
-                'recipient'     => 'mailto:white@example.org',
+        $expected = array(
+            array(
+                'uid' => 'foobar',
+                'method' => 'REQUEST',
+                'component' => 'VEVENT',
+                'sender' => 'mailto:strunk@example.org',
+                'senderName' => 'Strunk',
+                'recipient' => 'mailto:white@example.org',
                 'recipientName' => 'White',
-                'message'       => $expectedMessage,
-            ],
-        ];
+                'message' => $expectedMessage,
+            ),
+        );
 
-        $this->parse(null, $message, $expected, 'mailto:strunk@example.org');
+        $result = $this->parse($message, $expected);
 
     }
 
@@ -104,7 +101,8 @@ END:VEVENT
 END:VCALENDAR
 ICS;
 
-        $this->parse(null, $message, [], 'mailto:strunk@example.org');
+        $expected = array();
+        $this->parse($message, array());
 
     }
     /**
@@ -128,7 +126,8 @@ END:VEVENT
 END:VCALENDAR
 ICS;
 
-        $this->parse(null, $message, [], 'mailto:strunk@example.org');
+        $expected = array();
+        $this->parse($message, array());
 
     }
 
@@ -143,7 +142,6 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=One:mailto:one@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 DTSTART:20140716T120000Z
-DURATION:PT1H
 RRULE:FREQ=DAILY
 EXDATE:20140717T120000Z
 END:VEVENT
@@ -154,23 +152,22 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 ATTENDEE;CN=Three:mailto:three@example.org
 DTSTART:20140718T120000Z
-DURATION:PT1H
 END:VEVENT
 END:VCALENDAR
 ICS;
 
         $version = \Sabre\VObject\Version::VERSION;
 
-        $expected = [
-            [
-                'uid'           => 'foobar',
-                'method'        => 'REQUEST',
-                'component'     => 'VEVENT',
-                'sender'        => 'mailto:strunk@example.org',
-                'senderName'    => 'Strunk',
-                'recipient'     => 'mailto:one@example.org',
+        $expected = array(
+            array(
+                'uid' => 'foobar',
+                'method' => 'REQUEST',
+                'component' => 'VEVENT',
+                'sender' => 'mailto:strunk@example.org',
+                'senderName' => 'Strunk',
+                'recipient' => 'mailto:one@example.org',
                 'recipientName' => 'One',
-                'message'       => <<<ICS
+                'message' => <<<ICS
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Sabre//Sabre VObject $version//EN
@@ -182,23 +179,22 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=One;PARTSTAT=NEEDS-ACTION:mailto:one@example.org
 ATTENDEE;CN=Two;PARTSTAT=NEEDS-ACTION:mailto:two@example.org
 DTSTART:20140716T120000Z
-DURATION:PT1H
 RRULE:FREQ=DAILY
 EXDATE:20140717T120000Z,20140718T120000Z
 END:VEVENT
 END:VCALENDAR
 ICS
 
-            ],
-            [
-                'uid'           => 'foobar',
-                'method'        => 'REQUEST',
-                'component'     => 'VEVENT',
-                'sender'        => 'mailto:strunk@example.org',
-                'senderName'    => 'Strunk',
-                'recipient'     => 'mailto:two@example.org',
+            ),
+            array(
+                'uid' => 'foobar',
+                'method' => 'REQUEST',
+                'component' => 'VEVENT',
+                'sender' => 'mailto:strunk@example.org',
+                'senderName' => 'Strunk',
+                'recipient' => 'mailto:two@example.org',
                 'recipientName' => 'Two',
-                'message'       => <<<ICS
+                'message' => <<<ICS
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Sabre//Sabre VObject $version//EN
@@ -210,7 +206,6 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=One;PARTSTAT=NEEDS-ACTION:mailto:one@example.org
 ATTENDEE;CN=Two;PARTSTAT=NEEDS-ACTION:mailto:two@example.org
 DTSTART:20140716T120000Z
-DURATION:PT1H
 RRULE:FREQ=DAILY
 EXDATE:20140717T120000Z
 END:VEVENT
@@ -221,21 +216,20 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 ATTENDEE;CN=Three:mailto:three@example.org
 DTSTART:20140718T120000Z
-DURATION:PT1H
 END:VEVENT
 END:VCALENDAR
 ICS
 
-            ],
-            [
-                'uid'           => 'foobar',
-                'method'        => 'REQUEST',
-                'component'     => 'VEVENT',
-                'sender'        => 'mailto:strunk@example.org',
-                'senderName'    => 'Strunk',
-                'recipient'     => 'mailto:three@example.org',
+            ),
+            array(
+                'uid' => 'foobar',
+                'method' => 'REQUEST',
+                'component' => 'VEVENT',
+                'sender' => 'mailto:strunk@example.org',
+                'senderName' => 'Strunk',
+                'recipient' => 'mailto:three@example.org',
                 'recipientName' => 'Three',
-                'message'       => <<<ICS
+                'message' => <<<ICS
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Sabre//Sabre VObject $version//EN
@@ -248,15 +242,14 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 ATTENDEE;CN=Three:mailto:three@example.org
 DTSTART:20140718T120000Z
-DURATION:PT1H
 END:VEVENT
 END:VCALENDAR
 ICS
 
-            ],
-        ];
+            ),
+        );
 
-        $this->parse(null, $message, $expected, 'mailto:strunk@example.org');
+        $result = $this->parse($message, $expected);
 
     }
 
@@ -273,7 +266,6 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=One:mailto:one@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 DTSTART:20140716T120000Z
-DTEND:20140716T130000Z
 RRULE:FREQ=DAILY
 END:VEVENT
 BEGIN:VEVENT
@@ -283,23 +275,22 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 ATTENDEE;CN=Three:mailto:three@example.org
 DTSTART:20140718T120000Z
-DTEND:20140718T130000Z
 END:VEVENT
 END:VCALENDAR
 ICS;
 
         $version = \Sabre\VObject\Version::VERSION;
 
-        $expected = [
-            [
-                'uid'           => 'foobar',
-                'method'        => 'REQUEST',
-                'component'     => 'VEVENT',
-                'sender'        => 'mailto:strunk@example.org',
-                'senderName'    => 'Strunk',
-                'recipient'     => 'mailto:one@example.org',
+        $expected = array(
+            array(
+                'uid' => 'foobar',
+                'method' => 'REQUEST',
+                'component' => 'VEVENT',
+                'sender' => 'mailto:strunk@example.org',
+                'senderName' => 'Strunk',
+                'recipient' => 'mailto:one@example.org',
                 'recipientName' => 'One',
-                'message'       => <<<ICS
+                'message' => <<<ICS
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Sabre//Sabre VObject $version//EN
@@ -311,23 +302,22 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=One;PARTSTAT=NEEDS-ACTION:mailto:one@example.org
 ATTENDEE;CN=Two;PARTSTAT=NEEDS-ACTION:mailto:two@example.org
 DTSTART:20140716T120000Z
-DTEND:20140716T130000Z
 RRULE:FREQ=DAILY
 EXDATE:20140718T120000Z
 END:VEVENT
 END:VCALENDAR
 ICS
 
-            ],
-            [
-                'uid'           => 'foobar',
-                'method'        => 'REQUEST',
-                'component'     => 'VEVENT',
-                'sender'        => 'mailto:strunk@example.org',
-                'senderName'    => 'Strunk',
-                'recipient'     => 'mailto:two@example.org',
+            ),
+            array(
+                'uid' => 'foobar',
+                'method' => 'REQUEST',
+                'component' => 'VEVENT',
+                'sender' => 'mailto:strunk@example.org',
+                'senderName' => 'Strunk',
+                'recipient' => 'mailto:two@example.org',
                 'recipientName' => 'Two',
-                'message'       => <<<ICS
+                'message' => <<<ICS
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Sabre//Sabre VObject $version//EN
@@ -339,7 +329,6 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=One;PARTSTAT=NEEDS-ACTION:mailto:one@example.org
 ATTENDEE;CN=Two;PARTSTAT=NEEDS-ACTION:mailto:two@example.org
 DTSTART:20140716T120000Z
-DTEND:20140716T130000Z
 RRULE:FREQ=DAILY
 END:VEVENT
 BEGIN:VEVENT
@@ -349,21 +338,20 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 ATTENDEE;CN=Three:mailto:three@example.org
 DTSTART:20140718T120000Z
-DTEND:20140718T130000Z
 END:VEVENT
 END:VCALENDAR
 ICS
 
-            ],
-            [
-                'uid'           => 'foobar',
-                'method'        => 'REQUEST',
-                'component'     => 'VEVENT',
-                'sender'        => 'mailto:strunk@example.org',
-                'senderName'    => 'Strunk',
-                'recipient'     => 'mailto:three@example.org',
+            ),
+            array(
+                'uid' => 'foobar',
+                'method' => 'REQUEST',
+                'component' => 'VEVENT',
+                'sender' => 'mailto:strunk@example.org',
+                'senderName' => 'Strunk',
+                'recipient' => 'mailto:three@example.org',
                 'recipientName' => 'Three',
-                'message'       => <<<ICS
+                'message' => <<<ICS
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Sabre//Sabre VObject $version//EN
@@ -376,15 +364,14 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 ATTENDEE;CN=Three:mailto:three@example.org
 DTSTART:20140718T120000Z
-DTEND:20140718T130000Z
 END:VEVENT
 END:VCALENDAR
 ICS
 
-            ],
-        ];
+            ),
+        );
 
-        $this->parse(null, $message, $expected, 'mailto:strunk@example.org');
+        $result = $this->parse($message, $expected);
 
     }
 
@@ -396,7 +383,6 @@ VERSION:2.0
 BEGIN:VEVENT
 UID:foobar
 DTSTART:20140811T220000Z
-DTEND:20140811T230000Z
 ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=White;SCHEDULE-AGENT=CLIENT:mailto:white@example.org
 END:VEVENT
@@ -405,7 +391,8 @@ ICS;
 
         $version = \Sabre\VObject\Version::VERSION;
 
-        $this->parse(null, $message, [], 'mailto:strunk@example.org');
+        $expected = array();
+        $result = $this->parse($message, $expected);
 
     }
 
@@ -423,7 +410,6 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=One:mailto:one@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 DTSTART:20140716T120000Z
-DTEND:20140716T130000Z
 RRULE:FREQ=DAILY
 END:VEVENT
 BEGIN:VEVENT
@@ -433,18 +419,18 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 ATTENDEE;CN=Three:mailto:three@example.org
 DTSTART:20140718T120000Z
-DTEND:20140718T130000Z
 END:VEVENT
 END:VCALENDAR
 ICS;
 
         $version = \Sabre\VObject\Version::VERSION;
-        $this->parse(null, $message, [], 'mailto:strunk@example.org');
+        $result = $this->parse($message, array());
 
     }
 
     /**
      * @expectedException Sabre\VObject\ITip\SameOrganizerForAllComponentsException
+     *
      */
     function testChangingOrganizers() {
 
@@ -457,7 +443,6 @@ ORGANIZER;CN=Strunk:mailto:strunk@example.org
 ATTENDEE;CN=One:mailto:one@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 DTSTART:20140716T120000Z
-DTEND:20140716T130000Z
 RRULE:FREQ=DAILY
 END:VEVENT
 BEGIN:VEVENT
@@ -467,13 +452,12 @@ ORGANIZER;CN=Strunk:mailto:ew@example.org
 ATTENDEE;CN=Two:mailto:two@example.org
 ATTENDEE;CN=Three:mailto:three@example.org
 DTSTART:20140718T120000Z
-DTEND:20140718T130000Z
 END:VEVENT
 END:VCALENDAR
 ICS;
 
         $version = \Sabre\VObject\Version::VERSION;
-        $this->parse(null, $message, [], 'mailto:strunk@example.org');
+        $result = $this->parse($message, array());
 
     }
     function testNoOrganizerHasAttendee() {
@@ -483,13 +467,40 @@ BEGIN:VCALENDAR
 BEGIN:VEVENT
 UID:foobar
 DTSTART:20140811T220000Z
-DTEND:20140811T230000Z
 ATTENDEE;CN=Two:mailto:two@example.org
 END:VEVENT
 END:VCALENDAR
 ICS;
 
-        $this->parse(null, $message, [], 'mailto:strunk@example.org');
+        $this->parse($message, array());
+
+    }
+
+    function parse($message, $expected = array()) {
+
+        $broker = new Broker();
+        $result = $broker->parseEvent($message, 'mailto:strunk@example.org');
+
+        $this->assertEquals(count($expected), count($result));
+
+        foreach($expected as $index=>$ex) {
+
+            $message = $result[$index];
+
+            foreach($ex as $key=>$val) {
+
+                if ($key==='message') {
+                    $this->assertEquals(
+                        str_replace("\n", "\r\n", $val),
+                        rtrim($message->message->serialize(), "\r\n")
+                    );
+                } else {
+                    $this->assertEquals($val, $message->$key);
+                }
+
+            }
+
+        }
 
     }
 

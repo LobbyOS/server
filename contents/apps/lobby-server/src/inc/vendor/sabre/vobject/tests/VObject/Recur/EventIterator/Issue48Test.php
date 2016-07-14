@@ -2,8 +2,9 @@
 
 namespace Sabre\VObject;
 
-use DateTimeImmutable;
-use DateTimeZone;
+use
+    DateTime,
+    DateTimeZone;
 
 class Issue48Test extends \PHPUnit_Framework_TestCase {
 
@@ -35,11 +36,11 @@ ICS;
 
         $tz = new DateTimeZone('Europe/Moscow');
 
-        $expected = [
-            new DateTimeImmutable('2013-07-10 11:00:00', $tz),
-            new DateTimeImmutable('2013-07-12 11:00:00', $tz),
-            new DateTimeImmutable('2013-07-13 11:00:00', $tz),
-        ];
+        $expected = array(
+            new DateTime('2013-07-10 11:00:00', $tz),
+            new DateTime('2013-07-12 11:00:00', $tz),
+            new DateTime('2013-07-13 11:00:00', $tz),
+        );
 
         $this->assertEquals($expected, $result);
 

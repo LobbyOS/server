@@ -21,7 +21,7 @@ class LobbyGit {
   public function __construct($id, $git_url, $cloud_id = null){
     $this->id = $id;
     $this->git_url = $git_url;
-    $this->git_dir = $this->dir . "/src/data/git-cache/$id";
+    $this->git_dir = \Lobby\FS::loc("/contents/apps/lobby-server/src/data/git-cache/$id");
     $this->cloud_id = $cloud_id;
   }
   

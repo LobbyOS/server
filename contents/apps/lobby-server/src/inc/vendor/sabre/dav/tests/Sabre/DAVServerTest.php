@@ -2,9 +2,10 @@
 
 namespace Sabre;
 
-use Sabre\HTTP\Request;
-use Sabre\HTTP\Response;
-use Sabre\HTTP\Sapi;
+use
+    Sabre\HTTP\Request,
+    Sabre\HTTP\Response,
+    Sabre\HTTP\Sapi;
 
 /**
  * This class may be used as a basis for other webdav-related unittests.
@@ -12,7 +13,7 @@ use Sabre\HTTP\Sapi;
  * This class is supposed to provide a reasonably big framework to quickly get
  * a testing environment running.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -24,33 +25,30 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
     protected $setupCalDAVSharing = false;
     protected $setupCalDAVScheduling = false;
     protected $setupCalDAVSubscriptions = false;
-    protected $setupCalDAVICSExport = false;
     protected $setupLocks = false;
     protected $setupFiles = false;
-    protected $setupPropertyStorage = false;
 
     /**
      * An array with calendars. Every calendar should have
      *   - principaluri
      *   - uri
      */
-    protected $caldavCalendars = [];
-    protected $caldavCalendarObjects = [];
+    protected $caldavCalendars = array();
+    protected $caldavCalendarObjects = array();
 
-    protected $carddavAddressBooks = [];
-    protected $carddavCards = [];
+    protected $carddavAddressBooks = array();
+    protected $carddavCards = array();
 
     /**
      * @var Sabre\DAV\Server
      */
     protected $server;
-    protected $tree = [];
+    protected $tree = array();
 
     protected $caldavBackend;
     protected $carddavBackend;
     protected $principalBackend;
     protected $locksBackend;
-    protected $propertyStorageBackend;
 
     /**
      * @var Sabre\CalDAV\Plugin
@@ -90,11 +88,6 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
     protected $locksPlugin;
 
     /**
-     * @var Sabre\DAV\PropertyStorage\Plugin
-     */
-    protected $propertyStoragePlugin;
-
-    /**
      * If this string is set, we will automatically log in the user with this
      * name.
      */
@@ -124,10 +117,6 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
         if ($this->setupCalDAVSubscriptions) {
             $this->server->addPlugin(new CalDAV\Subscriptions\Plugin());
         }
-        if ($this->setupCalDAVICSExport) {
-            $this->caldavICSExportPlugin = new CalDAV\ICSExportPlugin();
-            $this->server->addPlugin($this->caldavICSExportPlugin);
-        }
         if ($this->setupCardDAV) {
             $this->carddavPlugin = new CardDAV\Plugin();
             $this->server->addPlugin($this->carddavPlugin);
@@ -142,16 +131,10 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
             );
             $this->server->addPlugin($this->locksPlugin);
         }
-        if ($this->setupPropertyStorage) {
-            $this->propertyStoragePlugin = new DAV\PropertyStorage\Plugin(
-                $this->propertyStorageBackend
-            );
-            $this->server->addPlugin($this->propertyStoragePlugin);
-        }
         if ($this->autoLogin) {
             $authBackend = new DAV\Auth\Backend\Mock();
-            $authBackend->setPrincipal('principals/' . $this->autoLogin);
-            $this->authPlugin = new DAV\Auth\Plugin($authBackend);
+            $authBackend->defaultUser = $this->autoLogin;
+            $this->authPlugin = new DAV\Auth\Plugin($authBackend, 'SabreDAV');
             $this->server->addPlugin($this->authPlugin);
 
             // This will trigger the actual login procedure
@@ -201,7 +184,7 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
         }
 
         if ($this->setupCardDAV || $this->setupCalDAV) {
-            $this->tree[] = new CalDAV\Principal\Collection(
+            $this->tree[] = new DAVACL\PrincipalCollection(
                 $this->principalBackend
             );
         }
@@ -237,9 +220,6 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
         if ($this->setupLocks) {
             $this->locksBackend = new DAV\Locks\Backend\Mock();
         }
-        if ($this->setupPropertyStorage)  {
-            $this->propertyStorageBackend = new DAV\PropertyStorage\Backend\Mock();
-        }
 
     }
 
@@ -247,7 +227,7 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
     function assertHTTPStatus($expectedStatus, HTTP\Request $req) {
 
         $resp = $this->request($req);
-        $this->assertEquals((int)$expectedStatus, (int)$resp->status, 'Incorrect HTTP status received: ' . $resp->body);
+        $this->assertEquals((int)$expectedStatus, (int)$resp->status,'Incorrect HTTP status received: ' . $resp->body);
 
     }
 

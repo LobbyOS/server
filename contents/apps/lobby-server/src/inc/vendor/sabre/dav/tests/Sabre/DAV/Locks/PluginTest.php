@@ -10,7 +10,7 @@ require_once 'Sabre/DAV/AbstractServer.php';
 class PluginTest extends DAV\AbstractServer {
 
     /**
-     * @var Plugin
+     * @var Sabre\DAV\Locks\Plugin
      */
     protected $locksPlugin;
 
@@ -21,15 +21,6 @@ class PluginTest extends DAV\AbstractServer {
         $locksPlugin = new Plugin($locksBackend);
         $this->server->addPlugin($locksPlugin);
         $this->locksPlugin = $locksPlugin;
-
-    }
-
-    function testGetInfo() {
-
-        $this->assertArrayHasKey(
-            'name',
-            $this->locksPlugin->getPluginInfo()
-        );
 
     }
 
@@ -45,10 +36,24 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
+    function testGetHTTPMethodsNoBackend() {
+
+        $locksPlugin = new Plugin();
+        $this->server->addPlugin($locksPlugin);
+        $this->assertEquals(array(),$locksPlugin->getHTTPMethods(''));
+
+    }
+
     function testLockNoBody() {
 
-        $request = new HTTP\Request('LOCK', '/test.txt');
-        $this->server->httpRequest = $request;
+        $serverVars = array(
+            'REQUEST_URI'    => '/test.txt',
+            'REQUEST_METHOD' => 'LOCK',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
+        $request->setBody('');
+        $this->server->httpRequest = ($request);
         $this->server->exec();
 
         $this->assertEquals(array(
@@ -64,7 +69,12 @@ class PluginTest extends DAV\AbstractServer {
 
     function testLock() {
 
-        $request = new HTTP\Request('LOCK', '/test.txt');
+        $serverVars = array(
+            'REQUEST_URI'    => '/test.txt',
+            'REQUEST_METHOD' => 'LOCK',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
         $request->setBody('<?xml version="1.0"?>
 <D:lockinfo xmlns:D="DAV:">
     <D:lockscope><D:exclusive/></D:lockscope>
@@ -121,7 +131,12 @@ class PluginTest extends DAV\AbstractServer {
      */
     function testDoubleLock() {
 
-        $request = new HTTP\Request('LOCK', '/test.txt');
+        $serverVars = array(
+            'REQUEST_URI'    => '/test.txt',
+            'REQUEST_METHOD' => 'LOCK',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
         $request->setBody('<?xml version="1.0"?>
 <D:lockinfo xmlns:D="DAV:">
     <D:lockscope><D:exclusive/></D:lockscope>
@@ -183,44 +198,14 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockRefreshBadToken() {
-
-        $request = new HTTP\Request('LOCK', '/test.txt');
-        $request->setBody('<?xml version="1.0"?>
-<D:lockinfo xmlns:D="DAV:">
-    <D:lockscope><D:exclusive/></D:lockscope>
-    <D:locktype><D:write/></D:locktype>
-    <D:owner>
-        <D:href>http://example.org/~ejw/contact.html</D:href>
-    </D:owner>
-</D:lockinfo>');
-
-        $this->server->httpRequest = $request;
-        $this->server->exec();
-
-        $lockToken = $this->response->getHeader('Lock-Token');
-
-        $this->response = new HTTP\ResponseMock();
-        $this->server->httpResponse = $this->response;
-
-        $request = new HTTP\Request('LOCK', '/test.txt', ['If' => '(' . $lockToken . 'foobar) (<opaquelocktoken:anotherbadtoken>)' ]);
-        $request->setBody('');
-
-        $this->server->httpRequest = $request;
-        $this->server->exec();
-
-        $this->assertEquals('application/xml; charset=utf-8',$this->response->getHeader('Content-Type'));
-
-        $this->assertEquals(423, $this->response->getStatus(),'We received an incorrect status code. Full response body: ' . $this->response->getBody());
-
-    }
-
-    /**
-     * @depends testLock
-     */
     function testLockNoFile() {
 
-        $request = new HTTP\Request('LOCK', '/notfound.txt');
+        $serverVars = array(
+            'REQUEST_URI'    => '/notfound.txt',
+            'REQUEST_METHOD' => 'LOCK',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
         $request->setBody('<?xml version="1.0"?>
 <D:lockinfo xmlns:D="DAV:">
     <D:lockscope><D:exclusive/></D:lockscope>
@@ -245,14 +230,19 @@ class PluginTest extends DAV\AbstractServer {
      */
     function testUnlockNoToken() {
 
-        $request = new HTTP\Request('UNLOCK', '/test.txt');
-        $this->server->httpRequest = $request;
+        $serverVars = array(
+            'REQUEST_URI'    => '/test.txt',
+            'REQUEST_METHOD' => 'UNLOCK',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
+        $this->server->httpRequest = ($request);
         $this->server->exec();
 
-        $this->assertEquals([
+        $this->assertEquals(array(
             'X-Sabre-Version' => [DAV\Version::VERSION],
             'Content-Type' => ['application/xml; charset=utf-8'],
-            ],
+            ),
             $this->response->getHeaders()
          );
 
@@ -265,14 +255,20 @@ class PluginTest extends DAV\AbstractServer {
      */
     function testUnlockBadToken() {
 
-        $request = new HTTP\Request('UNLOCK', '/test.txt', ['Lock-Token' => '<opaquelocktoken:blablabla>']);
-        $this->server->httpRequest = $request;
+        $serverVars = array(
+            'REQUEST_URI'     => '/test.txt',
+            'REQUEST_METHOD'  => 'UNLOCK',
+            'HTTP_LOCK_TOKEN' => '<opaquelocktoken:blablabla>',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
+        $this->server->httpRequest = ($request);
         $this->server->exec();
 
-        $this->assertEquals([
+        $this->assertEquals(array(
             'X-Sabre-Version' => [DAV\Version::VERSION],
             'Content-Type' => ['application/xml; charset=utf-8'],
-            ],
+            ),
             $this->response->getHeaders()
          );
 
@@ -285,7 +281,12 @@ class PluginTest extends DAV\AbstractServer {
      */
     function testLockPutNoToken() {
 
-        $request = new HTTP\Request('LOCK', '/test.txt');
+        $serverVars = array(
+            'REQUEST_URI'    => '/test.txt',
+            'REQUEST_METHOD' => 'LOCK',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
         $request->setBody('<?xml version="1.0"?>
 <D:lockinfo xmlns:D="DAV:">
     <D:lockscope><D:exclusive/></D:lockscope>
@@ -303,7 +304,12 @@ class PluginTest extends DAV\AbstractServer {
 
         $this->assertEquals(200, $this->response->status);
 
-        $request = new HTTP\Request('PUT', '/test.txt');
+        $serverVars = array(
+            'REQUEST_URI'    => '/test.txt',
+            'REQUEST_METHOD' => 'PUT',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
         $request->setBody('newbody');
         $this->server->httpRequest = $request;
         $this->server->exec();
@@ -320,7 +326,10 @@ class PluginTest extends DAV\AbstractServer {
      */
     function testUnlock() {
 
-        $request = new HTTP\Request('LOCK', '/test.txt');
+        $request = HTTP\Sapi::createFromServerArray([
+            'REQUEST_URI' => '/test.txt',
+            'REQUEST_METHOD' => 'LOCK',
+        ]);
         $this->server->httpRequest = $request;
 
         $request->setBody('<?xml version="1.0"?>
@@ -335,16 +344,22 @@ class PluginTest extends DAV\AbstractServer {
         $this->server->invokeMethod($request, $this->server->httpResponse);
         $lockToken = $this->server->httpResponse->getHeader('Lock-Token');
 
-        $request = new HTTP\Request('UNLOCK', '/test.txt', ['Lock-Token' => $lockToken]);
+        $serverVars = array(
+            'HTTP_LOCK_TOKEN' => $lockToken,
+            'REQUEST_URI' => '/test.txt',
+            'REQUEST_METHOD' => 'UNLOCK',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
         $this->server->httpRequest = $request;
         $this->server->httpResponse = new HTTP\ResponseMock();
         $this->server->invokeMethod($request, $this->server->httpResponse);
 
         $this->assertEquals(204,$this->server->httpResponse->status,'Got an incorrect status code. Full response body: ' . $this->response->body);
-        $this->assertEquals([
+        $this->assertEquals(array(
             'X-Sabre-Version' => [DAV\Version::VERSION],
             'Content-Length' => ['0'],
-            ],
+            ),
             $this->server->httpResponse->getHeaders()
          );
 
@@ -356,7 +371,10 @@ class PluginTest extends DAV\AbstractServer {
      */
     function testUnlockWindowsBug() {
 
-        $request = new HTTP\Request('LOCK', '/test.txt');
+        $request = HTTP\Sapi::createFromServerArray([
+            'REQUEST_URI' => '/test.txt',
+            'REQUEST_METHOD' => 'LOCK',
+        ]);
         $this->server->httpRequest = $request;
 
         $request->setBody('<?xml version="1.0"?>
@@ -374,16 +392,22 @@ class PluginTest extends DAV\AbstractServer {
         // See Issue 123
         $lockToken = trim($lockToken,'<>');
 
-        $request = new HTTP\Request('UNLOCK', '/test.txt', ['Lock-Token' => $lockToken]);
+        $serverVars = array(
+            'HTTP_LOCK_TOKEN' => $lockToken,
+            'REQUEST_URI' => '/test.txt',
+            'REQUEST_METHOD' => 'UNLOCK',
+        );
+
+        $request = HTTP\Sapi::createFromServerArray($serverVars);
         $this->server->httpRequest = $request;
         $this->server->httpResponse = new HTTP\ResponseMock();
         $this->server->invokeMethod($request, $this->server->httpResponse);
 
         $this->assertEquals(204, $this->server->httpResponse->status,'Got an incorrect status code. Full response body: ' . $this->response->body);
-        $this->assertEquals([
+        $this->assertEquals(array(
             'X-Sabre-Version' => [DAV\Version::VERSION],
             'Content-Length' => ['0'],
-            ],
+            ),
             $this->server->httpResponse->getHeaders()
          );
 
@@ -853,45 +877,6 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    /**
-     * @depends testLock
-     */
-    function testLockPutUnrelatedToken() {
-
-        $request = new HTTP\Request('LOCK', '/unrelated.txt');
-        $request->setBody('<?xml version="1.0"?>
-<D:lockinfo xmlns:D="DAV:">
-    <D:lockscope><D:exclusive/></D:lockscope>
-    <D:locktype><D:write/></D:locktype>
-    <D:owner>
-        <D:href>http://example.org/~ejw/contact.html</D:href>
-    </D:owner>
-</D:lockinfo>');
-
-        $this->server->httpRequest = $request;
-        $this->server->exec();
-
-        $this->assertEquals('application/xml; charset=utf-8',$this->response->getHeader('Content-Type'));
-        $this->assertTrue(preg_match('/^<opaquelocktoken:(.*)>$/',$this->response->getHeader('Lock-Token'))===1,'We did not get a valid Locktoken back (' . $this->response->getHeader('Lock-Token') . ')');
-
-        $this->assertEquals(201, $this->response->getStatus());
-
-        $request = new HTTP\Request(
-            'PUT',
-            '/test.txt',
-            ['If' => '</unrelated.txt> ('.$this->response->getHeader('Lock-Token').')']
-        );
-        $request->setBody('newbody');
-        $this->server->httpRequest = $request;
-        $this->server->exec();
-
-        $this->assertEquals('application/xml; charset=utf-8',$this->response->getHeader('Content-Type'));
-        $this->assertTrue(preg_match('/^<opaquelocktoken:(.*)>$/',$this->response->getHeader('Lock-Token'))===1,'We did not get a valid Locktoken back (' . $this->response->getHeader('Lock-Token') . ')');
-
-        $this->assertEquals(204, $this->response->status);
-
-    }
-
     function testPutWithIncorrectETag() {
 
         $serverVars = array(
@@ -913,16 +898,11 @@ class PluginTest extends DAV\AbstractServer {
      */
     function testPutWithCorrectETag() {
 
-        // We need an ETag-enabled file node.
+        // We need an etag-enabled file node.
         $tree = new DAV\Tree(new DAV\FSExt\Directory(SABRE_TEMPDIR));
         $this->server->tree = $tree;
 
-        $filename = SABRE_TEMPDIR . '/test.txt';
-        $etag = sha1(
-            fileinode($filename) .
-            filesize($filename ) .
-            filemtime($filename)
-        );
+        $etag = md5(file_get_contents(SABRE_TEMPDIR . '/test.txt'));
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt',
             'REQUEST_METHOD' => 'PUT',

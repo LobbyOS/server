@@ -7,7 +7,7 @@ namespace Sabre\HTTP;
  *
  * This object contains a few simple methods that are shared by both.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -74,12 +74,7 @@ abstract class Message implements MessageInterface {
         if (is_null($body)) {
             return '';
         }
-        $contentLength = $this->getHeader('Content-Length');
-        if (null === $contentLength) {
-            return stream_get_contents($body);
-        } else {
-            return stream_get_contents($body, $contentLength);
-        }
+        return stream_get_contents($body);
 
     }
 
@@ -99,7 +94,7 @@ abstract class Message implements MessageInterface {
     /**
      * Replaces the body resource with a new stream or string.
      *
-     * @param resource|string $body
+     * @param resource $body
      */
     function setBody($body) {
 
@@ -117,7 +112,7 @@ abstract class Message implements MessageInterface {
     function getHeaders() {
 
         $result = [];
-        foreach ($this->headers as $headerInfo) {
+        foreach($this->headers as $headerInfo) {
             $result[$headerInfo[0]] = $headerInfo[1];
         }
         return $result;
@@ -216,7 +211,7 @@ abstract class Message implements MessageInterface {
      */
     function setHeaders(array $headers) {
 
-        foreach ($headers as $name => $value) {
+        foreach($headers as $name => $value) {
             $this->setHeader($name, $value);
         }
 
@@ -260,7 +255,7 @@ abstract class Message implements MessageInterface {
      */
     function addHeaders(array $headers) {
 
-        foreach ($headers as $name => $value) {
+        foreach($headers as $name => $value) {
             $this->addHeader($name, $value);
         }
 

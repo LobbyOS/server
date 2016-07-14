@@ -2,11 +2,11 @@
 
 namespace Sabre\DAV\Browser;
 
-use Sabre\DAV;
-use Sabre\DAV\MkCol;
-use Sabre\HTTP\URLUtil;
-use Sabre\HTTP\RequestInterface;
-use Sabre\HTTP\ResponseInterface;
+use
+    Sabre\DAV,
+    Sabre\HTTP\URLUtil,
+    Sabre\HTTP\RequestInterface,
+    Sabre\HTTP\ResponseInterface;
 
 /**
  * Browser Plugin
@@ -17,7 +17,7 @@ use Sabre\HTTP\ResponseInterface;
  * The class intercepts GET requests to collection resources and generates a simple
  * html index.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -39,20 +39,6 @@ class Plugin extends DAV\ServerPlugin {
     protected $enablePost = true;
 
     /**
-     * A list of properties that are usually not interesting. This can cut down
-     * the browser output a bit by removing the properties that most people
-     * will likely not want to see.
-     *
-     * @var array
-     */
-    public $uninterestingProperties = [
-        '{DAV:}supportedlock',
-        '{DAV:}acl-restrictions',
-        '{DAV:}supported-privilege-set',
-        '{DAV:}supported-method-set',
-    ];
-
-    /**
      * Creates the object.
      *
      * By default it will allow file creation and uploads.
@@ -60,7 +46,7 @@ class Plugin extends DAV\ServerPlugin {
      *
      * @param bool $enablePost
      */
-    function __construct($enablePost = true) {
+    function __construct($enablePost=true) {
 
         $this->enablePost = $enablePost;
 
@@ -75,27 +61,9 @@ class Plugin extends DAV\ServerPlugin {
     function initialize(DAV\Server $server) {
 
         $this->server = $server;
-        $this->server->on('method:GET', [$this, 'httpGetEarly'], 90);
-        $this->server->on('method:GET', [$this, 'httpGet'], 200);
-        $this->server->on('onHTMLActionsPanel', [$this, 'htmlActionsPanel'], 200);
-        if ($this->enablePost) $this->server->on('method:POST', [$this, 'httpPOST']);
-    }
-
-    /**
-     * This method intercepts GET requests that have ?sabreAction=info
-     * appended to the URL
-     *
-     * @param RequestInterface $request
-     * @param ResponseInterface $response
-     * @return bool
-     */
-    function httpGetEarly(RequestInterface $request, ResponseInterface $response) {
-
-        $params = $request->getQueryParameters();
-        if (isset($params['sabreAction']) && $params['sabreAction'] === 'info') {
-            return $this->httpGet($request, $response);
-        }
-
+        $this->server->on('method:GET', [$this,'httpGet'], 200);
+        $this->server->on('onHTMLActionsPanel', [$this, 'htmlActionsPanel'],200);
+        if ($this->enablePost) $this->server->on('method:POST', [$this,'httpPOST']);
     }
 
     /**
@@ -111,47 +79,30 @@ class Plugin extends DAV\ServerPlugin {
         // unit testable.
         $getVars = $request->getQueryParameters();
 
-        // CSP headers
-        $this->server->httpResponse->setHeader('Content-Security-Policy', "img-src 'self'; style-src 'self';");
+        $sabreAction = isset($getVars['sabreAction'])?$getVars['sabreAction']:null;
 
-        $sabreAction = isset($getVars['sabreAction']) ? $getVars['sabreAction'] : null;
-
-        switch ($sabreAction) {
-
-            case 'asset' :
-                // Asset handling, such as images
-                $this->serveAsset(isset($getVars['assetName']) ? $getVars['assetName'] : null);
-                return false;
-            default :
-            case 'info' :
-                try {
-                    $this->server->tree->getNodeForPath($request->getPath());
-                } catch (DAV\Exception\NotFound $e) {
-                    // We're simply stopping when the file isn't found to not interfere
-                    // with other plugins.
-                    return;
-                }
-
-                $response->setStatus(200);
-                $response->setHeader('Content-Type', 'text/html; charset=utf-8');
-
-                $response->setBody(
-                    $this->generateDirectoryIndex($request->getPath())
-                );
-
-                return false;
-
-            case 'plugins' :
-                $response->setStatus(200);
-                $response->setHeader('Content-Type', 'text/html; charset=utf-8');
-
-                $response->setBody(
-                    $this->generatePluginListing()
-                );
-
-                return false;
-
+        // Asset handling, such as images
+        if ($sabreAction === 'asset' && isset($getVars['assetName'])) {
+            $this->serveAsset($getVars['assetName']);
+            return false;
         }
+
+        try {
+            $this->server->tree->getNodeForPath($request->getPath());
+        } catch (DAV\Exception\NotFound $e) {
+            // We're simply stopping when the file isn't found to not interfere
+            // with other plugins.
+            return;
+        }
+
+        $response->setStatus(200);
+        $response->setHeader('Content-Type','text/html; charset=utf-8');
+
+        $response->setBody(
+            $this->generateDirectoryIndex($request->getPath())
+        );
+
+        return false;
 
     }
 
@@ -179,40 +130,13 @@ class Plugin extends DAV\ServerPlugin {
 
         if ($this->server->emit('onBrowserPostAction', [$uri, $postVars['sabreAction'], $postVars])) {
 
-            switch ($postVars['sabreAction']) {
+            switch($postVars['sabreAction']) {
 
                 case 'mkcol' :
                     if (isset($postVars['name']) && trim($postVars['name'])) {
                         // Using basename() because we won't allow slashes
                         list(, $folderName) = URLUtil::splitPath(trim($postVars['name']));
-
-                        if (isset($postVars['resourceType'])) {
-                            $resourceType = explode(',', $postVars['resourceType']);
-                        } else {
-                            $resourceType = ['{DAV:}collection'];
-                        }
-
-                        $properties = [];
-                        foreach ($postVars as $varName => $varValue) {
-                            // Any _POST variable in clark notation is treated
-                            // like a property.
-                            if ($varName[0] === '{') {
-                                // PHP will convert any dots to underscores.
-                                // This leaves us with no way to differentiate
-                                // the two.
-                                // Therefore we replace the string *DOT* with a
-                                // real dot. * is not allowed in uris so we
-                                // should be good.
-                                $varName = str_replace('*DOT*', '.', $varName);
-                                $properties[$varName] = $varValue;
-                            }
-                        }
-
-                        $mkCol = new MkCol(
-                            $resourceType,
-                            $properties
-                        );
-                        $this->server->createCollection($uri . '/' . $folderName, $mkCol);
+                        $this->server->createDirectory($uri . '/' . $folderName);
                     }
                     break;
 
@@ -230,7 +154,7 @@ class Plugin extends DAV\ServerPlugin {
                     list(, $newName) = URLUtil::splitPath($newName);
 
                     if (is_uploaded_file($file['tmp_name'])) {
-                        $this->server->createFile($uri . '/' . $newName, fopen($file['tmp_name'], 'r'));
+                        $this->server->createFile($uri . '/' . $newName, fopen($file['tmp_name'],'r'));
                     }
                     break;
                 // @codeCoverageIgnoreEnd
@@ -252,7 +176,7 @@ class Plugin extends DAV\ServerPlugin {
      */
     function escapeHTML($value) {
 
-        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars($value,ENT_QUOTES,'UTF-8');
 
     }
 
@@ -264,164 +188,13 @@ class Plugin extends DAV\ServerPlugin {
      */
     function generateDirectoryIndex($path) {
 
-        $html = $this->generateHeader($path ? $path : '/', $path);
-
-        $node = $this->server->tree->getNodeForPath($path);
-        if ($node instanceof DAV\ICollection) {
-
-            $html .= "<section><h1>Nodes</h1>\n";
-            $html .= "<table class=\"nodeTable\">";
-
-            $subNodes = $this->server->getPropertiesForChildren($path, [
-                '{DAV:}displayname',
-                '{DAV:}resourcetype',
-                '{DAV:}getcontenttype',
-                '{DAV:}getcontentlength',
-                '{DAV:}getlastmodified',
-            ]);
-
-            foreach ($subNodes as $subPath => $subProps) {
-
-                $subNode = $this->server->tree->getNodeForPath($subPath);
-                $fullPath = $this->server->getBaseUri() . URLUtil::encodePath($subPath);
-                list(, $displayPath) = URLUtil::splitPath($subPath);
-
-                $subNodes[$subPath]['subNode'] = $subNode;
-                $subNodes[$subPath]['fullPath'] = $fullPath;
-                $subNodes[$subPath]['displayPath'] = $displayPath;
-            }
-            uasort($subNodes, [$this, 'compareNodes']);
-
-            foreach ($subNodes as $subProps) {
-                $type = [
-                    'string' => 'Unknown',
-                    'icon'   => 'cog',
-                ];
-                if (isset($subProps['{DAV:}resourcetype'])) {
-                    $type = $this->mapResourceType($subProps['{DAV:}resourcetype']->getValue(), $subProps['subNode']);
-                }
-
-                $html .= '<tr>';
-                $html .= '<td class="nameColumn"><a href="' . $this->escapeHTML($subProps['fullPath']) . '"><span class="oi" data-glyph="' . $this->escapeHTML($type['icon']) . '"></span> ' . $this->escapeHTML($subProps['displayPath']) . '</a></td>';
-                $html .= '<td class="typeColumn">' . $this->escapeHTML($type['string']) . '</td>';
-                $html .= '<td>';
-                if (isset($subProps['{DAV:}getcontentlength'])) {
-                    $html .= $this->escapeHTML($subProps['{DAV:}getcontentlength'] . ' bytes');
-                }
-                $html .= '</td><td>';
-                if (isset($subProps['{DAV:}getlastmodified'])) {
-                    $lastMod = $subProps['{DAV:}getlastmodified']->getTime();
-                    $html .= $this->escapeHTML($lastMod->format('F j, Y, g:i a'));
-                }
-                $html .= '</td>';
-
-                $buttonActions = '';
-                if ($subProps['subNode'] instanceof DAV\IFile) {
-                    $buttonActions =  '<a href="' . $this->escapeHTML($subProps['fullPath']) . '?sabreAction=info"><span class="oi" data-glyph="info"></span></a>';
-                }
-                $this->server->emit('browserButtonActions', [$subProps['fullPath'], $subProps['subNode'], &$buttonActions]);
-
-                $html .= '<td>' . $buttonActions . '</td>';
-                $html .= '</tr>';
-            }
-
-            $html .= '</table>';
-
+        $version = '';
+        if (DAV\Server::$exposeVersion) {
+            $version = DAV\Version::VERSION;
         }
-
-        $html .= "</section>";
-        $html .= "<section><h1>Properties</h1>";
-        $html .= "<table class=\"propTable\">";
-
-        // Allprops request
-        $propFind = new PropFindAll($path);
-        $properties = $this->server->getPropertiesByNode($propFind, $node);
-
-        $properties = $propFind->getResultForMultiStatus()[200];
-
-        foreach ($properties as $propName => $propValue) {
-            if (!in_array($propName, $this->uninterestingProperties)) {
-                $html .= $this->drawPropertyRow($propName, $propValue);
-            }
-
-        }
-
-
-        $html .= "</table>";
-        $html .= "</section>";
-
-        /* Start of generating actions */
-
-        $output = '';
-        if ($this->enablePost) {
-            $this->server->emit('onHTMLActionsPanel', [$node, &$output]);
-        }
-
-        if ($output) {
-
-            $html .= "<section><h1>Actions</h1>";
-            $html .= "<div class=\"actions\">\n";
-            $html .= $output;
-            $html .= "</div>\n";
-            $html .= "</section>\n";
-        }
-
-        $html .= $this->generateFooter();
-
-        $this->server->httpResponse->setHeader('Content-Security-Policy', "img-src 'self'; style-src 'self';");
-
-        return $html;
-
-    }
-
-    /**
-     * Generates the 'plugins' page.
-     *
-     * @return string
-     */
-    function generatePluginListing() {
-
-        $html = $this->generateHeader('Plugins');
-
-        $html .= "<section><h1>Plugins</h1>";
-        $html .= "<table class=\"propTable\">";
-        foreach ($this->server->getPlugins() as $plugin) {
-            $info = $plugin->getPluginInfo();
-            $html .= '<tr><th>' . $info['name'] . '</th>';
-            $html .= '<td>' . $info['description'] . '</td>';
-            $html .= '<td>';
-            if (isset($info['link']) && $info['link']) {
-                $html .= '<a href="' . $this->escapeHTML($info['link']) . '"><span class="oi" data-glyph="book"></span></a>';
-            }
-            $html .= '</td></tr>';
-        }
-        $html .= "</table>";
-        $html .= "</section>";
-
-        /* Start of generating actions */
-
-        $html .= $this->generateFooter();
-
-        return $html;
-
-    }
-
-    /**
-     * Generates the first block of HTML, including the <head> tag and page
-     * header.
-     *
-     * Returns footer.
-     *
-     * @param string $title
-     * @param string $path
-     * @return void
-     */
-    function generateHeader($title, $path = null) {
-
-        $version = DAV\Version::VERSION;
 
         $vars = [
-            'title'     => $this->escapeHTML($title),
+            'path'      => $this->escapeHTML($path),
             'favicon'   => $this->escapeHTML($this->getAssetUrl('favicon.ico')),
             'style'     => $this->escapeHTML($this->getAssetUrl('sabredav.css')),
             'iconstyle' => $this->escapeHTML($this->getAssetUrl('openiconic/open-iconic.css')),
@@ -433,7 +206,7 @@ class Plugin extends DAV\ServerPlugin {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>$vars[title] - sabre/dav $version</title>
+    <title>$vars[path]/ - sabre/dav $version</title>
     <link rel="shortcut icon" href="$vars[favicon]"   type="image/vnd.microsoft.icon" />
     <link rel="stylesheet"    href="$vars[style]"     type="text/css" />
     <link rel="stylesheet"    href="$vars[iconstyle]" type="text/css" />
@@ -442,7 +215,7 @@ class Plugin extends DAV\ServerPlugin {
 <body>
     <header>
         <div class="logo">
-            <a href="$vars[baseUrl]"><img src="$vars[logo]" alt="sabre/dav" /> $vars[title]</a>
+            <a href="$vars[baseUrl]"><img src="$vars[logo]" alt="sabre/dav" /> $vars[path]/</a>
         </div>
     </header>
 
@@ -452,35 +225,111 @@ HTML;
         // If the path is empty, there's no parent.
         if ($path)  {
             list($parentUri) = URLUtil::splitPath($path);
-            $fullPath = $this->server->getBaseUri() . URLUtil::encodePath($parentUri);
-            $html .= '<a href="' . $fullPath . '" class="btn">⇤ Go to parent</a>';
+            $fullPath = URLUtil::encodePath($this->server->getBaseUri() . $parentUri);
+            $html.='<a href="' . $fullPath . '" class="btn">⇤ Go to parent</a>';
         } else {
-            $html .= '<span class="btn disabled">⇤ Go to parent</span>';
+            $html.='<span class="btn disabled">⇤ Go to parent</span>';
         }
 
-        $html .= ' <a href="?sabreAction=plugins" class="btn"><span class="oi" data-glyph="puzzle-piece"></span> Plugins</a>';
+        $html.="</nav>";
 
-        $html .= "</nav>";
+        $node = $this->server->tree->getNodeForPath($path);
+        if ($node instanceof DAV\ICollection) {
+
+            $html.="<section><h1>Nodes</h1>\n";
+            $html.="<table class=\"nodeTable\">";
+
+            $subNodes = $this->server->getPropertiesForChildren($path, [
+                '{DAV:}displayname',
+                '{DAV:}resourcetype',
+                '{DAV:}getcontenttype',
+                '{DAV:}getcontentlength',
+                '{DAV:}getlastmodified',
+            ]);
+
+            foreach($subNodes as $subPath=>$subProps) {
+
+                $subNode = $this->server->tree->getNodeForPath($subPath);
+                $fullPath = URLUtil::encodePath($this->server->getBaseUri() . $subPath);
+                list(, $displayPath) = URLUtil::splitPath($subPath);
+
+                $subNodes[$subPath]['subNode'] = $subNode;
+                $subNodes[$subPath]['fullPath'] = $fullPath;
+                $subNodes[$subPath]['displayPath'] = $displayPath;
+            }
+            uasort($subNodes, [$this, 'compareNodes']);
+
+            foreach($subNodes as $subProps) {
+                $type = [
+                    'string' => 'Unknown',
+                    'icon'   => 'cog',
+                ];
+                if (isset($subProps['{DAV:}resourcetype'])) {
+                    $type = $this->mapResourceType($subProps['{DAV:}resourcetype']->getValue(), $subProps['subNode']);
+                }
+
+                $html.= '<tr>';
+                $html.= '<td class="nameColumn"><a href="' . $this->escapeHTML($subProps['fullPath']) . '"><span class="oi" data-glyph="'.$type['icon'].'"></span> ' . $this->escapeHTML($subProps['displayPath']) . '</a></td>';
+                $html.= '<td class="typeColumn">' . $type['string'] . '</td>';
+                $html.= '<td>';
+                if (isset($subProps['{DAV:}getcontentlength'])) {
+                    $html.=$subProps['{DAV:}getcontentlength'] . ' bytes';
+                }
+                $html.= '</td><td>';
+                if (isset($subProps['{DAV:}getlastmodified'])) {
+                    $lastMod = $subProps['{DAV:}getlastmodified']->getTime();
+                    $html.=$lastMod->format('F j, Y, g:i a');
+                }
+                $html.= '</td></tr>';
+            }
+
+            $html.= '</table>';
+
+        }
+
+        $html.="</section>";
+        $html.="<section><h1>Properties</h1>";
+        $html.="<table class=\"propTable\">";
+
+        // Allprops request
+        $propFind = new PropFindAll($path);
+        $properties = $this->server->getPropertiesByNode($propFind, $node);
+
+        $properties = $propFind->getResultForMultiStatus()[200];
+
+        foreach($properties as $propName => $propValue) {
+            $html.=$this->drawPropertyRow($propName, $propValue);
+
+        }
+
+
+        $html.="</table>";
+        $html.="</section>";
+
+        /* Start of generating actions */
+
+        $output = '';
+        if ($this->enablePost) {
+            $this->server->emit('onHTMLActionsPanel', [$node, &$output]);
+        }
+
+        if ($output) {
+
+            $html.="<section><h1>Actions</h1>";
+            $html.="<div class=\"actions\">\n";
+            $html.=$output;
+            $html.="</div>\n";
+            $html.="</section>\n";
+        }
+
+        $html.= "
+        <footer>Generated by SabreDAV " . $version . " (c)2007-2014 <a href=\"http://sabre.io/\">http://sabre.io/</a></footer>
+        </body>
+        </html>";
+
+        $this->server->httpResponse->setHeader('Content-Security-Policy', "img-src 'self'; style-src 'self';");
 
         return $html;
-
-    }
-
-    /**
-     * Generates the page footer.
-     *
-     * Returns html.
-     *
-     * @return string
-     */
-    function generateFooter() {
-
-        $version = DAV\Version::VERSION;
-        return <<<HTML
-<footer>Generated by SabreDAV $version (c)2007-2015 <a href="http://sabre.io/">http://sabre.io/</a></footer>
-</body>
-</html>
-HTML;
 
     }
 
@@ -502,7 +351,7 @@ HTML;
 
         // We also know fairly certain that if an object is a non-extended
         // SimpleCollection, we won't need to show the panel either.
-        if (get_class($node) === 'Sabre\\DAV\\SimpleCollection')
+        if (get_class($node)==='Sabre\\DAV\\SimpleCollection')
             return;
 
         ob_start();
@@ -521,7 +370,7 @@ HTML;
         </form>
         ';
 
-        $output .= ob_get_clean();
+        $output.=ob_get_clean();
 
     }
 
@@ -543,7 +392,6 @@ HTML;
      *
      * @param string $assetName
      * @return string
-     * @throws DAV\Exception\NotFound
      */
     protected function getLocalAssetPath($assetName) {
 
@@ -551,10 +399,6 @@ HTML;
         $path = $assetDir . $assetName;
 
         // Making sure people aren't trying to escape from the base path.
-        $path = str_replace('\\', '/', $path);
-        if (strpos($path, '/../') !== false || strrchr($path, '/') === '/..') {
-            throw new DAV\Exception\NotFound('Path does not exist, or escaping from the base path was detected');
-        }
         if (strpos(realpath($path), realpath($assetDir)) === 0 && file_exists($path)) {
             return $path;
         }
@@ -576,10 +420,10 @@ HTML;
         $map = [
             'ico'  => 'image/vnd.microsoft.icon',
             'png'  => 'image/png',
-            'css'  => 'text/css',
+            'css'  =>  'text/css',
         ];
 
-        $ext = substr($assetName, strrpos($assetName, '.') + 1);
+        $ext = substr($assetName, strrpos($assetName, '.')+1);
         if (isset($map[$ext])) {
             $mime = $map[$ext];
         }
@@ -588,7 +432,7 @@ HTML;
         $this->server->httpResponse->setHeader('Content-Length', filesize($assetPath));
         $this->server->httpResponse->setHeader('Cache-Control', 'public, max-age=1209600');
         $this->server->httpResponse->setStatus(200);
-        $this->server->httpResponse->setBody(fopen($assetPath, 'r'));
+        $this->server->httpResponse->setBody(fopen($assetPath,'r'));
 
     }
 
@@ -664,11 +508,9 @@ HTML;
             ],
             '{http://calendarserver.org/ns/}shared-owner' => [
                 'string' => 'Shared',
-                'icon'   => 'calendar',
             ],
             '{http://calendarserver.org/ns/}subscribed' => [
                 'string' => 'Subscription',
-                'icon'   => 'calendar',
             ],
             '{urn:ietf:params:xml:ns:carddav}directory' => [
                 'string' => 'Directory',
@@ -690,16 +532,16 @@ HTML;
 
         $info = [
             'string' => [],
-            'icon'   => 'cog',
+            'icon' => 'cog',
         ];
-        foreach ($resourceTypes as $k => $resourceType) {
+        foreach($resourceTypes as $k=> $resourceType) {
             if (isset($types[$resourceType])) {
                 $info['string'][] = $types[$resourceType]['string'];
             } else {
                 $info['string'][] = $resourceType;
             }
         }
-        foreach ($types as $key => $resourceInfo) {
+        foreach($types as $key=>$resourceInfo) {
             if (in_array($key, $resourceTypes)) {
                 $info['icon'] = $resourceInfo['icon'];
                 break;
@@ -720,77 +562,106 @@ HTML;
      */
     private function drawPropertyRow($name, $value) {
 
-        $html = new HtmlOutputHelper(
-            $this->server->getBaseUri(),
-            $this->server->xml->namespaceMap
-        );
+        $view = 'unknown';
+        if (is_string($value)) {
+            $view = 'string';
+        } elseif($value instanceof DAV\Property) {
 
-        return "<tr><th>" . $html->xmlName($name) . "</th><td>" . $this->drawPropertyValue($html, $value) . "</td></tr>";
+            $mapping = [
+                'Sabre\\DAV\\Property\\IHref' => 'href',
+                'Sabre\\DAV\\Property\\HrefList' => 'hreflist',
+                'Sabre\\DAV\\Property\\SupportedMethodSet' => 'valuelist',
+                'Sabre\\DAV\\Property\\ResourceType' => 'xmlvaluelist',
+                'Sabre\\DAV\\Property\\SupportedReportSet' => 'xmlvaluelist',
+                'Sabre\\DAVACL\\Property\\CurrentUserPrivilegeSet' => 'xmlvaluelist',
+                'Sabre\\DAVACL\\Property\\SupportedPrivilegeSet' => 'supported-privilege-set',
+            ];
 
-    }
-
-    /**
-     * Draws a table row for a property
-     *
-     * @param HtmlOutputHelper $html
-     * @param mixed $value
-     * @return string
-     */
-    private function drawPropertyValue($html, $value) {
-
-        if (is_scalar($value)) {
-            return $html->h($value);
-        } elseif ($value instanceof HtmlOutput) {
-            return $value->toHtml($html);
-        } elseif ($value instanceof \Sabre\Xml\XmlSerializable) {
-
-            // There's no default html output for this property, we're going
-            // to output the actual xml serialization instead.
-            $xml = $this->server->xml->write('{DAV:}root', $value, $this->server->getBaseUri());
-            // removing first and last line, as they contain our root
-            // element.
-            $xml = explode("\n", $xml);
-            $xml = array_slice($xml, 2, -2);
-            return "<pre>" . $html->h(implode("\n", $xml)) . "</pre>";
-
-        } else {
-            return "<em>unknown</em>";
+            $view = 'complex';
+            foreach($mapping as $class=>$val) {
+                if ($value instanceof $class) {
+                    $view = $val;
+                    break;
+                }
+            }
         }
 
-    }
+        list($ns, $localName) = DAV\XMLUtil::parseClarkNotation($name);
 
-    /**
-     * Returns a plugin name.
-     *
-     * Using this name other plugins will be able to access other plugins;
-     * using \Sabre\DAV\Server::getPlugin
-     *
-     * @return string
-     */
-    function getPluginName() {
+        $realName = $name;
+        if (isset($this->server->xmlNamespaces[$ns])) {
+            $name = $this->server->xmlNamespaces[$ns] . ':' . $localName;
+        }
 
-        return 'browser';
+        ob_start();
 
-    }
+        $xmlValueDisplay = function($propName) {
+            $realPropName = $propName;
+            list($ns, $localName) = DAV\XMLUtil::parseClarkNotation($propName);
+            if (isset($this->server->xmlNamespaces[$ns])) {
+                $propName = $this->server->xmlNamespaces[$ns] . ':' . $localName;
+            }
+            return "<span title=\"" . $this->escapeHTML($realPropName) . "\">" . $this->escapeHTML($propName) . "</span>";
+        };
 
-    /**
-     * Returns a bunch of meta-data about the plugin.
-     *
-     * Providing this information is optional, and is mainly displayed by the
-     * Browser plugin.
-     *
-     * The description key in the returned array may contain html and will not
-     * be sanitized.
-     *
-     * @return array
-     */
-    function getPluginInfo() {
+        echo "<tr><th><span title=\"", $this->escapeHTML($realName), "\">", $this->escapeHTML($name), "</span></th><td>";
 
-        return [
-            'name'        => $this->getPluginName(),
-            'description' => 'Generates HTML indexes and debug information for your sabre/dav server',
-            'link'        => 'http://sabre.io/dav/browser-plugin/',
-        ];
+        switch($view) {
+
+            case 'href' :
+                echo "<a href=\"" . $this->server->getBaseUri() . $value->getHref() . '">' . $this->server->getBaseUri() . $value->getHref() . '</a>';
+                break;
+            case 'hreflist' :
+                echo implode('<br />', array_map(function($href) {
+                    if (stripos($href,'mailto:')===0 || stripos($href,'/')===0 || stripos($href,'http:')===0 || stripos($href,'https:') === 0) {
+                        return "<a href=\"" . $this->escapeHTML($href) . '">' . $this->escapeHTML($href) . '</a>';
+                    } else {
+                        return "<a href=\"" . $this->escapeHTML($this->server->getBaseUri() . $href) . '">' . $this->escapeHTML($this->server->getBaseUri() . $href) . '</a>';
+                    }
+                }, $value->getHrefs()));
+                break;
+            case 'xmlvaluelist' :
+                echo implode(', ', array_map($xmlValueDisplay, $value->getValue()));
+                break;
+            case 'valuelist' :
+                echo $this->escapeHTML(implode(', ', $value->getValue()));
+                break;
+            case 'supported-privilege-set' :
+                $traverse = function($priv) use (&$traverse, $xmlValueDisplay) {
+                    echo "<li>";
+                    echo $xmlValueDisplay($priv['privilege']);
+                    if (isset($priv['abstract']) && $priv['abstract']) {
+                        echo " <i>(abstract)</i>";
+                    }
+                    if (isset($priv['description'])) {
+                        echo " " . $this->escapeHTML($priv['description']);
+                    }
+                    if (isset($priv['aggregates'])) {
+                        echo "\n<ul>\n";
+                        foreach($priv['aggregates'] as $subPriv) {
+                            $traverse($subPriv);
+                        }
+                        echo "</ul>";
+                    }
+                    echo "</li>\n";
+                };
+                echo "<ul class=\"tree\">";
+                $traverse($value->getValue(), '');
+                echo "</ul>\n";
+                break;
+            case 'string' :
+                echo $this->escapeHTML($value);
+                break;
+            case 'complex' :
+                echo '<em title="' . get_class($value) . '">complex</em>';
+                break;
+            default :
+                echo '<em>unknown</em>';
+                break;
+
+        }
+
+        return ob_get_clean();
 
     }
 

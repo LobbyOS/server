@@ -10,8 +10,11 @@
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-use Sabre\HTTP\Request;
-use Sabre\HTTP\Client;
+
+use
+    Sabre\HTTP\Request,
+    Sabre\HTTP\Client;
+
 
 // Find the autoloader
 $paths = [
@@ -21,7 +24,7 @@ $paths = [
 
 ];
 
-foreach ($paths as $path) {
+foreach($paths as $path) {
     if (file_exists($path)) {
         include $path;
         break;
@@ -32,7 +35,7 @@ foreach ($paths as $path) {
 $request = new Request('GET', 'http://localhost/');
 $client = new Client();
 
-for ($i = 0; $i < 1000; $i++) {
+for($i = 0; $i < 1000; $i++) {
 
     echo "$i sending\n";
     $client->sendAsync(

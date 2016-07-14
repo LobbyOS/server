@@ -2,17 +2,15 @@
 
 namespace Sabre\VObject\Component;
 
-use DateTimeInterface;
 use Sabre\VObject;
 use Sabre\VObject\Recur\EventIterator;
-use Sabre\VObject\Recur\NoInstancesException;
 
 /**
- * VEvent component.
+ * VEvent component
  *
  * This component contains some additional functionality specific for VEVENT's.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2011-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -25,27 +23,14 @@ class VEvent extends VObject\Component {
      * The rules used to determine if an event falls within the specified
      * time-range is based on the CalDAV specification.
      *
-     * @param DateTimeInterface $start
-     * @param DateTimeInterface $end
-     *
+     * @param \DateTime $start
+     * @param \DateTime $end
      * @return bool
      */
-    function isInTimeRange(DateTimeInterface $start, DateTimeInterface $end) {
+    public function isInTimeRange(\DateTime $start, \DateTime $end) {
 
         if ($this->RRULE) {
-
-            try {
-
-                $it = new EventIterator($this, null, $start->getTimezone());
-
-            } catch (NoInstancesException $e) {
-
-                // If we've catched this exception, there are no instances
-                // for the event that fall into the specified time-range.
-                return false;
-
-            }
-
+            $it = new EventIterator($this);
             $it->fastForward($start);
 
             // We fast-forwarded to a spot where the end-time of the
@@ -58,7 +43,7 @@ class VEvent extends VObject\Component {
 
         }
 
-        $effectiveStart = $this->DTSTART->getDateTime($start->getTimezone());
+        $effectiveStart = $this->DTSTART->getDateTime();
         if (isset($this->DTEND)) {
 
             // The DTEND property is considered non inclusive. So for a 3 day
@@ -67,17 +52,19 @@ class VEvent extends VObject\Component {
             //
             // See:
             // http://tools.ietf.org/html/rfc5545#page-54
-            $effectiveEnd = $this->DTEND->getDateTime($end->getTimezone());
+            $effectiveEnd = $this->DTEND->getDateTime();
 
         } elseif (isset($this->DURATION)) {
-            $effectiveEnd = $effectiveStart->add(VObject\DateTimeParser::parseDuration($this->DURATION));
+            $effectiveEnd = clone $effectiveStart;
+            $effectiveEnd->add(VObject\DateTimeParser::parseDuration($this->DURATION));
         } elseif (!$this->DTSTART->hasTime()) {
-            $effectiveEnd = $effectiveStart->modify('+1 day');
+            $effectiveEnd = clone $effectiveStart;
+            $effectiveEnd->modify('+1 day');
         } else {
-            $effectiveEnd = $effectiveStart;
+            $effectiveEnd = clone $effectiveStart;
         }
         return (
-            ($start < $effectiveEnd) && ($end > $effectiveStart)
+            ($start <= $effectiveEnd) && ($end > $effectiveStart)
         );
 
     }
@@ -89,12 +76,13 @@ class VEvent extends VObject\Component {
      */
     protected function getDefaults() {
 
-        return [
+        return array(
             'UID'     => 'sabre-vobject-' . VObject\UUIDUtil::getUUID(),
             'DTSTAMP' => date('Ymd\\THis\\Z'),
-        ];
+        );
 
     }
+
 
     /**
      * A simple list of validation rules.
@@ -107,46 +95,45 @@ class VEvent extends VObject\Component {
      *   * 1 - Must appear exactly once.
      *   * + - Must appear at least once.
      *   * * - Can appear any number of times.
-     *   * ? - May appear, but not more than once.
      *
      * @var array
      */
-    function getValidationRules() {
+    public function getValidationRules() {
 
         $hasMethod = isset($this->parent->METHOD);
-        return [
-            'UID'           => 1,
-            'DTSTAMP'       => 1,
-            'DTSTART'       => $hasMethod ? '?' : '1',
-            'CLASS'         => '?',
-            'CREATED'       => '?',
-            'DESCRIPTION'   => '?',
-            'GEO'           => '?',
-            'LAST-MODIFIED' => '?',
-            'LOCATION'      => '?',
-            'ORGANIZER'     => '?',
-            'PRIORITY'      => '?',
-            'SEQUENCE'      => '?',
-            'STATUS'        => '?',
-            'SUMMARY'       => '?',
-            'TRANSP'        => '?',
-            'URL'           => '?',
+        return array(
+            'UID' => 1,
+            'DTSTAMP' => 1,
+            'DTSTART' => $hasMethod?'?':'1',
+            'CLASS' => '?',
+            'CREATED' => '?',
+            'DESCRIPTION' => '?',
+            'GEO' => '?',
+            'LAST-MODIFICATION' => '?',
+            'LOCATION' => '?',
+            'ORGANIZER' => '?',
+            'PRIORITY' => '?',
+            'SEQUENCE' => '?',
+            'STATUS' => '?',
+            'SUMMARY' => '?',
+            'TRANSP' => '?',
+            'URL' => '?',
             'RECURRENCE-ID' => '?',
-            'RRULE'         => '?',
-            'DTEND'         => '?',
-            'DURATION'      => '?',
+            'RRULE' => '?',
+            'DTEND' => '?',
+            'DURATION' => '?',
 
-            'ATTACH'         => '*',
-            'ATTENDEE'       => '*',
-            'CATEGORIES'     => '*',
-            'COMMENT'        => '*',
-            'CONTACT'        => '*',
-            'EXDATE'         => '*',
+            'ATTACH' => '*',
+            'ATTENDEE' => '*',
+            'CATEGORIES' => '*',
+            'COMMENT' => '*',
+            'CONTACT' => '*',
+            'EXDATE' => '*',
             'REQUEST-STATUS' => '*',
-            'RELATED-TO'     => '*',
-            'RESOURCES'      => '*',
-            'RDATE'          => '*',
-        ];
+            'RELATED-TO' => '*',
+            'RESOURCES' => '*',
+            'RDATE' => '*',
+        );
 
     }
 

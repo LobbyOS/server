@@ -1,14 +1,12 @@
 <?php
 
 namespace Sabre\CalDAV\Backend;
-
 use Sabre\DAV;
 use Sabre\CalDAV;
-use Sabre\CalDAV\Xml\Notification\NotificationInterface;
 
 class MockSharing extends Mock implements NotificationSupport, SharingSupport {
 
-    private $shares = [];
+    private $shares = array();
     private $notifications;
 
     function __construct(array $calendars = [], array $calendarData = [], array $notifications = []) {
@@ -27,12 +25,12 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param string $principalUri
      * @return array
      */
-    function getNotificationsForPrincipal($principalUri) {
+    public function getNotificationsForPrincipal($principalUri) {
 
         if (isset($this->notifications[$principalUri])) {
             return $this->notifications[$principalUri];
         }
-        return [];
+        return array();
 
     }
 
@@ -42,12 +40,12 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * This may be called by a client once it deems a notification handled.
      *
      * @param string $principalUri
-     * @param NotificationInterface $notification
+     * @param Sabre\CalDAV\Notifications\INotificationType $notification
      * @return void
      */
-    function deleteNotification($principalUri, NotificationInterface $notification) {
+    public function deleteNotification($principalUri, CalDAV\Notifications\INotificationType $notification) {
 
-        foreach ($this->notifications[$principalUri] as $key => $value) {
+        foreach($this->notifications[$principalUri] as $key=>$value) {
             if ($notification === $value) {
                 unset($this->notifications[$principalUri][$key]);
             }
@@ -78,18 +76,18 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param array $remove
      * @return void
      */
-    function updateShares($calendarId, array $add, array $remove) {
+    public function updateShares($calendarId, array $add, array $remove) {
 
         if (!isset($this->shares[$calendarId])) {
-            $this->shares[$calendarId] = [];
+            $this->shares[$calendarId] = array();
         }
 
-        foreach ($add as $val) {
+        foreach($add as $val) {
             $val['status'] = CalDAV\SharingPlugin::STATUS_NORESPONSE;
             $this->shares[$calendarId][] = $val;
         }
 
-        foreach ($this->shares[$calendarId] as $k => $share) {
+        foreach($this->shares[$calendarId] as $k=>$share) {
 
             if (in_array($share['href'], $remove)) {
                 unset($this->shares[$calendarId][$k]);
@@ -115,10 +113,10 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param mixed $calendarId
      * @return array
      */
-    function getShares($calendarId) {
+    public function getShares($calendarId) {
 
         if (!isset($this->shares[$calendarId])) {
-            return [];
+            return array();
         }
 
         return $this->shares[$calendarId];
@@ -135,7 +133,7 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param string $summary A description of the reply
      * @return void
      */
-    function shareReply($href, $status, $calendarUri, $inReplyTo, $summary = null) {
+    public function shareReply($href, $status, $calendarUri, $inReplyTo, $summary = null) {
 
         // This operation basically doesn't do anything yet
         if ($status === CalDAV\SharingPlugin::STATUS_ACCEPTED) {
@@ -151,9 +149,9 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param bool $value
      * @return void
      */
-    function setPublishStatus($calendarId, $value) {
+    public function setPublishStatus($calendarId, $value) {
 
-        foreach ($this->calendars as $k => $cal) {
+        foreach($this->calendars as $k=>$cal) {
             if ($cal['id'] === $calendarId) {
                 if (!$value) {
                     unset($cal['{http://calendarserver.org/ns/}publish-url']);
@@ -169,3 +167,4 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
     }
 
 }
+

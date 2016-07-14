@@ -7,22 +7,22 @@ namespace Sabre\DAV;
  *
  * This is a helper class, that should aid in getting nodes setup.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
 abstract class Node implements INode {
 
     /**
-     * Returns the last modification time as a unix timestamp.
+     * Returns the last modification time
      *
-     * If the information is not available, return null.
+     * In this case, it will simply return the current time
      *
      * @return int
      */
     function getLastModified() {
 
-        return null;
+        return time();
 
     }
 
@@ -52,3 +52,4 @@ abstract class Node implements INode {
     }
 
 }
+

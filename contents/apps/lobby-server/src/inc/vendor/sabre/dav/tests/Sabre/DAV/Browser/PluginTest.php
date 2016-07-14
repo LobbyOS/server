@@ -35,35 +35,8 @@ class PluginTest extends DAV\AbstractServer{
             $this->response->getHeaders()
         );
 
-        $body = $this->response->getBodyAsString();
-        $this->assertTrue(strpos($body, '<title>dir') !== false, $body);
-        $this->assertTrue(strpos($body, '<a href="/dir/child.txt">')!==false);
-
-    }
-
-    /**
-     * Adding the If-None-Match should have 0 effect, but it threw an error.
-     */
-    function testCollectionGetIfNoneMatch() {
-
-        $request = new HTTP\Request('GET', '/dir');
-        $request->setHeader('If-None-Match', '"foo-bar"');
-        $this->server->httpRequest = $request;
-        $this->server->exec();
-
-        $this->assertEquals(200, $this->response->getStatus(), "Incorrect status received. Full response body: " . $this->response->getBodyAsString());
-        $this->assertEquals(
-            [
-                'X-Sabre-Version' => [DAV\Version::VERSION],
-                'Content-Type' => ['text/html; charset=utf-8'],
-                'Content-Security-Policy' => ["img-src 'self'; style-src 'self';"]
-            ],
-            $this->response->getHeaders()
-        );
-
-        $body = $this->response->getBodyAsString();
-        $this->assertTrue(strpos($body, '<title>dir') !== false, $body);
-        $this->assertTrue(strpos($body, '<a href="/dir/child.txt">')!==false);
+        $this->assertTrue(strpos($this->response->body, '<title>dir/') !== false);
+        $this->assertTrue(strpos($this->response->body, '<a href="/dir/child.txt">')!==false);
 
     }
     function testCollectionGetRoot() {
@@ -82,10 +55,9 @@ class PluginTest extends DAV\AbstractServer{
             $this->response->getHeaders()
         );
 
-        $body = $this->response->getBodyAsString();
-        $this->assertTrue(strpos($body, '<title>/') !== false, $body);
-        $this->assertTrue(strpos($body, '<a href="/dir/">')!==false);
-        $this->assertTrue(strpos($body, '<span class="btn disabled">')!==false);
+        $this->assertTrue(strpos($this->response->body, '<title>/') !== false);
+        $this->assertTrue(strpos($this->response->body, '<a href="/dir/">')!==false);
+        $this->assertTrue(strpos($this->response->body, '<span class="btn disabled">')!==false);
 
     }
 
@@ -159,7 +131,6 @@ class PluginTest extends DAV\AbstractServer{
             'Content-Type' => ['image/vnd.microsoft.icon'],
             'Content-Length' => ['4286'],
             'Cache-Control' => ['public, max-age=1209600'],
-            'Content-Security-Policy' => ["img-src 'self'; style-src 'self';"]
         ], $this->response->getHeaders());
 
     }
@@ -167,16 +138,6 @@ class PluginTest extends DAV\AbstractServer{
     function testGetAsset404() {
 
         $request = new HTTP\Request('GET', '/?sabreAction=asset&assetName=flavicon.ico');
-        $this->server->httpRequest = $request;
-        $this->server->exec();
-
-        $this->assertEquals(404, $this->response->getStatus(), 'Error: ' . $this->response->body);
-
-    }
-
-    function testGetAssetEscapeBasePath() {
-
-        $request = new HTTP\Request('GET', '/?sabreAction=asset&assetName=./../assets/favicon.ico');
         $this->server->httpRequest = $request;
         $this->server->exec();
 

@@ -15,7 +15,7 @@ use Sabre\DAV;
  *   * a string, for a file
  *   * An instance of \Sabre\DAV\INode.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH. All rights reserved.
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -32,20 +32,10 @@ class Collection extends DAV\Collection {
      * @param array $children
      * @return void
      */
-    function __construct($name, array $children = [], Collection $parent = null) {
+    public function __construct($name, array $children = array(), Collection $parent = null) {
 
         $this->name = $name;
-        foreach ($children as $key => $value) {
-            if (is_string($value)) {
-                $this->children[] = new File($key, $value, $this);
-            } elseif (is_array($value)) {
-                $this->children[] = new self($key, $value, $this);
-            } elseif ($value instanceof \Sabre\DAV\INode) {
-                $this->children[] = $value;
-            } else {
-                throw new \InvalidArgumentException('Unknown value passed in $children');
-            }
-        }
+        $this->children = $children;
         $this->parent = $parent;
 
     }
@@ -57,7 +47,7 @@ class Collection extends DAV\Collection {
      *
      * @return string
      */
-    function getName() {
+    public function getName() {
 
         return $this->name;
 
@@ -87,12 +77,12 @@ class Collection extends DAV\Collection {
      * @param resource|string $data Initial payload
      * @return null|string
      */
-    function createFile($name, $data = null) {
+    public function createFile($name, $data = null) {
 
         if (is_resource($data)) {
             $data = stream_get_contents($data);
         }
-        $this->children[] = new File($name, $data, $this);
+        $this->children[$name] = $data;
         return '"' . md5($data) . '"';
 
     }
@@ -103,9 +93,9 @@ class Collection extends DAV\Collection {
      * @param string $name
      * @return void
      */
-    function createDirectory($name) {
+    public function createDirectory($name) {
 
-        $this->children[] = new self($name);
+        $this->children[$name] = array();
 
     }
 
@@ -114,18 +104,22 @@ class Collection extends DAV\Collection {
      *
      * @return \Sabre\DAV\INode[]
      */
-    function getChildren() {
+    public function getChildren() {
 
-        return $this->children;
+        $result = array();
+        foreach($this->children as $key=>$value) {
 
-    }
+            if ($value instanceof DAV\INode) {
+                $result[] = $value;
+            } elseif (is_array($value)) {
+                $result[] = new Collection($key, $value, $this);
+            } else {
+                $result[] = new File($key, $value, $this);
+            }
 
-    /**
-     * Adds an already existing node to this collection.
-     */
-    function addNode(\Sabre\DAV\INode $node) {
+        }
 
-        $this->children[] = $node;
+        return $result;
 
     }
 
@@ -135,11 +129,16 @@ class Collection extends DAV\Collection {
      * @param string $name
      * @return void
      */
-    function deleteChild($name) {
+    public function deleteChild($name) {
 
-        foreach ($this->children as $key => $value) {
+        foreach($this->children as $key=>$value) {
 
-            if ($value->getName() == $name) {
+            if ($value instanceof DAV\INode) {
+                if ($value->getName() == $name) {
+                    unset($this->children[$key]);
+                    return;
+                }
+            } elseif ($key === $name) {
                 unset($this->children[$key]);
                 return;
             }
@@ -153,9 +152,9 @@ class Collection extends DAV\Collection {
      *
      * @return void
      */
-    function delete() {
+    public function delete() {
 
-        foreach ($this->getChildren() as $child) {
+        foreach($this->getChildren() as $child) {
             $this->deleteChild($child->getName());
         }
         $this->parent->deleteChild($this->getName());

@@ -14,59 +14,50 @@ class ApacheTest extends \PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * @expectedException Sabre\DAV\Exception
+     */
     function testNoHeader() {
 
-        $request = new HTTP\Request();
-        $response = new HTTP\Response();
+        $server = new DAV\Server();
         $backend = new Apache();
-
-        $this->assertFalse(
-            $backend->check($request, $response)[0]
-        );
+        $backend->authenticate($server,'Realm');
 
     }
 
     function testRemoteUser() {
 
+        $backend = new Apache();
+
+        $server = new DAV\Server();
         $request = HTTP\Sapi::createFromServerArray([
             'REMOTE_USER' => 'username',
         ]);
-        $response = new HTTP\Response();
-        $backend = new Apache();
+        $server->httpRequest = $request;
 
-        $this->assertEquals(
-            [true, 'principals/username'],
-            $backend->check($request, $response)
-        );
+        $this->assertTrue($backend->authenticate($server, 'Realm'));
+
+        $userInfo = 'username';
+
+        $this->assertEquals($userInfo, $backend->getCurrentUser());
 
     }
 
     function testRedirectRemoteUser() {
 
+        $backend = new Apache();
+
+        $server = new DAV\Server();
         $request = HTTP\Sapi::createFromServerArray([
             'REDIRECT_REMOTE_USER' => 'username',
         ]);
-        $response = new HTTP\Response();
-        $backend = new Apache();
+        $server->httpRequest = $request;
 
-        $this->assertEquals(
-            [true, 'principals/username'],
-            $backend->check($request, $response)
-        );
+        $this->assertTrue($backend->authenticate($server, 'Realm'));
 
-    }
+        $userInfo = 'username';
 
-    function testRequireAuth() {
-
-        $request = new HTTP\Request();
-        $response = new HTTP\Response();
-
-        $backend = new Apache();
-        $backend->challenge($request, $response);
-
-        $this->assertNull(
-            $response->getHeader('WWW-Authenticate')
-        );
+        $this->assertEquals($userInfo, $backend->getCurrentUser());
 
     }
 }

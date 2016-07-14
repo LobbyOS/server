@@ -2,7 +2,8 @@ CREATE TABLE principals (
     id SERIAL NOT NULL,
     uri VARCHAR(200) NOT NULL,
     email VARCHAR(80),
-    displayname VARCHAR(80)
+    displayname VARCHAR(80),
+    vcardurl VARCHAR(255)
 );
 
 ALTER TABLE ONLY principals

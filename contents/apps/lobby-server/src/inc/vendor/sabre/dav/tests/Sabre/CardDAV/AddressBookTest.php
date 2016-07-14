@@ -163,7 +163,7 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
 
     function testGetSyncTokenNoSyncSupport() {
 
-        $this->assertNull($this->ab->getSyncToken());
+        $this->assertNull(null, $this->ab->getSyncToken());
 
     }
     function testGetChangesNoSyncSupport() {
@@ -179,7 +179,6 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
         }
         $ab = new AddressBook(TestUtil::getBackend(), [ 'id' => 1, '{DAV:}sync-token' => 2]);
         $this->assertEquals(2, $ab->getSyncToken());
-        TestUtil::deleteSQLiteDB();
     }
 
     function testGetSyncToken2() {
@@ -189,7 +188,6 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
         }
         $ab = new AddressBook(TestUtil::getBackend(), [ 'id' => 1, '{http://sabredav.org/ns}sync-token' => 2]);
         $this->assertEquals(2, $ab->getSyncToken());
-        TestUtil::deleteSQLiteDB();
     }
 
     function testGetChanges() {
@@ -204,7 +202,6 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
             'deleted' => [],
             'added' => ['UUID-2345'],
         ], $ab->getChanges(1, 1));
-        TestUtil::deleteSQLiteDB();
 
     }
 

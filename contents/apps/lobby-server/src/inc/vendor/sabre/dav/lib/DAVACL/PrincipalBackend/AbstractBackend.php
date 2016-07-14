@@ -9,7 +9,7 @@ namespace Sabre\DAVACL\PrincipalBackend;
  * have a non-bc-breaking way to add a default generic implementation to
  * functions we may add in the future.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -29,19 +29,18 @@ abstract class AbstractBackend implements BackendInterface {
      * principal was not found or you refuse to find it.
      *
      * @param string $uri
-     * @param string $principalPrefix
      * @return string
      */
-    function findByUri($uri, $principalPrefix) {
+    function findByUri($uri) {
 
         // Note that the default implementation here is a bit slow and could
         // likely be optimized.
-        if (substr($uri, 0, 7) !== 'mailto:') {
+        if (substr($uri,0,7)!=='mailto:') {
             return;
         }
         $result = $this->searchPrincipals(
-            $principalPrefix,
-            ['{http://sabredav.org/ns}email-address' => substr($uri, 7)]
+            '',
+            ['{http://sabredav.org/ns}email-address' => substr($uri,7)]
         );
 
         if ($result) {

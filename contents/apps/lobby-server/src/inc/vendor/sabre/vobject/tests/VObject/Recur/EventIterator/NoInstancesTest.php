@@ -5,7 +5,7 @@ namespace Sabre\VObject\Recur;
 use
     Sabre\VObject\Reader;
 
-class NoInstancesTest extends \PHPUnit_Framework_TestCase {
+class IssueEXDATETest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @expectedException \Sabre\VObject\Recur\NoInstancesException

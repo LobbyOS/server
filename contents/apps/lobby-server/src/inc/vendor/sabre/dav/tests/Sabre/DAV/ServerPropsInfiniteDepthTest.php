@@ -45,6 +45,10 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
 
     public function testPropFindEmptyBody() {
 
+        $hasFired = false;
+
+        $self = $this;
+
         $this->sendRequest("");
 
         $this->assertEquals(207, $this->response->status, 'Incorrect status received. Full response body: ' . $this->response->getBodyAsString());
@@ -82,10 +86,7 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
 
         $this->sendRequest($xml);
 
-        $body = $this->response->getBodyAsString();
-        $this->assertEquals(207, $this->response->getStatus(), $body);
-
-        $body = preg_replace("/xmlns(:[A-Za-z0-9_])?=(\"|\')DAV:(\"|\')/","xmlns\\1=\"urn:DAV\"",$body);
+        $body = preg_replace("/xmlns(:[A-Za-z0-9_])?=(\"|\')DAV:(\"|\')/","xmlns\\1=\"urn:DAV\"",$this->response->body);
         $xml = simplexml_load_string($body);
         $xml->registerXPathNamespace('d','urn:DAV');
 
@@ -156,6 +157,27 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
         $val = $xml->xpath('/d:multistatus/d:response/d:propstat/d:status');
         $this->assertEquals(8,count($val),$body);
         $this->assertEquals('HTTP/1.1 404 Not Found',(string)$val[0]);
+
+    }
+
+    /**
+     */
+    public function testParsePropPatchRequest() {
+
+        $body = '<?xml version="1.0"?>
+<d:propertyupdate xmlns:d="DAV:" xmlns:s="http://sabredav.org/NS/test">
+  <d:set><d:prop><s:someprop>somevalue</s:someprop></d:prop></d:set>
+  <d:remove><d:prop><s:someprop2 /></d:prop></d:remove>
+  <d:set><d:prop><s:someprop3>removeme</s:someprop3></d:prop></d:set>
+  <d:remove><d:prop><s:someprop3 /></d:prop></d:remove>
+</d:propertyupdate>';
+
+        $result = $this->server->parsePropPatchRequest($body);
+        $this->assertEquals(array(
+            '{http://sabredav.org/NS/test}someprop' => 'somevalue',
+            '{http://sabredav.org/NS/test}someprop2' => null,
+            '{http://sabredav.org/NS/test}someprop3' => null,
+            ), $result);
 
     }
 

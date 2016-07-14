@@ -72,7 +72,7 @@ ICS
         $resultVObj = VObject\Reader::read($result);
 
         $this->assertEquals(
-            '1.2',
+            '1.2;Message delivered locally',
             $resultVObj->VEVENT->ATTENDEE[1]['SCHEDULE-STATUS']->getValue()
         );
 

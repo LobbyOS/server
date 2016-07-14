@@ -28,15 +28,8 @@ class ServerPluginTest extends AbstractServer {
     function testBaseClass() {
 
         $p = new ServerPluginMock();
-        $this->assertEquals([],$p->getFeatures());
-        $this->assertEquals([],$p->getHTTPMethods(''));
-        $this->assertEquals(
-            [
-                'name' => 'Sabre\DAV\ServerPluginMock',
-                'description' => null,
-                'link' => null
-            ], $p->getPluginInfo()
-        );
+        $this->assertEquals(array(),$p->getFeatures());
+        $this->assertEquals(array(),$p->getHTTPMethods(''));
 
     }
 

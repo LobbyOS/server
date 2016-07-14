@@ -2,10 +2,11 @@
 
 namespace Sabre\DAV\Browser;
 
-use Sabre\HTTP\URLUtil;
-use Sabre\DAV;
-use Sabre\DAV\PropFind;
-use Sabre\DAV\Inode;
+use
+    Sabre\HTTP\URLUtil,
+    Sabre\DAV,
+    Sabre\DAV\PropFind,
+    Sabre\DAV\Inode;
 
 /**
  * GuessContentType plugin
@@ -18,7 +19,7 @@ use Sabre\DAV\Inode;
  * so this extension does what the rest of the world does, and guesses it based
  * on the file extension.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -40,7 +41,7 @@ class GuessContentType extends DAV\ServerPlugin {
 
         // groupware
         'ics' => 'text/calendar',
-        'vcf' => 'text/vcard',
+        'vcf' => 'text/x-vcard',
 
         // text
         'txt' => 'text/plain',
@@ -57,7 +58,7 @@ class GuessContentType extends DAV\ServerPlugin {
 
         // Using a relatively low priority (200) to allow other extensions
         // to set the content-type first.
-        $server->on('propFind', [$this, 'propFind'], 200);
+        $server->on('propFind', [$this,'propFind'], 200);
 
     }
 
@@ -90,11 +91,9 @@ class GuessContentType extends DAV\ServerPlugin {
     protected function getContentType($fileName) {
 
         // Just grabbing the extension
-        $extension = strtolower(substr($fileName, strrpos($fileName, '.') + 1));
-        if (isset($this->extensionMap[$extension])) {
+        $extension = strtolower(substr($fileName,strrpos($fileName,'.')+1));
+        if (isset($this->extensionMap[$extension]))
             return $this->extensionMap[$extension];
-        }
-        return 'application/octet-stream';
 
     }
 

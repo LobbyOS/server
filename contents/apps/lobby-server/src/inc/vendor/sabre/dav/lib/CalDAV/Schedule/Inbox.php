@@ -2,18 +2,19 @@
 
 namespace Sabre\CalDAV\Schedule;
 
-use Sabre\DAV;
-use Sabre\CalDAV;
-use Sabre\DAVACL;
-use Sabre\CalDAV\Backend;
-use Sabre\VObject;
+use
+    Sabre\DAV,
+    Sabre\CalDAV,
+    Sabre\DAVACL,
+    Sabre\CalDAV\Backend,
+    Sabre\VObject;
 
 /**
  * The CalDAV scheduling inbox
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
- * @license http://sabre.io/license/ Modified BSD License
+ * @license http://code.google.com/p/sabredav/wiki/License Modified BSD License
  */
 class Inbox extends DAV\Collection implements IInbox {
 
@@ -34,7 +35,6 @@ class Inbox extends DAV\Collection implements IInbox {
     /**
      * Constructor
      *
-     * @param Backend\SchedulingSupport $caldavBackend
      * @param string $principalUri
      */
     function __construct(Backend\SchedulingSupport $caldavBackend, $principalUri) {
@@ -66,10 +66,10 @@ class Inbox extends DAV\Collection implements IInbox {
 
         $objs = $this->caldavBackend->getSchedulingObjects($this->principalUri);
         $children = [];
-        foreach ($objs as $obj) {
+        foreach($objs as $obj) {
             //$obj['acl'] = $this->getACL();
             $obj['principaluri'] = $this->principalUri;
-            $children[] = new SchedulingObject($this->caldavBackend, $obj);
+            $children[] = new SchedulingObject($this->caldavBackend,$obj);
         }
         return $children;
 
@@ -148,7 +148,7 @@ class Inbox extends DAV\Collection implements IInbox {
         return [
             [
                 'privilege' => '{DAV:}read',
-                'principal' => '{DAV:}authenticated',
+                'principal' => $this->getOwner(),
                 'protected' => true,
             ],
             [
@@ -159,6 +159,16 @@ class Inbox extends DAV\Collection implements IInbox {
             [
                 'privilege' => '{DAV:}unbind',
                 'principal' => $this->getOwner(),
+                'protected' => true,
+            ],
+            [
+                'privilege' => '{DAV:}read',
+                'principal' => $this->getOwner() . '/calendar-proxy-read',
+                'protected' => true,
+            ],
+            [
+                'privilege' => '{DAV:}read',
+                'principal' => $this->getOwner() . '/calendar-proxy-write',
                 'protected' => true,
             ],
             [
@@ -212,7 +222,7 @@ class Inbox extends DAV\Collection implements IInbox {
 
         $default = DAVACL\Plugin::getDefaultSupportedPrivilegeSet();
         $default['aggregates'][] = [
-            'privilege'  => $ns . 'schedule-deliver',
+            'privilege' => $ns . 'schedule-deliver',
             'aggregates' => [
                ['privilege' => $ns . 'schedule-deliver-invite'],
                ['privilege' => $ns . 'schedule-deliver-reply'],
@@ -245,14 +255,11 @@ class Inbox extends DAV\Collection implements IInbox {
         $validator = new CalDAV\CalendarQueryValidator();
 
         $objects = $this->caldavBackend->getSchedulingObjects($this->principalUri);
-        foreach ($objects as $object) {
+        foreach($objects as $object) {
             $vObject = VObject\Reader::read($object['calendardata']);
             if ($validator->validate($vObject, $filters)) {
                 $result[] = $object['uri'];
             }
-
-            // Destroy circular references to PHP will GC the object.
-            $vObject->destroy();
         }
         return $result;
 

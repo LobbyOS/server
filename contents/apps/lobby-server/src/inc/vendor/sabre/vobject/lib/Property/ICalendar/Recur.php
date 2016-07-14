@@ -2,11 +2,12 @@
 
 namespace Sabre\VObject\Property\ICalendar;
 
-use Sabre\VObject\Property;
-use Sabre\Xml;
+use
+    Sabre\VObject\Property,
+    Sabre\VObject\Parser\MimeDir;
 
 /**
- * Recur property.
+ * Recur property
  *
  * This object represents RECUR properties.
  * These values are just used for RRULE and the now deprecated EXRULE.
@@ -18,7 +19,7 @@ use Sabre\Xml;
  * This property exposes this as a key=>value array that is accessible using
  * getParts, and may be set using setParts.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2011-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -30,10 +31,9 @@ class Recur extends Property {
      * This may be either a single, or multiple strings in an array.
      *
      * @param string|array $value
-     *
      * @return void
      */
-    function setValue($value) {
+    public function setValue($value) {
 
         // If we're getting the data from json, we'll be receiving an object
         if ($value instanceof \StdClass) {
@@ -41,20 +41,17 @@ class Recur extends Property {
         }
 
         if (is_array($value)) {
-            $newVal = [];
-            foreach ($value as $k => $v) {
+            $newVal = array();
+            foreach($value as $k=>$v) {
 
                 if (is_string($v)) {
                     $v = strtoupper($v);
 
                     // The value had multiple sub-values
-                    if (strpos($v, ',') !== false) {
+                    if (strpos($v,',')!==false) {
                         $v = explode(',', $v);
                     }
-                    if (strcmp($k, 'until') === 0) {
-                        $v = strtr($v, [':' => '', '-' => '']);
-                    }
-                } elseif (is_array($v)) {
+                } else {
                     $v = array_map('strtoupper', $v);
                 }
 
@@ -80,13 +77,13 @@ class Recur extends Property {
      *
      * @return string
      */
-    function getValue() {
+    public function getValue() {
 
-        $out = [];
-        foreach ($this->value as $key => $value) {
-            $out[] = $key . '=' . (is_array($value) ? implode(',', $value) : $value);
+        $out = array();
+        foreach($this->value as $key=>$value) {
+            $out[] = $key . '=' . (is_array($value)?implode(',', $value):$value);
         }
-        return strtoupper(implode(';', $out));
+        return strtoupper(implode(';',$out));
 
     }
 
@@ -96,7 +93,7 @@ class Recur extends Property {
      * @param array $parts
      * @return void
      */
-    function setParts(array $parts) {
+    public function setParts(array $parts) {
 
         $this->setValue($parts);
 
@@ -110,7 +107,7 @@ class Recur extends Property {
      *
      * @return array
      */
-    function getParts() {
+    public function getParts() {
 
         return $this->value;
 
@@ -123,10 +120,9 @@ class Recur extends Property {
      * not yet done, but parameters are not included.
      *
      * @param string $val
-     *
      * @return void
      */
-    function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val) {
 
         $this->setValue($val);
 
@@ -137,7 +133,7 @@ class Recur extends Property {
      *
      * @return string
      */
-    function getRawMimeDirValue() {
+    public function getRawMimeDirValue() {
 
         return $this->getValue();
 
@@ -151,9 +147,9 @@ class Recur extends Property {
      *
      * @return string
      */
-    function getValueType() {
+    public function getValueType() {
 
-        return 'RECUR';
+        return "RECUR";
 
     }
 
@@ -164,38 +160,13 @@ class Recur extends Property {
      *
      * @return array
      */
-    function getJsonValue() {
+    public function getJsonValue() {
 
-        $values = [];
-        foreach ($this->getParts() as $k => $v) {
-            if (strcmp($k, 'UNTIL') === 0) {
-                $date = new DateTime($this->root, null, $v);
-                $values[strtolower($k)] = $date->getJsonValue()[0];
-            } elseif (strcmp($k, 'COUNT') === 0) {
-                $values[strtolower($k)] = intval($v);
-            } else {
-                $values[strtolower($k)] = $v;
-            }
+        $values = array();
+        foreach($this->getParts() as $k=>$v) {
+            $values[strtolower($k)] = $v;
         }
-        return [$values];
-
-    }
-
-    /**
-     * This method serializes only the value of a property. This is used to
-     * create xCard or xCal documents.
-     *
-     * @param Xml\Writer $writer  XML writer.
-     *
-     * @return void
-     */
-    protected function xmlSerializeValue(Xml\Writer $writer) {
-
-        $valueType = strtolower($this->getValueType());
-
-        foreach ($this->getJsonValue() as $value) {
-            $writer->writeElement($valueType, $value);
-        }
+        return array($values);
 
     }
 
@@ -203,14 +174,13 @@ class Recur extends Property {
      * Parses an RRULE value string, and turns it into a struct-ish array.
      *
      * @param string $value
-     *
      * @return array
      */
     static function stringToArray($value) {
 
         $value = strtoupper($value);
-        $newValue = [];
-        foreach (explode(';', $value) as $part) {
+        $newValue = array();
+        foreach(explode(';', $value) as $part) {
 
             // Skipping empty parts.
             if (empty($part)) {
@@ -219,74 +189,14 @@ class Recur extends Property {
             list($partName, $partValue) = explode('=', $part);
 
             // The value itself had multiple values..
-            if (strpos($partValue, ',') !== false) {
-                $partValue = explode(',', $partValue);
+            if (strpos($partValue,',')!==false) {
+                $partValue=explode(',', $partValue);
             }
             $newValue[$partName] = $partValue;
 
         }
 
         return $newValue;
-    }
-
-    /**
-     * Validates the node for correctness.
-     *
-     * The following options are supported:
-     *   Node::REPAIR - May attempt to automatically repair the problem.
-     *
-     * This method returns an array with detected problems.
-     * Every element has the following properties:
-     *
-     *  * level - problem level.
-     *  * message - A human-readable string describing the issue.
-     *  * node - A reference to the problematic node.
-     *
-     * The level means:
-     *   1 - The issue was repaired (only happens if REPAIR was turned on)
-     *   2 - An inconsequential issue
-     *   3 - A severe issue.
-     *
-     * @param int $options
-     *
-     * @return array
-     */
-    function validate($options = 0) {
-
-        $repair = ($options & self::REPAIR);
-
-        $warnings = parent::validate($options);
-        $values = $this->getParts();
-
-        foreach ($values as $key => $value) {
-
-            if (empty($value)) {
-                $warnings[] = [
-                    'level'   => $repair ? 3 : 1,
-                    'message' => 'Invalid value for ' . $key . ' in ' . $this->name,
-                    'node'    => $this
-                ];
-                if ($repair) {
-                    unset($values[$key]);
-                }
-            }
-
-        }
-        if (!isset($values['FREQ'])) {
-            $warnings[] = [
-                'level'   => $repair ? 3 : 1,
-                'message' => 'FREQ is required in ' . $this->name,
-                'node'    => $this
-            ];
-            if ($repair) {
-                $this->parent->remove($this);
-            }
-        }
-        if ($repair) {
-            $this->setValue($values);
-        }
-
-        return $warnings;
 
     }
 

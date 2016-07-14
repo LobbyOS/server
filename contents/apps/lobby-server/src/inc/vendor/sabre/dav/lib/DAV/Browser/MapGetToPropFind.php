@@ -2,9 +2,10 @@
 
 namespace Sabre\DAV\Browser;
 
-use Sabre\DAV;
-use Sabre\HTTP\RequestInterface;
-use Sabre\HTTP\ResponseInterface;
+use
+    Sabre\DAV,
+    Sabre\HTTP\RequestInterface,
+    Sabre\HTTP\ResponseInterface;
 
 /**
  * This is a simple plugin that will map any GET request for non-files to
@@ -12,7 +13,7 @@ use Sabre\HTTP\ResponseInterface;
  *
  * This should allow easy debugging of PROPFIND
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -34,7 +35,7 @@ class MapGetToPropFind extends DAV\ServerPlugin {
     function initialize(DAV\Server $server) {
 
         $this->server = $server;
-        $this->server->on('method:GET', [$this, 'httpGet'], 90);
+        $this->server->on('method:GET', [$this,'httpGet'], 90);
     }
 
     /**
@@ -52,7 +53,7 @@ class MapGetToPropFind extends DAV\ServerPlugin {
         $subRequest = clone $request;
         $subRequest->setMethod('PROPFIND');
 
-        $this->server->invokeMethod($subRequest, $response);
+        $this->server->invokeMethod($subRequest,$response);
         return false;
 
     }

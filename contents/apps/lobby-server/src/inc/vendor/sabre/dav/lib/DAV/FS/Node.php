@@ -2,15 +2,16 @@
 
 namespace Sabre\DAV\FS;
 
-use Sabre\DAV;
-use Sabre\HTTP\URLUtil;
+use
+    Sabre\DAV,
+    Sabre\HTTP\URLUtil;
 
 /**
  * Base node-class
  *
  * The node class implements the method used by both the File and the Directory classes
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -60,11 +61,13 @@ abstract class Node implements DAV\INode {
         list(, $newName) = URLUtil::splitPath($name);
 
         $newPath = $parentPath . '/' . $newName;
-        rename($this->path, $newPath);
+        rename($this->path,$newPath);
 
         $this->path = $newPath;
 
     }
+
+
 
     /**
      * Returns the last modification time, as a unix timestamp
@@ -78,3 +81,4 @@ abstract class Node implements DAV\INode {
     }
 
 }
+

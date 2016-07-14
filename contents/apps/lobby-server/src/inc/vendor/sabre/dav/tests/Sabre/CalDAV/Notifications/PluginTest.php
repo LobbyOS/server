@@ -1,14 +1,10 @@
 <?php
 
 namespace Sabre\CalDAV\Notifications;
-
-use Sabre\DAV;
 use Sabre\DAVACL;
+use Sabre\DAV;
 use Sabre\CalDAV;
-use Sabre\CalDAV\Xml\Notification\SystemStatus;
 use Sabre\HTTP;
-use Sabre\HTTP\Request;
-
 
 class PluginTest extends \PHPUnit_Framework_TestCase {
 
@@ -68,21 +64,19 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals([], $this->plugin->getFeatures());
         $this->assertEquals('notifications', $this->plugin->getPluginName());
-        $this->assertEquals(
-            'notifications',
-            $this->plugin->getPluginInfo()['name']
-        );
 
     }
 
     function testPrincipalProperties() {
 
-        $httpRequest = new Request('GET', '/', ['Host' => 'sabredav.org']);
+        $httpRequest = HTTP\Sapi::createFromServerArray(array(
+            'HTTP_HOST' => 'sabredav.org',
+        ));
         $this->server->httpRequest = $httpRequest;
 
-        $props = $this->server->getPropertiesForPath('/principals/user1',[
+        $props = $this->server->getPropertiesForPath('/principals/user1',array(
             '{' . Plugin::NS_CALENDARSERVER . '}notification-URL',
-        ]);
+        ));
 
         $this->assertArrayHasKey(0,$props);
         $this->assertArrayHasKey(200,$props[0]);
@@ -90,7 +84,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertArrayHasKey('{'.Plugin::NS_CALENDARSERVER .'}notification-URL',$props[0][200]);
         $prop = $props[0][200]['{'.Plugin::NS_CALENDARSERVER .'}notification-URL'];
-        $this->assertTrue($prop instanceof DAV\Xml\Property\Href);
+        $this->assertTrue($prop instanceof DAV\Property\Href);
         $this->assertEquals('calendars/user1/notifications/', $prop->getHref());
 
     }
@@ -100,7 +94,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
         $notification = new Node(
             $this->caldavBackend,
             'principals/user1',
-            new SystemStatus('foo','"1"')
+            new Notification\SystemStatus('foo','"1"')
         );
         $propFind = new DAV\PropFind('calendars/user1/notifications', [
             '{' . Plugin::NS_CALENDARSERVER . '}notificationtype',
@@ -120,13 +114,15 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
         $notification = new Node(
             $this->caldavBackend,
             'principals/user1',
-            new SystemStatus('foo','"1"')
+            new Notification\SystemStatus('foo','"1"')
         );
 
-        $server = new DAV\Server([$notification]);
+        $server = new DAV\Server(array($notification));
         $caldav = new Plugin();
 
-        $server->httpRequest = new Request('GET', '/foo.xml');
+        $server->httpRequest = HTTP\Sapi::createFromServerArray(array(
+            'REQUEST_URI' => '/foo.xml',
+        ));
         $httpResponse = new HTTP\ResponseMock();
         $server->httpResponse = $httpResponse;
 
@@ -135,19 +131,19 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
         $caldav->httpGet($server->httpRequest, $server->httpResponse);
 
         $this->assertEquals(200, $httpResponse->status);
-        $this->assertEquals([
+        $this->assertEquals(array(
             'Content-Type' => ['application/xml'],
             'ETag'         => ['"1"'],
-        ], $httpResponse->getHeaders());
+        ), $httpResponse->getHeaders());
 
         $expected =
 '<?xml version="1.0" encoding="UTF-8"?>
 <cs:notification xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:cs="http://calendarserver.org/ns/">
- <cs:systemstatus type="high"/>
+  <cs:systemstatus type="high"/>
 </cs:notification>
 ';
 
-        $this->assertXmlStringEqualsXmlString($expected, $httpResponse->getBodyAsString());
+        $this->assertEquals($expected, $httpResponse->body);
 
     }
 

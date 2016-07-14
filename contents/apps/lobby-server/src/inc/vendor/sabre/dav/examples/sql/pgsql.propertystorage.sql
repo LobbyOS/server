@@ -2,7 +2,6 @@ CREATE TABLE propertystorage (
     id SERIAL NOT NULL,
     path VARCHAR(1024) NOT NULL,
     name VARCHAR(100) NOT NULL,
-    valuetype INT,
     value TEXT
 );
 

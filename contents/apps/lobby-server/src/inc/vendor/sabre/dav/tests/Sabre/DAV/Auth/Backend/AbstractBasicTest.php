@@ -5,68 +5,67 @@ namespace Sabre\DAV\Auth\Backend;
 use Sabre\DAV;
 use Sabre\HTTP;
 
+require_once 'Sabre/HTTP/ResponseMock.php';
+
 class AbstractBasicTest extends \PHPUnit_Framework_TestCase {
 
-    function testCheckNoHeaders() {
+    /**
+     * @expectedException Sabre\DAV\Exception\NotAuthenticated
+     */
+    public function testAuthenticateNoHeaders() {
 
-        $request = new HTTP\Request();
-        $response = new HTTP\Response();
+        $response = new HTTP\ResponseMock();
+        $server = new DAV\Server();
+        $server->httpResponse = $response;
 
         $backend = new AbstractBasicMock();
-
-        $this->assertFalse(
-            $backend->check($request, $response)[0]
-        );
+        $backend->authenticate($server,'myRealm');
 
     }
 
-    function testCheckUnknownUser() {
+    /**
+     * @expectedException Sabre\DAV\Exception\NotAuthenticated
+     */
+    public function testAuthenticateUnknownUser() {
+
+        $response = new HTTP\ResponseMock();
+        $tree = new DAV\Tree(new DAV\SimpleCollection('bla'));
+        $server = new DAV\Server($tree);
+        $server->httpResponse = $response;
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'PHP_AUTH_USER' => 'username',
             'PHP_AUTH_PW' => 'wrongpassword',
         ));
-        $response = new HTTP\Response();
+        $server->httpRequest = $request;
 
         $backend = new AbstractBasicMock();
-
-        $this->assertFalse(
-            $backend->check($request, $response)[0]
-        );
+        $backend->authenticate($server,'myRealm');
 
     }
 
-    function testCheckSuccess() {
+    public function testAuthenticate() {
+
+        $response = new HTTP\ResponseMock();
+        $tree = new DAV\Tree(new DAV\SimpleCollection('bla'));
+        $server = new DAV\Server($tree);
+        $server->httpResponse = $response;
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'PHP_AUTH_USER' => 'username',
             'PHP_AUTH_PW' => 'password',
         ));
-        $response = new HTTP\Response();
+        $server->httpRequest = $request;
 
         $backend = new AbstractBasicMock();
-        $this->assertEquals(
-            [true, 'principals/username'],
-            $backend->check($request, $response)
-        );
+        $this->assertTrue($backend->authenticate($server,'myRealm'));
+
+        $result = $backend->getCurrentUser();
+
+        $this->assertEquals('username', $result);
 
     }
 
-    function testRequireAuth() {
-
-        $request = new HTTP\Request();
-        $response = new HTTP\Response();
-
-        $backend = new AbstractBasicMock();
-        $backend->setRealm('writing unittests on a saturday night');
-        $backend->challenge($request, $response);
-
-        $this->assertEquals(
-            'Basic realm="writing unittests on a saturday night"',
-            $response->getHeader('WWW-Authenticate')
-        );
-
-    }
 
 }
 

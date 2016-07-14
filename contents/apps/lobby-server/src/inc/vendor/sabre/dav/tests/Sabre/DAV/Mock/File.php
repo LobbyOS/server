@@ -9,7 +9,7 @@ use Sabre\DAV;
  *
  * See the Collection in this directory for more details.
  *
- * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
+ * @copyright Copyright (C) 2007-2014 fruux GmbH. All rights reserved.
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -18,7 +18,6 @@ class File extends DAV\File {
     protected $name;
     protected $contents;
     protected $parent;
-    protected $lastModified;
 
     /**
      * Creates the object
@@ -27,17 +26,11 @@ class File extends DAV\File {
      * @param array $children
      * @return void
      */
-    function __construct($name, $contents, Collection $parent = null, $lastModified = -1) {
+    public function __construct($name, $contents, Collection $parent) {
 
         $this->name = $name;
         $this->put($contents);
         $this->parent = $parent;
-
-        if ($lastModified === -1) {
-            $lastModified = time();
-        }
-
-        $this->lastModified = $lastModified;
 
     }
 
@@ -48,20 +41,9 @@ class File extends DAV\File {
      *
      * @return string
      */
-    function getName() {
+    public function getName() {
 
         return $this->name;
-
-    }
-
-    /**
-     * Changes the name of the node.
-     *
-     * @return void
-     */
-    function setName($name) {
-
-        $this->name = $name;
 
     }
 
@@ -85,7 +67,7 @@ class File extends DAV\File {
      * @param resource $data
      * @return string|null
      */
-    function put($data) {
+    public function put($data) {
 
         if (is_resource($data)) {
             $data = stream_get_contents($data);
@@ -102,9 +84,22 @@ class File extends DAV\File {
      *
      * @return mixed
      */
-    function get() {
+    public function get() {
 
         return $this->contents;
+
+    }
+
+    /**
+     * Changes the name of the node.
+     *
+     * @return void
+     */
+    public function setName($newName) {
+
+        $this->parent->deleteChild($this->name);
+        $this->name = $newName;
+        $this->parent->createFile($newName, $this->contents);
 
     }
 
@@ -117,7 +112,7 @@ class File extends DAV\File {
      *
      * @return void
      */
-    function getETag() {
+    public function getETag() {
 
         return '"' . md5($this->contents) . '"';
 
@@ -128,7 +123,7 @@ class File extends DAV\File {
      *
      * @return int
      */
-    function getSize() {
+    public function getSize() {
 
         return strlen($this->contents);
 
@@ -139,21 +134,9 @@ class File extends DAV\File {
      *
      * @return void
      */
-    function delete() {
+    public function delete() {
 
         $this->parent->deleteChild($this->name);
-
-    }
-
-    /**
-     * Returns the last modification time as a unix timestamp.
-     * If the information is not available, return null.
-     *
-     * @return int
-     */
-    function getLastModified() {
-
-        return $this->lastModified;
 
     }
 

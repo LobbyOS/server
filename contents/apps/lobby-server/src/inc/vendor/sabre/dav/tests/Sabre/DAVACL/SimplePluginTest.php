@@ -30,11 +30,6 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals(array('ACL'), $aclPlugin->getMethods(''));
 
-
-        $this->assertEquals(
-            'acl',
-            $aclPlugin->getPluginInfo()['name']
-        );
     }
 
     function testGetFlatPrivilegeSet() {
@@ -153,7 +148,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
         $server = new DAV\Server($tree);
         $server->addPlugin($acl);
 
-        $auth = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock());
+        $auth = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock(),'SabreDAV');
         $server->addPlugin($auth);
 
         //forcing login
@@ -180,7 +175,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
         $server = new DAV\Server($tree);
         $server->addPlugin($acl);
 
-        $auth = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock());
+        $auth = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock(),'SabreDAV');
         $server->addPlugin($auth);
 
         //forcing login
@@ -257,7 +252,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
         $aclPlugin = new Plugin();
         $server->addPlugin($aclPlugin);
 
-        $auth = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock());
+        $auth = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock(),'SabreDAV');
         $server->addPlugin($auth);
 
         //forcing login
@@ -311,7 +306,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
         $aclPlugin = new Plugin();
         $server->addPlugin($aclPlugin);
 
-        $auth = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock());
+        $auth = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock(),'SabreDAV');
         $server->addPlugin($auth);
 
         //forcing login

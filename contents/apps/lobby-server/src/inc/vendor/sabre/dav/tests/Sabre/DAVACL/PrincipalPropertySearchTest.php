@@ -21,7 +21,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
         $fakeServer->sapi = new HTTP\SapiMock();
         $fakeServer->httpResponse = new HTTP\ResponseMock();
         $fakeServer->debugExceptions = true;
-        $plugin = new MockPlugin();
+        $plugin = new MockPlugin($backend,'realm');
         $plugin->allowAccessToNodesWithoutACL = true;
 
         $this->assertTrue($plugin instanceof Plugin);
@@ -62,7 +62,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
 
         $server->exec();
 
-        $this->assertEquals(400, $server->httpResponse->getStatus(), $server->httpResponse->getBodyAsString());
+        $this->assertEquals(400, $server->httpResponse->status);
         $this->assertEquals(array(
             'X-Sabre-Version' => [DAV\Version::VERSION],
             'Content-Type' => ['application/xml; charset=utf-8'],
@@ -101,7 +101,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
 
         $server->exec();
 
-        $this->assertEquals(207, $server->httpResponse->getStatus(), "Full body: " . $server->httpResponse->getBodyAsString());
+        $this->assertEquals(207, $server->httpResponse->status);
         $this->assertEquals(array(
             'X-Sabre-Version' => [DAV\Version::VERSION],
             'Content-Type' => ['application/xml; charset=utf-8'],
