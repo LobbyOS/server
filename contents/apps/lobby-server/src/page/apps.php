@@ -93,7 +93,7 @@ if($node === "index"){
         ser("No App Found", "No app was found with the critera you gave");
       }else{
         foreach($apps as $app){
-          $app['logo'] = $app['logo'] === "0" ? L_URL . "/src/image/blank.png" : L_URL . "/api/app/{$app['id']}/logo";
+          $app['logo'] = $app['logo'] === "0" ? $this->srcURL . "/src/image/blank.png" : L_URL . "/api/app/{$app['id']}/logo";
         ?>
           <div class="app">
             <div class="app-inner">
@@ -151,7 +151,7 @@ if($node === "index"){
       ?>
       <h1>
         <a href=""><?php echo $appInfo['name'];?></a>
-        <a data-path="/admin/lobby-store.php?id=<?php echo $node;?>" class="open-via-lobby" title="Open in Lobby"><i class="material-icons">open_in_new</i></a>
+        <a data-path="/admin/lobby-store.php?app=<?php echo $node;?>" class="open-via-lobby" title="Open in Lobby"><i class="material-icons">open_in_new</i></a>
       </h1>
       <p><?php echo $appInfo['short_description'];?></p>
       <ol style="list-style: none;padding: 0 0 5px 0;">
@@ -214,7 +214,7 @@ if($node === "index"){
             ?>
           </ul>
           <div style="margin: 20px;text-align: center;">
-            <a data-path="/admin/lobby-store.php?id=<?php echo $appInfo["id"];?>" class="open-via-lobby btn orange btn-large" title="Open in Lobby" style="display: inline-block;">
+            <a data-path="/admin/lobby-store.php?app=<?php echo $appInfo["id"];?>" class="open-via-lobby btn orange btn-large" title="Open in Lobby" style="display: inline-block;">
               <i class="material-icons">open_in_new</i>
             </a>
             <a style='display: inline-block;color: white;position:relative;line-height: 40px;' class='btn btn-large green' onclick="node = document.createElement('iframe');node.src = this.href;node.style.cssText = 'display:none;position: absolute;left:-1000px;';node.addEventListener('load', function(){$(this).remove();clog('c');}, true);document.body.appendChild(node);return false;" href="<?php echo L_URL;?>/api/app/<?php echo $appInfo['id'];?>/download">Download Zip<span style='position: absolute;font-weight: bold;bottom: 7px;left: 0;line-height: 14px;right: 0;font-size: 0.8rem;'><?php echo \Lobby\FS::normalizeSize($appInfo["download_size"]);?></span></a>

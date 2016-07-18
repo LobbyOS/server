@@ -17,7 +17,7 @@ That's it. Now you should [run Lobby](#section-running-lobby).
 
 ### Running Lobby
 
-Run the "Lobby.exe" file in the "Lobby" folder.
+Run the "Lobby.exe" file in the "Lobby" folder. If running `Lobby.exe` didn't do anything, run the `lobby.bat` file.
 
 PHP that is inside Lobby will sometimes make the following error upon starting :
 ```
@@ -30,7 +30,7 @@ When Lobby.exe is ran, an icon with [Lobby favicon](/favicon.ico) can be see in 
 
 ![Lobby Windows Tray Icon](/contents/apps/lobby-server/src/image/screenshots/windows/tray.png)
 
-It means that the PHP Server embedded in Lobby is running. The server runs on [127.0.0.1:9000](http://127.0.0.1:2020) by default, so Lobby can be accessed by going to that [URL](http://127.0.0.1:2020) :
+It means that the PHP Server embedded in Lobby is running. The server runs on [127.0.0.1:2020](http://127.0.0.1:2020) by default, so Lobby can be accessed by going to that [URL](http://127.0.0.1:2020) :
 
 ![Lobby Running On Windows](/contents/apps/lobby-server/src/image/screenshots/windows/running.png)
 

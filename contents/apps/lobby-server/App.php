@@ -1,12 +1,14 @@
 <?php
 namespace Lobby\App;
 
+use Hooks;
+
 class lobby_server extends \Lobby\App {
   
-  public $lobby_version = "0.7";
-  public $lobby_released = "2016-06-12";
-  public $lobby_release_notes = '<p>Lobby 0.7 version comes with new features and has fixed some huge bugs. Also, parts of the core was rewritten to be more awesome.</p><p>If you are using versions <b>0.6</b> or old, <b>UPDATE</b> all apps before updating Lobby.</p><p><a class="button btn blue" target="_blank" href="http://subinsb.com/lobby/version-0-7">Read More</a></p>';
-  public $lobby_annoucement = "http://subinsb.com/lobby/version-0-7";
+  public $lobby_version = "0.8";
+  public $lobby_released = "2016-06-25";
+  public $lobby_release_notes = '<p>Lobby 0.8 has fixed some bugs. <a class="btn" href="https://github.com/LobbyOS/lobby/blob/dev/CHANGELOG.md#08" target="_blank">See Changelog</a></p><p>If you are using versions <b>0.6</b> or old, <b>UPDATE</b> all apps before updating Lobby.</p><p><a class="button btn blue" target="_blank" href="http://subinsb.com/lobby/version-0-8">Read More</a></p>';
+  public $lobby_annoucement = "http://subinsb.com/lobby/version-0-8";
   
   public $app_categories = array(
     "accessories" => "Accessories",
@@ -25,9 +27,14 @@ class lobby_server extends \Lobby\App {
       "programming" => "Programming"
     ),
     "games" => array(
+      "action" => "Action",
+      "adventure" => "Adventure",
+      "role-play" => "Role Play",
       "multiplayer" => "Multiplayer",
       "puzzles" => "Puzzles",
       "sports" => "Sports",
+      "simulation" => "Simulation",
+      "strategy" => "Strategy"
     ),
     "multimedia" => array(
       "music" => "Music",
@@ -59,7 +66,7 @@ class lobby_server extends \Lobby\App {
     /**
      * Mobile
      */
-    \Lobby::hook("head.end", function(){
+    Hooks::addAction("head.end", function(){
       echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" async="async" defer="defer">';
       echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
       if(\Lobby::getHostname() != "server.lo"."bby.sim"){
@@ -70,7 +77,7 @@ class lobby_server extends \Lobby\App {
     /**
      * 
      */
-    \Lobby::hook("panel.end", function(){
+    Hooks::addAction("panel.end", function(){
       echo '<a href="#" data-activates="lobby-nav" id="lobby-nav-btn"><i class="material-icons">menu</i></a>';
       echo '<ul class="side-nav" id="lobby-nav">
         <li><a href="/">Lobby</a></li>

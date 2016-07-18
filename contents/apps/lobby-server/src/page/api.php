@@ -24,7 +24,8 @@ $lobby_downloads = array(
   "0.5" => "0.5.zip",
   "0.5.1" => "0.5.1.zip",
   "0.6" => "qVHNgLfOxeVoLMd",
-  "0.7" => "fJY9iGB5ffCX6HB"
+  "0.7" => "fJY9iGB5ffCX6HB",
+  "0.8" => "H8rRxEM2aX9KmkU"
 );
 
 function getDownloadURL($id, $lobby_downloads){
@@ -54,13 +55,18 @@ if($node === "dot.gif"){
        */
       $sql = \Lobby\DB::getDBH()->query("SELECT `value` FROM `lobby` WHERE `key_name` = 'downloads'");
       $lobby_data = json_decode($sql->fetchColumn(), true);
+      
+      $statVersion = $version;
+      if($version === "windows" || $version === "linux"){
+        $statVersion = $version . "-{$this->lobby_version}";
+      }
 
       if(!is_array($lobby_data)){
         $lobby_data = array(
-          $version => 0
+          $statVersion => 0
         );
       }
-      $lobby_data[$version] = isset($lobby_data[$version]) ? $lobby_data[$version] + 1 : 1;
+      $lobby_data[$statVersion] = isset($lobby_data[$statVersion]) ? $lobby_data[$statVersion] + 1 : 1;
       
       $sql = \Lobby\DB::getDBH()->prepare("UPDATE `lobby` SET `value` = ? WHERE `key_name` = 'downloads'");
       $sql->execute(array(json_encode($lobby_data)));
@@ -71,10 +77,29 @@ if($node === "dot.gif"){
       header("Location: " . getDownloadURL($version, $lobby_downloads));
     }
   }else if($what === "updates"){
+    /**
+     * Don't mess with the response
+     */
     $response = array(
       "version" => $this->lobby_version,
       "released" => $this->lobby_released,
-      "release_notes" => $this->lobby_release_notes
+      "release_notes" => $this->lobby_release_notes,
+      
+      /**
+       * Note that Lobby client will prepend "lobby_server_msg_" to item IDs
+       */
+      "notify" => array(
+        "items" => array(
+          "amoebam" => array(
+            "contents" => "New Game!",
+            "href" => "/admin/lobby-store.php?app=amoebam"
+          )
+        ),
+        /**
+         * Only values, no keys
+         */
+        "remove_items" => array()
+      )
     );
     
     if(isset($_POST['apps'])){
@@ -161,10 +186,10 @@ if($node === "dot.gif"){
 }else if($node === "ping"){
   echo "pong";
 }else if($node === "apps"){
-  $get = H::i("get");
-  $p = H::i("p");
-  $q = H::i("q");
-  $lobby_web = H::i("lobby_web") != null;
+  $get = Request::get("get");
+  $p = Request::get("p");
+  $q = Request::get("q");
+  $lobby_web = Request::get("lobby_web") != null;
   
   if($p === null){
     $start = 0;
@@ -183,13 +208,21 @@ if($node === "dot.gif"){
       $query = "SELECT * FROM `apps` ORDER BY `updated` DESC";
       $total_query = "SELECT COUNT(*) FROM `apps`";
     }
+  }else if($get === "popular"){
+    if($lobby_web){
+      $query = "SELECT * FROM `apps` WHERE `lobby_web` = '1' ORDER BY `downloads` DESC";
+      $total_query = "SELECT COUNT(*) FROM `apps` WHERE `lobby_web` = '1'";
+    }else{
+      $query = "SELECT * FROM `apps` ORDER BY `downloads` DESC";
+      $total_query = "SELECT COUNT(*) FROM `apps`";
+    }
   }else if($get === "app"){
     if($lobby_web){
       $query = "SELECT * FROM `apps` WHERE `id` = :id AND `lobby_web` = '1'";
     }else{
       $query = "SELECT * FROM `apps` WHERE `id` = :id";
     }
-    $append[":id"] = H::i("id");
+    $append[":id"] = Request::get("id");
   }else if($q !== null){
     $q = "%{$q}%";
     
@@ -263,35 +296,6 @@ if($node === "dot.gif"){
       return $GLOBALS['star']->getRating("", "rate_value");
     }
     
-    function get_timeago( $ptime ) {
-      $estimate_time = time() - $ptime;
-  
-      if( $estimate_time < 1 )
-      {
-          return 'less than 1 second ago';
-      }
-  
-      $condition = array( 
-                  12 * 30 * 24 * 60 * 60  =>  'year',
-                  30 * 24 * 60 * 60       =>  'month',
-                  24 * 60 * 60            =>  'day',
-                  60 * 60                 =>  'hour',
-                  60                      =>  'minute',
-                  1                       =>  'second'
-      );
-  
-      foreach( $condition as $secs => $str )
-      {
-          $d = $estimate_time / $secs;
-  
-          if( $d >= 1 )
-          {
-              $r = round( $d );
-              return 'about ' . $r . ' ' . $str . ( $r > 1 ? 's' : '' ) . ' ago';
-          }
-      }
-    }
-    
     $i = 0;
     foreach($results as $r){
       $response['apps'][$i] = $r;
@@ -318,7 +322,7 @@ if($node === "dot.gif"){
        */
       $response['apps'][$i]['require'] = $response['apps'][$i]['requires'];
       
-      $response['apps'][$i]['updated'] = get_timeago(strtotime($r['updated']));
+      $response['apps'][$i]['updated'] = strtotime($r['updated']);
       $i++;
     }
     

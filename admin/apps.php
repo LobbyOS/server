@@ -3,156 +3,192 @@ require "../load.php";
 use \Lobby\Apps;
 use \Lobby\FS;
 use \Lobby\Need;
+
+$appID = Request::get("app");
+$action = Request::get("action");
+
+/**
+* Whether the app info should be shown
+*/
+$showAppInfo = true;
+
+/**
+* Whether this is a request to show a message
+*/
+$show = Request::get("show") !== null;
+
+if($appID != null){
+  $App = new Apps($appID);
+  if(!$App->exists)
+    Response::showError("Error", "I checked all over, but the app does not exist");
+  $appIDEscaped = htmlspecialchars($appID);
+}
+
+if(!$show && $action !== null && CSRF::check()){
+  if($action === "disable"){
+    if($App->disableApp())
+      Response::redirect("/admin/apps.php?app=$appID&action=disable&show=1" . CSRF::getParam());
+    else
+      Response::redirect("/admin/apps.php?app=$appID&action=disable-fail&show=1" . CSRF::getParam());
+  }else if($action === "enable"){
+    if($App->enableApp())
+      Response::redirect("/admin/apps.php?app=$appID&action=enable&show=1" . CSRF::getParam());
+    else
+      Response::redirect("/admin/apps.php?app=$appID&action=enable-fail&show=1" . CSRF::getParam());
+  }
+}
 ?>
 <html>
   <head>
     <?php
     \Assets::js("admin.apps.js", "/admin/js/apps.js");
-    \Assets::css("lobby-store", "/admin/css/lobby-store.css");
-    \Assets::css("view-app", "/admin/css/view-app.css");
+    \Assets::css("apps-grid", "/admin/css/apps-grid.css");
+    \Assets::css("apps", "/admin/css/apps.css");
     
-    \Lobby::doHook("admin.head.begin");
+    \Hooks::doAction("admin.head.begin");
     \Response::head("App Manager");
     ?>
   </head>
   <body>
     <?php
-    \Lobby::doHook("admin.body.begin");
-    require "$docRoot/admin/inc/sidebar.php";
+    \Hooks::doAction("admin.body.begin");
     ?>
     <div id="workspace">
-      <div class="content">
+      <div class="contents">
         <?php
-        $appID = Request::get("app");
         if($appID !== null){
-          $App = new Apps($appID);
-          
-          if( !$App->exists ){
-            echo ser("Error", "I checked all over, but App does not Exist");
-          }
         ?>
-          <h2><?php echo "<a href='". L_SERVER ."/apps/". $App->info['id'] ."' target='_blank'>". $App->info['name'] ."</a>";?></h2>
-          <p class="chip" style="margin: -5px 0 20px;"><?php echo $App->info['short_description'];?></p>
+          <h2><?php echo "<a href='". Lobby::u("/admin/apps.php?app={$App->info['id']}") ."'>". $App->info['name'] ."</a>";?></h2>
+          <div id="appNav">
+            <p class="chip"><?php echo $App->info['short_description'];?></p>
+          </div>
           <?php
-          if(isset($_GET['action']) && CSRF::check()){
-            $action = $_GET['action'];
-            
-            if($action === "disable"){
-              if($App->disableApp()){
-                echo sss("Disabled", "The App <strong>$app</strong> has been disabled.");
-              }else{
-                echo ser("Error", "The App <strong>$app</strong> couldn't be disabled. Try again.", false);
-              }
-            }else if($action === "remove"){
-            ?>
-                <h2>Confirm</h2>
-                <p>Are you sure you want to remove the app <b><?php echo $app;?></b> ?</p>
-                <div clear></div>
-                <a class="btn green" href="<?php echo L_URL ."/admin/install-app.php?action=remove&id={$app}&".CSRF::getParam();?>">Yes, I'm Sure</a>
-                <a class="btn red" href="<?php echo L_URL ."/admin/apps.php";?>">No, I'm Not</a>
-            <?php
-              exit;
-            }else if($action === "enable"){
-              if($App->enableApp()){
-                if(isset($_GET['redirect'])){
-                  \Response::redirect("/app/$appID");
-                }
-                echo sss("Enabled", "The App <strong>$appID</strong> has been enabled.");
-              }else{
+          if($action !== null && $show && CSRF::check()){
+            switch($action){
+              case "disable":
+                echo sss("Disabled", "The App <strong>$appIDEscaped</strong> has been disabled.");
+                break;
+              case "disable-fail":
+                echo ser("Error", "The App <strong>$appIDEscaped</strong> couldn't be disabled. Try again.");
+                break;
+              case "enable":
+                echo sss("Enabled", "The App <strong>$appIDEscaped</strong> has been enabled.");
+                break;
+              case "enable-fail":
                 echo ser("Error", "The App couldn't be enabled. Try again.", false);
-              }
+                break;
+            }
+          }else if($action !== null && CSRF::check()){
+            if($action === "remove"){
+              /**
+               * Do not show app info during confirmation
+               */
+              $showAppInfo = false;
+              
+              echo sme("Confirm", "<p>Are you sure you want to remove the app <b>$appIDEscaped</b> ? This cannot be undone.</p>" . Lobby::l("/admin/install-app.php?action=remove&app=$appID" . CSRF::getParam(), "Yes, I'm sure", "class='btn red'") . Lobby::l("/admin/apps.php?app=$appID" . CSRF::getParam(), "No, I'm not", "class='btn blue' id='cancel'"));
+            }else if($action === "clear-data"){
+              $showAppInfo = false;
+              
+              echo sme("Confirm", "<p>Are you sure you want to clear the data of app <b>$appIDEscaped</b> ? This cannot be undone.</p>" . Lobby::l("/admin/install-app.php?action=clear-data&app=$appID" . CSRF::getParam(), "Yes, I'm sure", "class='btn red'") . Lobby::l("/admin/apps.php?app=$appID" . CSRF::getParam(), "No, I'm not", "class='btn blue' id='cancel'"));
             }
           }
+          if($showAppInfo){
           ?>
-          <div class="row">
-            <div class="col m3" id="leftpane" style="text-align: center;">
-              <img src="<?php echo \Lobby::u("admin/image/clear.gif");?>" height="200" width="200" />
-              <script>
-                $(window).load(function(){
-                  var image = $("#leftpane img");
-                  var downloadingImage = new Image();
-                  downloadingImage.onload = function(){
-                    image.attr("src", this.src);
-                  };
-                  downloadingImage.src = "<?php echo $App->info["logo"];?>";
-                });
-              </script>
-              <?php
-              $App = new Apps($appID);
-              $requires = $App->info['require'];
-              
-              if(version_compare($App->info['version'], $App->info['version'], ">")){
-                /**
-                 * New version of app is available
-                 */
-                echo \Lobby::l("/admin/check-updates.php", "Update App", "class='btn red'");
-              }else if($App->enabled){
-                echo \Lobby::l($App->info['url'], "Open App", "class='btn green'");
-                echo \Lobby::l("/admin/apps.php?app=$appID&action=disable" . CSRF::getParam(), "Disable", "class='btn'");
-              }else{
-                /**
-                 * App is Disabled. Show button to enable it
-                 */
-                echo \Lobby::l("/admin/apps.php?action=enable&redirect=1&app=". $appID . CSRF::getParam(), "Enable", "class='btn green'");
-              }
-              echo \Lobby::l("/admin/apps.php?app=$appID&action=remove" . CSRF::getParam(), "Remove", "class='btn red'");
-              ?>
-            </div>
-            <div class="col m9">
-              <ul class="tabs">
-                <li class="tab"><a href="#app-info">Info</a></li>
-                <li class="tab"><a href="#app-data">Memory</a></li>
-              </ul>
-              <div id="app-info" class="tab-contents">
-                <div class="chip">Version : <?php echo $App->info['version'];?></div><cl/>
-                <div class="chip">Developed By <a href="<?php echo $App->info['author_page'];?>" target="_blank"><?php echo $App->info['author'];?></a></div><cl/>
-                <div class="chip"><a href="<?php echo $App->info['app_page'];?>" target="_blank">App's Webpage</a></div><cl/>
+            <div class="row">
+              <div class="col m3" id="leftpane" style="text-align: center;">
+                <img src="<?php echo \Lobby::u("admin/image/clear.gif");?>" height="200" width="200" />
+                <script>
+                  $(window).load(function(){
+                    var image = $("#leftpane img");
+                    var downloadingImage = new Image();
+                    downloadingImage.onload = function(){
+                      image.attr("src", this.src);
+                    };
+                    downloadingImage.src = "<?php echo $App->info["logo"];?>";
+                  });
+                </script>
                 <?php
-                if(!empty($App->info["require"])){
-                  $requirementsInSystemInfo = Need::checkRequirements($App->info["require"]);
-                  echo "<div class='chip'>Requirements :</div><ul>";
-                  foreach($App->info["require"] as $k => $v){
-                    if($requirementsInSystemInfo[$k]){
-                      echo "<li class='collection-item'>$k $v</li>";
-                    }else{
-                      echo "<li class='collection-item red'>$k $v</li>";
-                    }
-                  }
-                  echo "</ul>";
+                $App = new Apps($appID);
+                $requires = $App->info['require'];
+                
+                if($App->hasUpdate()){
+                  /**
+                   * New version of app is available
+                   */
+                  echo \Lobby::l("/admin/check-updates.php", "Update App", "class='btn red'");
+                }else if($App->enabled){
+                  echo \Lobby::l($App->info['url'], "Open App", "class='btn green'");
+                  echo \Lobby::l("/admin/apps.php?app=$appID&action=disable" . CSRF::getParam(), "Disable", "class='btn'");
+                }else{
+                  /**
+                   * App is Disabled. Show button to enable it
+                   */
+                  echo \Lobby::l("/admin/apps.php?action=enable&redirect=1&app=". $appID . CSRF::getParam(), "Enable", "class='btn green'");
                 }
+                echo \Lobby::l("/admin/apps.php?app=$appID&action=remove" . CSRF::getParam(), "Remove", "class='btn red'");
                 ?>
+              </div>
+              <div class="col m9">
+                <ul class="tabs">
+                  <li class="tab"><a href="#app-info">Info</a></li>
+                  <li class="tab"><a href="#app-data">Memory</a></li>
+                </ul>
+                <div id="app-info" class="tab-contents">
+                  <div class="chip">Version : <?php echo $App->info['version'];?></div><cl/>
+                  <div class="chip">Developed By <a href="<?php echo $App->info['author_page'];?>" target="_blank"><?php echo $App->info['author'];?></a></div><cl/>
+                  <div class="chip"><a href="<?php echo $App->info['app_page'];?>" target="_blank">App's Webpage</a></div><cl/>
+                  <?php
+                  if(!empty($App->info["require"])){
+                    $requirements = Need::checkRequirements($App->info["require"], false, true);
+                    echo "<div class='chip'>Requirements :</div><ul>";
+                    foreach($requirements as $dependency => $depInfo){
+                      if($depInfo["satisfy"]){
+                        echo "<li class='collection-item'>$dependency {$depInfo['require']}</li>";
+                      }else{
+                        echo "<li class='collection-item red'>$dependency {$depInfo['require']}</li>";
+                      }
+                    }
+                    echo "</ul>";
+                  }
+                  ?>
+              </div>
+              <div id="app-data" class="tab-contents">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Installed in</td>
+                      <td><?php echo $App->dir;?></td>
+                    </tr>
+                    <tr>
+                      <td>Folder</td>
+                      <td><h6><?php $folderSize = FS::getSize($App->dir);echo FS::normalizeSize($folderSize);?></h6></td>
+                    </tr>
+                    <tr>
+                      <td title="Size occupied in database">App Data</td>
+                      <td>
+                        <h6>
+                        <?php $dbSize = $App->getDBSize();echo FS::normalizeSize($dbSize);?>
+                        <a class="btn red" href="<?php echo \Lobby::u("/admin/apps.php?app=$appID&action=clear-data" . CSRF::getParam());?>">Clear Data</a>
+                        </h6>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Total size</td>
+                      <td><h5><?php echo FS::normalizeSize($folderSize + $dbSize);?></h5></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
-            <div id="app-data" class="tab-contents">
-              <table>
-                <tbody>
-                  <tr>
-                    <td>Installed in</td>
-                    <td><?php echo $App->appDir;?></td>
-                  </tr>
-                  <tr>
-                    <td>Folder</td>
-                    <td><h6><?php $folderSize = FS::getSize($App->appDir);echo FS::normalizeSize($folderSize);?></h6></td>
-                  </tr>
-                  <tr>
-                    <td title="Size occupied in database">App Data</td>
-                    <td><h6><?php $dbSize = $App->getDBSize();echo FS::normalizeSize($dbSize);?></h6></td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Total size</td>
-                    <td><h5><?php echo FS::normalizeSize($folderSize + $dbSize);?></h5></td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-          <style>
-          .tab-contents{
-            padding: 10px 0;
-          }
-          </style>
+            <style>
+            .tab-contents{
+              padding: 10px 0;
+            }
+            </style>
         <?php
+          }
         }else{
         ?>
           <h2>Apps</h2>
@@ -163,27 +199,28 @@ use \Lobby\Need;
           if(empty($apps)){
             echo ser("No Apps", "You haven't installed any apps. <br/>Get great Apps from " . \Lobby::l("/admin/lobby-store.php", "Lobby Store"));
           }else{
-            echo '<div class="apps">';
+            echo '<div class="apps row">';
             foreach($apps as $app){
               $App = new Apps($app);
             ?>
-              <div class="app card">
-                <div class="app-inner">
-                  <div class="lpane">
+              <div class="app col s12 m6 l4">
+                <div class="app-inner card row">
+                  <div class="lpane col s4 m5 l5">
                     <a href="<?php echo \Lobby::u("/admin/apps.php?app=$app");?>">
                       <img src="<?php echo $App->info["logo"];?>" />
                     </a>
                   </div>
-                  <div class="rpane">
-                    <a href="<?php echo \Lobby::u("/admin/apps.php?app=$app");?>" class="name"><?php echo $App->info["name"];?></a>
-                    <p><a class="chip">Version <?php echo $App->info["version"];?></a></p>
-                    <div style="margin-top: 10px;">
+                  <div class="rpane col s8 m6 l7">
+                    <a href="<?php echo \Lobby::u("/admin/apps.php?app=$app");?>" class="name truncate" title="<?php echo $App->info["name"];?>"><?php echo $App->info["name"];?></a>
+                    <div class="actions">
                       <?php
-                      if($App->enabled)
+                      if($App->hasUpdate())
+                        echo "<cl/>" . \Lobby::l("/admin/update.php", "Update", "class='btn orange'");
+                      else if($App->enabled)
                         echo \Lobby::l("/admin/apps.php?app=$app&action=disable" . CSRF::getParam(), "Disable", "class='btn'");
                       else
                         echo \Lobby::l("/admin/apps.php?app=$app&action=enable" . CSRF::getParam(), "Enable", "class='btn green'");
-                      echo \Lobby::l("/admin/apps.php?app=$app&action=remove" . CSRF::getParam(), "Remove", "class='btn red'");
+                      echo "<cl/>" . \Lobby::l("/admin/apps.php?app=$app&action=remove" . CSRF::getParam(), "Remove", "class='btn red'");
                       ?>
                     </div>
                   </div>

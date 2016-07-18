@@ -4,15 +4,13 @@ App.php File
 
 A file named **App.php** should be in the root directory of your app along with **manifest.json**.
 
-When the user requests for anything of your app, Lobby interacts with this file to obtain what the user wants.
+When the user requests for anything in your app, Lobby interacts with this file to obtain what the user wants.
 
 ## Class Naming
 
-This file is a **class** with the name of your app's ID.
+This file contains a **class** with the name of your app's ID. It is **required** that the class name should be the same as the App ID.
 
-It is **required** that the class name should be the same as the App ID.
-
-In case there's a "-" character in your App ID, then when naming the class, replace it to "_" (underscore). Because including "-" denotes subtraction.
+In case there's a `-` (minus) character in your App ID, then when naming the class, replace it to "_" (underscore). Because including `-` denotes subtraction and would cause a fatal PHP error.
 
 ## Inside The Class
 
@@ -23,16 +21,17 @@ The class should be the child class of **\Lobby\App** and under the namespace **
 namespace Lobby\App;
 
 class myAppID extends \Lobby\App {
-	  public function page($page){
-		    return "auto"; // Or HTML Data
-	  }
+  public function page($page){
+    return "auto";
+  }
 }
 ```
 
-In brief, here are the full conditions of the class :
+These are the conditions of a valid App class :
 
-1. The same name as App ID
-2. A Child class of **\Lobby\App**
+* The [same name as App ID](#section-class-naming)
+* A child class of `\Lobby\App`
+* Should be under the namespace `Lobby\App`
 
 ## Handling Requests
 

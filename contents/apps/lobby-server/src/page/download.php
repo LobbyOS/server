@@ -41,7 +41,7 @@
     </ul>
     <p>
       If you already have localhost set up and just want to download Lobby, click the button below :
-      <a style='display: table;margin: 20px auto;font-size: 16px;padding: 5px 20px;' class='btn green' href="/api/lobby/download/latest">Download Lobby<font size='1' style='display:block;margin-top: -10px;'>Zip, 2.6 MB</font></a>
+      <a style='display: table;margin: 20px auto;font-size: 16px;padding: 5px 20px;' class='btn green' href="/api/lobby/download/latest">Download Lobby<font size='1' style='display:block;margin-top: -10px;'>Zip, 2.9 MB</font></a>
     </p>
   </div>
 </div>

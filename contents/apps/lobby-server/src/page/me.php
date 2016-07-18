@@ -98,12 +98,12 @@ if($node === "index"){
   <div class="contents">
     <h1>My Profile</h1>
     <?php
-    $site = \H::i("me_site");
+    $site = \Request::get("me_site");
     $site = $site != null ? $site : \Fr\LS2::getUser("web_page");
-    $display_name = \H::i("me_display");
+    $display_name = \Request::get("me_display");
     $display_name = $display_name != null ? $display_name : \Fr\LS2::getUser("display_name");
 
-    if(\H::i("me_site") != null && \H::i("me_display") != null && H::csrf()){
+    if(\Request::get("me_site") != null && \Request::get("me_display") != null && CSRF::check()){
       if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $site)){
         \Fr\LS2::updateUser(array(
           "web_page" => $site,
@@ -125,7 +125,7 @@ if($node === "index"){
         <span>My Website</span>
         <input type="text" name="me_site" value="<?php echo \Fr\LS2::getUser("web_page");?>" placeholder="Required" />
       </label>
-      <?php H::csrf(1);?>
+      <?php CSRF::getInput();?>
       <button class="btn green">Update Profile</button>
     </form>
   </div>
@@ -166,25 +166,25 @@ if($node === "index"){
       $lg = new \LobbyGit($AppID, $app_info['git_url']);
       $lg->update();
       
-      \Response::redirect(\Lobby::u() . "&app-updated");
+      Response::redirect("/me/app/$AppID?app-updated");
     }
     
     if(isset($_POST['app_name'])){
       $app_info_required = array(
-        "id" => $app_edit ? $path[3] : \H::i("app_id"),
-        "name" => \H::i("app_name"),
-        "git_url" => \H::i("app_src"),
-        "description" => \H::i("app_description"),
-        "category" => \H::i("app_category"),
-        "sub_category" => \H::i("app_sub_category"),
-        "app_page" => \H::i("app_page")
+        "id" => $app_edit ? $path[3] : \Request::get("app_id"),
+        "name" => \Request::get("app_name"),
+        "git_url" => \Request::get("app_src"),
+        "description" => \Request::get("app_description"),
+        "category" => \Request::get("app_category"),
+        "sub_category" => \Request::get("app_sub_category"),
+        "app_page" => \Request::get("app_page")
       );
       $app_info = array_merge($app_info, $app_info_required);
       $app_info["lobby_web"] = isset($_POST["app_lobby_web"]) ? "1" : "0";
       $app_info["logo"] = isset($_POST["app_logo"]) ? "1" : "0";
     }
 
-    if(isset($_POST['app_name']) && H::csrf() && array_search(null, $app_info_required) === false){
+    if(isset($_POST['app_name']) && CSRF::check() && array_search(null, $app_info_required) === false){
       $apps_sql = \Lobby\DB::getDBH()->prepare("SELECT COUNT(1) FROM `apps` WHERE `id` = ?");
       $apps_sql->execute(array($app_info['id']));
       
@@ -394,7 +394,7 @@ if($node === "index"){
         <span>App Page</span>
         <input type="text" name="app_page" placeholder="http:// or https://" value="<?php echo $app_edit == true ? $app_info['app_page'] : "";?>" />
       </label>
-      <?php H::csrf(1);?>
+      <?php CSRF::getInput();?>
       <button class="btn green"><?php echo $app_edit == true ? "Update App" : "Submit App";?></button>
     </form>
   </div>

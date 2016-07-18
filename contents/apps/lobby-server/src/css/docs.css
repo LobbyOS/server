@@ -77,9 +77,10 @@
 .contents code{
   padding: 0.2em 0.5em;
   margin: 0;
-  font-size: 90%;
+  font-size: 100%;
   background-color: rgba(0,0,0,0.1);
   border-radius: 3px;
+  word-spacing: 4;
 }
 .contents ul, .contents li{
   list-style-type: decimal;

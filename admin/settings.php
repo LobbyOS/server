@@ -2,17 +2,16 @@
 <html>
   <head>
     <?php
-    \Lobby::doHook("admin.head.begin");
+    \Hooks::doAction("admin.head.begin");
     \Response::head("Change Settings");
     ?>
   </head>
   <body>
     <?php
-    \Lobby::doHook("admin.body.begin");
-    require "$docRoot/admin/inc/sidebar.php";
+    \Hooks::doAction("admin.body.begin");
     ?>
     <div id="workspace">
-      <div class="content">
+      <div class="contents">
         <?php
         if(isset($_GET['updated']) && CSRF::check()){
           echo sss("Updated", "Lobby was successfully updated to Version <b>". \Lobby::$version ."</b> from the old ". htmlspecialchars($_GET['oldver']) ." version.");
@@ -36,7 +35,7 @@
         <h2>Settings</h2>
         <form action="<?php echo \Lobby::u();?>" method="POST">
           <input type="hidden" name="update_settings" value="" />
-          <?php echo \CSRF::getInput();?>
+          <?php echo CSRF::getInput();?>
           <label>
             <span>Timezone</span>
             <select id="timezone_string" name="timezone">

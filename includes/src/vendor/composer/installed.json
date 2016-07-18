@@ -65,12 +65,12 @@
     },
     {
         "name": "lobby/lobby",
-        "version": "0.5.33",
-        "version_normalized": "0.5.33.0",
+        "version": "0.8.0",
+        "version_normalized": "0.8.0.0",
         "dist": {
             "type": "path",
             "url": "lobby/",
-            "reference": "8b2cb99b8e853c85eb442a09979602a0260e981a",
+            "reference": "a05a0955b31bc35702dbeec9478883908bda4ba6",
             "shasum": null
         },
         "require": {
@@ -88,6 +88,7 @@
                 "Assets": "src/",
                 "CSRF": "src/",
                 "Helper": "src/",
+                "Hooks": "src/",
                 "Request": "src/",
                 "Response": "src/"
             },
@@ -254,23 +255,23 @@
     },
     {
         "name": "symfony/filesystem",
-        "version": "v3.1.0",
-        "version_normalized": "3.1.0.0",
+        "version": "v3.1.2",
+        "version_normalized": "3.1.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/filesystem.git",
-            "reference": "5751e80d6f94b7c018f338a4a7be0b700d6f3058"
+            "reference": "322da5f0910d8aa0b25fa65ffccaba68dbddb890"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/filesystem/zipball/5751e80d6f94b7c018f338a4a7be0b700d6f3058",
-            "reference": "5751e80d6f94b7c018f338a4a7be0b700d6f3058",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/322da5f0910d8aa0b25fa65ffccaba68dbddb890",
+            "reference": "322da5f0910d8aa0b25fa65ffccaba68dbddb890",
             "shasum": ""
         },
         "require": {
             "php": ">=5.5.9"
         },
-        "time": "2016-04-12 18:27:47",
+        "time": "2016-06-29 05:41:56",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -463,17 +464,17 @@
     },
     {
         "name": "symfony/http-foundation",
-        "version": "v3.1.0",
-        "version_normalized": "3.1.0.0",
+        "version": "v3.1.2",
+        "version_normalized": "3.1.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/http-foundation.git",
-            "reference": "83c47b60cdcc0a79651c4e68a3420a54d1eba6e1"
+            "reference": "6b5a3764c5b0ce1f0ec3b8be5bba969122a78cfc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/83c47b60cdcc0a79651c4e68a3420a54d1eba6e1",
-            "reference": "83c47b60cdcc0a79651c4e68a3420a54d1eba6e1",
+            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/6b5a3764c5b0ce1f0ec3b8be5bba969122a78cfc",
+            "reference": "6b5a3764c5b0ce1f0ec3b8be5bba969122a78cfc",
             "shasum": ""
         },
         "require": {
@@ -483,7 +484,7 @@
         "require-dev": {
             "symfony/expression-language": "~2.8|~3.0"
         },
-        "time": "2016-05-13 18:06:41",
+        "time": "2016-06-29 07:02:31",
         "type": "library",
         "extra": {
             "branch-alias": {

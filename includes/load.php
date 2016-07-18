@@ -7,22 +7,6 @@ session_start();
  */
 define("L_DIR", str_replace("\\", "/", $docRoot));
 
-$_SERVER['ORIG_REQUEST_URI'] = $_SERVER['REQUEST_URI'];
-
-/**
- * Make the request URL relative to the base URL of Lobby installation.
- * http://localhost/lobby will be changed to "/"
- * and http://lobby.local to "/"
- * ---------------------
- * We do this directly to $_SERVER['REQUEST_URI'] because, Klein (router)
- * obtains the value from it. Hence we keep the original value in ORIG_REQUEST_URI
- */
-$lobbyBase = str_replace(str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']), "", L_DIR);
-$lobbyBase = substr($lobbyBase, 0) == "/" ? substr_replace($lobbyBase, "", 0) : $lobbyBase;
-
-$_SERVER['REQUEST_URI'] = str_replace($lobbyBase, "", $_SERVER['REQUEST_URI']);
-$_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], -1) == "/" && $_SERVER['REQUEST_URI'] != "/" ? substr_replace($_SERVER['REQUEST_URI'], "", -1) : $_SERVER['REQUEST_URI'];
-
 try{
   /**
    * Autoload and initialize classes
@@ -35,11 +19,18 @@ try{
   require_once L_DIR . "/includes/config.php";
   
   /**
-   * Load Classed that Composer doesn't load by default
+   * Load Classes that has __constructStatic()
    */
   $composer->loadClass("Assets");
   $composer->loadClass("CSRF");
+  $composer->loadClass("Request");
+  $composer->loadClass("Response");
+  $composer->loadClass("Lobby\\FS");
   $composer->loadClass("Lobby\\DB");
+  $composer->loadClass("Lobby\\Apps");
+  $composer->loadClass("Lobby\\Modules");
+  $composer->loadClass("Lobby\\Router");
+  $composer->loadClass("Lobby\\Time");
   $composer->loadClass("Lobby\\UI\\Themes");
   
   /**
@@ -49,8 +40,8 @@ try{
    */
   $loader = new ConstructStatic\Loader($composer);
   
-  $loader->setClassParameters("Lobby\UI\Themes", THEMES_DIR);
-  $loader->setClassParameters("Lobby\Apps", APPS_DIR);
+  $loader->setClassParameters("Lobby\\Apps", array(APPS_DIR, APPS_URL));
+  $loader->setClassParameters("Lobby\UI\Themes", array(THEMES_DIR, THEMES_URL));
   
   $loader->processLoadedClasses();
   
@@ -84,4 +75,4 @@ if(!\Lobby::status("lobby.assets-serve")){
   }
 }
 
-\Lobby::doHook("init");
+\Hooks::doAction("init");

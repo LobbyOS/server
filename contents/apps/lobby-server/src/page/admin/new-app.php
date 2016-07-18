@@ -5,20 +5,20 @@ $this->setTitle("New App");
   <h1>Add App</h1>
   <?php
   $app_info = array(
-    "id" => \H::i("app_id"),
-    "name" => \H::i("app_name"),
-    "git_url" => \H::i("app_download"),
-    "requires" => \H::i("app_requires"),
-    "short_description" => \H::i("app_short_description"),
-    "description" => \H::i("app_description"),
-    "category" => \H::i("app_category"),
-    "sub_category" => \H::i("app_sub_category"),
-    "version" => \H::i("app_version"),
-    "page" => \H::i("app_page"),
-    "author_id" => \H::i("author_id")
+    "id" => \Request::get("app_id"),
+    "name" => \Request::get("app_name"),
+    "git_url" => \Request::get("app_download"),
+    "requires" => \Request::get("app_requires"),
+    "short_description" => \Request::get("app_short_description"),
+    "description" => \Request::get("app_description"),
+    "category" => \Request::get("app_category"),
+    "sub_category" => \Request::get("app_sub_category"),
+    "version" => \Request::get("app_version"),
+    "page" => \Request::get("app_page"),
+    "author_id" => \Request::get("author_id")
   );
   
-  if(isset($_POST['app_id']) && array_search(null, $app_info) === false && H::csrf()){
+  if(isset($_POST['app_id']) && array_search(null, $app_info) === false && CSRF::check()){
     $apps_sql = \Lobby\DB::getDBH()->prepare("SELECT COUNT(1) FROM `apps` WHERE `id` = ?");
     $apps_sql->execute(array($app_info['id']));
     
@@ -107,7 +107,7 @@ $this->setTitle("New App");
       <input type="checkbox" name="app_lobby_web" />
       <span>Lobby Web App ?</span>
     </label>
-    <?php H::csrf(1);?>
+    <?php CSRF::getInput();?>
     <button class="btn green">Submit App</button>
   </form>
   <style>

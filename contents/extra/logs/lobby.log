@@ -1,0 +1,77 @@
+[2016-07-08 02:52:38] a:2:{i:0;s:5:"fatal";i:1;s:200:"Unable to connect to database server. Is the credentials given in <b>config.php</b> correct ? <blockquote>SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)</blockquote>";}
+[2016-07-08 02:53:44] a:2:{i:0;s:5:"fatal";i:1;s:200:"Unable to connect to database server. Is the credentials given in <b>config.php</b> correct ? <blockquote>SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)</blockquote>";}
+[2016-07-17 07:57:27] a:2:{i:0;s:5:"fatal";i:1;s:200:"Unable to connect to database server. Is the credentials given in <b>config.php</b> correct ? <blockquote>SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)</blockquote>";}
+[2016-07-17 08:35:23] a:2:{i:0;s:5:"fatal";i:1;s:200:"Unable to connect to database server. Is the credentials given in <b>config.php</b> correct ? <blockquote>SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)</blockquote>";}
+[2016-07-17 08:35:52] a:2:{i:0;s:5:"fatal";i:1;s:200:"Unable to connect to database server. Is the credentials given in <b>config.php</b> correct ? <blockquote>SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)</blockquote>";}
+[2016-07-18 17:59:32] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 925 : Uncaught Error: Wrong parameters for Klein\Exceptions\UnhandledException([string $message [, long $code [, Throwable $previous = NULL]]]) in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php:925
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(925): Exception->__construct('SQLSTATE[HY000]...', 'HY000', Object(PDOException))
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(629): Klein\Klein->error(Object(PDOException))
+#2 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(33): Klein\Klein->dispatch(NULL, NULL, false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/index.php(21): Lobby\Router::dispatch()
+#4 {main}
+  thrown
+[2016-07-18 17:59:40] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 925 : Uncaught Error: Wrong parameters for Klein\Exceptions\UnhandledException([string $message [, long $code [, Throwable $previous = NULL]]]) in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php:925
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(925): Exception->__construct('SQLSTATE[HY000]...', 'HY000', Object(PDOException))
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(629): Klein\Klein->error(Object(PDOException))
+#2 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(33): Klein\Klein->dispatch(NULL, NULL, false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/index.php(21): Lobby\Router::dispatch()
+#4 {main}
+  thrown
+[2016-07-18 18:00:03] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 925 : Uncaught Error: Wrong parameters for Klein\Exceptions\UnhandledException([string $message [, long $code [, Throwable $previous = NULL]]]) in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php:925
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(925): Exception->__construct('SQLSTATE[HY000]...', 'HY000', Object(PDOException))
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(629): Klein\Klein->error(Object(PDOException))
+#2 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(33): Klein\Klein->dispatch(NULL, NULL, false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/index.php(21): Lobby\Router::dispatch()
+#4 {main}
+  thrown
+[2016-07-18 18:02:49] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 925 : Uncaught Error: Wrong parameters for Exception([string $message [, long $code [, Throwable $previous = NULL]]]) in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php:925
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(925): Exception->__construct('SQLSTATE[HY000]...', 'HY000', Object(PDOException))
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(629): Klein\Klein->error(Object(PDOException))
+#2 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(33): Klein\Klein->dispatch(NULL, NULL, false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/index.php(21): Lobby\Router::dispatch()
+#4 {main}
+  thrown
+[2016-07-18 18:02:55] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 926 : Uncaught Error: Wrong parameters for Klein\Exceptions\UnhandledException([string $message [, long $code [, Throwable $previous = NULL]]]) in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php:926
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(926): Exception->__construct('SQLSTATE[HY000]...', 'HY000', Object(PDOException))
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php(629): Klein\Klein->error(Object(PDOException))
+#2 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(33): Klein\Klein->dispatch(NULL, NULL, false)
+#3 /home/simsu/Other/projects/Web/Lobby/Web/index.php(21): Lobby\Router::dispatch()
+#4 {main}
+  thrown
+[2016-07-18 18:04:01] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 925 : Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'value' in 'field list' in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/DB.php:233
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/DB.php(233): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/App.php(48): Lobby\DB::saveData('indi', 'appID', 'lobby-server')
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/indi/src/page/admin/index.php(11): Lobby\App->saveData('appID', 'lobby-server')
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/App.php(140): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/indi/module/Module.php(129): Lobby\App->inc('/src/page/admin...')
+#5 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(22): Lobby\Module\app_indi->Lobby\Module\{cl
+[2016-07-18 18:04:14] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 925 : Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'value' in 'field list' in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/DB.php:233
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/DB.php(233): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/App.php(48): Lobby\DB::saveData('indi', 'appID', 'lobby-server')
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/indi/src/page/admin/index.php(11): Lobby\App->saveData('appID', 'lobby-server')
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/App.php(140): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/indi/module/Module.php(129): Lobby\App->inc('/src/page/admin...')
+#5 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(22): Lobby\Module\app_indi->Lobby\Module\{cl
+[2016-07-18 18:05:26] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 925 : Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'value' in 'field list' in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/DB.php:233
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/DB.php(233): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/App.php(48): Lobby\DB::saveData('indi', 'appID', 'lobby-server')
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/indi/src/page/admin/index.php(11): Lobby\App->saveData('appID', 'lobby-server')
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/App.php(140): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/indi/module/Module.php(129): Lobby\App->inc('/src/page/admin...')
+#5 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(22): Lobby\Module\app_indi->Lobby\Module\{cl
+[2016-07-18 18:05:40] 1 caused by /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/klein/klein/src/Klein/Klein.php on line 925 : Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'value' in 'field list' in /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/DB.php:233
+Stack trace:
+#0 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/DB.php(233): PDOStatement->execute(Array)
+#1 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/App.php(48): Lobby\DB::saveData('indi', 'appID', 'lobby-server')
+#2 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/indi/src/page/admin/index.php(12): Lobby\App->saveData('appID', 'lobby-server')
+#3 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/App.php(140): include('/home/simsu/Oth...')
+#4 /home/simsu/Other/projects/Web/Lobby/Web/contents/apps/indi/module/Module.php(129): Lobby\App->inc('/src/page/admin...')
+#5 /home/simsu/Other/projects/Web/Lobby/Web/includes/src/vendor/lobby/lobby/src/Lobby/Router.php(22): Lobby\Module\app_indi->Lobby\Module\{cl

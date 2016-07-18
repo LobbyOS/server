@@ -7,7 +7,7 @@ $this->addScript("responsiveslides.min.js");
   <div class="container">
     <div class="row">
       <a href='//lobby.subinsb.com'><img src='<?php echo $this->srcURL . "/src/image/logo.png";?>' /></a>
-      <div class="section-intro">Make cross platform <a class="underlined" href="/docs/about#section-desktop-web-apps-?">desktop web apps</a><div class="byline">With PHP, JavaScript and CSS</div></div>
+      <div class="section-intro">Run <a class="underlined" href="/docs/about#section-desktop-web-apps-?">desktop web apps</a><div class="byline">With PHP, JavaScript and CSS</div></div>
     </div>
   </div>
 </section>

@@ -4,31 +4,41 @@ Manifest File
 
 The information about the app is stored as [JSON](http://en.wikipedia.org/wiki/JSON) format in this file.
 
-The Data should have the following items :
+## Location
+
+This file should be created at the root of app directory.
+
+## Items
+
+The manifest file should have the following items :
 
 | Key | Value
-| ----| -----
-| name  | The App Name (not ID)
+| ---- | -----
+| name | The App Name (not ID)
 | short_description | A one line short description of app. Must not be more than 50 characters
-| category  | The category in which the app belong. See below
+| category | The category in which the app belong. See below
 | sub_category | The sub category of the category. See below
 | version | The version of app.
-| author  | The Author name
+| require | Requirements of app
+| author | The Author name
 | author_page | The App Author's Web Page URL
 | app_page | The official URL of the App
-| image | Whether app has a logo image file in **AppID/src/image/logo.png**. Default : false
+| image | Whether app has a logo. Default : `false`
 
-## short_description
+### short_description
 
 A one line description will make it easy for the user to understand about the app. Here are some examples :
 
+```html
 lEdit - The Default Text Editor of Lobby
-
+```
+```html
 diary - A Diary for your thoughts
+```
 
-The maximum characters for the short description is **50**.
+The maximum characters for the short description is **100**.
 
-## category
+### category
 
 Lobby uses categories to quickly identify the type of app.
 
@@ -43,7 +53,7 @@ Only some categories are currently accepted. They are :
 
 Your app should only be in one category
 
-## sub_category
+### sub_category
 
 Subcategories helps to find an app in depth. Only some main categories have subcategories.
 
@@ -57,7 +67,8 @@ It is not necessary for your app to have a sub category, but it will help to qui
 | development | graphics    | Apps for graphic designers <br/> Image editing softwares, etc...
 |             | web         | For Web Developers <br/> HTML, CSS, JS, jQuery etc...
 |             | programming | Apps related to Programming Languages <br/> Python, Java, C++ etc...
-| games       | multiplayer | Multiplayer games
+| games       | arcade      | Arcade games
+|             | multiplayer | Multiplayer games
 |             | puzzles     | Puzzle games
 |             | sports      | Sports games
 | multimedia  | music       | Apps associated with audio
@@ -66,7 +77,7 @@ It is not necessary for your app to have a sub category, but it will help to qui
 
 Your app should only be in one category
 
-## version
+### version
 
 Every App is required to have a version number. The version value must be numeric characters with "**.**" as an optional character.
 
@@ -78,11 +89,39 @@ Every App is required to have a version number. The version value must be numeri
 | 1.0    | one.0
 | 5.25   | mi45
 
-## image
+### require
 
-It is better to have an image for your app though it's not essentially required.
+You can mention your app's dependencies in this property as a JSON object. Example :
 
-If your app does have an image, it should be placed as **logo.png** in **app/src/image** and the `image` value should be set to "true".
+```json
+"require" : {
+  "lobby" : ">=0.9",
+  "curl" : ">=7.0.25"
+}
+```
+
+These are the supported dependencies :
+
+* lobby
+* curl
+* All supported params for phpversion()
+
+## Plain
+
+Here is the JSON data for you to fill :
+
+```json
+{
+  "name" : "",
+  "short_description" : "",
+  "category" : "",
+  "sub_category" : "",
+  "version" : "0.1",
+  "author" : "",
+  "author_page" : "",
+  "app_page" : ""
+}
+```
 
 ## Example
 
@@ -97,12 +136,11 @@ Here is a sample manifest file of the **lEdit** app :
   "version" : "0.1",
   "author" : "Lobby",
   "author_page" : "http://lobby.subinsb.com",
-  "app_page" : "http://lobby.subinsb.com/apps/ledit",
-  "logo" : "true"
+  "app_page" : "http://lobby.subinsb.com/apps/ledit"
 }
 ```
-And here is the **app/src/image/logo.png** file :
+And here is the `src/image/logo.png` file :
 
 ![lEdit Logo](https://lobby.subinsb.com/api/app/ledit/logo)
 
-If you want to see full source code of **lEdit**, you can download it [here](http://lobby.subinsb.com/api/download/app/ledit).
+[See full source code of **lEdit**](https://github.com/LobbyOS/app-ledit).
