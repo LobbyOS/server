@@ -36,7 +36,7 @@ $this->setTitle("Download");
         echo "<tr>";
           echo "<td>{$r['version']}</td>";
           echo "<td>{$r['frequency']}</td>";
-          echo "<td>". date("Y-m-d H:i:s", $r['accessed']) ."</td>";
+          echo "<td>". Lobby\Time::date(date("Y-m-d H:i:s", $r['accessed']), "Y-m-d H:i:s") ."</td>";
           echo "<td><div style='width: 300px;'>{$r['lid']}</div></td>";
         echo "</tr>";
       }

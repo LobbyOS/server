@@ -5,10 +5,10 @@ use Hooks;
 
 class lobby_server extends \Lobby\App {
   
-  public $lobby_version = "0.8";
-  public $lobby_released = "2016-06-25";
-  public $lobby_release_notes = '<p>Lobby 0.8 has fixed some bugs. <a class="btn" href="https://github.com/LobbyOS/lobby/blob/dev/CHANGELOG.md#08" target="_blank">See Changelog</a></p><p>If you are using versions <b>0.6</b> or old, <b>UPDATE</b> all apps before updating Lobby.</p><p><a class="button btn blue" target="_blank" href="http://subinsb.com/lobby/version-0-8">Read More</a></p>';
-  public $lobby_annoucement = "http://subinsb.com/lobby/version-0-8";
+  public $lobby_version = "0.9";
+  public $lobby_released = "2016-07-23";
+  public $lobby_release_notes = '<p>Lobby 0.9 comes with new features and bug fixes. <a class="btn" href="https://github.com/LobbyOS/lobby/blob/dev/CHANGELOG.md#09" target="_blank">See Changelog</a></p><p>If you are using versions <b>0.6</b> or old, <b>UPDATE</b> all apps before updating Lobby.</p><p><a class="button btn blue" target="_blank" href="http://subinsb.com/lobby/version-0-9">Read More</a></p>';
+  public $lobby_annoucement = "http://subinsb.com/lobby/version-0-9";
   
   public $app_categories = array(
     "accessories" => "Accessories",

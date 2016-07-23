@@ -26,27 +26,36 @@ msvcr110.dll is missing
 
 This is because **Visual Studio C++** is not installed in your system. You can get the installer file from [Microsoft's website](https://www.microsoft.com/en-in/download/details.aspx?id=48145). It's only about **13MB**.
 
+<!--
 When Lobby.exe is ran, an icon with [Lobby favicon](/favicon.ico) can be see in the tray area (Notification area) :
 
 ![Lobby Windows Tray Icon](/contents/apps/lobby-server/src/image/screenshots/windows/tray.png)
 
-It means that the PHP Server embedded in Lobby is running. The server runs on [127.0.0.1:2020](http://127.0.0.1:2020) by default, so Lobby can be accessed by going to that [URL](http://127.0.0.1:2020) :
+-->
+
+Now, run **Lobby.exe** again. The Lobby Server (PHP) will now start running.
+
+By default, the server will be running on [`127.0.0.1:2020`](http://127.0.0.1:2020), so Lobby can be accessed by going to that [URL](http://127.0.0.1:2020) :
 
 ![Lobby Running On Windows](/contents/apps/lobby-server/src/image/screenshots/windows/running.png)
 
+<!--
 If you want to stop the PHP server and exit Lobby, right click on the tray icon and choose "Exit" :
 
 ![Lobby Tray App](/contents/apps/lobby-server/src/image/screenshots/windows/tray-open.png)
+-->
 
-To further complete installation, [see this](/docs/quick#configure-lobby).
+You can stop the Lobby Server by running "Stop Lobby Server.exe" file in the "Lobby" folder.
+
+When Lobby is opened in browser, an installation dialog will be seen. To further complete installation, [see this](/docs/quick#configure-lobby).
 
 #### Change Host
 
-You can change the host where Lobby server should listen. The default is **127.0.0.1:2020**. To change it, open **lobby.ini** file inside the "Lobby" folder and change the **serverHost** property :
+You can change the host where Lobby server should listen. The default is **127.0.0.1:2020**. To change it, open **lobby.ini** file inside the "Lobby" folder and change the `host` property under `LobbyServer` :
 
 ```ini
-[LobbyConfig]
-serverHost = "127.0.0.1:9000"
+[LobbyServer]
+host = "127.0.0.1:9000"
 ```
 
 ## Manual Install 
