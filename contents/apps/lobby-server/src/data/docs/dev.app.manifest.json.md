@@ -14,16 +14,20 @@ The manifest file should have the following items :
 
 | Key | Value
 | ---- | -----
-| name | The App Name (not ID)
-| short_description | A one line short description of app. Must not be more than 50 characters
-| category | The category in which the app belong. See below
-| sub_category | The sub category of the category. See below
-| version | The version of app.
-| require | Requirements of app
-| author | The Author name
-| author_page | The App Author's Web Page URL
-| app_page | The official URL of the App
-| image | Whether app has a logo. Default : `false`
+| [name](#section-name) | App's name
+| [short_description](#section-short_description) | A one line short description of app. Must not be more than 50 characters
+| [category](#section-category) | The category in which the app belong.
+| [sub_category](#section-sub_category) | The sub category of the category.
+| [version](#section-version) | The version of app.
+| [require](#section-require) | Requirements of app
+| [author](#section-author) | The Author name
+| [author_page](#section-author_page) | The App Author's Web Page URL
+| [app_page](#section-app_page) | The official URL of the App
+| [logo](#section-logo) | Whether the app has a logo. Default : `false`
+
+### name
+
+The name of your app. Should be related to your app ID. Otherwise, it doesn't make any sense and makes user confused.
 
 ### short_description
 
@@ -105,6 +109,12 @@ These are the supported dependencies :
 * lobby
 * curl
 * All supported params for phpversion()
+
+### logo
+
+The logo should be saved as `logo.svg` or `logo.png` in `src/image` folder. If the app has such a file, use the value `true` for this item.
+
+Default value is `false`.
 
 ## Plain
 

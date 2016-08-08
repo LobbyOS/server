@@ -26,32 +26,33 @@ to see if the App Exist. Example : **[//lobby.subinsb.com/apps/ledit](/apps/ledi
 
 ## Structure
 
-The Apps Storage directory is **lobby/contents/apps**. Your app contents must be in a folder with the name of App ID.
+Apps are stored inside **lobby/contents/apps**. Your app files must be in a folder with the name of App ID.
 
 Example : The App **lEdit** have it's contents in **ledit/contents/apps/ledit** directory.
 
 Here are the steps to set up your app :
 
 - Create a folder in **lobby/contents/apps**
-- Create a **manifest.json** and **App.php** file in the App Folder you just created.
+- Create a `manifest.json` and `App.php` file in the App Folder you just created.
+- Setup the [`manifest.json`](/docs/dev/app/manifest.json) and [`App.php`](/docs/dev/app/App.php) files.
 
-All data such as pages, images and other data shoud be in the folder "src" inside your app's directory.
+Pages, images etc. of your app should be stored in a folder called `src` inside your app.
 
-Here is the file/folder structure inside your app's directory :
+Here is how it should look like :
 
-| File/Folder | Sub File/Folder #1 | Sub File/Folder #2 | Description |
+| File/Folder | Sub File/Folder | Description |
 | ------------------------------------------------------------------- |
-| [manifest.json](app/manifest.json) |  |  | The Manifest File |
-| [App.php](app/App.php) | | | The Core File of App |
-| src | | | The folder containing resources of app |
-| | ajax | | Contains files for AJAX requests |
-| | css | | Contains stylesheets to be used via **\Lobby\App::addStyle()** |
-| | data | | Contains files for settings as well as other custom files of app |
-| | image | | Contains image files for app. The App's logo (**logo.png**) is inside this folder |
-| | inc | | Contains PHP libraries, class files to be used by other PHP files inside app |
-| | js | | Contains JavaScript files that is required by the app in it's pages |
-| | page | | [Pages of app](app/pages) is in this file |
-| |  | admin | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The administration pages of app is in this folder |
+| [manifest.json](app/manifest.json) | | The Manifest File |
+| [App.php](app/App.php) | | The Core File of App |
+| src | | The folder containing resources of app |
+| | ajax | Contains handlers for AJAX requests |
+| | css | Contains stylesheets to be used via [`\Lobby\App::addStyle()`](/docs/dev/api/) |
+| | image | Contains image files for app. The App's logo (**logo.png**) is inside this folder |
+| | inc | Contains PHP libraries, class files to be used by other PHP files inside app |
+| | js | Contains JavaScript files to be used via [`\Lobby\App::addScript()`] |
+| | page | [Pages of app](app/pages) is in this file |
+
+Note that the above table is not final and you have the freedom to add new directories and files in to it.
 
 ### manifest.json & App.php
 
