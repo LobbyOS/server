@@ -27,6 +27,7 @@ $lobby_downloads = array(
   "0.7" => "fJY9iGB5ffCX6HB",
   "0.8" => "H8rRxEM2aX9KmkU",
   "0.9" => "qqmExNJadhByFjy",
+  "0.9.1" => "r6HJa4RjNs1HMVx"
 );
 
 function getDownloadURL($id, $lobby_downloads){
