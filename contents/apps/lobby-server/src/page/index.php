@@ -1,7 +1,7 @@
 <?php
 $this->addStyle("main.css");
 $this->addScript("responsiveslides.min.js");
-\Response::setTitle("Make Cross Platform Desktop Apps With PHP, JavaScript And CSS");
+\Response::setTitle("Run Desktop Web Apps");
 ?>
 <section id="intro">
   <div class="container">

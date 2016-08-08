@@ -33,7 +33,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: url('<?APP_URL?>/src/image/Fr-star.png') repeat;
+  background: url('<?APP_SRC?>/src/image/Fr-star.png') repeat;
   background-size: contain;
 }
 .Fr-star .Fr-star-value{
