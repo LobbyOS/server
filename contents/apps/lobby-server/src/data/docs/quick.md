@@ -16,14 +16,12 @@ How to download & install Lobby on various systems :
   1. Apache Web Server with :
     * Rewrite Module (mod_rewrite)
   2. MySQL 5.0 or later versions
-  3. PHP version 5.3 or later with :
+  3. PHP version 5.6 or later with :
     * **PDO** extension
     * **cURL** extension (recommended)
     * **JSON** extension
     * **Zip** Extension
     * Output Buffering Enabled
-
-As the support for PHP 5.3 has ended, it is recommended you use PHP **5.5** or later.
 
 ## Installation
 
@@ -44,36 +42,32 @@ You will see an installation page when you first visit **Lobby** in your web bro
 
 Follow the instructions in the installation page to successfully configure & complete install of **Lobby** in your system.
 
-* The first step is to verify that all dependencies of Lobby is met
+The first step is to verify that all dependencies of Lobby is met. If everything is satisfied, a "Proceed To Installation" button will be available at the far bottom of the page. If Lobby is running on Apache Server, dependency of **mod_rewrite** module will be shown on that page.
+  
+### Database
+  
+In the second step, you have to choose what Database to use. The quickest and easiest way to finish this step is to use SQLite.
 
-  If everything is satisfied, a "Proceed To Installation" button will be available at the far bottom of page.
-  
-  The dependency of **mod_rewrite** module will be seen only if you are running Lobby on Apache Server.
-  
-* In the second step, you have to choose what Database to use
+If you are installing Lobby in a **Public Server, use MySQL** (**NEVER** use SQLite).
 
-  The quickest way is to use SQLite (Windows recommended).
-  
-  If you are installing Lobby in a **Public Server, use MySQL** (**NEVER** use SQLite).
-  
-  #### MySQL
-  Type in the database connection information and the database name. The database will be created if it doesn't exist.
-  
-  Prefix is used to make the table names. If "l\_" is used as prefix, then tables created in the database will start from "l_" :
-  ```sql
-  `l_options`, `l_data`, `l_users`
-  ```
-  
-  If tables with the same "prefix" exists, then an error is shown and "config.php" file won't be created.
-  
-  #### SQLite
-  You only need to type in the location where the ".sqlite" DB file should be created.
-  
-  If the file already exists, no errors will be shown and instead the existing SQLite DB will be used.
-  
-* After Setup is finished, a message will be shown to Proceed.
+#### MySQL
 
-  Congratulations, you have successfuly installed Lobby !
+Type in the database connection information and the database name. The database will be created if it doesn't exist.
+
+Prefix is used to make the table names. If "l\_" is used as prefix, then tables created in the database will start from "l_" :
+```sql
+`l_options`, `l_data`, `l_users`
+```
+
+If tables with the same "prefix" exists, then an error is shown and "config.php" file won't be created.
+
+#### SQLite
+
+You only need to type in the location where the ".sqlite" DB file should be created. If the file already exists, no errors will be shown and instead the existing SQLite DB will be used.
+  
+After Setup is finished, a message will be shown to Proceed.
+
+Congratulations, you have successfuly installed Lobby !
 
 Now, you can see a **config.php** file in the Lobby directory. The information you have given through the installation has been written to this file. You should keep it secure and **should only make modifications VERY carefully**.
 
