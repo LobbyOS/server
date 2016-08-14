@@ -8,8 +8,8 @@
   <ul class="tabs">
     <li class="tab"><a href="#windows">Windows</a></li>
     <li class="tab"><a href="#linux">Linux</a></li>
-    <li class="tab"><a href="#mac">Mac</a></li>
-    <li class="tab"><a href="#direct">Apache Server</a></li>
+    <li class="tab"><a href="#mac">macOS</a></li>
+    <li class="tab"><a href="#direct">Server Version</a></li>
   </ul>
   <div id="windows">
     <h2>Windows</h2>
@@ -27,8 +27,8 @@
   </div>
   <div id="mac">
     <h2>Mac</h2>
-    <p>Lobby hasn't been tested out in Mac. But, theoretically the Linux version should work in it.</p>
-    <p><a href="/docs/quick/linux" class="btn orange">Lobby Standalone For Linux</a></p>
+    <p>A Lobby Standalone version for Mac hasn't been devloped <b>yet</b>. Meanwhile you can run Lobby in macOS on a web server.</p>
+    <p><a href="/docs/quick/mac" class="btn orange">Install Lobby In macOS</a></p>
   </div>
   <div id="direct">
     <h2>Apache Server</h2>
