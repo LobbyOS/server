@@ -23,8 +23,16 @@ PHP that is inside Lobby will sometimes make the following error upon starting :
 ```
 msvcr110.dll is missing
 ```
+or
+```
+VCRUNTIME140.dll is missing
+```
 
-This is because **Visual Studio C++** is not installed in your system. You can get the installer file from [Microsoft's website](https://www.microsoft.com/en-in/download/details.aspx?id=48145). It's only about **13MB**.
+This is because **Visual C++** is not installed in your system. Download the `vc_redist.x86.exe` installer file from [Microsoft's website](https://www.microsoft.com/en-in/download/details.aspx?id=48145) and install it. It's only about **13MB**.
+
+**IMPORTANT** - Even if your system is 64 bit, please download and install the **x86** version of Visual C++. This is because Lobby Windows Standalone is compiled in x86 architecture.
+
+If you still didn't get Lobby working after installing Visual C++, read [this](http://stackoverflow.com/questions/30811668/php7-missing-vcruntime140-dll) and [this](http://stackoverflow.com/questions/34215395/wamp-wont-turn-green-vcruntime140-dll-error).
 
 <!--
 When Lobby.exe is ran, an icon with [Lobby favicon](/favicon.ico) can be see in the tray area (Notification area) :
