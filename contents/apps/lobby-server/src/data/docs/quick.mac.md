@@ -1,5 +1,17 @@
-Install Lobby On Mac
+Install Lobby In macOS
 
 # Mac
 
-We haven't tested Lobby on a Mac, but if your Mac OS has a localhost server installed, then you can just extract the contents of the [Lobby Zip File](/api/lobby/download/latest) to a folder in your "www" (Web Root) directory. And then [configure Lobby](/docs/quick#configure-lobby) through a browser.
+There are two ways to install Lobby in Mac :
+
+* [Lobby Mac Standalone](#section-lobby-standalone)
+* [Manual Install](#section-manual-install)
+
+## Lobby Standalone
+
+Lobby Mac Standalone is in development and has not reached a level to release publicly. Stay tuned...
+
+## Manual Install
+
+* Install [MAMP](https://www.mamp.info/en/)
+* [Install Lobby manually on the server](/docs/quick/manual)
