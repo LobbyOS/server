@@ -2,14 +2,18 @@ Lobby Developer Introduction
 
 # Introduction
 
-
+* [Apps](#section-apps)
+* [Lobby](#section-lobb)
+* [Standards](#section-standards)
 
 ## Apps
 
 Creating Apps for Lobby is really easy. You have the full control over the app, but with some restrictions :
 
-- DON'T BE EVIL
+- DON'T BE **EVIL**
+
   A Lobby app can access the user's system. So, user's privacy must be respected.
+- Any damage caused to user because of your app will cause termination of your app and account.
 
 ## Lobby
 
@@ -34,18 +38,29 @@ The Apps, themes and User created stuff goes in the _contents_ directory. Here i
   - [dir] themes
 	- [dir] update
 
-_apps_ folder is where Apps are stored.
+`apps` folder is where Apps are stored.
 
-_extra_ contains extra stuff like logs. It is like a temporary folder
+`extra` contains extra stuff like logs. It is also the default location where SQLite database is stored.
 
-_update_ folder is a temporary location for all downloaded files. The app.zip (Archive) File and zip files of new versions of Lobby is downloaded to here.
+`themes` is where Themes are installed
+
+`update` folder is a temporary location for all downloaded files. The app.zip (Archive) File and zip files of new versions of Lobby is downloaded to here.
 
 ## Standards
 
 While creating apps or making a change in Lobby core, please follow these guidelines :
 
-- Filenames should be lowercase except when :
-  - It is a PHP class file. If it is a file that contains a class, the name of the file should be the same as that of class.
+- Indentation of 2 spaces, not tabs
+- Use `<?php`, not `<?`
+- Document most of what you code
+- Make code readable
+- Give priority to performace
+  
+  * Even usage of `===` instead of `==` can increase performace.
+  * Do not overdo things
+- Filenames should be lowercase unless it is a PHP class file.
+  
+    If it is a file that contains a class, the name of the file should be the same as that of class.
     Example : The class 'FileSystem' would be in a file 'FileSystem.php'
 - Short names are used for folder names :
 

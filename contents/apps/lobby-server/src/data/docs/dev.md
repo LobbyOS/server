@@ -2,8 +2,9 @@ Lobby Developer Documentation
 
 # Developer Docs
 
-Developing apps for Lobby has never been easy. The Developer Documentation will surely help you to create apps for lobby as well as understand how Lobby works.
+As you know Lobby is a complete Open Source project. The developer docs has been created for helping you learn Lobby to help you contribute to the project.
 
-- [Introduction](/docs/dev/introduction)
+From these docs, you will also be able to develop apps for Lobby
 
-- [Creating An App](/docs/dev/create-app)
+* [Introduction](/docs/dev/introduction)
+* [Creating Apps](/docs/dev/create-app)
