@@ -34,7 +34,7 @@ How to download & install Lobby on various systems :
   ```html
   http://localhost/lobby
   ```
-* Proceed through the installation process. In this stage, you should [configure Lobby](#section-configuration).
+* Proceed through the installation process. In this stage, you should [configure Lobby](#configuration).
 
 ## Configuration
 

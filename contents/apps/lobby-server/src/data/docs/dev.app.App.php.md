@@ -29,7 +29,7 @@ class myAppID extends \Lobby\App {
 
 These are the conditions of a valid App class :
 
-* The [same name as App ID](#section-class-naming)
+* The [same name as App ID](#class-naming)
 * A child class of `\Lobby\App`
 * Should be under the namespace `Lobby\App`
 

@@ -14,16 +14,16 @@ The manifest file should have the following items :
 
 | Key | Value
 | ---- | -----
-| [name](#section-name) | App's name
-| [short_description](#section-short_description) | A one line short description of app. Must not be more than 50 characters
-| [category](#section-category) | The category in which the app belong.
-| [sub_category](#section-sub_category) | The sub category of the category.
-| [version](#section-version) | The version of app.
-| [require](#section-require) | Requirements of app
-| [author](#section-author) | The Author name
-| [author_page](#section-author_page) | The App Author's Web Page URL
-| [app_page](#section-app_page) | The official URL of the App
-| [logo](#section-logo) | Whether the app has a logo. Default : `false`
+| [name](#name) | App's name
+| [short_description](#short_description) | A one line short description of app. Must not be more than 50 characters
+| [category](#category) | The category in which the app belong.
+| [sub_category](#sub_category) | The sub category of the category.
+| [version](#version) | The version of app.
+| [require](#require) | Requirements of app
+| [author](#author) | The Author name
+| [author_page](#author_page) | The App Author's Web Page URL
+| [app_page](#app_page) | The official URL of the App
+| [logo](#logo) | Whether the app has a logo. Default : `false`
 
 ### name
 

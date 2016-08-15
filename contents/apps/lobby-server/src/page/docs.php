@@ -74,7 +74,7 @@ $this->addStyle("docs.css");
     $content = preg_replace_callback("/\<h([1|2|3|4])\>(.*?)\<\/h([1|2|3|4])\>/", function ($matches) {
       $hTag = $matches[1];
       $title = $matches[2];
-      $slug = "section-" . str_replace(" ", "-", strtolower($title));
+      $slug = str_replace(" ", "-", strtolower($title));
       return '<a href="#'. $slug .'"><h'. $hTag .' id="' . $slug . '">' . $title . '</h'. $hTag .'></a>';
     }, $content);
     return $content;

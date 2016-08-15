@@ -16,14 +16,14 @@ Examples
 
 ## Action Hooks
 
-* [init](#section-init)
-* [body.begin](#section-body.begin)
-* [admin.body.begin](#section-admin.body.begin)
-* [head.begin](#section-head.begin)
-* [admin.head.begin](#section-admin.head.begin)
-* [head.end](#section-head.end)
-* [router.finish](#section-router.finish)
-* [panel.end](#section-panel.end)
+* [init](#init)
+* [body.begin](#body.begin)
+* [admin.body.begin](#admin.body.begin)
+* [head.begin](#head.begin)
+* [admin.head.begin](#admin.head.begin)
+* [head.end](#head.end)
+* [router.finish](#router.finish)
+* [panel.end](#panel.end)
 
 ### init
 
@@ -35,7 +35,7 @@ Just after `<body>` tag is made and before other contents inside `<body>` are ma
 
 ### admin.body.begin
 
-Same as [body.begin](#section-body.begin), but in admin pages
+Same as [body.begin](#body.begin), but in admin pages
 
 ### head.begin
 
@@ -43,7 +43,7 @@ Just after `<head>` tag is made and before other contents inside `<head>` are ma
 
 ### admin.head.begin
 
-Same as [head.begin](#section-head.begin), but in admin pages
+Same as [head.begin](#head.begin), but in admin pages
 
 ### head.end
 
@@ -59,7 +59,7 @@ Just before the closing `div` tag of panel is made. This is called after content
 
 ## Filter Hooks
 
-* [app.manifest.load](#section-app.manifest.load)
+* [app.manifest.load](#app.manifest.load)
 
 ### app.manifest.load
 

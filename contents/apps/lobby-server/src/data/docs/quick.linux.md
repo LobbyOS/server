@@ -4,8 +4,8 @@ Install Lobby In Linux
 
 There are two ways to install Lobby in Linux :
 
-* [Lobby Standalone](#section-lobby-standalone)
-* [Manual Install](#section-manual)
+* [Lobby Standalone](#lobby-standalone)
+* [Manual Install](#manual)
 
 ## Lobby Standalone
 

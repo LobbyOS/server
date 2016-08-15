@@ -4,8 +4,8 @@ Install Lobby In Windows
 
 There are two ways to install Lobby in Windows :
 
-* [By installing Lobby Standalone](#section-lobby-standalone)
-* [Manual Install](#section-manual)
+* [By installing Lobby Standalone](#lobby-standalone)
+* [Manual Install](#manual)
 
 ## Lobby Standalone
 
@@ -13,7 +13,7 @@ There are two ways to install Lobby in Windows :
 
 * Extract the folder "Lobby" inside the Zip file to a location of your choice.
 
-That's it. Now you should [run Lobby](#section-running-lobby).
+That's it. Now you should [run Lobby](#running-lobby).
 
 ### Running Lobby
 

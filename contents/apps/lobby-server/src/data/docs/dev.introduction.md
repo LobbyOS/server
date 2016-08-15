@@ -2,9 +2,9 @@ Lobby Developer Introduction
 
 # Introduction
 
-* [Apps](#section-apps)
-* [Lobby](#section-lobb)
-* [Standards](#section-standards)
+* [Apps](#apps)
+* [Lobby](#lobb)
+* [Standards](#standards)
 
 ## Apps
 

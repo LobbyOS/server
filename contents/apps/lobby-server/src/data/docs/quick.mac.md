@@ -4,8 +4,8 @@ Install Lobby In macOS
 
 There are two ways to install Lobby in Mac :
 
-* [Lobby Mac Standalone](#section-lobby-standalone)
-* [Manual Install](#section-manual-install)
+* [Lobby Mac Standalone](#lobby-standalone)
+* [Manual Install](#manual-install)
 
 ## Lobby Standalone
 
