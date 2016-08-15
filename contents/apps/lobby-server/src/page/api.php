@@ -27,7 +27,8 @@ $lobby_downloads = array(
   "0.7" => "fJY9iGB5ffCX6HB",
   "0.8" => "H8rRxEM2aX9KmkU",
   "0.9" => "qqmExNJadhByFjy",
-  "0.9.1" => "r6HJa4RjNs1HMVx"
+  "0.9.1" => "r6HJa4RjNs1HMVx",
+  "0.9.2" => "h7HLaq8UFHiHos4",
 );
 
 function getDownloadURL($id, $lobby_downloads){
@@ -92,15 +93,15 @@ if($node === "dot.gif"){
        */
       "notify" => array(
         "items" => array(
-          "amoebam" => array(
-            "contents" => "New Game!",
-            "href" => "/admin/lobby-store.php?app=amoebam"
+          "site-compressor" => array(
+            "contents" => "Compress your sites with the new Site Compressor!",
+            "href" => "/admin/lobby-store.php?app=site-compressor"
           )
         ),
         /**
          * Only values, no keys
          */
-        "remove_items" => array()
+        "remove_items" => array("amoebam")
       )
     );
     
