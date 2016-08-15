@@ -37,7 +37,7 @@
       <li>Create a folder named "lobby" in your server's document root</li>
       <li>Open the Zip file and extract the contents of it to this newly created folder ("lobby")</li>
       <li>Access the folder through your web browser.</li>
-      <li><?php echo \Lobby::l("/docs/quick#section-configuration", "Install Lobby");?></li>
+      <li><?php echo \Lobby::l("/docs/quick#configuration", "Install Lobby");?></li>
     </ul>
     <p>
       If you already have localhost set up and just want to download Lobby, click the button below :
