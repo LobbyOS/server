@@ -23,6 +23,7 @@ Examples
 * [admin.head.begin](#admin.head.begin)
 * [head.end](#head.end)
 * [router.finish](#router.finish)
+* [panel.begin](#panel.begin)
 * [panel.end](#panel.end)
 
 ### init
@@ -52,6 +53,10 @@ Just before `</head>` is made
 ### router.finish
 
 Just before all routes are dispatched.
+
+### panel.begin
+
+This is called before contents inside panel is made.
 
 ### panel.end
 
