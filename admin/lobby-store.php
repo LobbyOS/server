@@ -1,6 +1,4 @@
 <?php
-require "../load.php";
-
 use Lobby\Apps;
 use Lobby\Need;
 use Lobby\Time;
@@ -23,7 +21,7 @@ if($appID !== null){
     \Assets::css("apps-grid", "/admin/css/apps-grid.css");
     \Assets::css("lobby-store", "/admin/css/lobby-store.css");
     \Assets::js("lobby-store", "/admin/js/lobby-store.js");
-    
+
     \Hooks::doAction("admin.head.begin");
     \Response::head($page_title);
     ?>
@@ -69,7 +67,7 @@ if($appID !== null){
                 <?php
                 $App = new Apps($appID);
                 $require = $app['require'];
-                
+
                 if(!$App->exists){
                   /**
                    * Check whether Lobby version is compatible
@@ -194,12 +192,15 @@ if($appID !== null){
             );
           else
             $params = array(
-              "get" => "popular"
+              "get" => "newApps"
             );
-          
+
+          if($section !== null)
+            $params["get"] = "popular";
+
           if($p !== null)
             $params["p"] = $p;
-          
+
           $server_response = \Lobby\Server::store($params);
           if($server_response == false){
             echo ser("Nothing Found", "Nothing was found that matches your criteria. Sorry...");

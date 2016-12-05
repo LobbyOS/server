@@ -1,4 +1,9 @@
 <?php
+/**
+ * Lobby\Need
+ * @link https://github.com/LobbyOS/lobby/tree/dev/includes/src/lobby/src/Lobby/Module.php
+ */
+
 namespace Lobby;
 
 use vierbergenlars\SemVer\version;
@@ -13,7 +18,8 @@ use Lobby\Apps;
 class Need {
 
   /**
-   * Get Version of a component
+   * Get version of a dependency
+   * @param string $dependency The dependency
    */
   public static function getDependencyVersion($dependency){
     /**
@@ -41,9 +47,9 @@ class Need {
         $v = phpversion($dependency);
         return $v ? $v : 0;
     }
-    
+
   }
-  
+
   /**
    * Check requirements
    * @param array $requires The array containing the requirements
@@ -52,13 +58,13 @@ class Need {
    */
   public static function checkRequirements($requires, $boolean = false, $multi = false){
     $result = $requires;
-    
+
     /**
      * $requiredVersion will look like ">=5.0"
      */
     foreach($requires as $dependency => $requiredVersion){
       $currentVersion = self::getDependencyVersion($dependency);
-      
+
       /**
        * Compare the current version and required version
        */
@@ -68,7 +74,7 @@ class Need {
       }else{
         $result[$dependency] = false;
       }
-      
+
       /**
        * If dependency is an app
        */
@@ -76,8 +82,10 @@ class Need {
         list($mainDependency, $subDependency) = explode("/", $dependency);
         if($mainDependency === "app"){
           $App = new Apps($subDependency);
-          
-          if($multi){
+
+          if(!$App->exists){
+            $result[$dependency] = false;
+          }else if($multi){
             $result = $result + self::checkRequirements($App->info["require"], false, true);
           }else if($boolean){
             $result[$dependency] = self::checkRequirements($App->info["require"], true);
@@ -87,7 +95,7 @@ class Need {
         }
       }
     }
-    
+
     if($multi){
       foreach($result as $dependency => $satisfy){
         if(!is_array($satisfy)){

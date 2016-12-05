@@ -14,7 +14,7 @@
  */
 class Requests_Cookie {
 	/**
-	 * 
+	 *
 	 * @var string
 	 */
 	public $name;
@@ -26,7 +26,7 @@ class Requests_Cookie {
 
 	/**
 	 * Cookie attributes
-	 * 
+	 *
 	 * Valid keys are (currently) path, domain, expires, max-age, secure and
 	 * httponly.
 	 *

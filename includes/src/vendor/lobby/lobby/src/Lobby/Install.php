@@ -1,26 +1,37 @@
 <?php
+/**
+ * Lobby\Install
+ * @link https://github.com/LobbyOS/lobby/tree/dev/includes/src/lobby/src/Lobby/Install.php
+ */
+
 namespace Lobby;
 
+use Lobby\Apps;
 use Lobby\FS;
 
 /**
- * The class for installing Lobby
- * Contains Database & Software Creation
+ * Handle Lobby installation process
  */
 class Install extends \Lobby {
 
+  /**
+   * Database config
+   */
   private static $database = array();
+
+  /**
+   * PDO object
+   */
   private static $dbh;
-  
+
+  /**
+   * When an error is encountered, the error message is stored here
+   */
   public static $error;
 
   /**
-   * The $checking parameter tells if any Success output should be made or not.
-   * Default : Visible. It's named $checking, because output shouldn't be made
-   * while checking DB connection. So, if it's a call made while checking,
-   * then the parameter $checking must be TRUE.
-   * ----------
-   * We don't have a step2 function because there is no Step 3
+   * Check if step 1 was completed
+   * @return bool Whether this step was completed
    */
   public static function step1(){
     if(!is_writable(L_DIR)){
@@ -33,10 +44,10 @@ class Install extends \Lobby {
       return true;
     }
   }
-  
+
   /**
-   * Check if the credentials given can be used to establish a
-   * connection with the DB server
+   * Establish a connection with the DB
+   * @return bool Whether connection can be established
    */
   public static function checkDatabaseConnection(){
     try {
@@ -46,7 +57,7 @@ class Install extends \Lobby {
       self::$dbh = $db;
       self::$dbh->exec("CREATE DATABASE IF NOT EXISTS `" . self::$database['dbname'] . "`");
       self::$dbh->query("USE `" . self::$database['dbname'] . "`");
-      
+
       $notable = false;
       $tables = array("options", "data"); // The Tables of Lobby
       foreach($tables as $tableName){
@@ -56,7 +67,7 @@ class Install extends \Lobby {
           $notable = true;
         }
       }
-        
+
       if(!$notable){
         /**
          * Database tables exist
@@ -70,16 +81,20 @@ class Install extends \Lobby {
       return false;
     }
   }
-  
+
   /**
    * Make the config.php file
+   * @param string $db_type Database type.
+   *        - mysql
+   *        - sqlite
+   * @return string
    */
   public static function makeConfigFile($db_type = "mysql"){
     $lobbyID = \Helper::randStr(10) . \Helper::randStr(15) . \Helper::randStr(20); // Lobby Global ID
     $lobbySID   = hash("sha512", \Helper::randStr(15) . \Helper::randStr(30)); // Lobby Secure ID
     $configFileLoc = L_DIR . "/config.php";
     $cfg = self::$database;
-    
+
     /**
      * Make the configuration file
      */
@@ -92,7 +107,7 @@ class Install extends \Lobby {
       $config_file = preg_replace("/password'(.*?)''/", "password'$1'{$cfg['password']}'", $config_file);
       $config_file = preg_replace("/dbname'(.*?)''/", "dbname'$1'{$cfg['dbname']}'", $config_file);
       $config_file = preg_replace("/prefix'(.*?)'(.*?)'/", "prefix'$1'{$cfg['prefix']}'", $config_file);
-    }else{      
+    }else{
       $config_file = preg_replace("/type'(.*?)'(.*?)'/", "type'$1'sqlite'", $config_file);
       $config_file = preg_replace("/port'(.*?)'(.*?)',/", "path'$1'{$cfg['path']}',", $config_file);
       $config_file = preg_replace("/[[:blank:]]+(.*?)'host'(.*?)'(.*?)',\n/", "", $config_file);
@@ -103,7 +118,7 @@ class Install extends \Lobby {
     }
     $config_file = preg_replace("/lobbyID'(.*?)''/", "lobbyID'$1'{$lobbyID}'", $config_file);
     $config_file = preg_replace("/secureID'(.*?)''/", "secureID'$1'{$lobbySID}'", $config_file);
-    
+
     /**
      * Create the config.php file
      */
@@ -113,10 +128,14 @@ class Install extends \Lobby {
       chmod(L_DIR . "/config.php", 0550);
     }
   }
-  
+
   /**
-   * Create Tables in the DB
-   * Supports both MySQL & SQLite
+   * Create tables in the DB
+   * @param string $prefix The prefix of table names
+   * @param string $db_type Database type.
+   *        - mysql
+   *        - sqlite
+   * @return bool Whether tables have been created
    */
   public static function makeDatabase($prefix, $db_type = "mysql"){
     try {
@@ -143,7 +162,7 @@ class Install extends \Lobby {
       }else{
         /**
          * SQLite
-         * Multiple commands separated by ';' cannot be don in SQLite
+         * Multiple commands separated by ';' cannot be done in SQLite
          * Weird, :P
          */
         $sql_code = "
@@ -185,12 +204,19 @@ class Install extends \Lobby {
     }
   }
 
+  /**
+   * Set the DB config
+   * @param string $array Configuration
+   */
   public static function dbConfig($array){
     self::$database = $array;
   }
-  
+
   /**
-   * After installation, check if Lobby installed directory is safe
+   * After installation, check if Lobby installation directory is safe
+   * @return mixed Status of safeness
+   *         - bool true It's safe
+   *         - string "configFile" Config file's permission is unsafe
    */
   public static function safe(){
     $configFile = L_DIR . "/config.php";
@@ -200,7 +226,12 @@ class Install extends \Lobby {
       return true;
     }
   }
-  
+
+  /**
+   * Make the SQLite DB
+   * @param string $loc Path to SQLite DB
+   * @return bool Whether the operation was successful
+   */
   public static function createSQLiteDB($loc){
     try{
       self::$dbh = new \PDO("sqlite:$loc", "", "", array(
@@ -213,6 +244,27 @@ class Install extends \Lobby {
       return false;
     }
   }
-  
+
+  /**
+   * Do stuff after installation
+   * @param $enableApps Enable pre-installed apps
+   */
+  public static function afterInstall($enableApps = true){
+    \Lobby::$installed = true;
+    \Lobby\DB::__constructStatic();
+
+    Apps::__constructStatic(array(
+      APPS_DIR, null
+    ));
+
+    /**
+     * Enable all apps pre-installed
+     */
+    foreach(Apps::getApps() as $appID){
+      $App = new Apps($appID);
+      $App->enableApp();
+    }
+  }
+
 }
 

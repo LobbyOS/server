@@ -1,6 +1,6 @@
 # Francium-Process
 
-[![Build Status](https://travis-ci.org/subins2000/Francium-Process.svg?branch=master)](https://travis-ci.org/subins2000/Francium-Process)
+[![Build Status](https://travis-ci.org/subins2000/Francium-Process.svg?branch=dev-master)](https://travis-ci.org/subins2000/Francium-Process)
 
 Run **Non Blocking Background Processes** in PHP. Works for Unix (Linux, Mac) and Windows Systems
 
@@ -25,7 +25,7 @@ composer require francium/process
   });
   ```
   The callback passed to the `start()` function will be executed when the process is started. Also, any `echo` output will be shown in browser and connection will be immediately closed.
-  
+
   If there is no callback mentioned, the browser will still be in connection with the script waiting for further result.
 
 * Run `ffmpeg` in background :

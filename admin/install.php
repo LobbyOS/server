@@ -1,6 +1,4 @@
 <?php
-require "../load.php";
-
 $install_step = Request::get('step');
 ?>
 <!DOCTYPE html>
@@ -9,14 +7,14 @@ $install_step = Request::get('step');
     <?php
     \Lobby\UI\Themes::loadTheme();
     \Hooks::doAction("head.begin");
-   
+
     /**
      * Install Head
      */
     \Assets::css("install", "/admin/css/install.css");
     \Assets::js("install", "/admin/js/install.js");
     \Response::head("Install");
-   
+
     \Hooks::doAction("head.end");
     ?>
   </head>
@@ -58,12 +56,12 @@ $install_step = Request::get('step');
                     <td>Status</td>
                   </tr>
                   <tr>
-                    <td>PHP 5.3</td>
-                    <td><?php if(version_compare(PHP_VERSION, '5.3') >= 0){
+                    <td>PHP 5.6</td>
+                    <td><?php if(version_compare(PHP_VERSION, '5.6') >= 0){
                       echo sss("Ok", "Your PHP version is compatible with Lobby");
                     }else{
                       $error = 1;
-                      echo ser("Not Ok", "Lobby requires atleast PHP version 5.3");
+                      echo ser("Not Ok", "Lobby requires atleast PHP version 5.6");
                     }
                     ?></td>
                   </tr>
@@ -89,9 +87,9 @@ $install_step = Request::get('step');
                   </tr>
                   <?php
                   if(ini_get('output_buffering') != "Off"){
-                    ob_start(); 
-                      phpinfo(INFO_MODULES); 
-                    $info = ob_get_contents(); 
+                    ob_start();
+                      phpinfo(INFO_MODULES);
+                    $info = ob_get_contents();
                     ob_end_clean();
                   ?>
                     <tr>
@@ -115,11 +113,11 @@ $install_step = Request::get('step');
                       ?></td>
                     </tr>
                     <?php
-                    ob_start(); 
-                      phpinfo(INFO_GENERAL); 
-                    $g_info = ob_get_contents(); 
+                    ob_start();
+                      phpinfo(INFO_GENERAL);
+                    $g_info = ob_get_contents();
                     ob_end_clean();
-                    $server_software = stristr($g_info, 'Server API'); 
+                    $server_software = stristr($g_info, 'Server API');
                     if(preg_match("/\>Apache/", $server_software)){
                     ?>
                       <tr>
@@ -171,9 +169,9 @@ $install_step = Request::get('step');
               \Response::redirect("/#");
             }
           }else if($install_step === "2" && CSRF::check()){
-            ob_start(); 
-              phpinfo(INFO_MODULES); 
-            $info = ob_get_contents(); 
+            ob_start();
+              phpinfo(INFO_MODULES);
+            $info = ob_get_contents();
             ob_end_clean();
           ?>
             <h3>Choose Database System</h3>
@@ -182,7 +180,7 @@ $install_step = Request::get('step');
                 <tr>
                   <td width="50%"><?php
                     $mysql_version = stristr($info, 'Client API version');
-                    preg_match('/[1-9].[0-9].[1-9][0-9]/', $mysql_version, $match); 
+                    preg_match('/[1-9].[0-9].[1-9][0-9]/', $mysql_version, $match);
                     $mysql_version = $match[0];
                     if(version_compare($mysql_version, '5.0') >= 0){
                       echo "<a class='btn green' href='?step=3&db_type=mysql". CSRF::getParam() ."'>MySQL</a>";
@@ -191,8 +189,8 @@ $install_step = Request::get('step');
                     }
                   ?></td>
                   <td width="50%"><?php
-                    $sqlite_version = stristr($info, 'SQLite Library'); 
-                    preg_match('/[1-9].[0-9].[1-9][0-9]/', $sqlite_version, $match); 
+                    $sqlite_version = stristr($info, 'SQLite Library');
+                    preg_match('/[1-9].[0-9].[1-9][0-9]/', $sqlite_version, $match);
                     $sqlite_version = isset($match[0]) ? $match[0] : "";
                     if(version_compare($sqlite_version, '3.8.0') >= 0){
                       $whitelist = array(
@@ -217,6 +215,7 @@ $install_step = Request::get('step');
                 </tr>
               </tbody>
             </table>
+            <p>Using SQLite is easy. <a href="<?php echo L_SERVER;?>/docs/quick#section-database" class="btn" target="_blank">Read More</a></p>
           <?php
           }else if($install_step === "3" && CSRF::check()){
             $db_type = Request::get("db_type");
@@ -233,7 +232,7 @@ $install_step = Request::get('step');
                 $username = \Request::postParam('dbusername', "");
                 $password = \Request::postParam('dbpassword', "");
                 $prefix = \Request::postParam('prefix', "");
-                
+
                 if($dbhost === "" || $dbport === "" || $dbname === "" || $username === ""){
                   echo ser("Empty Fields", "Buddy, you left out some details.<cl/>" . \Lobby::l("/admin/install.php?step=3&db_type=mysql" . CSRF::getParam(), "Try Again", "class='btn orange'"));
                   }else{
@@ -248,7 +247,7 @@ $install_step = Request::get('step');
                     "password" => $password,
                     "prefix" => $prefix
                   ));
-                  
+
                   /**
                    * First, check if prefix is valid
                    * Check if connection to database can be established using the credentials given by the user
@@ -264,16 +263,9 @@ $install_step = Request::get('step');
                        * Make the Config File
                        */
                       \Lobby\Install::makeConfigFile();
-                    
-                      \Lobby::$installed = true;
-                      \Lobby\DB::__constructStatic();
-                      
-                      /**
-                       * Enable app lEdit
-                       */
-                      $App = new \Lobby\Apps("ledit");
-                      $App->enableApp();
-                      
+
+                      \Lobby\Install::afterInstall();
+
                       echo sss("Success", "Database Tables and <b>config.php</b> file was successfully created.");
                       echo '<cl/><a href="?step=4'. CSRF::getParam() .'" class="btn">Proceed</a>';
                     }else{
@@ -284,7 +276,7 @@ $install_step = Request::get('step');
               }else{
                 $db_loc = $_POST['db_location'];
                 $db_create = \Lobby\Install::createSQLiteDB($db_loc);
-                
+
                 /**
                  * Prefix is "l_" and can't be changed
                  */
@@ -296,24 +288,17 @@ $install_step = Request::get('step');
                     /**
                      * Make path relative if DB file in Lobby dir
                      */
-                    "path" => str_replace(L_DIR, "", $db_loc),
+                    "path" => Lobby\FS::rel($db_loc),
                     "prefix" => "l_"
                   ));
-                
+
                   /**
                    * Make the Config File
                    */
                   \Lobby\Install::makeConfigFile("sqlite");
-                  
-                  /**
-                   * Enable app lEdit
-                   */
-                  \Lobby::$installed = true;
-                  \Lobby\DB::__constructStatic();
 
-                  $App = new \Lobby\Apps("ledit");
-                  $App->enableApp();
-                  
+                  \Lobby\Install::afterInstall();
+
                   echo sss("Success", "Database and <b>config.php</b> file was successfully created.");
                   echo '<cl/><a href="?step=4'. CSRF::getParam() .'" class="btn">Proceed</a>';
                 }else{
@@ -397,7 +382,7 @@ $install_step = Request::get('step');
                   <label>
                     <input type="text" name="db_location" id="db_location" value="<?php echo \Lobby\FS::loc("/contents/extra/lobby_db.sqlite");?>" />
                   </label>
-                  
+
                   <button name="submit" style="width:200px;font-size:15px;" class="btn green">Install Lobby</button>
                   <input type="hidden" name="db_type" value="sqlite" />
                   <?php echo CSRF::getInput();?>
@@ -418,7 +403,7 @@ $install_step = Request::get('step');
                 var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
                 return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
             }
-            lobby.ajax("admin/ajax/set-timezone.php", {offset: getTimeZone()});
+            lobby.ar("admin/ajax/set-timezone.php", {offset: getTimeZone()});
           });
           </script>
         <?php

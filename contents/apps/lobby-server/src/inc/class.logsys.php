@@ -216,7 +216,7 @@ class LS2 {
         */
         array_push(self::$config['pages']['no_login'], self::$config['pages']['login_page']);
         
-        self::$dbh = new \logSysLobbyDB;
+        self::$dbh = new \Lobby\App\lobby_server\logSysLobbyDB;
         self::$db = true;
         
         self::$cookie = isset($_COOKIE['logSyslogin']) ? $_COOKIE['logSyslogin'] : false;

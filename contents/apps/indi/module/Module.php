@@ -9,7 +9,7 @@ use Lobby\Router;
 class app_indi extends \Lobby\Module {
 
   public function init(){
-    $appID = $this->app->getData("appID");
+    $appID = $this->app->data->getValue("appID");
     
     $this->appAdminSetup();
     
@@ -47,13 +47,9 @@ class app_indi extends \Lobby\Module {
             $html = $class->inc("/src/page{$page}.php");
             if($html){
               Response::setPage($html);
-            }else{
-              ser();
             }
           }else{
-            if($pageResponse === null){
-              ser();
-            }else{
+            if($pageResponse !== null){
               Response::setPage($pageResponse);
             }
           }

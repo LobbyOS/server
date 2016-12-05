@@ -15,7 +15,7 @@ class version extends expression {
      * Initializes the version object with a simple version
      * @param string $version A simple, single version string
      * @param bool $padZero Set empty version pieces to zero?
-     * @throws SemVerException 
+     * @throws SemVerException
      */
     function __construct($version, $padZero=false) {
         $version = (string) $version;
@@ -26,7 +26,7 @@ class version extends expression {
 
         parent::matchesToVersionParts($matches, $this->major, $this->minor, $this->patch, $this->build, $this->prtag, $padZero?0:null);
 
-        if($this->build === '') 
+        if($this->build === '')
         $this->build = null;
 	$this->version = parent::constructVersionFromParts($padZero, $this->major, $this->minor, $this->patch, $this->build, $this->prtag);
 
@@ -45,7 +45,7 @@ class version extends expression {
 
     /**
      * Get the full version
-     * @return string 
+     * @return string
      */
     function getVersion() {
         return (string)$this->version;
@@ -124,12 +124,12 @@ class version extends expression {
     /**
      * Checks whether this version satisfies an expression
      * @param expression $versions The expression to check against
-     * @return bool 
+     * @return bool
      */
     function satisfies(expression $versions) {
         return $versions->satisfiedBy($this) !== false;
     }
-    
+
     function __toString() {
         return $this->version;
     }
@@ -140,7 +140,7 @@ class version extends expression {
      * @param string $cmp The comparator, one of '==', '!=', '>', '>=', '<', '<=', '===', '!=='
      * @param string $v2 The second version
      * @return bool
-     * @throws UnexpectedValueException 
+     * @throws UnexpectedValueException
      */
     static function cmp($v1, $cmp, $v2) {
         switch ($cmp) {
@@ -160,7 +160,7 @@ class version extends expression {
      * Checks if a given string is greater than another
      * @param string|version $v1 The first version
      * @param string|version $v2 The second version
-     * @return boolean 
+     * @return boolean
      */
     static function gt($v1, $v2) {
         $v1 = new version($v1);
@@ -172,7 +172,7 @@ class version extends expression {
         if($ma1 < 0 &&$ma2 >= 0)
             return false;
         if($ma1 >=0 && $ma2 <0)
-            return true; 
+            return true;
         if ($ma1 > $ma2)
             return true;
         if ($ma1 < $ma2)
@@ -180,11 +180,11 @@ class version extends expression {
 
         $mi1 = $v1->getMinor();
         $mi2 = $v2->getMinor();
-        
+
         if($mi1 < 0 &&$mi2 >= 0)
             return false;
         if($mi1 >=0 && $mi2 <0)
-            return true; 
+            return true;
         if ($mi1 > $mi2)
             return true;
         if ($mi1 < $mi2)
@@ -192,23 +192,23 @@ class version extends expression {
 
         $p1 = $v1->getPatch();
         $p2 = $v2->getPatch();
-        
+
         if($p1 < 0 &&$p2 >= 0)
             return false;
         if($p1 >=0 && $p2 <0)
-            return true; 
+            return true;
         if ($p1 > $p2)
             return true;
         if ($p1 < $p2)
             return false;
-            
+
         $b1 = $v1->getBuild();
         $b2 = $v2->getBuild();
 
         if($b1 < 0 &&$b2 >= 0)
             return false;
         if($b1 >=0 && $b2 <0)
-            return true; 
+            return true;
         if ($b1 > $b2)
             return true;
         if ($b1 < $b2)
@@ -220,19 +220,19 @@ class version extends expression {
             return true; //v1 has no tag, v2 has tag
         if ($v1->getTag() !== '' && $v2->getTag() === '')
             return false; //v1 has tag, v2 has no tag
-         
+
         // both have tags, sort them naturally to see which one is greater.
         $array = array($v1->getTag(), $v2->getTag());
         natsort($array);
         return reset($array) != $v1->getTag();
-        
+
     }
 
     /**
      * Checks if a given string is greater than, or equal to another
      * @param string|version $v1 The first version
      * @param string|version $v2 The second version
-     * @return boolean 
+     * @return boolean
      */
     static function gte($v1, $v2) {
         return self::gt($v1, $v2)||self::eq($v1, $v2);
@@ -242,7 +242,7 @@ class version extends expression {
      * Checks if a given string is less than another
      * @param string|version $v1 The first version
      * @param string|version $v2 The second version
-     * @return boolean 
+     * @return boolean
      */
     static function lt($v1, $v2) {
         return self::gt($v2, $v1);
@@ -252,7 +252,7 @@ class version extends expression {
      * Checks if a given string is less than, or equal to another
      * @param string|version $v1 The first version
      * @param string|version $v2 The second version
-     * @return boolean 
+     * @return boolean
      */
     static function lte($v1, $v2) {
         return self::lt($v1, $v2)||self::eq($v1, $v2);
@@ -262,7 +262,7 @@ class version extends expression {
      * Checks if a given string is equal to another
      * @param string|version $v1 The first version
      * @param string|version $v2 The second version
-     * @return boolean 
+     * @return boolean
      */
     static function eq($v1, $v2) {
         $v1 = new version($v1, true);
@@ -274,7 +274,7 @@ class version extends expression {
      * Checks if a given string is not equal to another
      * @param string|version $v1 The first version
      * @param string|version $v2 The second version
-     * @return boolean 
+     * @return boolean
      */
     static function neq($v1, $v2) {
         return !self::eq($v1, $v2);

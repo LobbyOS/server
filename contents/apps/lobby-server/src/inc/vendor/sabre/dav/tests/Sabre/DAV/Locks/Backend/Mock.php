@@ -32,7 +32,7 @@ class Mock extends AbstractBackend {
 
         $newLocks = array();
 
-        $locks = $this->getData();
+        $locks = $this->data->getValue();
 
         foreach($locks as $lock) {
 
@@ -71,7 +71,7 @@ class Mock extends AbstractBackend {
         $lockInfo->created = time();
         $lockInfo->uri = $uri;
 
-        $locks = $this->getData();
+        $locks = $this->data->getValue();
 
         foreach($locks as $k=>$lock) {
             if (
@@ -96,7 +96,7 @@ class Mock extends AbstractBackend {
      */
     public function unlock($uri, LockInfo $lockInfo) {
 
-        $locks = $this->getData();
+        $locks = $this->data->getValue();
         foreach($locks as $k=>$lock) {
 
             if ($lock->token == $lockInfo->token) {

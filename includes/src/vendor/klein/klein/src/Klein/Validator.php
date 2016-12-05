@@ -15,7 +15,7 @@ use BadMethodCallException;
 use Klein\Exceptions\ValidationException;
 
 /**
- * Validator 
+ * Validator
  */
 class Validator
 {

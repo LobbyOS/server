@@ -1,5 +1,14 @@
 <?php
+namespace Lobby\App\lobby_server;
+
 require __DIR__ . "/class.logsys.php";
+
+class logSysLobbyDB {
+  public function prepare($query){
+    $obj = \Lobby\DB::getDBH()->prepare($query);
+    return $obj;
+  }
+}
 
 \Fr\LS2::$config = array(
   "db" => array(),

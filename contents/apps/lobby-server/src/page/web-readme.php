@@ -8,14 +8,6 @@
   </ul>
   <a class="btn red" href="https://lobby-ccl4.rhcloud.com">Go To Demo</a>
 </div>
-<style>
-ul, li{
-  list-style-type: disc !important;
-}
-ul{
-  padding: 5px 30px;
-}
-</style>
 <?php
 \Response::setTitle("Web");
 require_once $this->dir . "/src/inc/views/track.php";

@@ -36,7 +36,10 @@ class LobbyGit {
       $this->info = $sql->fetch(\PDO::FETCH_ASSOC);
     }
     
-    if($this->info["updated"] < strtotime("-1 hour")){
+    /**
+     * Only update if last update was 1 minute ago
+     */
+    if($this->info["updated"] < strtotime("-1 minute")){
       if($this->getRepo()){
         $sql = \Lobby\DB::getDBH()->prepare("UPDATE `git_cache` SET `updated` = UNIX_TIMESTAMP() WHERE `git_url` = ?");
         $sql->execute(array($this->git_url));

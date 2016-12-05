@@ -1,6 +1,4 @@
 <?php
-require "../load.php";
-
 /**
  * Backup Lobby DIR as .zip folder
  * http://stackoverflow.com/a/19451938/1372424
@@ -39,7 +37,7 @@ class FlxZipArchive extends ZipArchive {
 
 $za = new FlxZipArchive;
 $res = $za->open($zip_file_name, ZipArchive::CREATE);
-if($res === TRUE) 
+if($res === TRUE)
 {
     $za->addDir($the_folder, basename($the_folder));
     $za->close();

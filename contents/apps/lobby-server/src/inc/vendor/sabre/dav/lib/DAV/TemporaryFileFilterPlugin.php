@@ -165,7 +165,7 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
         foreach($this->temporaryFilePatterns as $tempFile) {
 
             if (preg_match($tempFile,$tempPath)) {
-                return $this->getDataDir() . '/sabredav_' . md5($path) . '.tempfile';
+                return $this->data->getValueDir() . '/sabredav_' . md5($path) . '.tempfile';
             }
 
         }

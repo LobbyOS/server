@@ -27,7 +27,7 @@ Add to `composer.json` `require` block: `"vladimmi/construct-static": "dev-maste
 
 ```php
 $composer = require_once(__DIR__ . '/vendor/autoload.php');     //get Composer loader
-$loader = new ConstructStatic\Loader($composer);                //wrap it   
+$loader = new ConstructStatic\Loader($composer);                //wrap it
 ```
 
 # Details #

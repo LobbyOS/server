@@ -67,7 +67,7 @@ class FS extends AbstractBackend {
             if ($currentPath) $currentPath.='/';
             $currentPath.=$uriPart;
 
-            $uriLocks = $this->getData($currentPath);
+            $uriLocks = $this->data->getValue($currentPath);
 
             foreach($uriLocks as $uriLock) {
 

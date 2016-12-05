@@ -11,11 +11,11 @@ use Lobby\UI\Panel;
 class Server {
 
   public static $apiURL = null;
-  
+
   public static function __constructStatic(){
     self::$apiURL = L_SERVER . "/api";
   }
-  
+
   /**
    * Append Lobby Info to POST data
    */
@@ -27,33 +27,39 @@ class Server {
       )
     ), $data);
   }
-  
+
   /**
    * Lobby Store
    */
   public static function store($data) {
-    $data = 
     /**
      * Response is in JSON
      */
-    $response = \Requests::post(self::$apiURL . "/apps", array(), self::makeData($data))->body;
+    try{
+      $response = \Requests::post(self::$apiURL . "/apps", array(), self::makeData($data))->body;
+    }catch(\Requests_Exception $error){
+      \Lobby::log("HTTP Request Failed ($url) : $error");
+      echo ser("HTTP Request Failed", $error);
+      return false;
+    }
+
     if($response === "false"){
       return false;
     }else{
       $arr = json_decode($response, true);
-      
+
       /**
        * Make sure the response was valid.
        */
       if(!is_array($arr)){
-        \Lobby::log("Lobby Server Replied : {$response}");
+        \Lobby::log("HTTP Request Failed ($url) : Lobby server replied stupid data - $response");
         return false;
       }else{
         return $arr;
       }
     }
   }
-  
+
   /**
    * Download Zip files
    */
@@ -66,8 +72,8 @@ class Server {
     }
     return $url;
   }
-  
-  
+
+
   /**
    * Get updates
    */
@@ -82,25 +88,30 @@ class Server {
       \Lobby::log("Checkup with server failed ($url) : $error");
       $response = false;
     }
-    
+
     if($response){
       $response = json_decode($response, true);
       if(is_array($response)){
         DB::saveOption("lobby_latest_version", $response['version']);
         DB::saveOption("lobby_latest_version_release", $response['released']);
         DB::saveOption("lobby_latest_version_release_notes", $response['release_notes']);
-    
-        if(isset($response['apps']) && count($response['apps']) != 0){
-          $AppUpdates = array();
-          foreach($response['apps'] as $appID => $version){
+
+        /**
+         * Response will have latest info about installed apps
+         */
+        if(isset($response['apps']) && !empty($response['apps'])){
+          $appUpdates = array();
+
+          foreach($response['apps'] as $appID => $appInfo){
             $App = new \Lobby\Apps($appID);
-            if($App->hasUpdate($version)){
-              $AppUpdates[$appID] = $version;
+
+            if($App->hasUpdate($appInfo["version"])){
+              $appUpdates[$appID] = $appInfo;
             }
           }
-          DB::saveOption("app_updates", json_encode($AppUpdates));
+          DB::saveJSONOption("app_updates", $appUpdates);
         }
-        
+
         if(isset($response["notify"])){
           foreach($response["notify"]["items"] as $itemID => $item){
             if(isset($item["href"])){
@@ -108,7 +119,7 @@ class Server {
             }
             Panel::addNotifyItem("lobby_server_msg_" . $itemID, $item);
           }
-          
+
           foreach($response["notify"]["remove_items"] as $itemID){
             Panel::removeNotifyItem("lobby_server_msg_" . $itemID);
           }
@@ -116,5 +127,5 @@ class Server {
       }
     }
   }
-  
+
 }

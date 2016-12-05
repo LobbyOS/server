@@ -11,7 +11,7 @@
       $this->saveData("appID", $appID);
     echo sss("Saved", "Settings has been saved.");
   }
-  $appID = $this->getData("appID");
+  $appID = $this->data->getValue("appID");
   ?>
   <form action="<?php echo Lobby::u("/admin/app/indi");?>" method="POST">
     <label>

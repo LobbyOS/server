@@ -1,7 +1,15 @@
 <?php
+/**
+ * Lobby\Router
+ * @link https://github.com/LobbyOS/lobby/tree/dev/includes/src/lobby/src/Lobby/Router.php
+ */
+
 namespace Lobby;
 
+use Klein\Klein;
+use Request;
 use Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * The Router class for Routing paths coming to Lobby accordingly
@@ -9,32 +17,52 @@ use Response;
  * will be as Klein's : https://github.com/chriso/klein.php
  */
 class Router {
-  
+
   public static $router;
-  public static $routeActive = false;
-  
+
+  /**
+   * Set up
+   */
   public static function __constructStatic(){
-    self::$router = new \Klein\Klein();
+    self::$router = new Klein();
   }
-  
+
+  /**
+   * Set a route
+   * @param string $route The route path
+   * @param string $callback Function to handle the route
+   */
   public static function route($route, $callback) {
-    self::$router->respond($route, function($request, $response) use($callback) {
-      $return = $callback($request, $response);
-      if($return !== false && !Response::hasContent()){
-        self::$routeActive = true;
-      }
-    });
+    self::$router->respond($route, $callback);
   }
-  
+
+  /**
+   * Dispatch all routes and send response.
+   *
+   * All routes are ran and if there is content, a response is sent.
+   *
+   * If it's a request to a native file, FALSE is returned.
+   *
+   * @return bool Whether a route is set to handle this request
+   */
   public static function dispatch(){
     self::defaults();
     \Hooks::doAction("router.finish");
-    self::statusRoutes();
     self::$router->dispatch(null, null, false);
+
+    if(Response::hasContent()){
+      Response::send();
+      return true;
+    }else if(self::serveFile()){
+      return true;
+    }else{
+      Response::showError();
+      return true;
+    }
   }
-  
+
   /**
-   * Define some pages by default
+   * Default routes and settings
    */
   public static function defaults(){
     /**
@@ -43,7 +71,7 @@ class Router {
     self::route("/app/[:appID]?/[**:page]?", function($request){
       $AppID = $request->appID;
       $page = $request->page != "" ? "/{$request->page}" : "/";
-      
+
       /**
        * Check if App exists
        */
@@ -51,12 +79,12 @@ class Router {
       if($App->exists && $App->enabled){
         $class = $App->run();
         $AppInfo = $App->info;
-      
+
         /**
          * Set the title
          */
         Response::setTitle($AppInfo['name']);
-          
+
         /**
          * Add the App item to the navbar
          */
@@ -67,44 +95,26 @@ class Router {
             "app_admin" => array(
               "text" => "Admin",
               "href" => "/admin/apps.php?app=$AppID"
-            ),
+              ),
             "app_disable" => array(
               "text" => "Disable",
               "href" => "/admin/apps.php?action=disable&app=$AppID" . \CSRF::getParam()
-            ),
+              ),
             "app_remove" => array(
               "text" => "Remove",
               "href" => "/admin/apps.php?action=remove&app=$AppID" . \CSRF::getParam()
-            )
-          ),
+              )
+            ),
           "position" => "left"
-        ));
-        $pageResponse = $class->page($page);
-        
-        if($pageResponse === "auto"){
-          if($page === "/")
-            $page = "/index";
-          
-          if(is_dir($class->fs->loc("src/page{$page}")))
-            $page = "$page/index";
-          
-          $html = $class->inc("/src/page{$page}.php");
-          if($html)
-            Response::setPage($html);
-          else
-            ser();
-        }else{
-          if($pageResponse === null){
-            ser();
-          }else{
-            Response::setPage($pageResponse);
-          }
-        }
+          ));
+        $pageContent = $class->getPageContent($page);
+        if($pageContent !== null)
+          Response::setPage($pageContent);
       }else{
         echo ser();
       }
     });
-    
+
     /**
      * Dashboard Page
      * The main Page. Add CSS & JS accordingly
@@ -115,35 +125,84 @@ class Router {
       Response::loadPage("/includes/lib/lobby/inc/dashboard.php");
     });
   }
-  
-  public static function statusRoutes(){
-    /**
-     * The default 404 page
-     */
-    self::$router->onHttpError(function ($code, $router) {
-      if($code === 404){
-        if(self::pathExists()){
-          $router->response()->code(200);
-        }else{
-          echo ser();
-        }
-      }
-    });
-  }
-  
+
   /**
-   * This is useful when Lobby is run using PHP Built In Server
-   * When no routes are matched, by default a 404 is inited,
-   * even when the file exists in Lobby as .php file. To prevent
-   * this, we check if the file exist and return false to the PHP
-   * Built in Server to make it serve the file normally
-   * http://php.net/manual/en/features.commandline.webserver.php#example-430
+   * Make HTTP requested path to absolute location
+   * @param string $path Requested file path
+   * @return bool Whether the request points to a valid file
    */
-  public static function pathExists(){
-    if(\Lobby\FS::rel($_SERVER['PHP_SELF']) !== "index.php"){
-      return file_exists(L_DIR . $_SERVER['PHP_SELF']);
+  private static function getServeFileAbsolutePath($path){
+    $path = realpath(L_DIR . $path);
+
+    if(file_exists($path)){
+      // Folder index
+      if(is_dir($path)){
+        $path .= "/index.php";
+      }
+
+      if(file_exists($path) && substr($path, 0, strlen(L_DIR)) === L_DIR){
+        return $path;
+      }
     }
     return false;
   }
-  
+
+  /**
+   * Process & serve files
+   * @return bool Whether a file was served
+   */
+  public static function serveFile(){
+    $path = self::getServeFileAbsolutePath(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
+    $pathInfo = pathinfo(FS::rel($path));
+
+    if($path){
+      $finfo = finfo_open(FILEINFO_MIME_TYPE);
+      $type = finfo_file($finfo, $path);
+      finfo_close($finfo);
+
+      header("Cache-Control: public");
+
+      if($type === "text/x-php" || $type === "text/html"){
+        /**
+         * Do not let access to PHP files inside contents & includes directory
+         * except for "includes/serve-assets.php" file
+         */
+        if(substr($pathInfo["dirname"], 0, 8) === "contents" || (substr($pathInfo["dirname"], 0, 8) === "includes" && $pathInfo["filename"] !== "serve-assets"))
+          return false;
+
+        $content = Response::getFile($path);
+
+        Response::setContent($content);
+        Response::setCache(array(
+          "etag" => md5($content),
+          "public" => true
+        ));
+        Response::send();
+
+        return true;
+      }else{
+        $request = Request::getRequestObject();
+        $response = new BinaryFileResponse($path, 200, array(), true, null, true);
+
+        /**
+         * For SVG images, we check the extension
+         */
+        if($pathInfo["extension"] === "svg"){
+          $response->headers->set("Content-type", "image/svg+xml");
+        }
+
+        if($response->isNotModified($request)){
+          $response->setStatusCode(304);
+          $response->prepare($request);
+          $response->send();
+        }else{
+          $response->prepare($request);
+          $response->send();
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

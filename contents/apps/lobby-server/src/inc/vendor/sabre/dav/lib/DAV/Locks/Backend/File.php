@@ -54,7 +54,7 @@ class File extends AbstractBackend {
 
         $newLocks = [];
 
-        $locks = $this->getData();
+        $locks = $this->data->getValue();
 
         foreach($locks as $lock) {
 
@@ -93,7 +93,7 @@ class File extends AbstractBackend {
         $lockInfo->created = time();
         $lockInfo->uri = $uri;
 
-        $locks = $this->getData();
+        $locks = $this->data->getValue();
 
         foreach($locks as $k=>$lock) {
             if (
@@ -118,7 +118,7 @@ class File extends AbstractBackend {
      */
     function unlock($uri, LockInfo $lockInfo) {
 
-        $locks = $this->getData();
+        $locks = $this->data->getValue();
         foreach($locks as $k=>$lock) {
 
             if ($lock->token == $lockInfo->token) {
