@@ -5,9 +5,9 @@ use Hooks;
 
 class lobby_server extends \Lobby\App {
   
-  public $lobby_version = "0.9.2";
-  public $lobby_released = "2016-08-15";
-  public $lobby_release_notes = '<p>Lobby 0.9.1 comes with some bug fixes. <a class="btn" href="https://github.com/LobbyOS/lobby/blob/dev/CHANGELOG.md#092" target="_blank">See Changelog</a></p><p><a class="button btn blue" target="_blank" href="http://subinsb.com/lobby/version-0-9">Read More</a></p>';
+  public $lobby_version = "0.9.4";
+  public $lobby_released = "2016-11-04";
+  public $lobby_release_notes = '<p>Lobby 0.9.4 comes with bug fixes. <a class="btn" href="https://github.com/LobbyOS/lobby/blob/dev/CHANGELOG.md#094" target="_blank">See Changelog</a></p>';
   public $lobby_annoucement = "http://subinsb.com/lobby/version-0-9";
   
   public $app_categories = array(
