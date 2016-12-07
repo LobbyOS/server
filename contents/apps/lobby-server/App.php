@@ -2,6 +2,7 @@
 namespace Lobby\App;
 
 use Hooks;
+use Lobby\App\lobby_server\Fr\LS;
 
 class lobby_server extends \Lobby\App {
   
@@ -200,10 +201,10 @@ class lobby_server extends \Lobby\App {
     require_once $this->dir . "/src/inc/logsys.php";
     
     $meSubItems = array();
-    if(\Fr\LS2::$loggedIn){
+    if(LS::$loggedIn){
       $meSubItems["Profile"] = array(
         "text" => "My Profile",
-        "href" => "/u/" . \Fr\LS2::$user
+        "href" => "/u/" . LS::$user
       );
       $meSubItems["EditProfile"] = array(
         "text" => "Edit Profile",
@@ -226,7 +227,7 @@ class lobby_server extends \Lobby\App {
     
     \Lobby\UI\Panel::addTopItem("lobbyUser", array(
       "position" => "right",
-      "text" => \Fr\LS2::$loggedIn ? \Fr\LS2::getUser("display_name") : "Me",
+      "text" => LS::$loggedIn ? LS::getUser("display_name") : "Me",
       "href" => "/me",
       "subItems" => $meSubItems
     ));

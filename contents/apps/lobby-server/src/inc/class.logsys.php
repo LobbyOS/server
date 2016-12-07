@@ -1,5 +1,5 @@
 <?php
-namespace Fr;
+namespace Lobby\App\lobby_server\Fr;
 
 /**
 .---------------------------------------------------------------------------.
@@ -31,7 +31,7 @@ namespace Fr;
 
 ini_set("display_errors", "on");
 
-class LS2 {
+class LS {
 
   /**
    * ------------
@@ -216,7 +216,7 @@ class LS2 {
         */
         array_push(self::$config['pages']['no_login'], self::$config['pages']['login_page']);
         
-        self::$dbh = new \Lobby\App\lobby_server\logSysLobbyDB;
+        self::$dbh = new \Lobby\App\lobby_server\DB;
         self::$db = true;
         
         self::$cookie = isset($_COOKIE['logSyslogin']) ? $_COOKIE['logSyslogin'] : false;

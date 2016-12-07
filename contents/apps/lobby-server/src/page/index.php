@@ -84,14 +84,14 @@ $this->addScript("responsiveslides.min.js");
   <div class="container">
     <div class="row" style="text-align: left;">
       <h2>Features</h2>
-      <ul>
-        <li><a href="#lobby-store">Lobby Store</a></li>
-        <li>Auto update Lobby & Apps when a new version comes out</li>
-        <li>Lightweight - Lobby was created from scratch with performance in mind</li>
-        <li>Open Source (Apache License)</li>
-        <li>Lobby has a set of API which helps devs write shorter and better code</li>
-        <li>Modules - helps Lobby to be customized as you like</li>
-        <li>Develop rich web sites (<a href="https://lobby.subinsb.com">This site</a> runs on Lobby)</li>
+      <ul class="collection">
+        <li class="collection-item">Get latest apps from <a href="#lobby-store">Lobby Store</a></li>
+        <li class="collection-item">Auto update Lobby & Apps when a new version comes out</li>
+        <li class="collection-item">Lightweight - Lobby was created from scratch with performance in mind</li>
+        <li class="collection-item">Open Source (Apache License)</li>
+        <li class="collection-item">Lobby has a set of API which helps devs write shorter and better code</li>
+        <li class="collection-item">Modules - helps Lobby to be customized as you like</li>
+        <li class="collection-item">Develop rich web sites (<a href="https://lobby.subinsb.com">This site</a> runs on Lobby)</li>
       </ul>
     </div>
   </div>
@@ -109,14 +109,15 @@ $this->addScript("responsiveslides.min.js");
   <div class="contents" style="padding: 20px 0;">
     <h1 style='font-size: 4em;margin-top:0;'><a href="/download">Download</a></h1>
     <div clear>
-      <a class='platform linux' href='/api/lobby/download/linux' title='Download Linux Distro Supported Zip File'></a>
-      <a class='platform windows' href='/api/lobby/download/windows' title='Download MSI File'></a>
-      <a class='platform zip' href='/api/lobby/download/latest' title='Download Zip File'></a>
+      <a class='platform linux' href='/api/lobby/download/linux' title='Download for all Linux distros'></a>
+      <a class='platform windows' href='/api/lobby/download/windows' title='Download for Windows 32 bit'></a>
+      <a class='platform windows64' href='/api/lobby/download/windows64' title='Download for Windows 64 bit'></a>
+      <a class='platform zip' href='/api/lobby/download/latest' title='Download for installing directly in server'></a>
     </div>
     <div clear style='margin-top: 20px;' >
       <a class='platform' id='github' href='https://github.com/LobbyOS/lobby' title='GitHub'></a>
       <a class='platform' id='facebook' href='https://www.facebook.com/groups/LobbyOS' title='Support & Help'></a>
-      <a class='btn' href='/download' clear>How To Install ?</a>
+      <a class='btn' href='/download' clear>More Info</a>
     </div>
     <p style='margin-top: 50px;'>&copy; Copyleft <a href="https://github.com/orgs/LobbyOS/people" target="_blank">Lobby Team</a> 2014 - <?php echo date("Y");?></p>
   </div>

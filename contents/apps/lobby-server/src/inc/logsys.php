@@ -3,14 +3,16 @@ namespace Lobby\App\lobby_server;
 
 require __DIR__ . "/class.logsys.php";
 
-class logSysLobbyDB {
+use Lobby\App\lobby_server\Fr\LS;
+
+class DB {
   public function prepare($query){
     $obj = \Lobby\DB::getDBH()->prepare($query);
     return $obj;
   }
 }
 
-\Fr\LS2::$config = array(
+LS::$config = array(
   "db" => array(),
   "features" => array(
     "auto_init" => false,
@@ -33,4 +35,4 @@ class logSysLobbyDB {
     "expire" => "+28 days"
   )
 );
-\Fr\LS2::construct();
+LS::construct();

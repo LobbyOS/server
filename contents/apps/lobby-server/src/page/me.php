@@ -1,8 +1,10 @@
 <?php
+use \Lobby\App\lobby_server\Fr\LS;
+
 if(!isset($_GET['logout'])){
-  \Fr\LS2::init();
+  LS::init();
 }else{
-  \Fr\LS2::logout();
+  LS::logout();
 }
 
 if($node === "index"){
@@ -56,16 +58,16 @@ if($node === "index"){
   }else if($access_token != false){
     $info = json_decode($Opth->get("info"), true);
     
-    $status = \Fr\LS2::register($access_token, "", array(
+    $status = LS::register($access_token, "", array(
       "name" => $info['name'],
       "display_name" => $info['name'],
       "registered" => time()
     ));
     
     if(isset($_SESSION['c']) && $_SESSION['c'] != ""){
-      \Fr\LS2::$config['pages']['home_page'] = $_SESSION['c'];
+      LS::$config['pages']['home_page'] = $_SESSION['c'];
     }
-    \Fr\LS2::login($access_token, "", true);
+    LS::login($access_token, "", true);
   }
   
   exit;
@@ -82,7 +84,7 @@ if($node === "index"){
     echo \Lobby::l("/me/app", "Submit A New App", "class='btn blue'") . "<br/>";
     
     $sql = \Lobby\DB::getDBH()->prepare("SELECT `id`, `name` FROM `apps` WHERE `author` = ?");
-    $sql->execute(array(\Fr\LS::$user));
+    $sql->execute(array(LS::$user));
     
     echo "<center>";
       while($r = $sql->fetch()){
@@ -99,13 +101,13 @@ if($node === "index"){
     <h1>My Profile</h1>
     <?php
     $site = \Request::get("me_site");
-    $site = $site != null ? $site : \Fr\LS2::getUser("web_page");
+    $site = $site != null ? $site : LS::getUser("web_page");
     $display_name = \Request::get("me_display");
-    $display_name = $display_name != null ? $display_name : \Fr\LS2::getUser("display_name");
+    $display_name = $display_name != null ? $display_name : LS::getUser("display_name");
 
     if(\Request::get("me_site") != null && \Request::get("me_display") != null && CSRF::check()){
       if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $site)){
-        \Fr\LS2::updateUser(array(
+        LS::updateUser(array(
           "web_page" => $site,
           "display_name" => $display_name
         ));
@@ -115,15 +117,15 @@ if($node === "index"){
       }
     }
     ?>
-    <p>You can see your profile <a href="<?php echo \Lobby::u("/u/" . \Fr\LS2::$user);?>">here</a></p>
+    <p>You can see your profile <a href="<?php echo \Lobby::u("/u/" . LS::$user);?>">here</a></p>
     <form action="<?php echo \Lobby::u();?>" method="POST">
       <label>
         <span>Display Name</span>
-        <input type="text" name="me_display" value="<?php echo \Fr\LS2::getUser("display_name");?>" placeholder="Name to show in your apps" />
+        <input type="text" name="me_display" value="<?php echo LS::getUser("display_name");?>" placeholder="Name to show in your apps" />
       </label>
       <label>
         <span>My Website</span>
-        <input type="text" name="me_site" value="<?php echo \Fr\LS2::getUser("web_page");?>" placeholder="Required" />
+        <input type="text" name="me_site" value="<?php echo LS::getUser("web_page");?>" placeholder="Required" />
       </label>
       <?php CSRF::getInput();?>
       <button class="btn green">Update Profile</button>
@@ -145,7 +147,7 @@ if($node === "index"){
   
   if(isset($path[3])){
     $sql = \Lobby\DB::getDBH()->prepare("SELECT * FROM `apps` WHERE `author` = ? AND `id` = ?");
-    $sql->execute(array(\Fr\LS2::$user, $path[3]));
+    $sql->execute(array(LS::$user, $path[3]));
     
     if($sql->rowCount() == "0"){
       ser();
@@ -198,9 +200,9 @@ if($node === "index"){
       }else{
         if($app_edit != true){
           $sql = \Lobby\DB::getDBH()->prepare("INSERT INTO `apps_queue` (`id`, `name`, `src`, `description`, `category`, `sub_category`, `app_page`, `author`, `updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW());");
-          $sql->execute(array($app_info['id'], $app_info['name'], $app_info['git_url'], $app_info['description'], $app_info['category'], $app_info['sub_category'], $app_info['app_page'], \Fr\LS2::$user));
+          $sql->execute(array($app_info['id'], $app_info['name'], $app_info['git_url'], $app_info['description'], $app_info['category'], $app_info['sub_category'], $app_info['app_page'], LS::$user));
         
-          $admin_access_token = \Fr\LS2::getUser("username", 1);
+          $admin_access_token = LS::getUser("username", 1);
           
           require_once $this->dir . "/src/inc/open.auth.php";
           $Opth = new OpenAuth("EAtGbLfgxiCJxhwWfsLsyxA0p8Zj4oUyOd4POaVc", "80d23edfa535caf4cc44b91e16c55c0f09e3bed927fecff96b092df0f517f410");
@@ -214,7 +216,7 @@ if($node === "index"){
         }else{        
           $sql = \Lobby\DB::getDBH()->prepare("UPDATE `apps` SET `name` = ?, `logo` = ?, `description` = ?, `category` = ?, `sub_category` = ?, `app_page` = ?, `lobby_web` = ?, `updated` = NOW() WHERE `id` = ? AND `author` = ?");
           
-          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['description'], $app_info['category'], $app_info['sub_category'], $app_info['app_page'], $app_info['lobby_web'], $app_info['id'], \Fr\LS2::$user));
+          $sql->execute(array($app_info['name'], $app_info['logo'], $app_info['description'], $app_info['category'], $app_info['sub_category'], $app_info['app_page'], $app_info['lobby_web'], $app_info['id'], LS::$user));
           
           sss("Updated", "Your app was successfully updated.");
         }

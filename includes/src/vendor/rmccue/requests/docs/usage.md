@@ -79,23 +79,23 @@ var_dump($response->body);
 This gives the output:
 
 	string(503) "{
-	  "origin": "124.191.162.147",
-	  "files": {},
+	  "origin": "124.191.162.147", 
+	  "files": {}, 
 	  "form": {
-	    "key2": "value2",
+	    "key2": "value2", 
 	    "key1": "value1"
-	  },
+	  }, 
 	  "headers": {
-	    "Content-Length": "23",
-	    "Accept-Encoding": "deflate;q=1.0, compress;q=0.5, gzip;q=0.5",
-	    "X-Forwarded-Port": "80",
-	    "Connection": "keep-alive",
-	    "User-Agent": "php-requests/1.6-dev",
-	    "Host": "httpbin.org",
+	    "Content-Length": "23", 
+	    "Accept-Encoding": "deflate;q=1.0, compress;q=0.5, gzip;q=0.5", 
+	    "X-Forwarded-Port": "80", 
+	    "Connection": "keep-alive", 
+	    "User-Agent": "php-requests/1.6-dev", 
+	    "Host": "httpbin.org", 
 	    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-	  },
-	  "url": "http://httpbin.org/post",
-	  "args": {},
+	  }, 
+	  "url": "http://httpbin.org/post", 
+	  "args": {}, 
 	  "data": ""
 	}"
 

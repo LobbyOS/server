@@ -13,6 +13,7 @@ $client = array(
 $lobby_downloads = array(
   "linux" => "BSMk6No0RZ8qZhq",
   "windows" => "iRXEoTSvKYvdEmZ",
+  "windows64" => "auRSvesJ44I8mPi",
 
   // "script" => "lobby-install.sh",
   // "deb" => "lobby.deb",
@@ -296,6 +297,7 @@ if($node === "dot.gif"){
     );
 
     require_once $this->dir . "/src/inc/Parsedown.php";
+    require_once $this->dir . "/src/inc/DB.php";
     require_once $this->dir . "/src/inc/Fr.star.php";
 
     $Parsedown = new Parsedown();

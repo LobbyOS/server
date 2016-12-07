@@ -1,6 +1,8 @@
 <?php
 namespace Fr;
 
+use Lobby\App\lobby_server\DB;
+
 /**
 .---------------------------------------------------------------------------.
 | The Francium Project                                                      |
@@ -93,7 +95,7 @@ class Star {
     $this->config = array_merge($this->default_config, $config);
     
     try {
-      $this->dbh = new \logSysLobbyDB;
+      $this->dbh = new DB;
       
       $this->id = $id;
       

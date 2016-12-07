@@ -6,9 +6,9 @@
   $appID = Request::postParam("appID");
   if($appID !== null && CSRF::check()){
     if($appID === "")
-      $this->removeData("appID");
+      $this->data->remove("appID");
     else
-      $this->saveData("appID", $appID);
+      $this->data->saveValue("appID", $appID);
     echo sss("Saved", "Settings has been saved.");
   }
   $appID = $this->data->getValue("appID");

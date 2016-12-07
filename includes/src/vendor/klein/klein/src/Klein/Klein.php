@@ -5,7 +5,7 @@
  * @author      Chris O'Hara <cohara87@gmail.com>
  * @author      Trevor Suarez (Rican7) (contributor and v2 refactorer)
  * @copyright   (c) Chris O'Hara
- * @link        https://github.com/chriso/klein.php
+ * @link        https://github.com/klein/klein.php
  * @license     MIT
  */
 
@@ -21,6 +21,8 @@ use Klein\Exceptions\RegularExpressionCompilationException;
 use Klein\Exceptions\RoutePathCompilationException;
 use Klein\Exceptions\UnhandledException;
 use OutOfBoundsException;
+use SplQueue;
+use SplStack;
 
 /**
  * Klein
@@ -135,26 +137,33 @@ class Klein
     protected $route_factory;
 
     /**
-     * An array of error callback callables
+     * A stack of error callback callables
      *
-     * @type array[callable]
+     * @type SplStack
      */
-    protected $errorCallbacks = array();
+    protected $error_callbacks;
 
     /**
-     * An array of HTTP error callback callables
+     * A stack of HTTP error callback callables
      *
-     * @type array[callable]
+     * @type SplStack
      */
-    protected $httpErrorCallbacks = array();
+    protected $http_error_callbacks;
 
     /**
-     * An array of callbacks to call after processing the dispatch loop
+     * A queue of callbacks to call after processing the dispatch loop
      * and before the response is sent
      *
-     * @type array[callable]
+     * @type SplQueue
      */
-    protected $afterFilterCallbacks = array();
+    protected $after_filter_callbacks;
+
+    /**
+     * The output buffer level used by the dispatch process
+     *
+     * @type int
+     */
+    private $output_buffer_level;
 
 
     /**
@@ -216,6 +225,10 @@ class Klein
         $this->app           = $app           ?: new App();
         $this->routes        = $routes        ?: new RouteCollection();
         $this->route_factory = $route_factory ?: new RouteFactory();
+
+        $this->error_callbacks = new SplStack();
+        $this->http_error_callbacks = new SplStack();
+        $this->after_filter_callbacks = new SplQueue();
     }
 
     /**
@@ -425,7 +438,9 @@ class Klein
         $params = array();
         $apc = function_exists('apc_fetch');
 
+        // Start output buffering
         ob_start();
+        $this->output_buffer_level = ob_get_level();
 
         try {
             foreach ($this->routes as $route) {
@@ -560,7 +575,7 @@ class Klein
                              * @link http://www.faqs.org/rfcs/rfc3986
                              *
                              * Decode here AFTER matching as per @chriso's suggestion
-                             * @link https://github.com/chriso/klein.php/issues/117#issuecomment-21093915
+                             * @link https://github.com/klein/klein.php/issues/117#issuecomment-21093915
                              */
                             $params = array_map('rawurldecode', $params);
 
@@ -638,31 +653,29 @@ class Klein
                 switch($capture) {
                     case self::DISPATCH_CAPTURE_AND_RETURN:
                         $buffed_content = null;
-                        if (ob_get_level()) {
+                        while (ob_get_level() >= $this->output_buffer_level) {
                             $buffed_content = ob_get_clean();
                         }
                         return $buffed_content;
                         break;
                     case self::DISPATCH_CAPTURE_AND_REPLACE:
-                        if (ob_get_level()) {
+                        while (ob_get_level() >= $this->output_buffer_level) {
                             $this->response->body(ob_get_clean());
                         }
                         break;
                     case self::DISPATCH_CAPTURE_AND_PREPEND:
-                        if (ob_get_level()) {
+                        while (ob_get_level() >= $this->output_buffer_level) {
                             $this->response->prepend(ob_get_clean());
                         }
                         break;
                     case self::DISPATCH_CAPTURE_AND_APPEND:
-                        if (ob_get_level()) {
+                        while (ob_get_level() >= $this->output_buffer_level) {
                             $this->response->append(ob_get_clean());
                         }
                         break;
-                    case self::DISPATCH_NO_CAPTURE:
                     default:
-                        if (ob_get_level()) {
-                            ob_end_flush();
-                        }
+                        // If not a handled capture strategy, default to no capture
+                        $capture = self::DISPATCH_NO_CAPTURE;
                 }
             }
 
@@ -671,8 +684,12 @@ class Klein
                 // HEAD requests shouldn't return a body
                 $this->response->body('');
 
-                if (ob_get_level()) {
-                    ob_clean();
+                while (ob_get_level() >= $this->output_buffer_level) {
+                    ob_end_clean();
+                }
+            } elseif (self::DISPATCH_NO_CAPTURE === $capture) {
+                while (ob_get_level() >= $this->output_buffer_level) {
+                    ob_end_flush();
                 }
             }
         } catch (LockedResponseException $e) {
@@ -882,11 +899,11 @@ class Klein
      * Adds an error callback to the stack of error handlers
      *
      * @param callable $callback            The callable function to execute in the error handling chain
-     * @return boolean|void
+     * @return void
      */
     public function onError($callback)
     {
-        $this->errorCallbacks[] = $callback;
+        $this->error_callbacks->push($callback);
     }
 
     /**
@@ -901,28 +918,42 @@ class Klein
         $type = get_class($err);
         $msg = $err->getMessage();
 
-        if (count($this->errorCallbacks) > 0) {
-            foreach (array_reverse($this->errorCallbacks) as $callback) {
-                if (is_callable($callback)) {
-                    if (is_string($callback)) {
-                        $callback($this, $msg, $type, $err);
+        try {
+            if (!$this->error_callbacks->isEmpty()) {
+                foreach ($this->error_callbacks as $callback) {
+                    if (is_callable($callback)) {
+                        if (is_string($callback)) {
+                            $callback($this, $msg, $type, $err);
 
-                        return;
+                            return;
+                        } else {
+                            call_user_func($callback, $this, $msg, $type, $err);
+
+                            return;
+                        }
                     } else {
-                        call_user_func($callback, $this, $msg, $type, $err);
-
-                        return;
-                    }
-                } else {
-                    if (null !== $this->service && null !== $this->response) {
-                        $this->service->flash($err);
-                        $this->response->redirect($callback);
+                        if (null !== $this->service && null !== $this->response) {
+                            $this->service->flash($err);
+                            $this->response->redirect($callback);
+                        }
                     }
                 }
+            } else {
+                $this->response->code(500);
+
+                while (ob_get_level() >= $this->output_buffer_level) {
+                    ob_end_clean();
+                }
+
+                throw new UnhandledException($msg, $err->getCode(), $err);
             }
-        } else {
-            $this->response->code(500);
-            throw new UnhandledException($msg, $err->getCode(), $err);
+        } catch (Exception $e) {
+            // Make sure to clean the output buffer before bailing
+            while (ob_get_level() >= $this->output_buffer_level) {
+                ob_end_clean();
+            }
+
+            throw $e;
         }
 
         // Lock our response, since we probably don't want
@@ -938,7 +969,7 @@ class Klein
      */
     public function onHttpError($callback)
     {
-        $this->httpErrorCallbacks[] = $callback;
+        $this->http_error_callbacks->push($callback);
     }
 
     /**
@@ -955,8 +986,8 @@ class Klein
             $this->response->code($http_exception->getCode());
         }
 
-        if (count($this->httpErrorCallbacks) > 0) {
-            foreach (array_reverse($this->httpErrorCallbacks) as $callback) {
+        if (!$this->http_error_callbacks->isEmpty()) {
+            foreach ($this->http_error_callbacks as $callback) {
                 if ($callback instanceof Route) {
                     $this->handleRouteCallback($callback, $matched, $methods_matched);
                 } elseif (is_callable($callback)) {
@@ -997,7 +1028,7 @@ class Klein
      */
     public function afterDispatch($callback)
     {
-        $this->afterFilterCallbacks[] = $callback;
+        $this->after_filter_callbacks->enqueue($callback);
     }
 
     /**
@@ -1008,7 +1039,7 @@ class Klein
     protected function callAfterDispatchCallbacks()
     {
         try {
-            foreach ($this->afterFilterCallbacks as $callback) {
+            foreach ($this->after_filter_callbacks as $callback) {
                 if (is_callable($callback)) {
                     if (is_string($callback)) {
                         $callback($this);

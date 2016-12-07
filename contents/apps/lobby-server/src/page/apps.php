@@ -1,4 +1,6 @@
 <?php
+use \Lobby\App\lobby_server\Fr\LS;
+
 $this->addStyle("apps.css");
 $this->addScript("apps.js");
 
@@ -105,7 +107,7 @@ if($node === "index"){
               <div class="rpane">
                 <a href="<?php echo L_URL . "/apps/" . $app['id'];?>" class="name"><?php echo $app['name'];?></a>
                 <p class="description"><?php echo $app['short_description'];?></p>
-                <p>By: <a href="<?php echo L_URL . "/u/" . $app['author'];?>"><?php echo \Fr\LS2::getUser("name", $app['author']);?></a></p>
+                <p>By: <a href="<?php echo L_URL . "/u/" . $app['author'];?>"><?php echo LS::getUser("name", $app['author']);?></a></p>
               </div>
             </div>
             <div class="bpane">
@@ -238,7 +240,7 @@ if($node === "index"){
               function fr_star(){
                 $(".contents .ratings #rating").text($(".Fr-star").data("title"));
                 $(".Fr-star").Fr_star(function(rating){
-                  lobby.ajax("rate.php", {'id' : '<?php echo "app-{$appInfo['id']}";?>', 'rating': rating}, function(r){
+                  lobby.ar("rate", {'id' : '<?php echo "app-{$appInfo['id']}";?>', 'rating': rating}, function(r){
                     if(r == "error"){
                       alert("You have to log in to rate apps");
                     }else{
@@ -255,7 +257,7 @@ if($node === "index"){
         <div id="about">
           <div class="chip">Version : <?php echo $appInfo['version'];?></div><cl/>
           <div class="chip" title="UTC Time Zone - <?php echo $appInfo['updated'];?>">Updated : <?php echo get_timeago(strtotime($appInfo['updated']));?></div><cl/>
-          <div class="chip">Author : <a href='/u/<?php echo $appInfo['author'];?>'><?php echo \Fr\LS2::getUser("name", $appInfo['author']);?></a></div><cl/>
+          <div class="chip">Author : <a href='/u/<?php echo $appInfo['author'];?>'><?php echo LS::getUser("name", $appInfo['author']);?></a></div><cl/>
           <div class="chip">Web Page : <?php echo "<a href='{$appInfo['app_page']}' target='_blank'>". htmlspecialchars($appInfo['app_page']) ."</a>";?></div>
         </div>
       </div>  

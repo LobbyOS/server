@@ -204,6 +204,9 @@ section img{
 #download .windows{
   background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/windows.svg);
 }
+#download .windows64{
+  background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/windows64.svg);
+}
 #download .zip{
   background-image: url(//server.lobby.sim/contents/apps/lobby-server/src/image/platforms/zip.svg);
 }

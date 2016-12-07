@@ -12,19 +12,19 @@ class ProcessTest extends PHPUnit_Framework_TestCase {
       "output" => $tmpFile
     ));
     $PR->start();
-
+    
     $this->assertNotEquals("helloworld", file_get_contents($tmpFile));
-
+    
     /**
      * Let the bg process complete
      */
     sleep(1);
     $this->assertEquals("helloworld", file_get_contents($tmpFile));
-
+    
     // Remove temporary file
     unlink($tmpFile);
   }
-
+  
   public function testStopAProcess(){
     $tmpFile = tempnam(sys_get_temp_dir(), "FranciumProcess");
     $PR = new Process(Process::getPHPExecutable(), array(
@@ -33,21 +33,21 @@ class ProcessTest extends PHPUnit_Framework_TestCase {
       )
     ));
     $PR->start();
-
+    
     /**
      * Let the bg process start
      */
     sleep(1);
     $this->assertEquals("hello", file_get_contents($tmpFile));
-
+    
     var_dump($PR->stop());
-
+    
     /**
      * It would take 5 seconds for bg process to complete
      */
     sleep(3);
     $this->assertNotEquals("world", file_get_contents($tmpFile));
-
+    
     // Remove temporary file
     unlink($tmpFile);
   }

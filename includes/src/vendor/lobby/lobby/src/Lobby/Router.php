@@ -6,7 +6,10 @@
 
 namespace Lobby;
 
+use CSRF;
 use Klein\Klein;
+use Lobby\Apps;
+use Lobby\DB;
 use Request;
 use Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -18,6 +21,10 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
  */
 class Router {
 
+  /**
+   * Klein router object
+   * @var Klein
+   */
   public static $router;
 
   /**
@@ -124,6 +131,100 @@ class Router {
       \Lobby\UI\Themes::loadDashboard("head");
       Response::loadPage("/includes/lib/lobby/inc/dashboard.php");
     });
+
+    /**
+     * Handle AR
+     */
+    self::route("/lobby/ar/[*:handler]", function($request){
+      if(!CSRF::check())
+        return false;
+
+      if($request->handler === "notify"){
+        Response::loadContent("/includes/lib/lobby/ar/notify.php");
+      }else if($request->handler === "save/option"){
+        $key = Request::postParam("key");
+        $value = Request::postParam("value");
+
+        if(DB::saveOption($key, $value)){
+          Response::setContent("1");
+        }else{
+          Response::setContent("0");
+        }
+      }else if($request->handler === "admin/enable-app"){
+        Response::loadContent("/admin/ar/enable-app.php");
+      }else if($request->handler === "admin/install-app"){
+        Response::loadContent("/admin/ar/install-app.php");
+      }else if($request->handler === "admin/set-timezone"){
+        Response::loadContent("/admin/ar/set-timezone.php");
+      }else if($request->handler === "filepicker"){
+        Response::loadContent("/includes/lib/modules/filepicker/ar/filepicker.php");
+      }
+    });
+
+    /**
+     * Handle AR to apps
+     */
+    self::route("/lobby/ar/app/[s:appID]/[*:handler]", function($request){
+      if(!CSRF::check())
+        return false;
+
+      $App = new Apps($request->appID);
+
+      if($App->exists && $App->enabled){
+        $AppObj = $App->getInstance();
+
+        $key = Request::postParam("key");
+        $value = Request::postParam("value");
+
+        if($request->handler === "data/save"){
+          if($key !== null && $value !== null){
+            if(is_array($value)){
+              $AppObj->data->saveArray($key, $value);
+            }else{
+              $AppObj->data->saveValue($key, $value);
+            }
+            Response::setContent("1");
+          }
+        }else if($request->handler === "/data/remove"){
+          $AppObj->data->remove($key);
+          Response::setContent("1");
+        }else{
+          $response = $AppObj->getARResponse($request->handler);
+
+          if($response !== false){
+            /**
+             * Response shouldn't be empty
+             */
+            Response::setContent($response == null ? "1" : $response);
+          }else{
+            /**
+             * AR request was invalid
+             */
+            Response::showError();
+          }
+        }
+      }
+    });
+  }
+
+  /**
+   * Normalize a path string
+   * @param  string $path Path to normalize
+   * @return string       Normalized path
+   */
+  private static function getAbsolutePath($path) {
+    $path = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
+    $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
+    $absolutes = array();
+    foreach ($parts as $part) {
+      if ('.' == $part) continue;
+      if ('..' == $part) {
+        array_pop($absolutes);
+      } else {
+        $absolutes[] = $part;
+      }
+    }
+    return implode(DIRECTORY_SEPARATOR, $absolutes);
   }
 
   /**
@@ -132,7 +233,7 @@ class Router {
    * @return bool Whether the request points to a valid file
    */
   private static function getServeFileAbsolutePath($path){
-    $path = realpath(L_DIR . $path);
+    $path = FS::loc(self::getAbsolutePath($path));
 
     if(file_exists($path)){
       // Folder index

@@ -1,6 +1,6 @@
 # Klein.php
 
-[![Build Status](https://travis-ci.org/chriso/klein.php.png?branch=master)](https://travis-ci.org/chriso/klein.php)
+[![Build Status](https://travis-ci.org/klein/klein.php.png?branch=master)](https://travis-ci.org/klein/klein.php)
 
 **klein.php** is a fast & flexible router for PHP 5.3+
 
@@ -89,7 +89,7 @@ $klein->respond(function ($request, $response, $service) {
 $klein->respond('/report.[xml|csv|json:format]?', function ($request, $response, $service) {
     // Get the format or fallback to JSON as the default
     $send = $request->param('format', 'json');
-    $service->$send($report);
+    $response->$send($report);
 });
 
 $klein->respond('/report/latest', function ($request, $response, $service) {
@@ -420,7 +420,7 @@ See the [contributing guide](CONTRIBUTING.md) for more info
 
 ## More information
 
-See the [wiki](https://github.com/chriso/klein.php/wiki) for more information
+See the [wiki](https://github.com/klein/klein.php/wiki) for more information
 
 ## Contributors
 
